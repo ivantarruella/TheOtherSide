@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Windows OnLoadWindows="_PROC:set_start_game(false)
+						_GUI:set_visible_pointer_mouse(true)
+						_SOUNDM:play_action_2D('stop', 1.0)
+						" 
+		 OnSaveWindows="" 
+		 OnUpdateWindows="">
+
+  <Image name="fondo_fin" posx="0.00" posy="0.00" height="100.00" width="100.00" visible="true" active="true"
+         default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
+    <texture name="img1" name_texture="./Data/GUI/Textures/fondofin2.png"/>
+  </Image>
+
+  <Button name="Exit_End" posx="42.00" posy="75.00" height="8.00" width="16.00" visible="true" active="true" 
+          texture_normal="./Data/GUI/Textures/SalirNormal.png"
+          texture_over="./Data/GUI/Textures/SalirOver.png"
+          texture_clicked="./Data/GUI/Textures/SalirPress.png"
+          texture_deactivated="./Data/GUI/Textures/SalirNormal.png"
+          OnClickedAction="_PROC:set_end_game(true)"
+          OnOverAction="_SOUNDM:play_action_2D('gui_over', 1.0)"/>
+  
+</Windows>

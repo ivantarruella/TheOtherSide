@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<scripting>
+ 
+  <script  file_path="data/Scripting/load.lua"/>
+  <script  file_path="data/Scripting/game.lua"/>
+  <script  file_path="data/Scripting/mirrors.lua"/>
+  <script  file_path="data/Scripting/lights.lua"/>
+  <script  file_path="data/Scripting/sound.lua"/>
+  <script  file_path="data/Scripting/enemies.lua"/>
+  <script  file_path="data/Scripting/objetivos.lua"/>
+  
+</scripting>

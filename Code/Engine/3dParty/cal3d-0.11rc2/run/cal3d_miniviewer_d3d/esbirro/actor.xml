@@ -1,0 +1,10 @@
+<animated_model name="esbirro">
+	<skeleton filename="esbirro.csf"/>
+	<mesh filename="esbirro.cmf"/>
+	<animation name="idle" filename="esbirro_espera.caf"/>
+	<animation name="walk" filename="esbirro_andar.caf"/>
+	<animation name="run" filename="esbirro_correr.caf"/>
+	
+	<texture filename="esbirro_textura.jpg"/>
+
+</animated_model>

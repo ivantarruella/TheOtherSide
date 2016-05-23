@@ -1,0 +1,74 @@
+<ParticleManager>
+	<ParticleEmitters>
+		<PointEmitter type="point" name="core1" gravity="true" life_time_min="0.0" life_time_max="3.0" emit_rate_min="0.0"
+			emit_rate_max="50.0" tex="data\Textures\Electric sparkle8.png" angle="2.0">
+			<color time="0.0" color1="1 1 1 1" color2="1 1 1 1"/>
+			<direction time="0.0" dir1="1 1.5 0" dir2="-1 -1.5 -1"/>
+			<size time="0.0" mins="0.01" maxs="0.1"/>
+			<aceleration time="0.0" acel1="0 1 0" acel2="0 2 0"/>
+		</PointEmitter>
+		<PointEmitter type="point" name="core2" gravity="true" life_time_min="1.0" life_time_max="2.0" emit_rate_min="0.0"
+			emit_rate_max="100.0" tex="data\Textures\Electric sparkle8.png" angle="0.0">
+			<color time="0.0" color1="1 1 1 1" color2="1 1 1 1"/>
+			<direction time="0.0" dir1="1 1.5 0" dir2="-1 -1.5 -1"/>
+			<size time="0.0" mins="0.01" maxs="0.1"/>
+			<aceleration time="0.0" acel1="0 1 0" acel2="0 2 0"/>
+		</PointEmitter>		
+		<PointEmitter type="plane" name="fog" gravity="false" life_time_min="5.0" life_time_max="8.0" emit_rate_min="8.0"
+			emit_rate_max="14.0" tex="data\Textures\smoke.tga" angle="2.0">
+			<color time="0.0" color1="0.15 0.05 0.05 0.00" color2="0.15 0.05 0.05 0.03"/>
+			<direction time="0.0" dir1="-0.09 -0.01 -0.09" dir2="0.09 0.01 0.09"/>
+			<size time="0.0" mins="0.5" maxs="0.9"/>
+			<aceleration time="0.0" acel1="0 0 0" acel2="0 0 0"/>
+		</PointEmitter>
+		<PointEmitter type="plane" name="fog2" gravity="false" life_time_min="5.0" life_time_max="8.0" emit_rate_min="8.0"
+			emit_rate_max="14.0" tex="data\Textures\smoke.tga" angle="2.0">
+			<color time="0.0" color1="0.10 0.10 0.10 0.10" color2="0.10 0.10 0.10 0.03"/>
+			<direction time="0.0" dir1="-0.09 -0.01 -0.09" dir2="0.09 0.01 0.09"/>
+			<size time="0.0" mins="0.5" maxs="0.9"/>
+			<aceleration time="0.0" acel1="0 0 0" acel2="0 0 0"/>
+		</PointEmitter>
+		<PointEmitter type="torus" name="healer" gravity="false" life_time_min="5.0" life_time_max="5.0" emit_rate_min="6.0"
+			emit_rate_max="10.0" tex="data\Textures\Electric sparkle.png" angle="2.0">
+			<color time="0.0" color1="0.01 0.8 1 1" color2="0.01 0.8 1 1"/>
+			<direction time="0.0" dir1="-0.01 0.2 -0.01" dir2="0.01 0.6 0.01"/>
+			<size time="0.0" mins="0.2" maxs="0.4"/>
+			<aceleration time="0.0" acel1="0 0 0" acel2="0 0 0"/>
+		</PointEmitter>
+		<PointEmitter type="plane" name="fog3" gravity="false" life_time_min="1.0" life_time_max="10.0" emit_rate_min="10.0"
+			emit_rate_max="20.0" tex="data\Textures\smoke.tga" angle="2.0">
+			<color time="0.0" color1="0.10 0.10 0.10 0.10" color2="0.10 0.10 0.10 0.10"/>
+			<direction time="0.0" dir1="-0.09 -0.01 -0.09" dir2="0.09 0.01 0.09"/>
+			<size time="0.0" mins="0.3" maxs="0.7"/>
+			<aceleration time="0.0" acel1="0 0 0" acel2="0 0 0"/>
+		</PointEmitter>	
+		<PointEmitter type="plane" name="monster_damage" gravity="false" life_time_min="0.5" life_time_max="1.0" emit_rate_min="10.0"
+			emit_rate_max="20.0" tex="data\Textures\smoke.tga" angle="2.0">
+			<color time="0.0" color1="0.5 0.5 0.5 0.00" color2="0.5 0.25 0.25 0.03"/>
+			<direction time="0.0" dir1="-0.09 -0.01 -0.09" dir2="0.09 0.01 0.09"/>
+			<size time="0.0" mins="0.7" maxs="1.0"/>
+			<aceleration time="0.0" acel1="0 4 0" acel2="0 8 0"/>
+		</PointEmitter>		
+	</ParticleEmitters>
+
+	<Instances>
+		<Instance name="core01" id="core1" pos1="-7.98748 2.93715 0.965848" pos2="-7.98748 2.93715 0.965848" world="2"/>
+		<Instance name="fog01_ME" id="fog" pos1="-12.618 0.200 0.508" pos2="-12.618 0.200 0.508" size="1.5" world="2"/>
+		<Instance name="fog02_ME" id="fog" pos1="-15.618 0.200 0.508" pos2="-15.618 0.200 0.508" size="1.5" world="2"/>
+		<Instance name="fog03_ME" id="fog" pos1="-7.634 0.200 8.043" pos2="-7.634 0.200 8.043" size="1.5" world="2"/>
+		<Instance name="fog04_ME" id="fog" pos1="-7.634 0.200 5.043" pos2="-7.634 0.200 5.043" size="1.5" world="2"/>
+		
+		<Instance name="fog01_MR" id="fog2" pos1="12.618 0.200 0.508" pos2="12.618 0.200 0.508" size="1.5" world="1"/>
+		<Instance name="fog02_MR" id="fog2" pos1="15.618 0.200 0.508" pos2="15.618 0.200 0.508" size="1.5" world="1"/>
+		<Instance name="fog03_MR" id="fog2" pos1="7.634 0.200 8.043" pos2="7.634 0.200 8.043" size="1.5" world="1"/>
+		<Instance name="fog04_MR" id="fog2" pos1="7.634 0.200 5.043" pos2="7.634 0.200 5.043" size="1.5" world="1"/>
+
+		<Instance name="fog00_MR" id="fog3" pos1="24.0216 2.408065 -3.808411" pos2="24.0216 2.408065 -3.808411" size="1.0" world="1"/>
+		<Instance name="fog00_ME" id="fog3" pos1="-24.0216 2.658065 -3.808411" pos2="-24.0216 2.658065 -3.808411" size="1.0" world="2"/>
+		
+		<Instance name="fluorescente01" id="core2" pos1="25.5709 2.95591 -3.41141" pos2="25.5709 2.95591 -3.41141" world="1" size="0.5"/>
+		
+		<Instance name="healer01_MR" id="healer" pos1="11.954 0.200 21.677" pos2="11.954 0.200 21.677" size="0.7" world="1"/>
+	</Instances>
+</ParticleManager>
+

@@ -1,0 +1,25 @@
+﻿Compilación iniciada a las 18/10/2012 15:43:32.
+     1>Proyecto "D:\UAB\Projects\videogame\trunk\Code\Tools\TestPhysX\TestPhysX.vcxproj" en el nodo 3 (build destinos).
+     1>InitializeBuildStatus:
+         Se creará "D:\UAB\Projects\videogame\trunk\\bin\Intermediate\TestPhysXDebug\TestPhysX.unsuccessfulbuild" porque se especificó "AlwaysCreate".
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Sound /I"D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\libxml2-2.7.2.win32\include" /I"D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\iconv-1.9.2.win32\include" /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Base /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Core /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Base\Math\ /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Graphics\ /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Input /I"D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\cal3d-0.11rc2\src" /ID:\UAB\Projects\videogame\trunk\\Code\Engine\PhysX /I"C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Foundation\include" /I"C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\NxCharacter\include" /I"C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Physics\include" /I"C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\PhysXLoader\include" /I"C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Cooking\include" /ID:\UAB\Projects\videogame\trunk\\Code\Engine\GUI /ID:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\openAL\include /I"D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\lua-5.2.0\src\\" /I"D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\luabind-0.9.1\\" /ID:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\boost_1_48_0\ /ZI /nologo /W3 /WX /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"D:\UAB\Projects\videogame\trunk\\bin\Intermediate\TestPhysXDebug\\" /Fd"D:\UAB\Projects\videogame\trunk\\bin\Intermediate\TestPhysXDebug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ProcessTriggerReport.cpp TestPhysX.cpp TestPhysXProcess.cpp
+         TestPhysXProcess.cpp
+     1>d:\uab\projects\videogame\trunk\code\engine\graphics\freecamera.h(25): error C2146: error de sintaxis : falta ';' delante del identificador 'm_CameraMovement'
+     1>d:\uab\projects\videogame\trunk\code\engine\graphics\freecamera.h(25): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
+     1>d:\uab\projects\videogame\trunk\code\engine\graphics\freecamera.h(25): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
+     1>d:\uab\projects\videogame\trunk\code\tools\testphysx\testphysxprocess.cpp(17): fatal error C1083: No se puede abrir el archivo incluir: 'LogicObjectsManager.h': No such file or directory
+         TestPhysX.cpp
+     1>d:\uab\projects\videogame\trunk\code\tools\testphysx\testphysx.cpp(74): error C2259: CTestPhysXProcess' : no se puede crear una instancia de una clase abstract
+                 debido a los siguientes miembros:
+                 'void CProcess::PreInit(void)' : es abstracto
+                 d:\uab\projects\videogame\trunk\code\engine\core\process.h(21) : vea la declaración de 'CProcess::PreInit'
+                 'void CProcess::Load(void)' : es abstracto
+                 d:\uab\projects\videogame\trunk\code\engine\core\process.h(26) : vea la declaración de 'CProcess::Load'
+         ProcessTriggerReport.cpp
+         Generando código...
+     1>Compilación del proyecto terminada "D:\UAB\Projects\videogame\trunk\Code\Tools\TestPhysX\TestPhysX.vcxproj" (build destinos) -- ERROR.
+
+ERROR al compilar.
+
+Tiempo transcurrido 00:00:20.43

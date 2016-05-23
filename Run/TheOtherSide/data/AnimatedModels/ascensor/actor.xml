@@ -1,0 +1,13 @@
+<animated_model name="ascensor">
+	<skeleton filename="ascensor.csf"/>
+	<mesh filename="ascensor.cmf"/>
+	
+	<animation name="espera_abajo" filename="espera_abajo.caf"/>
+	<animation name="espera_arriba" filename="espera_arriba.caf"/>
+	<animation name="subir" filename="subir.caf"/>
+	<animation name="bajar" filename="bajar.caf"/>
+	
+	<texture filename="D_ascensor.dds"/>
+	<texture filename="N_Ascensor.dds"/>
+
+</animated_model>

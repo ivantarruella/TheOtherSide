@@ -1,0 +1,12 @@
+<animated_model name="thug">
+	<skeleton filename="thug.csf"/>
+	
+	<mesh filename="thug_head.cmf"/>
+	<mesh filename="thug_body.cmf"/>
+
+	<animation name="walk" filename="thug_idle.caf"/>
+
+	<texture filename="thug_head.tga"/>
+	<texture filename="thug_body.tga"/>
+	
+</animated_model>

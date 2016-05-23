@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AI\AIMonster.cpp" />
+    <ClCompile Include="AI\AimTask.cpp" />
+    <ClCompile Include="AI\AISoldier.cpp" />
+    <ClCompile Include="AI\AlertTask.cpp" />
+    <ClCompile Include="AI\AttackState.cpp" />
+    <ClCompile Include="AI\BattleTask.cpp" />
+    <ClCompile Include="AI\ChaseState.cpp" />
+    <ClCompile Include="AI\CoverManager.cpp" />
+    <ClCompile Include="AI\DeadTask.cpp" />
+    <ClCompile Include="AI\EscapeState.cpp" />
+    <ClCompile Include="AI\HurtTask.cpp" />
+    <ClCompile Include="AI\IdleState.cpp" />
+    <ClCompile Include="AI\IdleTask.cpp" />
+    <ClCompile Include="AI\MoveTask.cpp" />
+    <ClCompile Include="AI\Node.cpp" />
+    <ClCompile Include="AI\NodeManager.cpp" />
+    <ClCompile Include="AI\PatrolState.cpp" />
+    <ClCompile Include="AI\PatrolTask.cpp" />
+    <ClCompile Include="AI\RootTask.cpp" />
+    <ClCompile Include="AI\ShootTask.cpp" />
+    <ClCompile Include="AI\StateMachine.cpp" />
+    <ClCompile Include="AI\TaskManager.cpp" />
+    <ClCompile Include="AI\WanderState.cpp" />
+    <ClCompile Include="Characters\Character.cpp" />
+    <ClCompile Include="Characters\EnemyManager.cpp" />
+    <ClCompile Include="Characters\Monster.cpp" />
+    <ClCompile Include="Characters\Player.cpp" />
+    <ClCompile Include="Characters\Soldier.cpp" />
+    <ClCompile Include="Graphics\ElevatorAnimatedPhysicModel.cpp" />
+    <ClCompile Include="Logic\BrokenMirrorObject.cpp" />
+    <ClCompile Include="Logic\DoorObject.cpp" />
+    <ClCompile Include="Logic\ElevatorObject.cpp" />
+    <ClCompile Include="Logic\EnergyRecover.cpp" />
+    <ClCompile Include="Logic\FanObject.cpp" />
+    <ClCompile Include="Logic\Lasers.cpp" />
+    <ClCompile Include="Logic\LifeRecover.cpp" />
+    <ClCompile Include="Logic\LogicObject.cpp" />
+    <ClCompile Include="Logic\LogicObjectsManager.cpp" />
+    <ClCompile Include="Logic\MirrorObject.cpp" />
+    <ClCompile Include="Logic\MirrorPieceObject.cpp" />
+    <ClCompile Include="Logic\SpawnPointObject.cpp" />
+    <ClCompile Include="Logic\TutorialObject.cpp" />
+    <ClCompile Include="Weapon\Bullet.cpp" />
+    <ClCompile Include="Weapon\BulletManager.cpp" />
+    <ClCompile Include="Weapon\Weapon.cpp" />
+    <ClCompile Include="World.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AI\AI.h" />
+    <ClInclude Include="AI\AIMonster.h" />
+    <ClInclude Include="AI\AimTask.h" />
+    <ClInclude Include="AI\AISoldier.h" />
+    <ClInclude Include="AI\AlertTask.h" />
+    <ClInclude Include="AI\AttackState.h" />
+    <ClInclude Include="AI\BattleTask.h" />
+    <ClInclude Include="AI\ChaseState.h" />
+    <ClInclude Include="AI\CoverManager.h" />
+    <ClInclude Include="AI\DeadTask.h" />
+    <ClInclude Include="AI\EscapeState.h" />
+    <ClInclude Include="AI\HurtTask.h" />
+    <ClInclude Include="AI\IdleState.h" />
+    <ClInclude Include="AI\IdleTask.h" />
+    <ClInclude Include="AI\MoveTask.h" />
+    <ClInclude Include="AI\Node.h" />
+    <ClInclude Include="AI\NodeManager.h" />
+    <ClInclude Include="AI\PatrolState.h" />
+    <ClInclude Include="AI\PatrolTask.h" />
+    <ClInclude Include="AI\RootTask.h" />
+    <ClInclude Include="AI\ShootTask.h" />
+    <ClInclude Include="AI\State.h" />
+    <ClInclude Include="AI\StateMachine.h" />
+    <ClInclude Include="AI\Task.h" />
+    <ClInclude Include="AI\TaskManager.h" />
+    <ClInclude Include="AI\WanderState.h" />
+    <ClInclude Include="Characters\Character.h" />
+    <ClInclude Include="Characters\EnemyManager.h" />
+    <ClInclude Include="Characters\Monster.h" />
+    <ClInclude Include="Characters\Player.h" />
+    <ClInclude Include="Characters\Soldier.h" />
+    <ClInclude Include="Graphics\ElevatorAnimatedPhysicModel.h" />
+    <ClInclude Include="Logic\BrokenMirrorObject.h" />
+    <ClInclude Include="Logic\DoorObject.h" />
+    <ClInclude Include="Logic\ElevatorObject.h" />
+    <ClInclude Include="Logic\EnergyRecover.h" />
+    <ClInclude Include="Logic\FanObject.h" />
+    <ClInclude Include="Logic\Lasers.h" />
+    <ClInclude Include="Logic\LifeRecover.h" />
+    <ClInclude Include="Logic\LogicObject.h" />
+    <ClInclude Include="Logic\LogicObjectsManager.h" />
+    <ClInclude Include="Logic\MirrorObject.h" />
+    <ClInclude Include="Logic\MirrorPieceObject.h" />
+    <ClInclude Include="Logic\SpawnPointObject.h" />
+    <ClInclude Include="Logic\TutorialObject.h" />
+    <ClInclude Include="Weapon\Bullet.h" />
+    <ClInclude Include="Weapon\BulletManager.h" />
+    <ClInclude Include="Weapon\Weapon.h" />
+    <ClInclude Include="World.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8970AF54-3A65-4C06-843D-D5561947EE80}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Base</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\bin\</OutDir>
+    <IntDir>$(SolutionDir)\bin\Intermediate\$(ProjectName)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\bin\</OutDir>
+    <IntDir>$(SolutionDir)\bin\Intermediate\$(ProjectName)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Code\Engine\PhysX;%(AdditionalIncludeDirectories);C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Foundation\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\NxCharacter\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Physics\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\PhysXLoader\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Cooking\include;$(SolutionDir)\Code\Engine\$(ProjectName)\;$(DXSDK_DIR)\Include;$(SolutionDir)\Code\Engine\3dParty\libxml2-2.7.2.win32\include;$(SolutionDir)\Code\Engine\3dParty\iconv-1.9.2.win32\include;$(SolutionDir)\Code\Engine\Base\;$(SolutionDir)\Code\Engine\Core\;$(SolutionDir)\Code\Engine\Graphics\;$(SolutionDir)\Code\Engine\Input\;$(SolutionDir)\Code\Engine\3dParty\lua-5.2.0\src\;$(SolutionDir)\Code\Engine\3dParty\luabind-0.9.1\;$(SolutionDir)\Code\Engine\3dParty\boost_1_48_0\;$(SolutionDir)\Code\Engine\GUI;$(SolutionDir)\Code\Engine\Base\Math\;$(SolutionDir)\Code\Engine\Sound\;$(SolutionDir)\Code\Engine\3dParty\openAL\include;$(SolutionDir)\Code\Engine\3dParty\cal3d-0.11rc2\src;$(SolutionDir)\Code\Engine\PhysX\include;$(SolutionDir)\Code\Engine\Game\AI;$(SolutionDir)\Code\Engine\Game\Characters;$(SolutionDir)\Code\Engine\Game\Logic;$(SolutionDir)\Code\Engine\Game\;$(SolutionDir)\Code\Engine\Game\Graphics\;$(SolutionDir)\Code\Engine\Game\Weapon\</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <OutputFile>$(OutDir)\Lib\$(ProjectName)_d.lib</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Code\Engine\GUI;$(SolutionDir)\Code\Engine\PhysX;%(AdditionalIncludeDirectories);C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Foundation\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\NxCharacter\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Physics\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\PhysXLoader\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Cooking\include;$(SolutionDir)\Code\Engine\$(ProjectName)\;$(SolutionDir)\Code\Engine\3dParty\libxml2-2.7.2.win32\include;$(SolutionDir)\Code\Engine\3dParty\iconv-1.9.2.win32\include;$(DXSDK_DIR)\Include;$(SolutionDir)\Code\Engine\Base\;$(SolutionDir)\Code\Engine\Core\;$(SolutionDir)\Code\Engine\Input\;$(SolutionDir)\Code\Engine\Graphics\;$(SolutionDir)\Code\Engine\3dParty\lua-5.2.0\src\;$(SolutionDir)\Code\Engine\3dParty\luabind-0.9.1\;$(SolutionDir)\Code\Engine\3dParty\boost_1_48_0\;$(SolutionDir)\Code\Engine\Base\Math\;$(SolutionDir)\Code\Engine\Sound\;$(SolutionDir)\Code\Engine\3dParty\openAL\include;$(SolutionDir)\Code\Engine\3dParty\cal3d-0.11rc2\src;$(SolutionDir)\Code\Engine\PhysX\include;$(SolutionDir)\Code\Engine\Game\AI;$(SolutionDir)\Code\Engine\Game\Characters;$(SolutionDir)\Code\Engine\Game\Logic;$(SolutionDir)\Code\Engine\Game\;$(SolutionDir)\Code\Engine\Game\Graphics\;$(SolutionDir)\Code\Engine\Game\Weapon\</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>
+      </MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <OutputFile>$(OutDir)\Lib\$(ProjectName).lib</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\3dParty\libxml2-2.7.2.win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

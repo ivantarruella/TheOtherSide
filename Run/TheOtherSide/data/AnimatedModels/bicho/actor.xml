@@ -1,0 +1,14 @@
+<animated_model name="bicho">
+	<skeleton filename="bicho.csf"/>
+	<mesh filename="bicho.cmf"/>
+	
+	<animation name="espera" filename="bicho_espera.caf"/>
+	<animation name="andar" filename="bicho_andar.caf"/>
+	<animation name="pegar" filename="bicho_pegar.caf"/>
+	<animation name="cubrirse" filename="bicho_cubrirse.caf"/>
+	<animation name="andar_atras" filename="bicho_andar_atras.caf"/>
+	<animation name="muerto" filename="bicho_muerto.caf"/>
+	
+	<texture filename="bicho.tga"/>
+	<texture filename="bicho_norm.tga"/>
+</animated_model>

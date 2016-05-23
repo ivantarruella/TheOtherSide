@@ -1,0 +1,6 @@
+<Renderable_Objects>
+	<layer name="solid" default="true"/>
+	<layer name="alpha_objects"/>
+	<layer name="alpha_blend_objects"/>
+	<layer name="particles"/>
+</Renderable_Objects>

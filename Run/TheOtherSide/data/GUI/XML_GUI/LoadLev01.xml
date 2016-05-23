@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Windows OnLoadWindows="_LEVELM:load_level('data/XML/Level01')"
+	     OnSaveWindows="" 
+		 OnUpdateWindows="_LOGICOBJECTSM:change_state_all(1, true)
+						  _LOGICOBJECTSM:set_mirror_active('Trigger_SVigilado_Espejo_MR', true)
+						  _EFFECTM:set_mirror_dark_coef(0.8)	
+						  level1_enemigos()
+						  _GUI:active_windows('Game.xml')"
+		>
+		 
+  <Image name="loading_fondo01" posx="0.00" posy="0.00" height="100.00" width="100.00" visible="true" active="true" default="img1" 
+		 OnLoadValue="" OnSaveValue="" flip="" backGround="false">
+    <texture name="img1" name_texture="./Data/GUI/Textures/loading.png"/>
+  </Image>
+  
+</Windows>

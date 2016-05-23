@@ -1,0 +1,12 @@
+<scene_renderer_commands>
+	<begin_scene/>
+	<clear_scene color="true" depth="true" stencil="true"/>
+	<enable_z_write/>
+	<enable_z_test/>
+	<setup_matrices/>
+	<render_debug_info/>
+	<render_gui active="true"/>
+	<end_scene/>
+	<present/>
+</scene_renderer_commands>
+

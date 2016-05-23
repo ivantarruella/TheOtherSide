@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Windows OnLoadWindows=""
+	     OnSaveWindows="" 
+		 OnUpdateWindows="">
+
+ <Image name="missing_pieces" posx="30.00" posy="25.00" height="15.00" width="40.00" visible="true" active="true"
+         default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
+    <texture name="img1" name_texture="./Data/GUI/Textures/4fragmentos_msj.png"/>
+  </Image>
+
+  
+</Windows>

@@ -1,0 +1,4 @@
+<Sounds>
+	<Sound path="data\Sounds\fireloud.wav" soundId="fire"/> 
+	<Sound path="data\Sounds\gameOver.wav" soundId="loop"/> 
+</Sounds>

@@ -1,0 +1,23 @@
+<animated_model name="prota">
+	<skeleton filename="prota.csf"/>
+	<mesh filename="prota.cmf"/>
+	
+	<animation name="espera" filename="prota_espera.caf"/>
+	<animation name="andar" filename="prota_andar.caf"/>
+	<animation name="correr" filename="prota_correr.caf"/>
+	<animation name="apuntar" filename="prota_apuntar.caf"/>
+	<animation name="usar" filename="prota_usar.caf"/>
+	<animation name="disparar" filename="prota_disparar.caf"/>
+	<animation name="andar_apuntando" filename="prota_andar_apuntar.caf"/>
+	<animation name="activar_espejo" filename="prota_activar_espejo.caf"/>
+	<animation name="hit" filename="prota_hit.caf"/>
+	<animation name="recarga_arma" filename="prota_recarga_energia.caf"/>
+	<animation name="recarga_arma_estatico" filename="prota_recarga_energia_estatico.caf"/>
+	<animation name="morir" filename="prota_morir.caf"/>
+	<animation name="muerto" filename="prota_muerto.caf"/>
+	<animation name="apuntar_arriba" filename="prota_apuntar_arriba.caf"/>
+	<animation name="apuntar_abajo" filename="prota_apuntar_abajo.caf"/>
+	
+	<texture filename="D_Protagonistayarma.tga"/>
+	<texture filename="N_Protagonistayarma.tga"/>
+</animated_model>

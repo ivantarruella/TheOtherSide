@@ -1,0 +1,174 @@
+// Estado de vagar del monstruo
+
+#include "WanderState.h"
+#include "State.h"
+#include "StateMachine.h"
+#include "Character.h"
+#include "Core.h"
+#include "Renderer\RenderableObjectsLayersManager.h"
+#include "Characters\Monster.h"
+#include "Base.h"
+
+void CWanderState::Update(float ElapsedTime)
+{
+	const float rotationSpeed = mathUtils::Deg2Rad( 90.0f );
+	m_Time += ElapsedTime;
+		
+	Vect3f l_ras = m_Owner->GetPosition();
+	/*l_ras.y = 0.0f;
+	m_Owner->SetPosition(l_ras);*/
+	
+	Vect3f l_previo; //Vector previo que une la posicion del owner con la posicion de wander
+	Vect3f l_post;
+
+	if(m_Time > 30.0f)
+	{		
+		m_StateMachine->ChangeState("IDLE");
+		return;
+	}
+
+	l_previo = (m_PosWander - m_Owner->GetPosition()).Normalize();
+	
+	m_Owner->ChangeCharacterAnimation(WALK_ANIM, 0.3f);
+	if(isFaced( m_PosWander))
+	{
+		Vect3f l_dir = (m_PosWander - m_Owner->GetPosition()).Normalize();
+		m_Owner->SetYaw(atan2(-l_dir.x, l_dir.z));
+		Vect3f newPosition = m_Owner->GetPosition() +l_dir * ElapsedTime*m_WalkSpeed;
+		l_post = (m_PosWander - newPosition).Normalize();
+
+		float l_dist = newPosition.SqDistance(m_PosWander);
+		//if((l_previo * l_post) > 0.0f)
+		if(l_dist > 0.02f)
+		{
+			//m_Owner->SetPosition(newPosition);
+			m_Owner->SetPosition(m_Owner->GetFront() *m_WalkSpeed, ElapsedTime);
+		}
+		else{
+			//m_Owner->SetPosition(m_PosWander);
+			l_dir = m_PosWander - m_Owner->GetPosition();
+			l_dir.y=0.0f;
+			m_Owner->SetPosition(l_dir, ElapsedTime);
+
+			//Recalcular nuevo punto de Wander
+			Vect3f l_aux = (m_PosWander - m_Pivote).Normalize();
+			do{
+				recalculateWander();
+			}while((l_aux * (m_PosWander - m_Pivote).Normalize()) >= 0);
+			return;
+		}
+	}
+	else{
+		m_fLostTime += ElapsedTime;
+		m_Owner->SetPosition(m_Owner->GetFront()*m_WalkSpeed, ElapsedTime);
+		if (m_fLostTime <= 3.0f)
+		{		
+			
+			if(isAtLeft(m_PosWander)) {			
+				m_Owner->SetYaw(m_Owner->GetYaw() + rotationSpeed*ElapsedTime);
+			} 
+			else{ 
+				m_Owner->SetYaw(m_Owner->GetYaw() - rotationSpeed*ElapsedTime);
+			}
+
+			m_fLostTime = 0.0f;
+		}
+	}
+
+	if(isHeared() || isSeen())
+	{
+		m_StateMachine->ChangeState("CHASE");
+		return;
+	}
+}
+
+void CWanderState::Create()
+{
+	m_Time = 0.0f;
+	m_Name = "WANDER";
+}
+
+void CWanderState::Init()
+{
+	m_Time = 0.0f;
+	m_Pivote = m_Owner->GetPosition();
+
+	//Calcular Nuevo punto de wander;
+	recalculateWander();
+}
+
+void CWanderState::Reset()
+{
+	m_Time = 0.0f;
+	m_Name = "WANDER";
+	m_Pivote = m_Owner->GetPosition();
+
+	//Calcular Nuevo punto de wander;
+	recalculateWander();
+}
+
+bool CWanderState::isFaced()
+{
+	Vect3f l_aux = (m_Player->GetPosition() - m_Owner->GetPosition()).Normalize();
+	
+	float l_vSuma = m_Owner->GetFront() * l_aux;
+	if(l_vSuma < 0.95f)
+		return false;
+	return true;
+}
+
+bool CWanderState::isFaced(Vect3f position)
+{
+	Vect3f l_aux = (position - m_Owner->GetPosition()).Normalize();
+	
+	float l_vSuma = m_Owner->GetFront() * l_aux;
+	if(l_vSuma < 0.95f)
+		return false;
+	return true;
+}
+
+bool CWanderState::isHeared()
+{
+	Vect3f l_aux = (m_Player->GetPosition() - m_Owner->GetPosition());		
+	if(l_aux.Length() > m_HearDistance)
+		return false;
+	return true;
+}
+
+bool CWanderState::isSeen()
+{
+	Vect3f l_aux = (m_Player->GetPosition() - m_Owner->GetPosition());		
+	if(l_aux.Length() > m_VisionDistance)
+		return false;
+	l_aux.Normalize();
+	float l_vSuma = m_Owner->GetFront() * l_aux;
+	if(l_vSuma < degToDot(m_VisionAngle/2.0f))
+		return false;
+	return true;
+}
+
+bool CWanderState::isAtLeft(Vect3f position)
+{
+	Vect3f l_up(0.0f, 1.0f, 0.0f);
+	Vect3f l_right = l_up ^ m_Owner->GetFront();
+	l_right.Normalize();
+	float l_d = -(l_right * m_Owner->GetPosition());
+
+	float v( (l_right * position) + l_d );
+
+	return v <= 0.0f;
+}
+
+void CWanderState::recalculateWander()
+{
+	Vect3f l_wander;
+	float aux = (float) rand()/RAND_MAX;
+	aux = aux * 360.0f;
+	l_wander = m_Owner->xzFromAngle(mathUtils::Deg2Rad(aux));
+
+	aux = (float) rand()/RAND_MAX;
+	aux *= 2.0f;
+	l_wander *= aux;
+	l_wander +=m_Pivote;
+	m_PosWander = l_wander;
+}

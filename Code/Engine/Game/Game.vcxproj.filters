@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="IA">
+      <UniqueIdentifier>{ea0965f6-036b-4359-a4a1-52300d71addd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IA\States">
+      <UniqueIdentifier>{ec8522cf-2591-409c-b1ea-a7bee5c33acd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters">
+      <UniqueIdentifier>{52833796-635a-4b7d-a4c9-c9a24614db3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IA\Tasks">
+      <UniqueIdentifier>{ed275b3d-cef8-43fa-bf47-59d68b77d0eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{d619fe50-7d94-4b7d-a997-063edb35cf71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Weapon">
+      <UniqueIdentifier>{fb5355cb-b0d1-491c-8ae8-b981b06d08d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LogicObjects">
+      <UniqueIdentifier>{f7ee86c0-8587-4bc6-8318-859e25698518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LogicObjects\Objects">
+      <UniqueIdentifier>{a23e7ea2-c691-4d9d-ba4f-859ea8cf6859}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Characters\Character.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Characters\Monster.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Characters\Player.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Characters\Soldier.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\AttackState.cpp">
+      <Filter>IA\States</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\ChaseState.cpp">
+      <Filter>IA\States</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\EscapeState.cpp">
+      <Filter>IA\States</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\IdleState.cpp">
+      <Filter>IA\States</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\WanderState.cpp">
+      <Filter>IA\States</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\AIMonster.cpp">
+      <Filter>IA</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\AISoldier.cpp">
+      <Filter>IA</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\Node.cpp">
+      <Filter>IA</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\NodeManager.cpp">
+      <Filter>IA</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\StateMachine.cpp">
+      <Filter>IA</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\LogicObject.cpp">
+      <Filter>LogicObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\LogicObjectsManager.cpp">
+      <Filter>LogicObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\PatrolState.cpp">
+      <Filter>IA\States</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\AimTask.cpp">
+      <Filter>IA\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\BattleTask.cpp">
+      <Filter>IA\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\IdleTask.cpp">
+      <Filter>IA\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\RootTask.cpp">
+      <Filter>IA\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\ShootTask.cpp">
+      <Filter>IA\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\TaskManager.cpp">
+      <Filter>IA</Filter>
+    </ClCompile>
+    <ClCompile Include="Characters\EnemyManager.cpp">
+      <Filter>IA</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\DeadTask.cpp">
+      <Filter>IA\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\HurtTask.cpp">
+      <Filter>IA\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\AlertTask.cpp">
+      <Filter>IA\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\ElevatorAnimatedPhysicModel.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp" />
+    <ClCompile Include="Logic\DoorObject.cpp">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\ElevatorObject.cpp">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\EnergyRecover.cpp">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\FanObject.cpp">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\Lasers.cpp">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\LifeRecover.cpp">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\MirrorObject.cpp">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\SpawnPointObject.cpp">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\TutorialObject.cpp">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\Bullet.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\BulletManager.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\Weapon.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\PatrolTask.cpp">
+      <Filter>IA\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\MirrorPieceObject.cpp">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\BrokenMirrorObject.cpp">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\MoveTask.cpp">
+      <Filter>IA\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\CoverManager.cpp">
+      <Filter>IA</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Characters\Character.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Characters\Monster.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Characters\Player.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Characters\Soldier.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\AttackState.h">
+      <Filter>IA\States</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\ChaseState.h">
+      <Filter>IA\States</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\EscapeState.h">
+      <Filter>IA\States</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\IdleState.h">
+      <Filter>IA\States</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\WanderState.h">
+      <Filter>IA\States</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\AI.h">
+      <Filter>IA</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\AIMonster.h">
+      <Filter>IA</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\AISoldier.h">
+      <Filter>IA</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\Node.h">
+      <Filter>IA</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\NodeManager.h">
+      <Filter>IA</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\State.h">
+      <Filter>IA</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\StateMachine.h">
+      <Filter>IA</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\LogicObject.h">
+      <Filter>LogicObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\LogicObjectsManager.h">
+      <Filter>LogicObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\PatrolState.h">
+      <Filter>IA\States</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h" />
+    <ClInclude Include="AI\AimTask.h">
+      <Filter>IA\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\BattleTask.h">
+      <Filter>IA\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\IdleTask.h">
+      <Filter>IA\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\RootTask.h">
+      <Filter>IA\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\ShootTask.h">
+      <Filter>IA\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\Task.h">
+      <Filter>IA</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\TaskManager.h">
+      <Filter>IA</Filter>
+    </ClInclude>
+    <ClInclude Include="Characters\EnemyManager.h">
+      <Filter>IA</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\HurtTask.h">
+      <Filter>IA\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\DeadTask.h">
+      <Filter>IA\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\AlertTask.h">
+      <Filter>IA\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\ElevatorAnimatedPhysicModel.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\DoorObject.h">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\ElevatorObject.h">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\EnergyRecover.h">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\FanObject.h">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Lasers.h">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\LifeRecover.h">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\MirrorObject.h">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\SpawnPointObject.h">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\TutorialObject.h">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\Weapon.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\Bullet.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\BulletManager.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\PatrolTask.h">
+      <Filter>IA\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\MirrorPieceObject.h">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\BrokenMirrorObject.h">
+      <Filter>LogicObjects\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\MoveTask.h">
+      <Filter>IA\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\CoverManager.h">
+      <Filter>IA</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

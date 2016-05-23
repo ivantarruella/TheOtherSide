@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Windows OnLoadWindows="_SOUNDM:set_gain(_GUI:get_state_slider('Volume'))"
+         OnSaveWindows="sound_intro()"
+         OnUpdateWindows="">
+
+  <!-- FONDO DE PANTALLA SETUP -->
+  <Image name="setup_fondo" posx="0.0" posy="0.00" height="100.00" width="100.00" visible="true" active="true"
+         default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="true">
+    <texture name="img1" name_texture="./Data/GUI/Textures/setup.png"/>
+  </Image>
+
+  <!-- OPCIÓN VOLUMEN SONIDO -->
+  <Image name="setup_soundVolume" posx="12.0" posy="20.00" height="8.0" width="18.00" visible="true" active="true"
+         default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
+    <texture name="img1" name_texture="./Data/GUI/Textures/text_volumen.png"/>
+  </Image>
+
+  <Slider	name="Volume" posx="13" posy="32" height="4" width="20" visible="true" active="true" value="0.5" buttonH="6" buttonW="2"
+     button_normal="./Data/GUI/Textures/gui_sliderbutton_normal.png"
+     button_over="./Data/GUI/Textures/gui_sliderbutton_on.png"
+     button_clicked="./Data/GUI/Textures/gui_sliderbutton_press.png"
+     button_deactivated="./Data/GUI/Textures/gui_sliderbutton_normal.png"
+     quad="./Data/GUI/Textures/Slidebar.png"
+     OnOverAction=""
+     OnClickedAction=""
+     OnChangeValue="local l_value = _GUI:get_state_slider('Volume')
+					_SOUNDM:set_gain(l_value)"
+     OnSaveValue=""
+     OnLoadValue=""/>
+	 
+   <!-- OPCIÓN BRILLO PANTALLA -->	 
+  <Image name="setup_brillo" posx="12.0" posy="43.00" height="8.0" width="18.00" visible="true" active="true"
+         default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
+    <texture name="img1" name_texture="./Data/GUI/Textures/text_brillo.png"/>
+  </Image>
+
+  <Slider	name="Brillo" posx="13" posy="55" height="4" width="20" visible="true" active="true" value="0.5" buttonH="6" buttonW="2"
+     button_normal="./Data/GUI/Textures/gui_sliderbutton_normal.png"
+     button_over="./Data/GUI/Textures/gui_sliderbutton_on.png"
+     button_clicked="./Data/GUI/Textures/gui_sliderbutton_press.png"
+     button_deactivated="./Data/GUI/Textures/gui_sliderbutton_normal.png"
+     quad="./Data/GUI/Textures/Slidebar.png"
+     OnOverAction=""
+     OnClickedAction=""
+     OnChangeValue="local l_value = _GUI:get_state_slider('Brillo')
+					_GAMEPROCESS:set_gamma_factor(l_value)"
+     OnSaveValue=""
+     OnLoadValue=""/>
+
+  <!-- OPCIÓN SENSIBILIDAD RATON -->
+  <Image name="setup_mouse" posx="12.0" posy="67.00" height="11.0" width="21.00" visible="true" active="true"
+         default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
+    <texture name="img1" name_texture="./Data/GUI/Textures/text_sensibilidaddelraton.png"/>
+  </Image>
+
+  <Slider	name="Mouse" posx="13" posy="83" height="4" width="20" visible="true" active="true" value="0.5" buttonH="6" buttonW="2"
+     button_normal="./Data/GUI/Textures/gui_sliderbutton_normal.png"
+     button_over="./Data/GUI/Textures/gui_sliderbutton_on.png"
+     button_clicked="./Data/GUI/Textures/gui_sliderbutton_press.png"
+     button_deactivated="./Data/GUI/Textures/gui_sliderbutton_on.png"
+     quad="./Data/GUI/Textures/Slidebar.png"
+     OnOverAction=""
+     OnClickedAction=""
+     OnChangeValue="local l_value = _GUI:get_state_slider('Mouse')
+					_GAMEPROCESS:set_mouse_sensitivity(l_value)"
+     OnSaveValue=""
+     OnLoadValue=""/>	 
+	 
+  <!-- SELECCION DE NIVEL -->	 
+  <Image name="stage1_text" posx="41.0" posy="45.00" height="8.0" width="15.00" visible="true" active="true"
+         default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
+    <texture name="img1" name_texture="./Data/GUI/Textures/text_stage1.png"/>
+  </Image>
+  
+  <Image name="stage2_text" posx="41.0" posy="83.00" height="8.0" width="15.00" visible="true" active="true"
+         default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
+    <texture name="img1" name_texture="./Data/GUI/Textures/text_stage2.png"/>
+  </Image>
+  
+  <RadioBox name="Level" posx="60" posy="22" height="60" width="28" default_checkButton="level_1" visible="true" active="true"
+      texture_back="" columns="1" rows="2" OnCheckOn="change_setup_level()" OnCheckOff="" OnOverButton="" heightOffset="10"
+      OnSaveValue=""
+      OnLoadValue="">
+
+    <texture name="level_1"
+             on="./Data/GUI/Textures/stage1_select.png"
+             off="./Data/GUI/Textures/stage1.png"
+             deactivated="./Data/GUI/Textures/stage1.png" />
+			 
+    <texture name="level_2"
+             on="./Data/GUI/Textures/stage2_select.png"
+             off="./Data/GUI/Textures/stage2.png"
+             deactivated="./Data/GUI/Textures/stage2.png" />
+		 
+  </RadioBox>
+
+
+  <!-- Boton ATRAS -->
+  <Button name="Exit_Setup" posx="10.00" posy="4.00" height="9.00" width="13.00" visible="true" active="true"
+      texture_normal="./Data/GUI/Textures/botonatras.png"
+      texture_over="./Data/GUI/Textures/botonatras.png"
+      texture_clicked="./Data/GUI/Textures/botonatras_pulsado.png"
+      texture_deactivated="./Data/GUI/Textures/botonatras.png"
+      OnClickedAction="_GUI:pop_windows()
+						_SOUNDM:play_action_2D('gui_back',1.0)"
+      OnOverAction=""/>
+</Windows>

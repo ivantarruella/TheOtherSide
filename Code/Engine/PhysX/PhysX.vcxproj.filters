@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="PhysicUserAllocator.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicActor.cpp" />
+    <ClCompile Include="PhysicFixedJoint.cpp">
+      <Filter>Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicRevoluteJoint.cpp">
+      <Filter>Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicSphericalJoint.cpp">
+      <Filter>Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicController.cpp" />
+    <ClCompile Include="Jump.cpp" />
+    <ClCompile Include="PhysicASELoader.cpp" />
+    <ClCompile Include="PhysicCookingMesh.cpp" />
+    <ClCompile Include="PhysicStream.cpp" />
+    <ClCompile Include="PhysicTriggerReport.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\PhysicsManager.h" />
+    <ClInclude Include="include\PhysicUserAllocator.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhysicActor.h" />
+    <ClInclude Include="include\PhysicFixedJoint.h">
+      <Filter>Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhysicRevoluteJoint.h">
+      <Filter>Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhysicSphericalJoint.h">
+      <Filter>Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhysicController.h" />
+    <ClInclude Include="include\Jump.h" />
+    <ClInclude Include="include\PhysicASELoader.h" />
+    <ClInclude Include="include\PhysicCookingMesh.h" />
+    <ClInclude Include="include\PhysicStream.h" />
+    <ClInclude Include="include\PhysicTriggerReport.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{eade12b2-95e5-4070-9451-c638602d4521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Joints">
+      <UniqueIdentifier>{2f4cee4f-f707-40f6-bae9-ec6f7ae07571}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

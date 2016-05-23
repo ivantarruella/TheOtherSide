@@ -1,0 +1,44 @@
+<NodeManager>
+	<Nodes>
+		<Node id="0" pos="-24.214 0.0 -3.88"/>
+		<Node id="1" pos="-26.37 0.0 -2.256"/>
+		<Node id="2" pos="-26.37 0.0 0.49"/>
+		<Node id="3" pos="-21.484 0.0 0.49"/>
+		<Node id="4" pos="-21.484 0.0 3.112"/>
+		<Node id="5" pos="-25.207 0.0 5.831"/>
+		<Node id="6" pos="-16.65 0.0 0.49"/>
+		<Node id="7" pos="-12.17 0.0 0.49"/>
+		<Node id="8" pos="-7.69 0.0 0.49"/>
+		<Node id="9" pos="-7.69 0.0 6.56"/>
+		<Node id="10" pos="-7.69 0.0 12.288"/>
+		<Node id="11" pos="-12.172 0.0 12.288"/>
+	</Nodes>
+	<Connections>
+		<Connect id1="0" id2="1"/>
+		<Connect id1="1" id2="2"/>
+		<Connect id1="2" id2="3"/>
+		<Connect id1="3" id2="4"/>
+		<Connect id1="3" id2="6"/>
+		<Connect id1="4" id2="5"/>
+		<Connect id1="6" id2="7"/>
+		<Connect id1="7" id2="8"/>
+		<Connect id1="8" id2="9"/>
+		<Connect id1="9" id2="10"/>
+		<Connect id1="10" id2="11"/>
+	</Connections>
+	<NodesSoldier>
+		<Node id="0" pos="16.65 0.0 0.49"/>
+		<Node id="1" pos="12.17 0.0 0.49"/>
+		<Node id="2" pos="7.69 0.0 0.49"/>
+		<Node id="3" pos="7.69 0.0 6.56"/>
+		<Node id="4" pos="7.69 0.0 12.288"/>
+		<Node id="5" pos="12.172 0.0 12.288"/>
+	</NodesSoldier>
+	<ConnectionsSoldier>
+		<Connect id1="0" id2="1"/>
+		<Connect id1="1" id2="2"/>
+		<Connect id1="2" id2="3"/>
+		<Connect id1="3" id2="4"/>
+		<Connect id1="4" id2="5"/>
+	</ConnectionsSoldier>
+</NodeManager>

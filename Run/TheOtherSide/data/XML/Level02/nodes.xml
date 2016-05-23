@@ -1,0 +1,328 @@
+<NodeManager>
+	<Nodes>
+		<Node id="0" pos="-46.988 0.0 -15.554"/>
+		<Node id="1" pos="-46.988 0.0 -9.539"/>
+		<Node id="2" pos="-46.988 0.0 -2.051"/>
+		<Node id="3" pos="-40.982 0.0 -15.554"/>
+		<Node id="4" pos="-35.032 0.0 -15.554"/>
+		<Node id="5" pos="-35.032 0.0 -8.060"/>
+		<Node id="6" pos="-39.698 0.0 -8.060"/>
+		<Node id="7" pos="-40.861 0.0 -9.729"/>
+		<Node id="8" pos="-41.763 0.0 -2.051"/>
+		<Node id="9" pos="-40.020 0.0 3.864"/>
+		<Node id="10" pos="-38.638 0.0 9.301"/>
+		<Node id="11" pos="-35.874 0.0 9.301"/>
+		<Node id="12" pos="-31.367 0.0 9.301"/>
+		<Node id="13" pos="-35.874 0.0 3.864"/>
+		<Node id="14" pos="-35.874 0.0 -2.528"/>
+		<Node id="15" pos="-31.367 0.0 5.533"/>
+		<Node id="16" pos="-25.418 0.0 5.533"/>
+		<Node id="17" pos="-25.418 0.0 10.159"/>
+		<Node id="18" pos="-25.418 0.0 2.719"/>
+		<Node id="19" pos="-29.504 0.0 -2.229"/>
+		<Node id="20" pos="-21.632 0.0 -2.146"/>
+		<Node id="21" pos="-25.418 0.0 -7.249"/>
+		<Node id="22" pos="-19.649 0.0 5.533"/>
+		<Node id="23" pos="-14.601 0.0 5.533"/>
+		<Node id="24" pos="-14.601 0.0 9.969"/>
+		<Node id="25" pos="-10.936 0.0 9.969"/>
+		<Node id="26" pos="-10.936 0.0 2.957"/>
+		<Node id="27" pos="-14.601 0.0 -2.48"/>
+		<Node id="28" pos="-11.416 0.0 -2.48"/>
+		<Node id="29" pos="-31.126 0.0 -10.206"/>
+		<Node id="30" pos="-25.418 0.0 -10.206"/>
+		<Node id="31" pos="-18.988 0.0 -10.206"/>
+		<Node id="32" pos="-14.601 0.0 -10.206"/>
+		<Node id="33" pos="-14.601 0.0 -14.213"/>
+		<Node id="34" pos="-10.936 0.0 -14.213"/>
+		<Node id="35" pos="-10.936 0.0 -8.012"/>
+		<Node id="36" pos="-18.988 0.0 -15.453"/>
+		<Node id="37" pos="-25.418 0.0 -15.453"/>
+		<Node id="38" pos="-27.461 0.0 -19.984"/>
+		<Node id="39" pos="-27.882 0.0 -24.658"/>
+		<Node id="40" pos="-27.882 0.0 -32.623"/>
+		<Node id="41" pos="-31.126 0.0 -2.229"/>
+		<Node id="42" pos="-27.831 3.150 -30.561"/>
+		<Node id="43" pos="-27.831 3.150 -24.001"/>
+		<Node id="44" pos="-27.831 3.150 -18.737"/>
+		<Node id="45" pos="-27.831 3.150 -14.993"/>
+		<Node id="46" pos="-20.019 3.150 -14.993"/>
+		<Node id="47" pos="-20.019 3.150 -18.737"/>
+		<Node id="48" pos="-12.988 3.150 -13.882"/>
+		<Node id="49" pos="-37.085 3.150 -2.535"/>
+		<Node id="50" pos="-38.678 3.150 4.952"/>
+		<Node id="51" pos="-38.618 3.150 9.749"/>
+		<Node id="52" pos="-33.119 3.150 9.749"/>
+		<Node id="53" pos="-25.518 3.150 9.749"/>
+		<Node id="54" pos="-19.809 3.150 9.749"/>
+		<Node id="55" pos="-14.761 3.150 9.749"/>
+		<Node id="56" pos="-12.298 3.150 9.749"/>
+		<Node id="57" pos="-12.298 3.150 14.603"/>
+		<Node id="58" pos="-16.324 3.150 14.603"/>
+		<Node id="59" pos="-16.324 3.150 20.16"/>
+		<Node id="60" pos="-16.324 3.150 25.307"/>
+		<Node id="61" pos="-19.749 3.150 25.307"/>
+		<Node id="62" pos="-21.492 3.150 22.383"/>
+		<Node id="63" pos="-38.618 3.150 14.603"/>
+		<Node id="64" pos="-30.806 3.150 14.603"/>
+		<Node id="65" pos="-23.895 3.150 14.603"/>
+		<Node id="66" pos="-30.806 3.150 22.149"/>
+		<Node id="67" pos="-27.381 3.150 22.149"/>
+		<Node id="68" pos="-25.518 3.150 23.611"/>		
+	</Nodes>
+	<Connections>
+		<Connect id1="0" id2="1"/>
+		<Connect id1="0" id2="3"/>
+		<Connect id1="1" id2="2"/>
+		<Connect id1="2" id2="8"/>
+		<Connect id1="3" id2="4"/>
+		<Connect id1="4" id2="5"/>
+		<Connect id1="5" id2="6"/>
+		<Connect id1="6" id2="7"/>
+		<Connect id1="8" id2="9"/>
+		<Connect id1="9" id2="10"/>
+		<Connect id1="10" id2="11"/>
+		<Connect id1="11" id2="12"/>
+		<Connect id1="11" id2="13"/>
+		<Connect id1="12" id2="15"/>
+		<Connect id1="13" id2="15"/>
+		<Connect id1="13" id2="14"/>
+		<Connect id1="13" id2="41"/>
+		<Connect id1="13" id2="19"/>
+		<Connect id1="14" id2="15"/>
+		<Connect id1="14" id2="41"/>
+		<Connect id1="15" id2="16"/>
+		<Connect id1="15" id2="41"/>
+		<Connect id1="15" id2="19"/>
+		<Connect id1="16" id2="17"/>
+		<Connect id1="16" id2="18"/>
+		<Connect id1="16" id2="22"/>
+		<Connect id1="18" id2="19"/>
+		<Connect id1="18" id2="20"/>
+		<Connect id1="19" id2="21"/>
+		<Connect id1="19" id2="41"/>
+		<Connect id1="20" id2="21"/>
+		<Connect id1="20" id2="23"/>
+		<Connect id1="20" id2="27"/>
+		<Connect id1="20" id2="31"/>
+		<Connect id1="20" id2="32"/>
+		<Connect id1="21" id2="29"/>
+		<Connect id1="21" id2="30"/>
+		<Connect id1="21" id2="31"/>
+		<Connect id1="22" id2="23"/>
+		<Connect id1="22" id2="27"/>
+		<Connect id1="22" id2="31"/>
+		<Connect id1="23" id2="24"/>
+		<Connect id1="23" id2="27"/>
+		<Connect id1="24" id2="25"/>
+		<Connect id1="25" id2="26"/>
+		<Connect id1="27" id2="28"/>
+		<Connect id1="27" id2="31"/>
+		<Connect id1="27" id2="32"/>
+		<Connect id1="29" id2="30"/>
+		<Connect id1="29" id2="41"/>
+		<Connect id1="30" id2="31"/>
+		<Connect id1="30" id2="37"/>
+		<Connect id1="31" id2="32"/>
+		<Connect id1="31" id2="36"/>
+		<Connect id1="32" id2="33"/>
+		<Connect id1="33" id2="34"/>
+		<Connect id1="34" id2="35"/>
+		<Connect id1="36" id2="37"/>
+		<Connect id1="37" id2="38"/>
+		<Connect id1="38" id2="39"/>
+		<Connect id1="39" id2="40"/>
+		<Connect id1="42" id2="43"/>
+		<Connect id1="43" id2="44"/>
+		<Connect id1="44" id2="45"/>
+		<Connect id1="44" id2="46"/>
+		<Connect id1="44" id2="47"/>
+		<Connect id1="45" id2="46"/>
+		<Connect id1="45" id2="47"/>
+		<Connect id1="46" id2="48"/>
+		<Connect id1="46" id2="47"/>
+		<Connect id1="49" id2="50"/>
+		<Connect id1="50" id2="51"/>
+		<Connect id1="50" id2="52"/>
+		<Connect id1="51" id2="52"/>
+		<Connect id1="51" id2="63"/>
+		<Connect id1="52" id2="53"/>
+		<Connect id1="53" id2="54"/>
+		<Connect id1="54" id2="55"/>
+		<Connect id1="55" id2="56"/>
+		<Connect id1="56" id2="57"/>
+		<Connect id1="57" id2="58"/>
+		<Connect id1="58" id2="59"/>
+		<Connect id1="59" id2="60"/>
+		<Connect id1="60" id2="61"/>
+		<Connect id1="61" id2="62"/>
+		<Connect id1="63" id2="64"/>
+		<Connect id1="64" id2="65"/>
+		<Connect id1="64" id2="66"/>
+		<Connect id1="66" id2="67"/>
+		<Connect id1="67" id2="68"/>		
+	</Connections>
+	<NodesSoldier>
+		<Node id="0" pos="46.988 0.0 -15.554"/>
+		<Node id="1" pos="46.988 0.0 -9.539"/>
+		<Node id="2" pos="46.988 0.0 -2.051"/>
+		<Node id="3" pos="40.982 0.0 -15.554"/>
+		<Node id="4" pos="35.032 0.0 -15.554"/>
+		<Node id="5" pos="35.032 0.0 -8.060"/>
+		<Node id="6" pos="39.698 0.0 -8.060"/>
+		<Node id="7" pos="40.861 0.0 -9.729"/>
+		<Node id="8" pos="41.763 0.0 -2.051"/>
+		<Node id="9" pos="40.020 0.0 3.864"/>
+		<Node id="10" pos="38.638 0.0 9.301"/>
+		<Node id="11" pos="35.874 0.0 9.301"/>
+		<Node id="12" pos="31.367 0.0 9.301"/>
+		<Node id="13" pos="35.874 0.0 3.864"/>
+		<Node id="14" pos="35.874 0.0 -2.528"/>
+		<Node id="15" pos="31.367 0.0 5.533"/>
+		<Node id="16" pos="25.418 0.0 5.533"/>
+		<Node id="17" pos="25.418 0.0 10.159"/>
+		<Node id="18" pos="25.418 0.0 2.719"/>
+		<Node id="19" pos="29.504 0.0 -2.229"/>
+		<Node id="20" pos="21.632 0.0 -2.146"/>
+		<Node id="21" pos="25.418 0.0 -7.249"/>
+		<Node id="22" pos="19.649 0.0 5.533"/>
+		<Node id="23" pos="14.601 0.0 5.533"/>
+		<Node id="24" pos="14.601 0.0 9.969"/>
+		<Node id="25" pos="10.936 0.0 9.969"/>
+		<Node id="26" pos="10.936 0.0 2.957"/>
+		<Node id="27" pos="14.601 0.0 -2.48"/>
+		<Node id="28" pos="11.416 0.0 -2.48"/>
+		<Node id="29" pos="31.126 0.0 -10.206"/>
+		<Node id="30" pos="25.418 0.0 -10.206"/>
+		<Node id="31" pos="18.988 0.0 -10.206"/>
+		<Node id="32" pos="14.601 0.0 -10.206"/>
+		<Node id="33" pos="14.601 0.0 -14.213"/>
+		<Node id="34" pos="10.936 0.0 -14.213"/>
+		<Node id="35" pos="10.936 0.0 -8.012"/>
+		<Node id="36" pos="18.988 0.0 -15.453"/>
+		<Node id="37" pos="25.418 0.0 -15.453"/>
+		<Node id="38" pos="27.461 0.0 -19.984"/>
+		<Node id="39" pos="27.882 0.0 -24.658"/>
+		<Node id="40" pos="27.882 0.0 -32.623"/>
+		<Node id="41" pos="31.126 0.0 -2.229"/>
+		<Node id="42" pos="27.831 3.150 -30.561"/>
+		<Node id="43" pos="27.831 3.150 -24.001"/>
+		<Node id="44" pos="27.831 3.150 -18.737"/>
+		<Node id="45" pos="27.831 3.150 -14.993"/>
+		<Node id="46" pos="20.019 3.150 -14.993"/>
+		<Node id="47" pos="20.019 3.150 -18.737"/>
+		<Node id="48" pos="12.988 3.150 -13.882"/>
+		<Node id="49" pos="37.085 3.150 -2.535"/>
+		<Node id="50" pos="38.678 3.150 4.952"/>
+		<Node id="51" pos="38.618 3.150 9.749"/>
+		<Node id="52" pos="33.119 3.150 9.749"/>
+		<Node id="53" pos="25.518 3.150 9.749"/>
+		<Node id="54" pos="19.809 3.150 9.749"/>
+		<Node id="55" pos="14.761 3.150 9.749"/>
+		<Node id="56" pos="12.298 3.150 9.749"/>
+		<Node id="57" pos="12.298 3.150 14.603"/>
+		<Node id="58" pos="16.324 3.150 14.603"/>
+		<Node id="59" pos="16.324 3.150 20.16"/>
+		<Node id="60" pos="16.324 3.150 25.307"/>
+		<Node id="61" pos="19.749 3.150 25.307"/>
+		<Node id="62" pos="21.492 3.150 22.383"/>
+		<Node id="63" pos="38.618 3.150 14.603"/>
+		<Node id="64" pos="30.806 3.150 14.603"/>
+		<Node id="65" pos="23.895 3.150 14.603"/>
+		<Node id="66" pos="30.806 3.150 22.149"/>
+		<Node id="67" pos="27.381 3.150 22.149"/>
+		<Node id="68" pos="25.518 3.150 23.611"/>
+	</NodesSoldier>
+	<ConnectionsSoldier>
+		<Connect id1="0" id2="1"/>
+		<Connect id1="0" id2="3"/>
+		<Connect id1="1" id2="2"/>
+		<Connect id1="2" id2="8"/>
+		<Connect id1="3" id2="4"/>
+		<Connect id1="4" id2="5"/>
+		<Connect id1="5" id2="6"/>
+		<Connect id1="6" id2="7"/>
+		<Connect id1="8" id2="9"/>
+		<Connect id1="9" id2="10"/>
+		<Connect id1="10" id2="11"/>
+		<Connect id1="11" id2="12"/>
+		<Connect id1="11" id2="13"/>
+		<Connect id1="12" id2="15"/>
+		<Connect id1="13" id2="15"/>
+		<Connect id1="13" id2="14"/>
+		<Connect id1="13" id2="41"/>
+		<Connect id1="13" id2="19"/>
+		<Connect id1="14" id2="15"/>
+		<Connect id1="14" id2="41"/>
+		<Connect id1="15" id2="16"/>
+		<Connect id1="15" id2="41"/>
+		<Connect id1="15" id2="19"/>
+		<Connect id1="16" id2="17"/>
+		<Connect id1="16" id2="18"/>
+		<Connect id1="16" id2="22"/>
+		<Connect id1="18" id2="19"/>
+		<Connect id1="18" id2="20"/>
+		<Connect id1="19" id2="21"/>
+		<Connect id1="19" id2="41"/>
+		<Connect id1="20" id2="21"/>
+		<Connect id1="20" id2="23"/>
+		<Connect id1="20" id2="27"/>
+		<Connect id1="20" id2="31"/>
+		<Connect id1="20" id2="32"/>
+		<Connect id1="21" id2="29"/>
+		<Connect id1="21" id2="30"/>
+		<Connect id1="21" id2="31"/>
+		<Connect id1="22" id2="23"/>
+		<Connect id1="22" id2="27"/>
+		<Connect id1="22" id2="31"/>
+		<Connect id1="23" id2="24"/>
+		<Connect id1="23" id2="27"/>
+		<Connect id1="24" id2="25"/>
+		<Connect id1="25" id2="26"/>
+		<Connect id1="27" id2="28"/>
+		<Connect id1="27" id2="31"/>
+		<Connect id1="27" id2="32"/>
+		<Connect id1="29" id2="30"/>
+		<Connect id1="29" id2="41"/>
+		<Connect id1="30" id2="31"/>
+		<Connect id1="30" id2="37"/>
+		<Connect id1="31" id2="32"/>
+		<Connect id1="31" id2="36"/>
+		<Connect id1="32" id2="33"/>
+		<Connect id1="33" id2="34"/>
+		<Connect id1="34" id2="35"/>
+		<Connect id1="36" id2="37"/>
+		<Connect id1="37" id2="38"/>
+		<Connect id1="38" id2="39"/>
+		<Connect id1="39" id2="40"/>
+		<Connect id1="42" id2="43"/>
+		<Connect id1="43" id2="44"/>
+		<Connect id1="44" id2="45"/>
+		<Connect id1="44" id2="46"/>
+		<Connect id1="44" id2="47"/>
+		<Connect id1="45" id2="46"/>
+		<Connect id1="45" id2="47"/>
+		<Connect id1="46" id2="48"/>
+		<Connect id1="46" id2="47"/>
+		<Connect id1="49" id2="50"/>
+		<Connect id1="50" id2="51"/>
+		<Connect id1="50" id2="52"/>
+		<Connect id1="51" id2="52"/>
+		<Connect id1="51" id2="63"/>
+		<Connect id1="52" id2="53"/>
+		<Connect id1="53" id2="54"/>
+		<Connect id1="54" id2="55"/>
+		<Connect id1="55" id2="56"/>
+		<Connect id1="56" id2="57"/>
+		<Connect id1="57" id2="58"/>
+		<Connect id1="58" id2="59"/>
+		<Connect id1="59" id2="60"/>
+		<Connect id1="60" id2="61"/>
+		<Connect id1="61" id2="62"/>
+		<Connect id1="63" id2="64"/>
+		<Connect id1="64" id2="65"/>
+		<Connect id1="64" id2="66"/>
+		<Connect id1="66" id2="67"/>
+		<Connect id1="67" id2="68"/>
+	</ConnectionsSoldier>
+</NodeManager>

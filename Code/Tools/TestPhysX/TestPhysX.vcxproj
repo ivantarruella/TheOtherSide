@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ProcessTriggerReport.cpp" />
+    <ClCompile Include="TestPhysX.cpp" />
+    <ClCompile Include="TestPhysXProcess.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ProcessTriggerReport.h" />
+    <ClInclude Include="TestPhysXProcess.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\actions.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\animated_models.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\billboard_animation.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\Effects.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\fonts.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\lights.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\particles.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\renderable_objects.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\renderable_object_techniques.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\scene_renderer_commands.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\scripting.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\settings.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\sound.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\static_meshes.xml" />
+    <None Include="..\..\..\Run\TestPhysX\data\XML\triggers.xml" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4E763040-A3CC-44FC-BAE0-0A0647F06A2B}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Viewer</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\Run\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)\bin\Intermediate\$(ProjectName)$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\run\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)\bin\Intermediate\$(ProjectName)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Code\Engine\Sound;$(SolutionDir)\Code\Engine\3dParty\libxml2-2.7.2.win32\include;$(SolutionDir)\Code\Engine\3dParty\iconv-1.9.2.win32\include;$(DXSDK_DIR)\Include;$(SolutionDir)\Code\Engine\Base;$(SolutionDir)\Code\Engine\Core;$(SolutionDir)\Code\Engine\Base\Math\;$(SolutionDir)\Code\Engine\Graphics\;$(SolutionDir)\Code\Engine\Input;$(SolutionDir)\Code\Engine\3dParty\cal3d-0.11rc2\src;$(SolutionDir)\Code\Engine\PhysX;%(AdditionalIncludeDirectories);C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Foundation\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\NxCharacter\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Physics\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\PhysXLoader\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Cooking\include;$(SolutionDir)\Code\Engine\GUI;$(SolutionDir)\Code\Engine\3dParty\openAL\include;$(SolutionDir)\Code\Engine\3dParty\lua-5.2.0\src\;$(SolutionDir)\Code\Engine\3dParty\luabind-0.9.1\;$(SolutionDir)\Code\Engine\3dParty\boost_1_48_0\</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3dx9d.lib;d3d9.lib;libxml2.lib;base_d.lib;core_d.lib;graphics_d.lib;Winmm.lib;input_d.lib;d3dxof.lib;dxguid.lib;winmm.lib;dinput8.lib;xinput.lib;cal3d_d.lib;LUA_d.lib;luabind_d.lib;PhysXLoader.lib;NxCooking.lib;NxCharacter.lib;PhysX_d.lib;GUI_d.lib;Sound_d.lib;OpenAL32.lib;alut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)\Run\$(ProjectName)\$(ProjectName)_d.exe</OutputFile>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\lib\Win32;$(SolutionDir)\Code\Engine\3dParty\libxml2-2.7.2.win32\lib;$(SolutionDir)\Bin\lib;$(DXSDK_DIR)\Lib\x86;$(SolutionDir)\Code\Engine\3dParty\cal3d-0.11rc2\bin\Lib;$(SolutionDir)\Code\Engine\3dParty\openAL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Code\Engine\Sound;$(DXSDK_DIR)\Include;$(SolutionDir)\Code\Engine\3dParty\iconv-1.9.2.win32\include;$(SolutionDir)\Code\Engine\3dParty\libxml2-2.7.2.win32\include;$(SolutionDir)\Code\Engine\Base;$(SolutionDir)\Code\Engine\Core;$(SolutionDir)\Code\Engine\Base\Math\;$(SolutionDir)\Code\Engine\Graphics\;$(SolutionDir)\Code\Engine\Input;$(SolutionDir)\Code\Engine\3dParty\cal3d-0.11rc2\src;$(SolutionDir)\Code\Engine\PhysX;%(AdditionalIncludeDirectories);C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Foundation\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\NxCharacter\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Physics\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\PhysXLoader\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Cooking\include;$(SolutionDir)\Code\Engine\GUI;$(SolutionDir)\Code\Engine\3dParty\openAL\include;$(SolutionDir)\Code\Engine\3dParty\lua-5.2.0\src\;$(SolutionDir)\Code\Engine\3dParty\luabind-0.9.1\;$(SolutionDir)\Code\Engine\3dParty\boost_1_48_0\</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <MultiProcessorCompilation>
+      </MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>C:\Archivos de programa\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\lib\Win32;$(SolutionDir)\Code\Engine\3dParty\libxml2-2.7.2.win32\lib;$(SolutionDir)\Bin\lib;$(DXSDK_DIR)\Lib\x86;$(SolutionDir)\Code\Engine\3dParty\cal3d-0.11rc2\bin\Lib;$(SolutionDir)\Code\Engine\3dParty\openAL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3dx9d.lib;d3d9.lib;libxml2.lib;base.lib;core.lib;cal3d.lib;Winmm.lib;graphics.lib;input.lib;d3dxof.lib;dxguid.lib;winmm.lib;dinput8.lib;xinput.lib;LUA.lib;luabind.lib;PhysXLoader.lib;NxCooking.lib;NxCharacter.lib;PhysX.lib;GUI.lib;Sound.lib;OpenAL32.lib;alut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

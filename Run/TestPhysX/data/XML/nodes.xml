@@ -1,0 +1,30 @@
+<NodeManager>
+	<Nodes>
+		<Node id="0" pos="50.0 0.0 0.0"/>
+		<Node id="1" pos="0.0 0.0 0.0"/>
+		<Node id="2" pos="0.0 0.0 50.0"/>
+		<Node id="3" pos="50.0 0.0 50.0"/>
+		<Node id="4" pos="-50.0 0.0 0.0"/>
+		<Node id="5" pos="0.0 0.0 -50.0"/>
+		<Node id="6" pos="-50.0 0.0 -50.0"/>
+		<Node id="7" pos="25.0 0.0 25.0"/>
+		<Node id="8" pos="-25.0 0.0 -25.0"/>
+		<Node id="9" pos="50.0 0.0 -50.0"/>
+		<Node id="10" pos="-50.0 0.0 50.0"/>
+	</Nodes>
+	<Connections>
+		<Connect id1="0" id2="1"/>
+		<Connect id1="0" id2="3"/>
+		<Connect id1="0" id2="5"/>
+		<Connect id1="0" id2="9"/>
+		<Connect id1="1" id2="2"/>
+		<Connect id1="1" id2="8"/>
+		<Connect id1="2" id2="7"/>
+		<Connect id1="2" id2="4"/>
+		<Connect id1="2" id2="10"/>
+		<Connect id1="3" id2="7"/>
+		<Connect id1="4" id2="8"/>
+		<Connect id1="5" id2="6"/>
+		<Connect id1="6" id2="8"/> 
+	</Connections>
+</NodeManager>

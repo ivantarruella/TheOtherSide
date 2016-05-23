@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Windows 
+		OnLoadWindows="_GUI:set_visible_pointer_mouse(true)" 
+		OnSaveWindows="" 
+		OnUpdateWindows="">
+<!--
+  <Image name="mrestart_fondo" posx="0.00" posy="0.00" height="100.00" width="100.00" visible="true" active="true"
+         default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
+    <texture name="img1" name_texture="./Data/GUI/Textures_LaberynthGame/viewer.png"/>
+  </Image>
+-->
+  <Image name="restart_game" posx="20.0" posy="10.00" height="50.00" width="56.00" visible="true" active="true"
+        default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
+    <texture name="img1" name_texture="./Data/GUI/Textures/gameoversolologo.png"/>
+  </Image>
+
+  <Button name="RestartYes" posx="35.00" posy="60.00" height="6.00" width="25.00" visible="true" 
+          active="true" 
+          texture_normal="./Data/GUI/Textures/botonvolver.png"
+          texture_over="./Data/GUI/Textures/botonvolver.png" 
+          texture_clicked="./Data/GUI/Textures/botonvolver_press.png"
+          texture_deactivated="./Data/GUI/Textures/botonvolver.png" 
+          OnClickedAction="replay_game()" 
+          OnOverAction=""/>
+		  
+  <Button name="RestartNo" posx="35.00" posy="75.00" height="6.00" width="25.00" visible="true" 
+          active="true"
+          texture_normal="./Data/GUI/Textures/botonsalirdeljuego_press.png"
+          texture_over="./Data/GUI/Textures/botonsalirdeljuego_press.png"
+          texture_clicked="./Data/GUI/Textures/botonsalirdeljuego_press.png"
+          texture_deactivated="./Data/GUI/Textures_LaberynthGame/botonsalirdeljuego_press.png" 
+          OnClickedAction="_PROC:set_end_game(true)"
+          OnOverAction=""/>
+  
+</Windows>

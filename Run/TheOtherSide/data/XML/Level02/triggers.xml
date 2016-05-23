@@ -1,0 +1,435 @@
+<TriggerManager>
+	<trigger name="Trigger_Pasillo_Lasers_ME" pos="-20.8419 4.0562 14.6142" size="0.871065 0.925344 1.92678" mask="" >
+		<onEnter lua="_GAMEPROCESS:lasers_trigger('OnEnter','Trigger_Pasillo_Lasers_ME')" />
+		<onLeave lua="_GAMEPROCESS:lasers_trigger('OnLeave','Trigger_Pasillo_Lasers_ME')" />
+		<onTrigger lua="_GAMEPROCESS:lasers_trigger('OnTrigger','Trigger_Pasillo_Lasers_ME')" />
+	</trigger>
+	<trigger name="Trigger_Pasillo01_EspejoEstatico_ME" pos="-34.9451 1.11578 -6.73122" size="0.43483 0.925344 0.324389" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Pasillo01_EspejoEstatico_ME', 'Trigger_Pasillo01_EspejoEstatico_MR', '')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Pasillo01_EspejoEstatico_ME', 'Trigger_Pasillo01_EspejoEstatico_MR', '')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Pasillo01_EspejoEstatico_ME', 'Trigger_Pasillo01_EspejoEstatico_MR', '')" />
+	</trigger>
+	<trigger name="Trigger_Hall02_EspejoRotatorio_ME" pos="-19.496 4.16079 -21.9272" size="0.431877 1.00163 0.327319" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Hall02_EspejoRotatorio_ME', 'Trigger_Hall02_EspejoRotatorio_MR', 'Trigger_Hall02_EspejoEstatico_ME')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Hall02_EspejoRotatorio_ME', 'Trigger_Hall02_EspejoRotatorio_MR', 'Trigger_Hall02_EspejoEstatico_ME')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Hall02_EspejoRotatorio_ME', 'Trigger_Hall02_EspejoRotatorio_MR', 'Trigger_Hall02_EspejoEstatico_ME')" />
+	</trigger>
+	<trigger name="Trigger_Hall02_EspejoEstatico_ME" pos="-19.4573 4.17338 11.9832" size="0.425564 0.993266 0.221684" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Hall02_EspejoEstatico_ME', 'Trigger_Hall02_EspejoRotatorio_ME', '')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Hall02_EspejoEstatico_ME', 'Trigger_Hall02_EspejoRotatorio_ME', '')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Hall02_EspejoEstatico_ME', 'Trigger_Hall02_EspejoRotatorio_ME', '')" />
+	</trigger>
+	<trigger name="Trigger_SVigilado_Espejo_ME_Level02" pos="-23.4133 4.53106 23.0064" size="0.190115 0.925346 3.89001" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_SVigilado_Espejo_ME_Level02', 'Trigger_SVigilado_Espejo_MR_Level02', '')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_SVigilado_Espejo_ME_Level02', 'Trigger_SVigilado_Espejo_MR_Level02', '')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_SVigilado_Espejo_ME_Level02', 'Trigger_SVigilado_Espejo_MR_Level02', '')" />
+	</trigger>
+	<trigger name="Trigger_Espejo_Final_ME" pos="-33.9407 9.30648 3.27894" size="0.982889 0.185687 0.466732" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Espejo_Final_ME', '', '')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Espejo_Final_ME', '', '')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Espejo_Final_ME', '', '')" />
+	</trigger>
+	<trigger name="Trigger_Hall01_EspejoEstatico_ME" pos="-16.7208 1.11577 -14.6956" size="0.35455 0.925344 0.434876" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Hall01_EspejoEstatico_ME', 'Trigger_Hall01_EspejoEstatico_MR', '')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Hall01_EspejoEstatico_ME', 'Trigger_Hall01_EspejoEstatico_MR', '')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Hall01_EspejoEstatico_ME', 'Trigger_Hall01_EspejoEstatico_MR', '')" />
+	</trigger>
+	<trigger name="Trigger_Hall_PuertaAscensor_ME" pos="-27.8008 0.925344 -29.213" size="2.19967 0.925344 0.794449" mask="" >
+		<onEnter lua="_GAMEPROCESS:door_trigger('OnEnter','Trigger_Hall_PuertaAscensor_ME')" />
+		<onLeave lua="_GAMEPROCESS:door_trigger('OnLeave','Trigger_Hall_PuertaAscensor_ME')" />
+		<onTrigger lua="_GAMEPROCESS:door_trigger('OnTrigger','Trigger_Hall_PuertaAscensor_ME')" />
+	</trigger>
+	<trigger name="Ascensor_ME_Level02" pos="-28.5841 3.35272 -36.4888" size="0.40114 3.35272 0.426014" mask="" >
+		<onEnter lua="_GAMEPROCESS:elevator_trigger('OnEnter','Ascensor_ME_Level02')" />
+		<onLeave lua="_GAMEPROCESS:elevator_trigger('OnLeave','Ascensor_ME_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:elevator_trigger('OnTrigger','Ascensor_ME_Level02')" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_01_ME" pos="-34.9351 0.454648 -7.29934" size="0.417984 0.454648 0.359319" mask="" >
+		<onEnter lua="espejo_inicial_ME_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="opt_luces03_level2()" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_02_ME" pos="-45.0943 0.868603 -1.8959" size="0.147587 0.88746 1.11054" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="level02_exit_hall_ME()" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_03_ME" pos="-44.403 0.849226 -1.8959" size="0.147587 0.892202 1.11054" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="level02_enter_hall_ME()" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_04_ME" pos="-27.7176 0.869567 -28.483" size="1.11054 0.953168 0.147589" mask="" >
+		<onEnter lua="espejos_hall01_ME_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_05_ME" pos="-27.7176 4.04998 -28.483" size="1.11054 0.953168 0.147589" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="level02_hall_piso2_ME()" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_07_ME" pos="-12.2818 4.04998 12.1297" size="0.864611 0.953168 0.147589" mask="" >
+		<onEnter lua="espejos_hall02_ME_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="luces_entrada_piso1_ME_level02_ON()" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_08_ME" pos="-38.6351 4.04998 12.1297" size="0.864609 0.953168 0.147589" mask="" >
+		<onEnter lua="espejos_hall02_ME_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_09_ME" pos="-38.6351 4.04998 12.4268" size="0.864609 0.953168 0.147589" mask="" >
+		<onEnter lua="espejos_ME_level02_OFF()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_10_ME" pos="-12.2791 4.04998 12.4268" size="0.864611 0.953168 0.147589" mask="" >
+		<onEnter lua="espejo_svigilancia_ME_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_Opt_Luces01_ME_Level02" pos="-27.7176 4.04998 -34.6785" size="1.11054 0.953168 0.147587" mask="" >
+		<onEnter lua="luces_entrada_piso1_ME_level02_OFF()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_Opt_Luces02_ME_Level2" pos="-27.7176 0.968082 -34.6785" size="1.11054 0.953168 0.147587" mask="" >
+		<onEnter lua="luces_entrada_piso1_ME_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_SVigilancias_Boton" pos="24.4188 3.13086 26.8334" size="0.254351 0.925344 0.246077" mask="" >
+		<onEnter lua="button_level02_trigger_OnEnter()" />
+		<onLeave lua="button_level02_trigger_OnLeave()" />
+		<onTrigger lua="button_level02_trigger_OnTrigger()" />
+	</trigger>
+	<trigger name="Trigger_SVigilado_Espejo_MR_Level02" pos="23.4133 4.53106 23.076" size="0.190115 0.925344 3.89001" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_SVigilado_Espejo_MR_Level02', 'Trigger_SVigilado_Espejo_ME_Level02', '')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_SVigilado_Espejo_MR_Level02', 'Trigger_SVigilado_Espejo_ME_Level02', '')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_SVigilado_Espejo_MR_Level02', 'Trigger_SVigilado_Espejo_ME_Level02', '')" />
+	</trigger>
+	<trigger name="Trigger_Pasillo_Lasers" pos="20.8928 3.13086 14.6838" size="0.871065 0.925344 1.92678" mask="" >
+		<onEnter lua="_GAMEPROCESS:lasers_trigger('OnEnter','Trigger_Pasillo_Lasers')" />
+		<onLeave lua="_GAMEPROCESS:lasers_trigger('OnLeave','Trigger_Pasillo_Lasers')" />
+		<onTrigger lua="_GAMEPROCESS:lasers_trigger('OnTrigger','Trigger_Pasillo_Lasers')" />
+	</trigger>
+	<trigger name="Trigger_Hall01_EspejoEstatico_MR" pos="16.7588 1.11577 -14.689" size="0.3552 0.925344 0.435062" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Hall01_EspejoEstatico_MR', 'Trigger_Hall01_EspejoEstatico_ME', '')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Hall01_EspejoEstatico_MR', 'Trigger_Hall01_EspejoEstatico_ME', '')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Hall01_EspejoEstatico_MR', 'Trigger_Hall01_EspejoEstatico_ME', '')" />
+	</trigger>
+	<trigger name="Trigger_Pasillo01_EspejoEstatico_MR" pos="35.0877 1.11577 -6.63434" size="0.43483 0.925344 0.324388" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Pasillo01_EspejoEstatico_MR', 'Trigger_Pasillo01_EspejoEstatico_ME', '')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Pasillo01_EspejoEstatico_MR', 'Trigger_Pasillo01_EspejoEstatico_ME', '')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Pasillo01_EspejoEstatico_MR', 'Trigger_Pasillo01_EspejoEstatico_ME', '')" />
+	</trigger>
+	<trigger name="Trigger_Espejo_Final_MR" pos="33.6121 9.30648 3.2603" size="1.02684 0.185685 0.516659" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Espejo_Final_MR', '', '')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Espejo_Final_MR', '', '')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Espejo_Final_MR', '', '')" />
+	</trigger>
+	<trigger name="Trigger_Hall_PC" pos="43.5887 0.925344 -8.50892" size="0.667046 0.925344 0.441543" mask="" >
+		<onEnter lua="_GAMEPROCESS:door_trigger('OnEnter','Trigger_Hall_PC')" />
+		<onLeave lua="_GAMEPROCESS:door_trigger('OnLeave','Trigger_Hall_PC')" />
+		<onTrigger lua="_GAMEPROCESS:door_trigger('OnTrigger','Trigger_Hall_PC')" />
+	</trigger>
+	<trigger name="Trigger_Hall_PuertaInicial_MR" pos="46.9373 0.925344 -11.6893" size="2.19967 0.925344 0.794448" mask="" >
+		<onEnter lua="_GAMEPROCESS:door_trigger('OnEnter','Trigger_Hall_PuertaInicial_MR')" />
+		<onLeave lua="_GAMEPROCESS:door_trigger('OnLeave','Trigger_Hall_PuertaInicial_MR')" />
+		<onTrigger lua="_GAMEPROCESS:door_trigger('OnTrigger','Trigger_Hall_PuertaInicial_MR')" />
+	</trigger>
+	<trigger name="Ascensor_MR_Level02" pos="27.0087 3.35272 -36.7966" size="0.40114 3.35272 0.426014" mask="" >
+		<onEnter lua="	_LOGICOBJECTSM:close_door('Trigger_SControl_PC')
+						_GAMEPROCESS:elevator_trigger('OnEnter','Ascensor_MR_Level02')" />
+		<onLeave lua="_GAMEPROCESS:elevator_trigger('OnLeave','Ascensor_MR_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:elevator_trigger('OnTrigger','Ascensor_MR_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Hall_PuertaAscensor_MR" pos="27.8148 0.925344 -29.1434" size="2.19967 0.925344 0.794447" mask="" >
+		<onEnter lua="_GAMEPROCESS:door_trigger('OnEnter','Trigger_Hall_PuertaAscensor_MR')" />
+		<onLeave lua="_GAMEPROCESS:door_trigger('OnLeave','Trigger_Hall_PuertaAscensor_MR')" />
+		<onTrigger lua="_GAMEPROCESS:door_trigger('OnTrigger','Trigger_Hall_PuertaAscensor_MR')" />
+	</trigger>
+	<trigger name="Trigger_Hall02_EspejoRotatorio_MR" pos="19.5002 4.16079 -21.8576" size="0.431877 1.00163 0.407319" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Hall02_EspejoRotatorio_MR', 'Trigger_Hall02_EspejoRotatorio_ME', 'Trigger_Hall02_EspejoEstatico_MR')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Hall02_EspejoRotatorio_MR', 'Trigger_Hall02_EspejoRotatorio_ME', 'Trigger_Hall02_EspejoEstatico_MR')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Hall02_EspejoRotatorio_MR', 'Trigger_Hall02_EspejoRotatorio_ME', 'Trigger_Hall02_EspejoEstatico_MR')" />
+	</trigger>
+	<trigger name="Trigger_Hall02_EspejoEstatico_MR" pos="19.3957 4.17338 11.9893" size="0.425564 0.993266 0.301683" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Hall02_EspejoEstatico_MR', 'Trigger_Hall02_EspejoRotatorio_MR', '')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Hall02_EspejoEstatico_MR', 'Trigger_Hall02_EspejoRotatorio_MR', '')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Hall02_EspejoEstatico_MR', 'Trigger_Hall02_EspejoRotatorio_MR', '')" />
+	</trigger>
+	<trigger name="Trigger_SControl_PC" pos="37.6826 0.925344 -3.98911" size="0.667046 0.925344 0.337076" mask="" >
+		<onEnter lua="_GAMEPROCESS:door_trigger('OnEnter','Trigger_SControl_PC')" />
+		<onLeave lua="_GAMEPROCESS:door_trigger('OnLeave','Trigger_SControl_PC')" />
+		<onTrigger lua="_GAMEPROCESS:door_trigger('OnTrigger','Trigger_SControl_PC')" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_01_MR" pos="46.9565 0.901238 -18.7791" size="1.16774 0.966626 0.113352" mask="" >
+		<onEnter lua="espejo_inicial_MR_level02_ON()" />
+		<onLeave lua="opt_luces01_level2()" />
+		<onTrigger lua="objetivo8()" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_02_MR" pos="16.0405 0.861962 -14.6951" size="0.516424 0.873994 0.632948" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="level02_enter_hall_MR()" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_03_MR" pos="27.7405 0.869567 -28.1904" size="1.11054 0.953168 0.147589" mask="" >
+		<onEnter lua="espejos_hall01_MR_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_04_MR" pos="27.7405 4.08946 -28.1887" size="1.11054 0.953168 0.147589" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="level02_hall_piso2_MR()" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_05_MR" pos="27.7405 4.08946 -28.4842" size="1.11054 0.953168 0.147589" mask="" >
+		<onEnter lua="espejos_MR_level02_OFF()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_06_MR" pos="27.7405 0.869567 -28.4866" size="1.11054 0.953168 0.147589" mask="" >
+		<onEnter lua="espejos_MR_level02_OFF()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_07_MR" pos="12.2727 4.04998 12.5094" size="0.864611 0.953168 0.147589" mask="" >
+		<onEnter lua="espejo_svigilancia_MR_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_08_MR" pos="12.2727 4.04998 12.2007" size="0.864611 0.953168 0.147589" mask="" >
+		<onEnter lua="espejos_hall02_MR_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_09_MR" pos="38.6448 4.04998 12.2007" size="0.864609 0.953168 0.147589" mask="" >
+		<onEnter lua="espejos_hall02_MR_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_10_MR" pos="38.6448 4.04998 12.4921" size="0.864609 0.953168 0.147589" mask="" >
+		<onEnter lua="espejos_MR_level02_OFF()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_Opt_Luces01_MR_Level02" pos="27.8426 4.04998 -34.8868" size="1.11054 0.953168 0.147587" mask="" >
+		<onEnter lua="luces_entrada_piso1_MR_level02_OFF()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_Opt_Luces02_MR_Level02" pos="27.8413 0.968082 -34.8882" size="1.11054 0.953168 0.147587" mask="" >
+		<onEnter lua="luces_entrada_piso1_MR_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_Activar_Espejos_Hall02_MR_Level02" pos="-20.3002 4.11585 -21.3514" size="0.523642 0.976864 0.439724" mask="" >
+		<onEnter lua="espejos_hall02_ME_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="luces_piso1_superior_ME_level02_ON()" />
+	</trigger>
+	<trigger name="Trigger_Activar_Espejo_SVigilado_ME_Level02" pos="-22.3905 4.23857 23.0453" size="0.520496 1.13214 0.50174" mask="" >
+		<onEnter lua="espejo_svigilancia_ME_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="luces_piso1_superior_ME_level02_OFF()" />
+	</trigger>
+	<trigger name="Trigger_Activar_Espejos_Hall02_ME_Level" pos="20.2662 4.11585 -21.3018" size="0.523642 0.976864 0.439724" mask="" >
+		<onEnter lua="espejos_hall02_MR_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_Activar_Espejo_SVigilado_MR_Level02" pos="22.5768 4.23857 23.0975" size="0.520496 1.13214 0.50174" mask="" >
+		<onEnter lua="espejo_svigilancia_MR_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_02_ME_Hall01" pos="-15.9427 0.861962 -14.686" size="0.51649 0.873994 0.633001" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="espejos_hall01_ME_level02_ON()" />
+	</trigger>
+	<trigger name="Trigger_OptEspejos_01_MR01" pos="35.0951 0.454648 -7.20403" size="0.417984 0.454648 0.359319" mask="" >
+		<onEnter lua="espejo_inicial_MR_level02_ON()" />
+		<onLeave lua="" />
+		<onTrigger lua="opt_luces01_level2()" />
+	</trigger>
+	<trigger name="Trigger_Trozo_Espejo_02_MR" pos="36.6199 3.5673 -4.08188" size="0.362591 0.439632 0.397795" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_piece_trigger('OnEnter','Trigger_Trozo_Espejo_02_MR')" />
+		<onLeave lua="_GAMEPROCESS:mirror_piece_trigger('OnLeave','Trigger_Trozo_Espejo_02_MR')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_piece_trigger('OnTrigger','Trigger_Trozo_Espejo_02_MR')" />
+	</trigger>
+	<trigger name="Trigger_Trozo_Espejo_01_MR" pos="13.2944 0.579073 1.98875" size="0.120131 0.579073 0.254067" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_piece_trigger('OnEnter','Trigger_Trozo_Espejo_01_MR')" />
+		<onLeave lua="_GAMEPROCESS:mirror_piece_trigger('OnLeave','Trigger_Trozo_Espejo_01_MR')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_piece_trigger('OnTrigger','Trigger_Trozo_Espejo_01_MR')" />
+	</trigger>
+	<trigger name="Trigger_Espejo_Roto_MR" pos="13.7748 0.90647 3.1672" size="0.527017 0.90647 0.474316" mask="" >
+		<onEnter lua="_GAMEPROCESS:broken_mirror_trigger('OnEnter','Trigger_Espejo_Roto_MR')" />
+		<onLeave lua="_GAMEPROCESS:broken_mirror_trigger('OnLeave','Trigger_Espejo_Roto_MR')" />
+		<onTrigger lua="_GAMEPROCESS:broken_mirror_trigger('OnTrigger','Trigger_Espejo_Roto_MR')" />
+	</trigger>
+	<trigger name="Trigger_Espejo_Montado_MR" pos="13.7748 0.90647 3.16194" size="0.527017 0.90647 0.474316" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Espejo_Montado_MR', 'Trigger_Espejo_Final_MR', '')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Espejo_Montado_MR', 'Trigger_Espejo_Final_MR', '')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Espejo_Montado_MR', 'Trigger_Espejo_Final_MR', '')" />
+	</trigger>
+	<trigger name="Trigger_Trozo_Espejo_01_ME" pos="-31.5013 1.13354 -27.6203" size="0.436518 1.13354 0.415396" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_piece_trigger('OnEnter','Trigger_Trozo_Espejo_01_ME')" />
+		<onLeave lua="_GAMEPROCESS:mirror_piece_trigger('OnLeave','Trigger_Trozo_Espejo_01_ME')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_piece_trigger('OnTrigger','Trigger_Trozo_Espejo_01_ME')" />
+	</trigger>
+	<trigger name="Trigger_Trozo_Espejo_02_ME" pos="-21.2719 4.34499 24.6712" size="0.409924 1.18505 0.506815" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_piece_trigger('OnEnter','Trigger_Trozo_Espejo_02_ME')" />
+		<onLeave lua="_GAMEPROCESS:mirror_piece_trigger('OnLeave','Trigger_Trozo_Espejo_02_ME')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_piece_trigger('OnTrigger','Trigger_Trozo_Espejo_02_ME')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Vida1_MR_Level02" pos="24.1899 0.227993 -26.188" size="0.515566 1.0059 0.526382" mask="" >
+		<onEnter lua="_GAMEPROCESS:life_trigger('OnEnter','Trigger_Maquina_Vida1_MR_Level02')" />
+		<onLeave lua="_GAMEPROCESS:life_trigger('OnLeave','Trigger_Maquina_Vida1_MR_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:life_trigger('OnTrigger','Trigger_Maquina_Vida1_MR_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Vida2_MR_Level02" pos="24.1899 3.41253 -26.188" size="0.515566 1.0059 0.526382" mask="" >
+		<onEnter lua="_GAMEPROCESS:life_trigger('OnEnter','Trigger_Maquina_Vida2_MR_Level02')" />
+		<onLeave lua="_GAMEPROCESS:life_trigger('OnLeave','Trigger_Maquina_Vida2_MR_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:life_trigger('OnTrigger','Trigger_Maquina_Vida2_MR_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Vida3_MR_Level02" pos="35.1522 0.260132 11.3808" size="0.515568 1.0059 0.526382" mask="" >
+		<onEnter lua="_GAMEPROCESS:life_trigger('OnEnter','Trigger_Maquina_Vida3_MR_Level02')" />
+		<onLeave lua="_GAMEPROCESS:life_trigger('OnLeave','Trigger_Maquina_Vida3_MR_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:life_trigger('OnTrigger','Trigger_Maquina_Vida3_MR_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Vida1_ME_Level02" pos="-24.266 0.227993 -26.2384" size="0.515566 1.0059 0.526382" mask="" >
+		<onEnter lua="_GAMEPROCESS:life_trigger('OnEnter','Trigger_Maquina_Vida1_ME_Level02')" />
+		<onLeave lua="_GAMEPROCESS:life_trigger('OnLeave','Trigger_Maquina_Vida1_ME_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:life_trigger('OnTrigger','Trigger_Maquina_Vida1_ME_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Vida2_ME_Level02" pos="-24.266 3.41253 -26.2384" size="0.515566 1.0059 0.526382" mask="" >
+		<onEnter lua="_GAMEPROCESS:life_trigger('OnEnter','Trigger_Maquina_Vida2_ME_Level02')" />
+		<onLeave lua="_GAMEPROCESS:life_trigger('OnLeave','Trigger_Maquina_Vida2_ME_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:life_trigger('OnTrigger','Trigger_Maquina_Vida2_ME_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Vida3_ME_Level02" pos="-31.6193 0.260132 11.3304" size="0.515567 1.0059 0.526382" mask="" >
+		<onEnter lua="_GAMEPROCESS:life_trigger('OnEnter','Trigger_Maquina_Vida3_ME_Level02')" />
+		<onLeave lua="_GAMEPROCESS:life_trigger('OnLeave','Trigger_Maquina_Vida3_ME_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:life_trigger('OnTrigger','Trigger_Maquina_Vida3_ME_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Energia_MR_Level02" pos="23.539 0.0 -24.1167" size="0.544844 0.967578 0.324944" mask="" >
+		<onEnter lua="_GAMEPROCESS:energy_trigger('OnEnter','Trigger_Maquina_Energia_MR_Level02')" />
+		<onLeave lua="_GAMEPROCESS:energy_trigger('OnLeave','Trigger_Maquina_Energia_MR_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Maquina_Energia_MR_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Energia2_MR_Level02" pos="23.539 3.10161 -24.1167" size="0.544844 0.967578 0.324944" mask="" >
+		<onEnter lua="_GAMEPROCESS:energy_trigger('OnEnter','Trigger_Maquina_Energia2_MR_Level02')" />
+		<onLeave lua="_GAMEPROCESS:energy_trigger('OnLeave','Trigger_Maquina_Energia2_MR_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Maquina_Energia2_MR_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Energia3_MR_Level02" pos="48.3276 0.0 -4.96681" size="0.544846 0.967578 0.324943" mask="" >
+		<onEnter lua="_GAMEPROCESS:energy_trigger('OnEnter','Trigger_Maquina_Energia3_MR_Level02')" />
+		<onLeave lua="_GAMEPROCESS:energy_trigger('OnLeave','Trigger_Maquina_Energia3_MR_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Maquina_Energia3_MR_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Energia4_MR_Level02" pos="30.9283 3.14084 26.2513" size="0.324944 0.967578 0.544844" mask="" >
+		<onEnter lua="_GAMEPROCESS:energy_trigger('OnEnter','Trigger_Maquina_Energia4_MR_Level02')" />
+		<onLeave lua="_GAMEPROCESS:energy_trigger('OnLeave','Trigger_Maquina_Energia4_MR_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Maquina_Energia4_MR_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Energia5_MR_Level02" pos="8.42406 3.14084 14.6729" size="0.544847 0.967578 0.324946" mask="" >
+		<onEnter lua="_GAMEPROCESS:energy_trigger('OnEnter','Trigger_Maquina_Energia5_MR_Level02')" />
+		<onLeave lua="_GAMEPROCESS:energy_trigger('OnLeave','Trigger_Maquina_Energia5_MR_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Maquina_Energia5_MR_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Energia_ME_Level02" pos="-23.5137 0.0 -24.1375" size="0.544844 0.967578 0.324944" mask="" >
+		<onEnter lua="_GAMEPROCESS:energy_trigger('OnEnter','Trigger_Maquina_Energia_ME_Level02')" />
+		<onLeave lua="_GAMEPROCESS:energy_trigger('OnLeave','Trigger_Maquina_Energia_ME_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Maquina_Energia_ME_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Energia2_ME_Level02" pos="-23.5137 3.10161 -24.1375" size="0.544844 0.967578 0.324944" mask="" >
+		<onEnter lua="_GAMEPROCESS:energy_trigger('OnEnter','Trigger_Maquina_Energia2_ME_Level02')" />
+		<onLeave lua="_GAMEPROCESS:energy_trigger('OnLeave','Trigger_Maquina_Energia2_ME_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Maquina_Energia2_ME_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Energia3_ME_Level02" pos="-48.3131 0.0 -5.04673" size="0.544846 0.967578 0.324947" mask="" >
+		<onEnter lua="_GAMEPROCESS:energy_trigger('OnEnter','Trigger_Maquina_Energia3_ME_Level02')" />
+		<onLeave lua="_GAMEPROCESS:energy_trigger('OnLeave','Trigger_Maquina_Energia3_ME_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Maquina_Energia3_ME_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Energia4_ME_Level02" pos="-30.8347 3.14084 26.2009" size="0.324944 0.967578 0.544844" mask="" >
+		<onEnter lua="_GAMEPROCESS:energy_trigger('OnEnter','Trigger_Maquina_Energia4_ME_Level02')" />
+		<onLeave lua="_GAMEPROCESS:energy_trigger('OnLeave','Trigger_Maquina_Energia4_ME_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Maquina_Energia4_ME_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Maquina_Energia5_ME_Level02" pos="-8.4961 3.14084 14.6229" size="0.544846 0.967578 0.324946" mask="" >
+		<onEnter lua="_GAMEPROCESS:energy_trigger('OnEnter','Trigger_Maquina_Energia5_ME_Level02')" />
+		<onLeave lua="_GAMEPROCESS:energy_trigger('OnLeave','Trigger_Maquina_Energia5_ME_Level02')" />
+		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Maquina_Energia5_ME_Level02')" />
+	</trigger>
+	<trigger name="Trigger_Espejo_Roto_ME" pos="-13.7451 0.90647 3.07765" size="0.527017 0.90647 0.474316" mask="" >
+		<onEnter lua="_GAMEPROCESS:broken_mirror_trigger('OnEnter','Trigger_Espejo_Roto_ME')" />
+		<onLeave lua="_GAMEPROCESS:broken_mirror_trigger('OnLeave','Trigger_Espejo_Roto_ME')" />
+		<onTrigger lua="_GAMEPROCESS:broken_mirror_trigger('OnTrigger','Trigger_Espejo_Roto_ME')" />
+	</trigger>
+	<trigger name="Trigger_Espejo_Montado_ME" pos="-13.7451 0.90647 3.07576" size="0.527017 0.90647 0.474316" mask="" >
+		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Espejo_Montado_ME', 'Trigger_Espejo_Final_ME', '')" />
+		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Espejo_Montado_ME', 'Trigger_Espejo_Final_ME', '')" />
+		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Espejo_Montado_ME', 'Trigger_Espejo_Final_ME', '')" />
+	</trigger>
+	<trigger name="Trigger_Final_Demo_ME" pos="-45.2867 7.79391 0.0299622" size="0.341579 1.48249 2.47791" mask="" >
+		<onEnter lua="sound_action_music_off()
+					  _GUI:active_windows('TheEnd.xml')" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_Final_Demo_MR" pos="45.3295 7.79391 0.0803213" size="0.341579 1.48249 2.47791" mask="" >
+		<onEnter lua="sound_action_music_off()
+					  _GUI:active_windows('TheEnd.xml')" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_luces_entrada_hall_ME" pos="-46.9498 0.868603 -3.22128" size="1.49033 0.88746 0.147589" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="opt_luces04_level2()" />
+	</trigger>
+	<trigger name="Trigger_luces_pasillo_hall_ME" pos="-46.9498 0.868603 -3.5518" size="1.49033 0.88746 0.147589" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="opt_luces03_level2()" />
+	</trigger>
+	<trigger name="Trigger_Sonido_Risa_ME" pos="-27.6322 0.868603 -22.6085" size="1.49054 0.88746 0.149652" mask="" >
+		<onEnter lua="sound_risa()" />
+		<onLeave lua="" />
+		<onTrigger lua="" />
+	</trigger>
+	<trigger name="Trigger_Objetivo_final_ME" pos="-33.775 7.71167 3.27363" size="0.466942 0.556907 0.362703" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="objetivos_OFF()" />
+	</trigger>
+	<trigger name="Trigger_Objetivo_final_MR" pos="33.4712 7.63638 3.27363" size="0.466942 0.556907 0.362703" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="objetivos_OFF()" />
+	</trigger>
+	<trigger name="Trigger_Sonido_WAUDH" pos="-37.319 0.868603 -8.19182" size="0.147587 0.88746 1.11054" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="sound_what_are_you_doing_here()" />
+	</trigger>
+	<trigger name="Trigger_Sonido_Grito_ME" pos="-27.6322 4.04605 -22.6085" size="1.49054 0.88746 0.149652" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="sound_grito()" />
+	</trigger>
+	<trigger name="Trigger_Sonido_Grito2_ME" pos="-22.2391 0.87761 -16.1251" size="0.14992 0.88746 1.49056" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="sound_scream()" />
+	</trigger>
+	<trigger name="Trigger_Sonido_Risa2_ME" pos="-15.0801 0.840575 -12.4602" size="1.82974 0.88746 0.149652" mask="" >
+		<onEnter lua="" />
+		<onLeave lua="" />
+		<onTrigger lua="sound_laugh()" />
+	</trigger>
+</TriggerManager>

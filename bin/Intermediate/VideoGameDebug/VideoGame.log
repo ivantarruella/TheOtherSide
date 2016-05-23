@@ -1,0 +1,27 @@
+﻿Compilación iniciada a las 18/10/2012 15:34:14.
+     1>Proyecto "D:\UAB\Projects\videogame\trunk\Code\VideoGame\VideoGame.vcxproj" en el nodo 2 (build destinos).
+     1>InitializeBuildStatus:
+         Se creará "D:\UAB\Projects\videogame\trunk\\bin\Intermediate\VideoGameDebug\VideoGame.unsuccessfulbuild" porque se especificó "AlwaysCreate".
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ID:\UAB\Projects\videogame\trunk\\Code\Engine\PhysX /I"D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\libxml2-2.7.2.win32\include" /I"D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\iconv-1.9.2.win32\include" /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Base /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Core /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Base\Math\ /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Graphics\ /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Input /I"D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\cal3d-0.11rc2\src" /ID:\UAB\Projects\videogame\trunk\\Code\Engine\GUI /I"D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\lua-5.2.0\src\\" /I"D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\luabind-0.9.1\\" /ID:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\boost_1_48_0\ /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Game\AI /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Game\Characters /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Game\Logic /ID:\UAB\Projects\videogame\trunk\\Code\Engine\Game\ /ZI /nologo /W3 /WX /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"D:\UAB\Projects\videogame\trunk\\bin\Intermediate\VideoGameDebug\\" /Fd"D:\UAB\Projects\videogame\trunk\\bin\Intermediate\VideoGameDebug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt videogame.cpp
+         videogame.cpp
+       ManifestResourceCompile:
+         Todas las salidas están actualizadas.
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\UAB\Projects\videogame\trunk\\Run\VideoGame\VideoGame_d.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\lib\Win32" /LIBPATH:"D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\libxml2-2.7.2.win32\lib" /LIBPATH:D:\UAB\Projects\videogame\trunk\\Bin\lib /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Lib\x86" /LIBPATH:"D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\cal3d-0.11rc2\bin\Lib" /LIBPATH:D:\UAB\Projects\videogame\trunk\\Code\Engine\3dParty\openAL d3dx9d.lib d3d9.lib libxml2.lib base_d.lib core_d.lib graphics_d.lib Winmm.lib input_d.lib d3dxof.lib dxguid.lib winmm.lib dinput8.lib xinput.lib cal3d_d.lib LUA_d.lib luabind_d.lib PhysXLoader.lib NxCooking.lib NxCharacter.lib PhysX_d.lib GUI_d.lib sound_d.lib OpenAL32.lib alut.lib Game_d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"D:\UAB\Projects\videogame\trunk\\bin\Intermediate\VideoGameDebug\VideoGame_d.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\UAB\Projects\videogame\trunk\run\VideoGame\VideoGame_d_d.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\UAB\Projects\videogame\trunk\\run\VideoGame\VideoGame_d.lib" /MACHINE:X86 D:\UAB\Projects\videogame\trunk\\bin\Intermediate\VideoGameDebug\VideoGame_d.exe.embed.manifest.res
+         D:\UAB\Projects\videogame\trunk\\bin\Intermediate\VideoGameDebug\GameProcess.obj
+         D:\UAB\Projects\videogame\trunk\\bin\Intermediate\VideoGameDebug\videogame.obj
+       Manifest:
+         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"D:\UAB\Projects\videogame\trunk\\bin\Intermediate\VideoGameDebug\VideoGame_d.exe.embed.manifest" /manifest D:\UAB\Projects\videogame\trunk\\bin\Intermediate\VideoGameDebug\VideoGame_d.exe.intermediate.manifest
+         Todas las salidas están actualizadas.
+       LinkEmbedManifest:
+         Todas las salidas están actualizadas.
+         VideoGame.vcxproj -> D:\UAB\Projects\videogame\trunk\\run\VideoGame\VideoGame_d.exe
+       FinalizeBuildStatus:
+         Se eliminará el archivo "D:\UAB\Projects\videogame\trunk\\bin\Intermediate\VideoGameDebug\VideoGame.unsuccessfulbuild".
+         Aplicando tarea Touch a "D:\UAB\Projects\videogame\trunk\\bin\Intermediate\VideoGameDebug\VideoGame.lastbuildstate".
+     1>Compilación del proyecto terminada "D:\UAB\Projects\videogame\trunk\Code\VideoGame\VideoGame.vcxproj" (build destinos).
+
+Compilación correcta.
+
+Tiempo transcurrido 00:00:02.11

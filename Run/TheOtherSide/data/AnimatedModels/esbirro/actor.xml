@@ -1,0 +1,19 @@
+<animated_model name="esbirro">
+	<skeleton filename="esbirro.csf"/>
+	
+	<mesh filename="esbirro.cmf"/>
+
+	<animation name="espera" filename="esbirro_espera.caf"/>
+	<animation name="andar" filename="esbirro_andar.caf"/>
+	<animation name="correr" filename="esbirro_correr.caf"/>
+	<animation name="disparar" filename="esbirro_disparar.caf"/>
+	<animation name="tocado" filename="esbirro_hit.caf"/>
+	<animation name="morir" filename="esbirro_morir.caf"/>
+	<animation name="girarizq" filename="giro_izq.caf"/>
+	<animation name="girarder" filename="giro_der.caf"/>
+	<animation name="muerto" filename="esbirro_muerto.caf"/>
+	
+	<texture filename="D_esbirro_arma.tga"/>
+	<texture filename="N_esbirro_arma.tga"/>
+
+</animated_model>

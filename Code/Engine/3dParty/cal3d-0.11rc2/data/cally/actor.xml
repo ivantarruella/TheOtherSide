@@ -1,0 +1,24 @@
+<animated_model name="cally">
+	<skeleton filename="cally.csf"/>
+	<mesh filename="cally_calf_left.cmf"/>
+	<mesh filename="cally_calf_right.cmf"/>
+	<mesh filename="cally_chest.cmf"/>
+	<mesh filename="cally_foot_left.cmf"/>
+	<mesh filename="cally_foot_right.cmf"/>
+	<mesh filename="cally_hand_left.cmf"/>
+	<mesh filename="cally_hand_right.cmf"/>
+	<mesh filename="cally_head.cmf"/>
+	<mesh filename="cally_lowerarm_left.cmf"/>
+	<mesh filename="cally_lowerarm_right.cmf"/>
+	<mesh filename="cally_neck.cmf"/>
+	<mesh filename="cally_pelvis.cmf"/>
+	<mesh filename="cally_ponytail.cmf"/>
+	<mesh filename="cally_thigh_left.cmf"/>
+	<mesh filename="cally_thigh_right.cmf"/>
+	<mesh filename="cally_upperarm_left.cmf"/>
+	<mesh filename="cally_upperarm_right.cmf"/>
+	
+
+	<animation name="idle" filename="cally_walk.caf"/>
+
+</animated_model>

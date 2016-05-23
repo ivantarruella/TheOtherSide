@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Engine>
+  <screen fullscreen="false"  show_fps="true"  x_ini="0"	y_ini="0"	nWidth="1366" nHeight="720" exclusiveModeinMouse="true"/>
+  <fonts  file_path="data/XML/fonts.xml"/>
+  <languages default_lang="english">
+		<language id="spanish" file_path="data/Language/spanish.xml"/>
+		<language id="catalan" file_path="data/Language/catalan.xml"/>
+		<language id="english" file_path="data/Language/english.xml"/>
+  </languages>
+  <action2input file_path="data/XML/actions.xml"/>
+  <static_meshes file_path="data/XML/static_meshes.xml"/>
+  <renderable_objects file_path="data/XML/renderable_objects.xml"/>
+  <animated_models file_path="data/XML/animated_models.xml"/>
+  <lights file_path="data/XML/lights.xml"/>
+  <effects file_path="data/XML/effects.xml"/>
+  <renderable_object_techniques file_path="data/XML/renderable_object_techniques.xml"/>
+  <scene_renderer_commands file_path="data/XML/scene_renderer_commands.xml"/>
+  <scripting file_path="data/XML/scripting.xml"/>
+  <billboard file_path="data/XML/billboard_animation.xml"/>
+  <particles file_path="data/XML/particles.xml"/>
+  <triggers file_path="data/XML/triggers.xml"/>
+  <GUI file_path="data/GUI/init_gui.xml"/>
+  <sound file_path="data/XML/sound.xml"/>
+  <nodes file_path="data/XML/nodes.xml"/>
+</Engine>

@@ -1,0 +1,21 @@
+<BillboardAnimation>
+  <Billboard>
+	<Animation name="pFire" color="1.0 1.0 1.0 1.0" size="20.0" time="0.07" loop="false">
+		<Textures>
+			<texture tex="data\\Textures\\fire\\flame1.tga"/>
+			<texture tex="data\\Textures\\fire\\flame2.tga"/>
+			<texture tex="data\\Textures\\fire\\flame3.tga"/>
+			<texture tex="data\\Textures\\fire\\flame4.tga"/>
+			<texture tex="data\\Textures\\fire\\flame5.tga"/>
+			<texture tex="data\\Textures\\fire\\flame6.tga"/>
+			<texture tex="data\\Textures\\fire\\flame7.tga"/>
+			<texture tex="data\\Textures\\fire\\flame8.tga"/>			
+		</Textures>
+	</Animation>
+	
+  </Billboard>
+  <Instances>
+	<Instance id="pFire"   pos="0.0 0.0 0.0"/>
+	<Instance id="pFire"   pos="4.0 0.2 -10.6"/>
+  </Instances>
+</BillboardAnimation>

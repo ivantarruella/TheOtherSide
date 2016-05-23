@@ -1,0 +1,12 @@
+XBOX 360 controller support:
+
+- Analog Stick / LEFT DPAD : movimiento jugador
+- RIGHT DPAD: movimiento camara
+- RIGHT TRIGGER: andar (por defecto corre)
+- RIGHT BUTTON: activa/desactiva modo apuntar
+- LEFT BUTTON: disparar laser
+- A : usar items (espejos, ordenadores, botones, etc)
+- B : cerrar tutoriales
+- X : rotar espejos
+
+

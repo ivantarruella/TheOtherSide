@@ -1,0 +1,8 @@
+<TriggerManager>
+	<!--<trigger name="puente" pos="0.0 0.0 0.0" size="10.0 5.0 20.0" active="true" actor_name="" mask="">
+		<onEnter lua="_CORE:change_trigger()" time="0.0"/> 
+		<onLeave lua="_CORE:change_trigger()" time="0.0"/>
+		<onTrigger lua="_CORE:change_trigger()" time="0.0"/>
+	</trigger>-->
+</TriggerManager>
+

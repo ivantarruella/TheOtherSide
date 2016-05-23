@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AnimatedImage.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CheckButton.cpp" />
+    <ClCompile Include="DialogBox.cpp" />
+    <ClCompile Include="EditableTextBox.cpp" />
+    <ClCompile Include="GuiElement.cpp" />
+    <ClCompile Include="GUIManager.cpp" />
+    <ClCompile Include="GUIWindow.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="PointerMouse.cpp" />
+    <ClCompile Include="ProgressBar.cpp" />
+    <ClCompile Include="RadioBox.cpp" />
+    <ClCompile Include="Slider.cpp" />
+    <ClCompile Include="StaticText.cpp" />
+    <ClCompile Include="TextBox.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AnimatedImage.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="CheckButton.h" />
+    <ClInclude Include="DialogBox.h" />
+    <ClInclude Include="EditableTextBox.h" />
+    <ClInclude Include="GuiElement.h" />
+    <ClInclude Include="GUIManager.h" />
+    <ClInclude Include="GUIWindow.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="PointerMouse.h" />
+    <ClInclude Include="ProgressBar.h" />
+    <ClInclude Include="RadioBox.h" />
+    <ClInclude Include="Slider.h" />
+    <ClInclude Include="StaticText.h" />
+    <ClInclude Include="TextBox.h" />
+  </ItemGroup>
+</Project>

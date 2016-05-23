@@ -1,0 +1,11 @@
+<Level name="Level02 - Aqueronte Corp.">
+  <static_meshes file_path="static_meshes.xml"/>
+  <renderable_objects file_path="renderable_objects.xml"/>
+  <lights file_path="lights.xml"/>
+  <billboard file_path="billboard_animation.xml"/>
+  <particles file_path="particles.xml"/>
+  <triggers file_path="triggers.xml"/>
+  <nodes file_path="nodes.xml"/>
+  <logic_objects file_path="logic_objects.xml"/>
+  <covers file_path="covers.xml"/>
+</Level>

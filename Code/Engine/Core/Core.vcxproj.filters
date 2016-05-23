@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>LevelManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="Core.h" />
+    <ClInclude Include="Process.h" />
+    <ClInclude Include="EngineDef.h" />
+    <ClInclude Include="LevelManager.h">
+      <Filter>LevelManager</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelDef.h">
+      <Filter>LevelManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="LevelManager">
+      <UniqueIdentifier>{70fdf0a2-a30c-482d-98e8-154a25ee6d52}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

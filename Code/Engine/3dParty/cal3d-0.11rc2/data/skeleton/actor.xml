@@ -1,0 +1,27 @@
+<animated_model name="skeleton">
+	<skeleton filename="skeleton.csf"/>
+	
+	<mesh filename="skeleton_calf_left.cmf"/>
+	<mesh filename="skeleton_calf_right.cmf"/>
+	<mesh filename="skeleton_chest.cmf"/>
+	<mesh filename="skeleton_foot_left.cmf"/>
+	<mesh filename="skeleton_foot_right.cmf"/>
+	<mesh filename="skeleton_hand_left.cmf"/>
+	<mesh filename="skeleton_hand_right.cmf"/>
+	<mesh filename="skeleton_head.cmf"/>
+	<mesh filename="skeleton_hair.cmf"/>
+	<mesh filename="skeleton_lowerarm_left.cmf"/>
+	<mesh filename="skeleton_lowerarm_right.cmf"/>
+	<mesh filename="skeleton_neck.cmf"/>
+	<mesh filename="skeleton_pelvis.cmf"/>
+	<mesh filename="skeleton_spine_lower.cmf"/>
+	<mesh filename="skeleton_spine_upper.cmf"/>
+	<mesh filename="skeleton_thigh_left.cmf"/>
+	<mesh filename="skeleton_thigh_right.cmf"/>
+	<mesh filename="skeleton_upperarm_left.cmf"/>
+	<mesh filename="skeleton_upperarm_right.cmf"/>
+	
+	<animation name="walk" filename="skeleton_walk.caf"/>
+
+	
+</animated_model>

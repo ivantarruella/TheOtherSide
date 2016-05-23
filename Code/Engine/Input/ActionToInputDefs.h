@@ -1,0 +1,76 @@
+#ifndef INC_ACTIONTOINPUT_DEFINES_H
+#define INC_ACTIONTOINPUT_DEFINES_H
+
+
+#define DOACTION_LOGGER				"Logger"
+#define DOACTION_CONSOLE			"Console"
+#define DOACTION_PROCESSINFO		"ProcessInfo"
+#define DOACTION_SCREENSHOT			"Screenshot"
+#define DOACTION_SAVELOGSINFILE		"SaveLogsInFile"
+#define DOACTION_RELOADALL			"ReloadAll"
+#define DOACTION_RELOADTTFS			"ReloadTTFs"
+#define DOACTION_RELOADGUI			"ReloadGuiXML"
+#define DOACTION_RELOADLANGUAGES	"ReloadLanguageXMLs"
+#define DOACTION_RELOADACTIONS		"ReloadActions"
+#define DOACTION_RELOADLIGHTS		"ReloadLights"
+#define DOACTION_LOGRENDERPAGEDOWN	"LogRender_PageDown"
+#define DOACTION_LOGRENDERPAGEUP	"LogRender_PageUp"
+#define DOACTION_LOGRENDERPREVLINE	"LogRender_PrevLine"
+#define DOACTION_LOGRENDERNEXTLINE	"LogRender_NextLine"
+#define DOACTION_RELOAD_EFFECTS		"ReloadEffects"
+#define DOACTION_RELOAD_TEXTURES	"ReloadTextures"
+#define DOACTION_RELOAD_SCENERENDERERCOMMANDS	"ReloadSceneRendererCommands"
+#define DOACTION_RELOAD_SCRIPTING	"ReloadScripting"
+
+#define DOACTION_MOVEXVIEWERCAM		"MoveXViewerCam"
+#define DOACTION_MOVEZVIEWERCAM		"MoveYViewerCam"
+#define DOACTION_YAWVIEWERCAM		"DispararBola"
+#define DOACTION_PITCHVIEWERCAM		"EliminarBola"
+#define DOACTION_ZOOMVIEWERCAM		"ZoomViewerCam"
+#define DOACTION_SLOWZOOMVIEWERCAM	"CambiarColor"
+
+#define DOACTION_CHANGECAMERATYPE	"ChangeCameraType"
+#define DOACTION_FADEIN				"FadeIn"
+#define DOACTION_FADEOUT			"FadeOut"
+#define DOACTION_ZOOMPLAYERCAM		"ZoomPlayerCam"
+#define DOACTION_CHANGEPLAYERCAM	"ChangePlayerCam"
+
+#define DOACTION_PLAYERMOVEUP		"PlayerMoveUp"
+#define DOACTION_PLAYERMOVEDOWN		"PlayerMoveDown"
+#define DOACTION_PLAYERMOVELEFT		"PlayerMoveLeft"
+#define DOACTION_PLAYERMOVERIGHT	"PlayerMoveRight"
+#define DOACTION_PLAYERMOVEUP_PAD	"PlayerMoveUpPad"
+#define DOACTION_PLAYERMOVEDOWN_PAD	"PlayerMoveDownPad"
+#define DOACTION_PLAYERMOVELEFT_PAD		"PlayerMoveLeftPad"
+#define DOACTION_PLAYERMOVERIGHT_PAD	"PlayerMoveRightPad"
+#define DOACTION_PLAYERMOVEUPDOWN_DPAD		"PlayerMoveUpDownDPad"
+#define DOACTION_PLAYERMOVELEFTRIGHT_DPAD	"PlayerMoveLeftRightDPad"
+
+
+#define DOACTION_PLAYERLOOKLEFT		"PlayerLookLeft"
+#define DOACTION_PLAYERLOOKRIGHT	"PlayerLookRight"
+#define DOACTION_PLAYERLOOKUP		"PlayerLookUp"
+#define DOACTION_PLAYERLOOKDOWN		"PlayerLookDown"
+#define DOACTION_PLAYERLOOKLEFT_PAD		"PlayerLookLeftPad"
+#define DOACTION_PLAYERLOOKRIGHT_PAD	"PlayerLookRightPad"
+#define DOACTION_PLAYERLOOKUP_PAD		"PlayerLookUpPad"
+#define DOACTION_PLAYERLOOKDOWN_PAD		"PlayerLookDownPad"
+
+#define DOACTION_PLAYERRUN			"PlayerRun"
+#define DOACTION_PLAYERAIM			"PlayerAim"
+#define DOACTION_PLAYERSHOOT		"PlayerShoot"
+#define DOACTION_CLOSETUTORIAL		"CloseTutorial"
+#define DOACTION_PLAYERUSEITEM		"PlayerUseItem"
+#define DOACTION_PLAYERROTATEMIRROR	"PlayerRotateMirror"
+
+#define DOACTION_PLAYERRUN_PAD		"PlayerRunPad"
+#define DOACTION_PLAYERAIM_PAD		"PlayerAimPad"
+#define DOACTION_PLAYERSHOOT_PAD	"PlayerShootPad"
+#define DOACTION_CLOSETUTORIAL_PAD	"CloseTutorialPad"
+#define DOACTION_PLAYERUSEITEM_PAD		"PlayerUseItemPad"
+#define DOACTION_PLAYERROTATEMIRROR_PAD	"PlayerRotateMirrorPad"
+
+#define DOACTION_MENU				"BackToMenu"
+#define DOACTION_MENU_PAD			"BackToMenuPad"
+
+#endif //INC_ACTIONTOINPUT_DEFINES_H

@@ -1,0 +1,141 @@
+<renderable_object_techniques>
+	<!-- Forward rendering -->
+	<pool_renderable_object_technique name="alpha_blend_pool_renderable_object_technique">
+		<default_technique vertex_type="19" technique="NormalVertexTechnique"/>
+		<default_technique vertex_type="67" technique="NormalVertexTechnique"/>
+		<default_technique vertex_type="3"  technique="NormalVertexTechnique"/>
+		<default_technique vertex_type="51" technique="LightmapVertexTechnique"/>
+		<default_technique vertex_type="67"  technique="NormalVertexTechnique"/>
+		<default_technique vertex_type="63" technique="LightmapBumpmapVertexTechnique"/>
+		<default_technique vertex_type="31" technique="BumpmapVertexTechnique"/>
+		<default_technique vertex_type="415" technique="Cal3DTechniqueForward"/>
+		<default_technique vertex_type="3135" technique="RNMSpecVertexTechnique"/>
+	</pool_renderable_object_technique>
+
+	<!-- Mirror rendering -->
+	<pool_renderable_object_technique name="mirror_pool_renderable_object_technique">
+		<default_technique vertex_type="19" technique="MirrorNormalVertexTechnique"/>
+		<default_technique vertex_type="67" technique="MirrorNormalVertexTechnique"/>
+		<default_technique vertex_type="3"  technique="MirrorNormalVertexTechnique"/>
+		<default_technique vertex_type="51" technique="MirrorLightmapVertexTechnique"/>
+		<default_technique vertex_type="67"  technique="MirrorNormalVertexTechnique"/>
+		<default_technique vertex_type="63" technique="MirrorLightmapBumpmapVertexTechnique"/>
+		<default_technique vertex_type="31" technique="MirrorBumpmapVertexTechnique"/>
+		<default_technique vertex_type="415" technique="MirrorCal3DTechniqueForward"/>
+		<default_technique vertex_type="3135" technique="MirrorRNMSpecVertexTechnique"/>
+	</pool_renderable_object_technique>
+	
+	<!-- Shadowmap -->
+	<pool_renderable_object_technique name="generate_shadow_map_renderable_objects_technique">
+		<default_technique vertex_type="19" technique="ShadowVertexTechniqueStaticMeshes"/>
+		<default_technique vertex_type="67" technique="ShadowVertexTechniqueStaticMeshes"/>
+		<default_technique vertex_type="3"  technique="ShadowVertexTechniqueStaticMeshes"/>
+		<default_technique vertex_type="51" technique="ShadowVertexTechniqueStaticMeshes"/>
+		<default_technique vertex_type="63" technique="ShadowVertexTechniqueStaticMeshes"/>
+		<default_technique vertex_type="67" technique="ShadowVertexTechniqueStaticMeshes"/>
+		<default_technique vertex_type="31" technique="ShadowVertexTechniqueStaticMeshes"/>
+		<default_technique vertex_type="415" technique="ShadowVertexTechniqueAnimatedModels"/>
+		<default_technique vertex_type="3135" technique="ShadowVertexTechniqueStaticMeshes"/>
+	</pool_renderable_object_technique>	
+	
+	<!-- Deferred shading -->
+	<pool_renderable_object_technique name="generate_deferred_shading_pool_renderable_object_technique">
+		<default_technique vertex_type="19" technique="GenerateDeferredShadingNormalTexturedTechnique"/>
+		<default_technique vertex_type="67" technique="GenerateDeferredShadingNormalTexturedTechnique"/>
+		<default_technique vertex_type="3"  technique="GenerateDeferredShadingNormalTexturedTechnique"/>		
+		<default_technique vertex_type="51" technique="GenerateDeferredShadingLightmapTexturedTechnique"/>
+		<default_technique vertex_type="63" technique="GenerateDeferredShadingLightmapBumpmapTexturedTechnique"/>
+		<default_technique vertex_type="31" technique="GenerateDeferredShadingBumpmapTexturedTechnique"/>
+		<default_technique vertex_type="415" technique="Cal3DTechniqueDeferred"/>
+		<default_technique vertex_type="3135" technique="GenerateDeferredShadingRNMSpecTechnique"/>
+	</pool_renderable_object_technique>
+	
+	<!-- Ambient light -->
+	<pool_renderable_object_technique name="draw_quad_deferred_shading_ambient_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="DrawAmbientLightTechnique"/>
+	</pool_renderable_object_technique>
+	
+	<!-- Deferred light pass -->
+	<pool_renderable_object_technique name="draw_quad_deferred_shading_per_light_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="RenderLightPassTechnique"/>
+	</pool_renderable_object_technique>	
+
+	<!-- Noise and Vignetting -->
+	<pool_renderable_object_technique name="noise_and_vignetting_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="RenderNoiseAndVignettingTechnique"/>
+	</pool_renderable_object_technique>	
+
+	<!-- SSAA -->
+	<pool_renderable_object_technique name="ssaa_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="SSAATechnique"/>
+	</pool_renderable_object_technique>	
+	
+	<!-- Z-blur -->
+	<pool_renderable_object_technique name="z_blur_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="ZBlurTechnique"/>
+	</pool_renderable_object_technique>	
+	
+	<!-- SSAO -->
+	<pool_renderable_object_technique name="ssao_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="SSAOTechnique"/>
+	</pool_renderable_object_technique>	
+	<pool_renderable_object_technique name="final_composition_ssao_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="SSAOFinalCompositionTechnique"/>
+	</pool_renderable_object_technique>	
+	<pool_renderable_object_technique name="ssao_blur_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="SSAOBlurTechnique"/>
+	</pool_renderable_object_technique>	
+	
+	<!-- Fog -->
+	<pool_renderable_object_technique name="fog_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="DrawQuadFogTechnique"/>
+	</pool_renderable_object_technique>	
+
+	<!-- Color grading -->
+	<pool_renderable_object_technique name="color_grading_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="ColorGradingTechnique"/>
+	</pool_renderable_object_technique>
+	
+	<!-- Glow -->
+	<pool_renderable_object_technique name="glowSource_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="GlowSourceTechnique"/>
+	</pool_renderable_object_technique>	
+	<pool_renderable_object_technique name="blurH_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="BlurHTechnique"/>
+	</pool_renderable_object_technique>	
+	<pool_renderable_object_technique name="blurV_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="BlurVTechnique"/>
+	</pool_renderable_object_technique>	
+	<pool_renderable_object_technique name="glow_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="GlowTechnique"/>
+	</pool_renderable_object_technique>
+	
+	<!-- Bloom -->
+	<pool_renderable_object_technique name="brightpass_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="BrightPassTechnique"/>
+	</pool_renderable_object_technique>
+	<pool_renderable_object_technique name="bloom_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="FinalBloomTechnique"/>
+	</pool_renderable_object_technique>
+	
+	<!-- Soft shadows -->
+	<pool_renderable_object_technique name="blurH_pool_renderable_object_technique_shadows">
+		<default_technique vertex_type="592" technique="BlurHDepthMapTechnique"/>
+	</pool_renderable_object_technique>	
+	<pool_renderable_object_technique name="blurV_pool_renderable_object_technique_shadows">
+		<default_technique vertex_type="592" technique="BlurVDepthMapTechnique"/>
+	</pool_renderable_object_technique>	
+	
+	<!-- Lensflare -->
+	<pool_renderable_object_technique name="lensflare_firstpass_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="LensFlareFirstPass"/>
+	</pool_renderable_object_technique>
+	<pool_renderable_object_technique name="lensflare_secondpass_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="LensFlareSecondPass"/>
+	</pool_renderable_object_technique>
+	<pool_renderable_object_technique name="lensflare_finalpass_pool_renderable_object_technique">
+		<default_technique vertex_type="592" technique="LensFlareFinalPass"/>
+	</pool_renderable_object_technique>
+	
+	</renderable_object_techniques>
+

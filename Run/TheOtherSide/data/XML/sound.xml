@@ -1,0 +1,44 @@
+<Sounds>
+	<Sound path="data\Sounds\GUI\gui_back.wav" soundId="gui_back"/> 
+	<Sound path="data\Sounds\GUI\gui_next.wav" soundId="gui_over"/> 
+	
+	<Sound path="data\Sounds\Musicas\Illness_Institute_-_The_Lab.wav" soundId="musica_ME"/>
+	<Sound path="data\Sounds\Musicas\34662__erh__nine-lies-the-heart-ed-4.wav" soundId="musica_MR"/>
+	<Sound path="data\Sounds\Musicas\intro.wav" soundId="intro"/>
+	<Sound path="data\Sounds\Musicas\action_music.wav" soundId="action_music"/>
+	
+	<Sound path="data\Sounds\Efectos\disparo.wav" soundId="disparo"/>
+	<Sound path="data\Sounds\Efectos\laser.wav" soundId="laser"/>
+	<Sound path="data\Sounds\Efectos\sea-fury-monster.wav" soundId="monstruo"/>
+	<Sound path="data\Sounds\Efectos\puerta_hidraulica.wav" soundId="puerta"/>
+	<Sound path="data\Sounds\Efectos\teleport.wav" soundId="teleport"/>
+	<Sound path="data\Sounds\Efectos\breathofdeath.wav" soundId="respiracion"/>
+	<Sound path="data\Sounds\Efectos\chispa.wav" soundId="chispa"/>
+	<Sound path="data\Sounds\Efectos\elevator.wav" soundId="ascensor"/>
+	<Sound path="data\Sounds\Efectos\andar.wav" soundId="andar_MR"/>
+	<Sound path="data\Sounds\Efectos\andar_ME.wav" soundId="andar_ME"/>
+	<Sound path="data\Sounds\Efectos\hellohelpme.wav" soundId="helpme"/>
+	<Sound path="data\Sounds\Efectos\stop.wav" soundId="stop"/>
+	<Sound path="data\Sounds\Efectos\cargavida_on.wav" soundId="carga_vida_on"/>
+	<Sound path="data\Sounds\Efectos\carga_electrica.wav" soundId="carga_arma"/>
+	<Sound path="data\Sounds\Efectos\pisadas.wav" soundId="pisadas_monstruo"/>
+	<Sound path="data\Sounds\Efectos\bip.wav" soundId="bip"/>
+	<Sound path="data\Sounds\Efectos\delete.wav" soundId="delete"/>
+	<Sound path="data\Sounds\Efectos\blood.wav" soundId="blood"/>
+	<Sound path="data\Sounds\Efectos\heart.wav" soundId="heart"/>
+	<Sound path="data\Sounds\Efectos\dying.wav" soundId="dying"/>
+	<Sound path="data\Sounds\Efectos\monster.wav" soundId="monster2"/>
+	<Sound path="data\Sounds\Efectos\death-scream.wav" soundId="whatareudoing"/>
+	<Sound path="data\Sounds\Efectos\helpus.wav" soundId="helpus"/>
+	<Sound path="data\Sounds\Efectos\death-scream.wav" soundId="death-scream"/>
+	<Sound path="data\Sounds\Efectos\scream.wav" soundId="scream"/>
+	<Sound path="data\Sounds\Efectos\laugh.wav" soundId="laugh"/>
+	<Sound path="data\Sounds\Efectos\breathofdeath.wav" soundId="breathofdeath"/>
+	<Sound path="data\Sounds\Efectos\laser_enemigo.wav" soundId="disparo_enemigo"/>
+	<Sound path="data\Sounds\Efectos\monster_damage.wav" soundId="monster_damage"/>
+	<Sound path="data\Sounds\Efectos\soldier_die.wav" soundId="soldier_die"/>
+	<Sound path="data\Sounds\Efectos\switch.wav" soundId="switch"/>
+	<Sound path="data\Sounds\Efectos\broken_light.wav" soundId="broken_light"/>
+	<Sound path="data\Sounds\Efectos\soldier_hit.wav" soundId="soldier_hit"/>
+	<Sound path="data\Sounds\Efectos\horror_scream.wav" soundId="horror_scream"/>
+</Sounds>

@@ -1,0 +1,26 @@
+<Logic_Objects>
+	<logic_object name="Spawn01_ME" logic_type="Spawn Point" pos="-23.9367 0.01 -5.00803"/>
+	<logic_object name="Spawn01_MR" logic_type="Spawn Point" pos="24.0395 0.01 -5.25545"/>
+	<logic_object name="Spawn03_MR" logic_type="Spawn Point" pos="21.0491 0.01 13.1361"/>
+	<logic_object name="Spawn02_MR" logic_type="Spawn Point" pos="6.83662 -0.00513754 12.9272"/>
+	<logic_object name="Spawn02_ME" logic_type="Spawn Point" pos="-7.13837 0.01 12.3161"/>
+	<logic_object name="Box_tutorial_01" logic_type="Tutorial" xml_file="TutInicial.xml" auto="false"/>
+	<logic_object name="Box_tutorial_Mov" logic_type="Tutorial" xml_file="TutMov.xml" auto="true"/>
+	<logic_object name="Box_tutorial_Luz" logic_type="Tutorial" xml_file="TutLinterna.xml" auto="true"/>
+	<logic_object name="Box_EspejoROT_ME" logic_type="Mirror" renderable_object="espejorotatorio_ME" layer="solid_ME" spawn_point="Spawn02_ME" angle_rot="0.0" linked="false"  p0="-0.320104 0.438387 0.503926"  p1="0.250062 0.438387 -0.0662394"  p2="-0.320104 1.87479 0.503925"  p3="0.250062 1.87479 -0.0662394" />
+	<logic_object name="Trigger_Tutorial_Vida_Energia" logic_type="Tutorial" xml_file="TutVidaEnergia.xml" auto="true"/>
+	<logic_object name="Box02" logic_type="Tutorial" xml_file="TutRotEsp.xml" auto="true"/>
+	<logic_object name="Trigger_SVigilado_Espejo_MR" logic_type="Mirror" renderable_object="SInicio_MR_Espejolargo01" layer="solid_MR" spawn_point="Spawn01_MR" angle_rot="0.0" linked="false"  p0="3.98273 -0.804517 -9.53674e-007"  p1="-3.98273 -0.804517 1.43051e-006"  p2="3.98273 0.804516 -4.76837e-007"  p3="-3.98273 0.804516 1.90735e-006" />
+	<logic_object name="Trigger_espejo_grande_ME" logic_type="Mirror" renderable_object="SInicio_ME_Espejolargo01" layer="solid_ME" spawn_point="Spawn01_ME" angle_rot="0.0" linked="false"  p0="3.98273 -0.804517 -9.53674e-007"  p1="-3.98273 -0.804517 1.43051e-006"  p2="3.98273 0.804516 -4.76837e-007"  p3="-3.98273 0.804516 1.90735e-006" />
+	<logic_object name="Trigger_EspejoEstatico_ME" logic_type="Mirror" renderable_object="espejoestatico_ME" layer="solid_ME" spawn_point="" angle_rot="0.0" linked="false"  p0="0.0 -0.533926 -0.419826"  p1="0.0 -0.533926 0.419826"  p2="0.0 0.912323 -0.419826"  p3="0.0 0.912323 0.419826" />
+	<logic_object name="Box_EspejoEST_MR" logic_type="Mirror" renderable_object="espejoestatico_MR" layer="solid_MR" spawn_point="Spawn03_MR" angle_rot="0.0" linked="false"  p0="0.0 -0.533926 0.419826"  p1="0.0 -0.533926 -0.419826"  p2="0.0 0.912323 0.419826"  p3="0.0 0.912323 -0.419826" />
+	<logic_object name="Box_EspejoROT_MR" logic_type="Mirror" renderable_object="espejorotatorio_MR" layer="solid_MR" spawn_point="Spawn02_MR" angle_rot="-0.785398" linked="true"  p0="-0.296861 0.461686 -0.296862"  p1="0.296861 0.461686 0.296862"  p2="-0.296861 1.90793 -0.296862"  p3="0.296862 1.90793 0.296861" />
+	<logic_object name="Box_tutorial_Bicho" logic_type="Tutorial" xml_file="TutMonster.xml" auto="true"/>
+	<logic_object name="Ascensor_MR" logic_type="Elevator" animated_model_instance="Ascensor_MR" layer="solid" door_physic_mesh="Puerta_Fisica_Ascensor_MR_Level01" link="" />
+	<logic_object name="Trigger_Lasers_MR" logic_type="Lasers" />
+	<logic_object name="Trigger_Lasers_ME_Level01" logic_type="Lasers" />
+	<logic_object name="Trigger_Maquina_Vida_MR_Level01" logic_type="Life" static_mesh="recargavida02" layer="solid_MR" light="Light_Omni_Vida01_MR"  on_texture="data\Meshes\D_recargadevida_glow.dds" off_texture="data\Textures\D_recargadevida2.dds" particle_emitter="healer01_MR"/>
+	<logic_object name="Trigger_Maquina_Energia_MR_Level01" logic_type="Energy" static_mesh="recargaenergia" layer="solid_MR" light="Light_Omni_Arma01_MR"  on_texture="data\Meshes\D_recargaenergia_glow.dds" off_texture="data\Textures\D_recargaenergia_apagada.dds"/>
+	<logic_object name="SViglancias_Ventilador001_MR" logic_type="Fan" spin_vel="1" renderable_object="SViglancias_Ventilador001_MR" layer="solid_MR" />
+	<logic_object name="SViglancias_Ventilador001_ME" logic_type="Fan" spin_vel="1" renderable_object="SViglancias_Ventilador001_ME" layer="solid_ME" />
+</Logic_Objects>

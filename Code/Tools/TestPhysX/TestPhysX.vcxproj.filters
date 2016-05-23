@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="TestPhysX.cpp" />
+    <ClCompile Include="TestPhysXProcess.cpp" />
+    <ClCompile Include="ProcessTriggerReport.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TestPhysXProcess.h" />
+    <ClInclude Include="ProcessTriggerReport.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="XML">
+      <UniqueIdentifier>{520bbc66-dfcb-4068-be2a-93bc575730a4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\actions.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\animated_models.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\billboard_animation.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\Effects.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\fonts.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\lights.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\particles.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\renderable_object_techniques.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\renderable_objects.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\scene_renderer_commands.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\scripting.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\settings.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\sound.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\static_meshes.xml">
+      <Filter>XML</Filter>
+    </None>
+    <None Include="..\..\..\Run\TestPhysX\data\XML\triggers.xml">
+      <Filter>XML</Filter>
+    </None>
+  </ItemGroup>
+</Project>

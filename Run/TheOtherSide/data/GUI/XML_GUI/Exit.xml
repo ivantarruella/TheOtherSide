@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Windows OnLoadWindows="" OnSaveWindows="sound_intro()" OnUpdateWindows="">
+
+  <Image name="mexit_fondo" posx="0.00" posy="0.00" height="100.00" width="100.00" visible="true" active="true"
+         default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
+    <texture name="img1" name_texture="./Data/GUI/Textures/fondosalir.png"/>
+  </Image>
+
+  <Button name="ExitYes" posx="37.00" posy="70.00" height="7.00" width="8.00" visible="true" 
+          active="true" 
+          texture_normal="./Data/GUI/Textures/botonsi.png"
+          texture_over="./Data/GUI/Textures/botonsi.png" 
+          texture_clicked="./Data/GUI/Textures/botonsi_press.png"
+          texture_deactivated="./Data/GUI/Textures/botonsi.png" 
+          OnClickedAction="_PROC:set_end_game(true)" 
+          OnOverAction=""/>
+		  
+  <Button name="ExitNot" posx="53.00" posy="70.00" height="7.00" width="8.00" visible="true" 
+          active="true"
+          texture_normal="./Data/GUI/Textures/boton_no.png"
+          texture_over="./Data/GUI/Textures/boton_no.png"
+          texture_clicked="./Data/GUI/Textures/boton_no_press.png"
+          texture_deactivated="./Data/GUI/Textures/boton_no.png" 
+          OnClickedAction="_GUI:active_windows('Main.xml')
+							_SOUNDM:play_action_2D('gui_back', 1.0)"
+          OnOverAction=""/>
+  
+</Windows>

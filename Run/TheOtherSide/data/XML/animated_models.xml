@@ -1,0 +1,6 @@
+<Animated_Models>
+  <animated_model name="Player" path="data/AnimatedModels/prota/"/>
+  <animated_model name="Soldier" path="data/AnimatedModels/esbirro/"/>
+  <animated_model name="Monster" path="data/AnimatedModels/bicho/"/>
+  <animated_model name="Elevator" path="data/AnimatedModels/ascensor/"/>
+</Animated_Models>

@@ -1,0 +1,256 @@
+<scene_renderer_commands>
+	<!-- RENDER SCENE PASS 0 -->
+	<begin_scene/>
+	
+	<!-- Clear scene-->
+	<clear_scene color="true" depth="true" stencil="true"/>
+	<enable_z_write/>
+	<enable_z_test/>
+
+	<!-- SHADOW MAP: --> 	
+	<set_pool_renderable_objects_technique	pool="generate_shadow_map_renderable_objects_technique"/>
+	<generate_shadow_maps />
+	
+	<set_pool_renderable_objects_technique	pool="blurH_pool_renderable_object_technique_shadows"/>
+	<blurH_shadow_maps />
+	
+	<end_scene/>
+	
+	<!-- RENDER SCENE PASS 1 -->
+	<begin_scene/>
+	
+	<set_pool_renderable_objects_technique	pool="blurV_pool_renderable_object_technique_shadows"/>
+	<blurV_shadow_maps />
+	
+	<!-- MIRROR RENDERING -->
+	<set_pool_renderable_objects_technique	pool="mirror_pool_renderable_object_technique"/>
+	<render_mirrors/>
+	
+	<!-- CAMERA -->
+	<setup_matrices/>
+
+	<!-- DEFERRED RENDERING: -->
+	<set_pool_renderable_objects_technique	pool="generate_deferred_shading_pool_renderable_object_technique"/>
+	<set_render_target name="deferred_multiple_render_target" use_view_port_depth_stencil_buffer="true">
+		<dynamic_texture stage_id="0" name="DiffuseMapTexture" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+		<dynamic_texture stage_id="1" name="LightMapTexture" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+		<dynamic_texture stage_id="2" name="NormalMapTexture" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+		<dynamic_texture stage_id="3" name="DepthMapTexture" texture_width_as_frame_buffer="true" format_type="R32F"/>
+	</set_render_target>
+	<enable_z_write/>
+	<enable_z_test/>
+	<render_scene layer="solid" active="true"/>
+	<render_scene layer="solid_MR" active="true"/>
+	<render_scene layer="solid_ME" active="true"/>
+	<unset_render_target render_target="deferred_multiple_render_target"/>
+	
+	<!--  SSAO: 1. Se utiliza la technique basica del ssao  -->
+	<!--
+	<set_render_target name="ssao_multiple_render_target">
+		<dynamic_texture stage_id="0" name="SSAOMapTextureBlur"	texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+	</set_render_target>
+	<set_pool_renderable_objects_technique	pool="ssao_pool_renderable_object_technique"/>
+	<render_draw_quad>
+		<texture stage_id="1" file="data/textures/ssao.jpg" load_file="true"/>
+		<texture stage_id="3" file="DepthMapTexture"/>
+	</render_draw_quad>
+	-->
+	
+	<!-- se guarda la textura para a cont. aplicar ssao_blur 
+	<capture_frame_buffer>
+		<dynamic_texture stage_id="0" name="SSAOMapTexture"	texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+	</capture_frame_buffer>
+	-->
+	<!-- SSAO con Blur: 2. Technique de ssao con blur 
+	<set_pool_renderable_objects_technique pool="ssao_blur_pool_renderable_object_technique"/>
+	<render_draw_quad>
+		<texture stage_id="0" file="SSAOMapTexture"/>
+		<texture stage_id="2" file="NormalMapTexture"/>
+	</render_draw_quad>
+	<unset_render_target render_target="ssao_multiple_render_target"/>
+	<disable_z_write/>
+	-->
+
+	<!-- DEFERRED RENDERING LIGHT PASS: --> 
+	<disable_z_write/>
+	<disable_z_test/> 
+	<set_pool_renderable_objects_technique	pool="draw_quad_deferred_shading_ambient_pool_renderable_object_technique"/>
+	<render_draw_quad active="true">
+		<texture stage_id="0" file="DiffuseMapTexture"/>
+		<texture stage_id="1" file="LightMapTexture"/>
+	</render_draw_quad>
+	<set_pool_renderable_objects_technique	pool="draw_quad_deferred_shading_per_light_pool_renderable_object_technique"/>
+	<render_deferred_shading>
+		<texture stage_id="0" file="DiffuseMapTexture"/>
+		<texture stage_id="1" file="LightMapTexture"/>
+		<texture stage_id="2" file="NormalMapTexture"/>
+		<texture stage_id="3" file="DepthMapTexture"/>
+	</render_deferred_shading>
+	
+	<!-- FORWARD RENDERING: alpha blend blend object rendering -->
+	<enable_z_write/>
+	<enable_z_test/>
+	<set_pool_renderable_objects_technique	pool="alpha_blend_pool_renderable_object_technique"/>
+	<render_scene layer="alpha_blend_objects_MR" active="true" forward="true"/>
+	<render_scene layer="alpha_blend_objects_ME" active="true" forward="true"/>
+	<render_particles/>
+	<!--<render_debug_lights/>	-->
+	
+
+	<!-- POST PROCESS EFFECTS -->
+
+	<capture_frame_buffer>
+		<dynamic_texture stage_id="0" name="FrameBufferAfterDeferredShading" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+	</capture_frame_buffer>
+
+	<!-- SSAO FINAL COMPOSITION:3. Se junta la escena con el ssao 
+	<set_pool_renderable_objects_technique pool="final_composition_ssao_pool_renderable_object_technique"/>
+	<render_draw_quad active="true">
+		<texture stage_id="0" file="FrameBufferAfterDeferredShading"/>
+		<texture stage_id="1" file="SSAOMapTextureBlur"/>
+	</render_draw_quad>
+	-->
+	
+	<!-- SOURCE GLOW :
+		- downsample + create source glow
+		- blur horizontally and vertically
+		- upsample final blurred glow texture
+	-->
+	<set_render_target name="GlowSourceRenderTarget">
+		<dynamic_texture stage_id="0" name="GlowSourceTexture" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+	</set_render_target>
+	<set_pool_renderable_objects_technique pool="glowSource_pool_renderable_object_technique"/>
+	<render_draw_quad active="true" texture_width_as_frame_buffer="false" width="320" height="180">
+		<texture stage_id="0" file="DiffuseMapTexture"/>
+	</render_draw_quad>
+	<unset_render_target render_target="GlowSourceRenderTarget"/>
+	
+	<set_render_target name="GenerateBlurHRenderTarget">
+		<dynamic_texture stage_id="0" name="BlurHTexture" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+	</set_render_target>
+	<set_scissor_rect left="0" top="0" right="319" bottom="179"/>
+	<set_pool_renderable_objects_technique pool="blurH_pool_renderable_object_technique"/>
+	<render_draw_quad active="true">
+		<texture stage_id="0" file="GlowSourceTexture"/>
+	</render_draw_quad>
+	<unset_scissor_rect/>
+	<unset_render_target render_target="GenerateBlurHRenderTarget"/>
+	
+	<set_render_target name="GenerateBlurVRenderTarget">
+		<dynamic_texture stage_id="0" name="BlurVTexture" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+	</set_render_target>
+	<set_scissor_rect left="0" top="0" right="319" bottom="179"/>
+	<set_pool_renderable_objects_technique pool="blurV_pool_renderable_object_technique"/>
+	<render_draw_quad active="true">
+		<texture stage_id="0" file="BlurHTexture"/>
+	</render_draw_quad>
+	<unset_scissor_rect/>
+	<unset_render_target render_target="GenerateBlurVRenderTarget"/>
+	
+	<set_render_target name="GlowRenderTarget">
+		<dynamic_texture stage_id="0" name="GlowTexture"  width="320" height="180" format_type="A8R8G8B8"/>
+	</set_render_target>
+	<render_draw_quad active="true">
+		<texture stage_id="0" file="BlurVTexture"/>
+	</render_draw_quad>
+	<unset_render_target render_target="GlowRenderTarget"/>
+
+	<!-- BLOOM -->
+	<set_render_target name="GenerateBrightPassRenderTarget">
+		<dynamic_texture stage_id="0" name="BrightPasTexture" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+	</set_render_target>
+	<set_pool_renderable_objects_technique pool="brightpass_pool_renderable_object_technique"/>
+	<render_draw_quad active="true">
+		<texture stage_id="0" file="FrameBufferAfterDeferredShading"/>
+	</render_draw_quad>
+	<unset_render_target render_target="GenerateBrightPassRenderTarget"/>
+	
+	<!-- LENSFLARE 
+	<set_render_target name="GenerateLensFlareRenderTarget1">
+		<dynamic_texture stage_id="0" name="LensFlareTexture1" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+	</set_render_target>
+	<set_pool_renderable_objects_technique pool="lensflare_firstpass_pool_renderable_object_technique"/>
+	<render_draw_quad active="true" >
+		<texture stage_id="0" file="BrightPasTexture"/>
+	</render_draw_quad>
+	<unset_render_target render_target="GenerateLensFlareRenderTarget1"/>
+
+	<set_render_target name="GenerateLensFlareRenderTarget2">
+		<dynamic_texture stage_id="1" name="LensFlareTexture2" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+	</set_render_target>
+	<set_pool_renderable_objects_technique pool="lensflare_secondpass_pool_renderable_object_technique"/>
+	<render_draw_quad active="true">
+		<texture stage_id="0" file="BrightPasTexture"/>
+	</render_draw_quad>
+	<unset_render_target render_target="GenerateLensFlareRenderTarget2"/>
+
+	<set_render_target name="GenerateLensFlareRenderTarget3">
+		<dynamic_texture stage_id="0" name="LensFlareTexture" width="320" height="180" format_type="A8R8G8B8"/>
+	</set_render_target>
+	<set_pool_renderable_objects_technique pool="lensflare_finalpass_pool_renderable_object_technique"/>
+	<render_draw_quad active="true" texture_width_as_frame_buffer="false" width="320" height="180">
+		<texture stage_id="0" file="LensFlareTexture1"/>
+		<texture stage_id="1" file="LensFlareTexture2"/>
+		<texture stage_id="2" file="BrightPasTexture"/>
+	</render_draw_quad>
+	<unset_render_target render_target="GenerateLensFlareRenderTarget3"/>
+	-->
+	<!-- BLOOM  -->	
+	<set_pool_renderable_objects_technique pool="bloom_pool_renderable_object_technique"/>
+	<render_draw_quad active="true" >
+		<texture stage_id="0" file="BrightPasTexture"/>
+		<texture stage_id="1" file="FrameBufferAfterDeferredShading"/>
+	</render_draw_quad>
+	
+	<!-- zblur
+	<capture_frame_buffer>
+		<dynamic_texture stage_id="0" name="FrameBufferCompleteTexture"	texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+	</capture_frame_buffer>		
+	<set_pool_renderable_objects_technique	pool="z_blur_pool_renderable_object_technique"/>
+	<render_draw_quad>
+		<texture stage_id="0" file="FrameBufferCompleteTexture"/>
+		<texture stage_id="3" file="DepthMapTexture"/>
+	</render_draw_quad>
+	-->
+	<!--end zblur-->
+
+	<!-- ssaa 
+	<capture_frame_buffer>
+		<dynamic_texture stage_id="0" name="FrameBufferCompleteTextureAA"	texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
+	</capture_frame_buffer>	
+	<set_pool_renderable_objects_technique	pool="ssaa_pool_renderable_object_technique"/>
+	<render_draw_quad>
+		<texture stage_id="0" file="FrameBufferCompleteTextureAA"/>
+		<texture stage_id="2" file="NormalMapTexture"/>
+	</render_draw_quad>
+	-->
+	<!--end ssaa-->
+	
+	<!-- FINAL GLOW -->
+	<set_pool_renderable_objects_technique pool="glow_pool_renderable_object_technique"/>
+	<render_draw_quad active="true" >
+		<texture stage_id="0" file="GlowTexture"/>
+	</render_draw_quad>
+	
+<!-- GLOW DEBUG: 
+	<set_scissor_rect left="0" top="0" right="319" bottom="179"/>
+	<render_draw_quad active="true">
+		<texture stage_id="0" file="DepthMapTexture"/>
+	</render_draw_quad>
+	<unset_scissor_rect/>
+-->
+	
+	<!-- DEBUG -->
+	<!--<render_debug_camera/>-->
+	<render_debug_info/>
+	
+	<!-- GUI -->
+	<render_gui active="true"/>
+
+	<end_scene/>
+	<present/>
+	
+
+
+</scene_renderer_commands>
+

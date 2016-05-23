@@ -1,0 +1,313 @@
+<Static_Meshes>
+	<static_mesh name="SVigilancia_ArchivadorRojo01" filename="data\Meshes\SVigilancia_ArchivadorRojo01.m3d"/>
+	<static_mesh name="SVigilancia_ArchivadorNegro01" filename="data\Meshes\SVigilancia_ArchivadorNegro01.m3d"/>
+	<static_mesh name="SVigilancia_ArchivadorMarron01" filename="data\Meshes\SVigilancia_ArchivadorMarron01.m3d"/>
+	<static_mesh name="SVigilancia_Silla01_MR" filename="data\Meshes\SVigilancia_Silla01_MR.m3d"/>
+	<static_mesh name="SVigilancia_Camara01" filename="data\Meshes\SVigilancia_Camara01.m3d"/>
+	<static_mesh name="SInicio_Camara01" filename="data\Meshes\SInicio_Camara01.m3d"/>
+	<static_mesh name="SVigilancia_Camara02" filename="data\Meshes\SVigilancia_Camara02.m3d"/>
+	<static_mesh name="SInicio_Camilla01" filename="data\Meshes\SInicio_Camilla01.m3d"/>
+	<static_mesh name="SVigilancia_Mesa01_MR" filename="data\Meshes\SVigilancia_Mesa01_MR.m3d"/>
+	<static_mesh name="SInicio_Escritorio01" filename="data\Meshes\SInicio_Escritorio01.m3d"/>
+	<static_mesh name="SVigilancia_Fluerescente01" filename="data\Meshes\SVigilancia_Fluerescente01.m3d"/>
+	<static_mesh name="SVigilancia_Fluerescente02" filename="data\Meshes\SVigilancia_Fluerescente02.m3d"/>
+	<static_mesh name="SVigilancia_Fluerescente03" filename="data\Meshes\SVigilancia_Fluerescente03.m3d"/>
+	<static_mesh name="SVigilancia_Fluerescente04" filename="data\Meshes\SVigilancia_Fluerescente04.m3d"/>
+	<static_mesh name="SInicio_Fluerescente01" filename="data\Meshes\SInicio_Fluerescente01.m3d"/>
+	<static_mesh name="SInicio_Fluerescente02" filename="data\Meshes\SInicio_Fluerescente02.m3d"/>
+	<static_mesh name="SVigilancia_Lapicero01" filename="data\Meshes\SVigilancia_Lapicero01.m3d"/>
+	<static_mesh name="SVigilancia_Libro1" filename="data\Meshes\SVigilancia_Libro1.m3d"/>
+	<static_mesh name="SInicio_LibroAbierto01" filename="data\Meshes\SInicio_LibroAbierto01.m3d"/>
+	<static_mesh name="SVigilancia_Monitor01" filename="data\Meshes\SVigilancia_Monitor01.m3d"/>
+	<static_mesh name="SVigilancia_Monitor02" filename="data\Meshes\SVigilancia_Monitor02.m3d"/>
+	<static_mesh name="SVigilancia_Monitor03" filename="data\Meshes\SVigilancia_Monitor03.m3d"/>
+	<static_mesh name="SVigilancia_Monitor04" filename="data\Meshes\SVigilancia_Monitor04.m3d"/>
+	<static_mesh name="SVigilancia_Monitor05" filename="data\Meshes\SVigilancia_Monitor05.m3d"/>
+	<static_mesh name="SVigilancia_Monitor06" filename="data\Meshes\SVigilancia_Monitor06.m3d"/>
+	<static_mesh name="SVigilancia_Cajonera01_MR" filename="data\Meshes\SVigilancia_Cajonera01_MR.m3d"/>
+	<static_mesh name="SVigilancia_Ordenador01" filename="data\Meshes\SVigilancia_Ordenador01.m3d"/>
+	<static_mesh name="SVigilancia_Papelera01_MR" filename="data\Meshes\SVigilancia_Papelera01_MR.m3d"/>
+	<static_mesh name="SInicio_Papelera01" filename="data\Meshes\SInicio_Papelera01.m3d"/>
+	<static_mesh name="SVigilancia_BoliAzul01" filename="data\Meshes\SVigilancia_BoliAzul01.m3d"/>
+	<static_mesh name="SVigilancia_BoliRojo01" filename="data\Meshes\SVigilancia_BoliRojo01.m3d"/>
+	<static_mesh name="SInicio_BoliAzul01" filename="data\Meshes\SInicio_BoliAzul01.m3d"/>
+	<static_mesh name="SVigilancia_Hoja01" filename="data\Meshes\SVigilancia_Hoja01.m3d"/>
+	<static_mesh name="SVigilancia_Hoja02" filename="data\Meshes\SVigilancia_Hoja02.m3d"/>
+	<static_mesh name="SVigilancia_PuertaG01_MR" filename="data\Meshes\SVigilancia_PuertaG01_MR.m3d"/>
+	<static_mesh name="SInicio_PuertaG01" filename="data\Meshes\SInicio_PuertaG01.m3d"/>
+	<static_mesh name="SVigilancia_Puertaverja01_MR" filename="data\Meshes\SVigilancia_Puertaverja01_MR.m3d"/>
+	<static_mesh name="SVigilancia_Verja01_MR" filename="data\Meshes\SVigilancia_Verja01_MR.m3d"/>
+	<static_mesh name="SInicio_E" filename="data\Meshes\SInicio_E.m3d"/>
+	<static_mesh name="SVigilancia_E" filename="data\Meshes\SVigilancia_E.m3d"/>
+	<static_mesh name="SInicio_Radiografia01" filename="data\Meshes\SInicio_Radiografia01.m3d"/>
+	<static_mesh name="SVigilancia_Cable01" filename="data\Meshes\SVigilancia_Cable01.m3d"/>
+	<static_mesh name="SVigilancia_Cable02" filename="data\Meshes\SVigilancia_Cable02.m3d"/>
+	<static_mesh name="SVigilancia_Cable03" filename="data\Meshes\SVigilancia_Cable03.m3d"/>
+	<static_mesh name="SVigilancia_Cable04" filename="data\Meshes\SVigilancia_Cable04.m3d"/>
+	<static_mesh name="SVigilancia_Cable05" filename="data\Meshes\SVigilancia_Cable05.m3d"/>
+	<static_mesh name="SVigilancia_Cable06" filename="data\Meshes\SVigilancia_Cable06.m3d"/>
+	<static_mesh name="SVigilancia_ME_ArchivadorRojo01" filename="data\Meshes\SVigilancia_ME_ArchivadorRojo01.m3d"/>
+	<static_mesh name="SVigilancia_ME_ArchivadorNegro01" filename="data\Meshes\SVigilancia_ME_ArchivadorNegro01.m3d"/>
+	<static_mesh name="SVigilancia_ME_ArchivadorMarron01" filename="data\Meshes\SVigilancia_ME_ArchivadorMarron01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Silla01" filename="data\Meshes\SVigilancia_ME_Silla01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Camara01" filename="data\Meshes\SVigilancia_ME_Camara01.m3d"/>
+	<static_mesh name="SInicio_ME_Camara01" filename="data\Meshes\SInicio_ME_Camara01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Camara02" filename="data\Meshes\SVigilancia_ME_Camara02.m3d"/>
+	<static_mesh name="SInicio_ME_Camilla01" filename="data\Meshes\SInicio_ME_Camilla01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Mesa01" filename="data\Meshes\SVigilancia_ME_Mesa01.m3d"/>
+	<static_mesh name="SInicio_ME_Escritorio01" filename="data\Meshes\SInicio_ME_Escritorio01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Fluerescente01" filename="data\Meshes\SVigilancia_ME_Fluerescente01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Fluerescente02" filename="data\Meshes\SVigilancia_ME_Fluerescente02.m3d"/>
+	<static_mesh name="SVigilancia_ME_Fluerescente03" filename="data\Meshes\SVigilancia_ME_Fluerescente03.m3d"/>
+	<static_mesh name="SVigilancia_ME_Fluerescente04" filename="data\Meshes\SVigilancia_ME_Fluerescente04.m3d"/>
+	<static_mesh name="SInicio_ME_Fluerescente01" filename="data\Meshes\SInicio_ME_Fluerescente01.m3d"/>
+	<static_mesh name="SInicio_ME_Fluerescente02" filename="data\Meshes\SInicio_ME_Fluerescente02.m3d"/>
+	<static_mesh name="SVigilancia_ME_Lapicero01" filename="data\Meshes\SVigilancia_ME_Lapicero01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Libro1" filename="data\Meshes\SVigilancia_ME_Libro1.m3d"/>
+	<static_mesh name="SInicio_ME_LibroAbierto01" filename="data\Meshes\SInicio_ME_LibroAbierto01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Cable01" filename="data\Meshes\SVigilancia_ME_Cable01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Cable02" filename="data\Meshes\SVigilancia_ME_Cable02.m3d"/>
+	<static_mesh name="SVigilancia_ME_Cable03" filename="data\Meshes\SVigilancia_ME_Cable03.m3d"/>
+	<static_mesh name="SVigilancia_ME_Cable04" filename="data\Meshes\SVigilancia_ME_Cable04.m3d"/>
+	<static_mesh name="SVigilancia_ME_Cable05" filename="data\Meshes\SVigilancia_ME_Cable05.m3d"/>
+	<static_mesh name="SVigilancia_ME_Cable06" filename="data\Meshes\SVigilancia_ME_Cable06.m3d"/>
+	<static_mesh name="SVigilancia_ME_Monitor01" filename="data\Meshes\SVigilancia_ME_Monitor01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Monitor02" filename="data\Meshes\SVigilancia_ME_Monitor02.m3d"/>
+	<static_mesh name="SVigilancia_ME_Monitor03" filename="data\Meshes\SVigilancia_ME_Monitor03.m3d"/>
+	<static_mesh name="SVigilancia_ME_Monitor04" filename="data\Meshes\SVigilancia_ME_Monitor04.m3d"/>
+	<static_mesh name="SVigilancia_ME_Monitor05" filename="data\Meshes\SVigilancia_ME_Monitor05.m3d"/>
+	<static_mesh name="SVigilancia_ME_Monitor06" filename="data\Meshes\SVigilancia_ME_Monitor06.m3d"/>
+	<static_mesh name="SVigilancia_ME_Cajonera01" filename="data\Meshes\SVigilancia_ME_Cajonera01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Ordenador01" filename="data\Meshes\SVigilancia_ME_Ordenador01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Papelera01" filename="data\Meshes\SVigilancia_ME_Papelera01.m3d"/>
+	<static_mesh name="SInicio_ME_Papelera01" filename="data\Meshes\SInicio_ME_Papelera01.m3d"/>
+	<static_mesh name="SVigilancia_ME_BoliAzul01" filename="data\Meshes\SVigilancia_ME_BoliAzul01.m3d"/>
+	<static_mesh name="SVigilancia_ME_BoliRojo01" filename="data\Meshes\SVigilancia_ME_BoliRojo01.m3d"/>
+	<static_mesh name="SInicio_ME_BoliAzul01" filename="data\Meshes\SInicio_ME_BoliAzul01.m3d"/>
+	<static_mesh name="SInicio_ME_Pica01" filename="data\Meshes\SInicio_ME_Pica01.m3d"/>
+	<static_mesh name="SInicio_ME_Pica02" filename="data\Meshes\SInicio_ME_Pica02.m3d"/>
+	<static_mesh name="SVigilancia_ME_Hoja01" filename="data\Meshes\SVigilancia_ME_Hoja01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Hoja02" filename="data\Meshes\SVigilancia_ME_Hoja02.m3d"/>
+	<static_mesh name="SVigilancia_ME_PuertaG01" filename="data\Meshes\SVigilancia_ME_PuertaG01.m3d"/>
+	<static_mesh name="SVigilancia_ME_Puertaverja01" filename="data\Meshes\SVigilancia_ME_Puertaverja01.m3d"/>
+	<static_mesh name="SInicio_ME_Radiografia01" filename="data\Meshes\SInicio_ME_Radiografia01.m3d"/>
+	<static_mesh name="SInicio_E_ME" filename="data\Meshes\SInicio_E_ME.m3d"/>
+	<static_mesh name="SVigilancia_ME_E" filename="data\Meshes\SVigilancia_ME_E.m3d"/>
+	<static_mesh name="SVigilancia_ME_Verja01" filename="data\Meshes\SVigilancia_ME_Verja01.m3d"/>
+	<static_mesh name="Laser" filename="data\Meshes\Laser.m3d"/>
+	<static_mesh name="Lasersoporte12" filename="data\Meshes\Lasersoporte12.m3d"/>
+	<static_mesh name="Lasersoporte13" filename="data\Meshes\Lasersoporte13.m3d"/>
+	<static_mesh name="Lasersoporte11" filename="data\Meshes\Lasersoporte11.m3d"/>
+	<static_mesh name="Lasersoporte09" filename="data\Meshes\Lasersoporte09.m3d"/>
+	<static_mesh name="Lasersoporte10" filename="data\Meshes\Lasersoporte10.m3d"/>
+	<static_mesh name="Lasersoporte05" filename="data\Meshes\Lasersoporte05.m3d"/>
+	<static_mesh name="Lasersoporte18" filename="data\Meshes\Lasersoporte18.m3d"/>
+	<static_mesh name="Lasersoporte16" filename="data\Meshes\Lasersoporte16.m3d"/>
+	<static_mesh name="Lasersoporte14" filename="data\Meshes\Lasersoporte14.m3d"/>
+	<static_mesh name="Lasersoporte15" filename="data\Meshes\Lasersoporte15.m3d"/>
+	<static_mesh name="Lasersoporte08" filename="data\Meshes\Lasersoporte08.m3d"/>
+	<static_mesh name="Lasersoporte02" filename="data\Meshes\Lasersoporte02.m3d"/>
+	<static_mesh name="Lasersoporte03" filename="data\Meshes\Lasersoporte03.m3d"/>
+	<static_mesh name="Lasersoporte00" filename="data\Meshes\Lasersoporte00.m3d"/>
+	<static_mesh name="Lasersoporte01" filename="data\Meshes\Lasersoporte01.m3d"/>
+	<static_mesh name="Lasersoporte06" filename="data\Meshes\Lasersoporte06.m3d"/>
+	<static_mesh name="Lasersoporte17" filename="data\Meshes\Lasersoporte17.m3d"/>
+	<static_mesh name="Lasersoporte07" filename="data\Meshes\Lasersoporte07.m3d"/>
+	<static_mesh name="Lasersoporte04" filename="data\Meshes\Lasersoporte04.m3d"/>
+	<static_mesh name="Pasillo_MR_Giro01" filename="data\Meshes\Pasillo_MR_Giro01.m3d"/>
+	<static_mesh name="Pasillo_MR_ConectorT01" filename="data\Meshes\Pasillo_MR_ConectorT01.m3d"/>
+	<static_mesh name="Pasillo_MR_Centroconpuerta01" filename="data\Meshes\Pasillo_MR_Centroconpuerta01.m3d"/>
+	<static_mesh name="Pasillo_MR_Extremo01" filename="data\Meshes\Pasillo_MR_Extremo01.m3d"/>
+	<static_mesh name="Pasillo_MR_Puerta01" filename="data\Meshes\Pasillo_MR_Puerta01.m3d"/>
+	<static_mesh name="Pasillo_MR_Puerta002" filename="data\Meshes\Pasillo_MR_Puerta002.m3d"/>
+	<static_mesh name="Pasillo_MR_Centroconpuerta02" filename="data\Meshes\Pasillo_MR_Centroconpuerta02.m3d"/>
+	<static_mesh name="Pasillo_MR_Centroconpuerta03" filename="data\Meshes\Pasillo_MR_Centroconpuerta03.m3d"/>
+	<static_mesh name="Pasillo_MR_Puerta003" filename="data\Meshes\Pasillo_MR_Puerta003.m3d"/>
+	<static_mesh name="Pasillo_MR_Centroconpuerta04" filename="data\Meshes\Pasillo_MR_Centroconpuerta04.m3d"/>
+	<static_mesh name="Pasillo_MR_Puerta004" filename="data\Meshes\Pasillo_MR_Puerta004.m3d"/>
+	<static_mesh name="Pasillo_MR_Giro002" filename="data\Meshes\Pasillo_MR_Giro002.m3d"/>
+	<static_mesh name="Pasillo_MR_Puerta005" filename="data\Meshes\Pasillo_MR_Puerta005.m3d"/>
+	<static_mesh name="Pasillo_MR_Centroconpuerta05" filename="data\Meshes\Pasillo_MR_Centroconpuerta05.m3d"/>
+	<static_mesh name="Pasillo_MR_Centroconpuerta06" filename="data\Meshes\Pasillo_MR_Centroconpuerta06.m3d"/>
+	<static_mesh name="Pasillo_MR_Giro003" filename="data\Meshes\Pasillo_MR_Giro003.m3d"/>
+	<static_mesh name="Pasillo_MR_Centroconpuerta07" filename="data\Meshes\Pasillo_MR_Centroconpuerta07.m3d"/>
+	<static_mesh name="Pasillo_MR_Puerta007" filename="data\Meshes\Pasillo_MR_Puerta007.m3d"/>
+	<static_mesh name="Pasillo_MR_Puerta008" filename="data\Meshes\Pasillo_MR_Puerta008.m3d"/>
+	<static_mesh name="Pasillo_MR_Centroconpuerta08" filename="data\Meshes\Pasillo_MR_Centroconpuerta08.m3d"/>
+	<static_mesh name="Pasillo_MR_Extremo002" filename="data\Meshes\Pasillo_MR_Extremo002.m3d"/>
+	<static_mesh name="Pasillo_MR_Extremo003" filename="data\Meshes\Pasillo_MR_Extremo003.m3d"/>
+	<static_mesh name="luz emergencia" filename="data\Meshes\luz emergencia.m3d"/>
+	<static_mesh name="luz emergencia001" filename="data\Meshes\luz emergencia001.m3d"/>
+	<static_mesh name="luz emergencia002" filename="data\Meshes\luz emergencia002.m3d"/>
+	<static_mesh name="luz emergencia003" filename="data\Meshes\luz emergencia003.m3d"/>
+	<static_mesh name="luz emergencia004" filename="data\Meshes\luz emergencia004.m3d"/>
+	<static_mesh name="luz emergencia005" filename="data\Meshes\luz emergencia005.m3d"/>
+	<static_mesh name="luz emergencia006" filename="data\Meshes\luz emergencia006.m3d"/>
+	<static_mesh name="luz emergencia007" filename="data\Meshes\luz emergencia007.m3d"/>
+	<static_mesh name="luz emergencia008" filename="data\Meshes\luz emergencia008.m3d"/>
+	<static_mesh name="luz emergencia009" filename="data\Meshes\luz emergencia009.m3d"/>
+	<static_mesh name="luz emergencia010" filename="data\Meshes\luz emergencia010.m3d"/>
+	<static_mesh name="luz emergencia011" filename="data\Meshes\luz emergencia011.m3d"/>
+	<static_mesh name="luz emergencia012" filename="data\Meshes\luz emergencia012.m3d"/>
+	<static_mesh name="luz emergencia013" filename="data\Meshes\luz emergencia013.m3d"/>
+	<static_mesh name="luz emergencia014" filename="data\Meshes\luz emergencia014.m3d"/>
+	<static_mesh name="luz emergencia015" filename="data\Meshes\luz emergencia015.m3d"/>
+	<static_mesh name="luz emergencia016" filename="data\Meshes\luz emergencia016.m3d"/>
+	<static_mesh name="luz emergencia017" filename="data\Meshes\luz emergencia017.m3d"/>
+	<static_mesh name="luz emergencia018" filename="data\Meshes\luz emergencia018.m3d"/>
+	<static_mesh name="luz emergencia019" filename="data\Meshes\luz emergencia019.m3d"/>
+	<static_mesh name="luz emergencia020" filename="data\Meshes\luz emergencia020.m3d"/>
+	<static_mesh name="luz emergencia021" filename="data\Meshes\luz emergencia021.m3d"/>
+	<static_mesh name="luz emergencia022" filename="data\Meshes\luz emergencia022.m3d"/>
+	<static_mesh name="luz emergencia023" filename="data\Meshes\luz emergencia023.m3d"/>
+	<static_mesh name="luz emergencia024" filename="data\Meshes\luz emergencia024.m3d"/>
+	<static_mesh name="luz emergencia025" filename="data\Meshes\luz emergencia025.m3d"/>
+	<static_mesh name="luz emergencia026" filename="data\Meshes\luz emergencia026.m3d"/>
+	<static_mesh name="luz emergencia027" filename="data\Meshes\luz emergencia027.m3d"/>
+	<static_mesh name="Exit signal" filename="data\Meshes\Exit signal.m3d"/>
+	<static_mesh name="Exit signal001" filename="data\Meshes\Exit signal001.m3d"/>
+	<static_mesh name="Exit signal002" filename="data\Meshes\Exit signal002.m3d"/>
+	<static_mesh name="SInicio_Fluerescente009" filename="data\Meshes\SInicio_Fluerescente009.m3d"/>
+	<static_mesh name="SInicio_Fluerescente002" filename="data\Meshes\SInicio_Fluerescente002.m3d"/>
+	<static_mesh name="SInicio_Fluerescente003" filename="data\Meshes\SInicio_Fluerescente003.m3d"/>
+	<static_mesh name="SInicio_Fluerescente005" filename="data\Meshes\SInicio_Fluerescente005.m3d"/>
+	<static_mesh name="SInicio_Fluerescente006" filename="data\Meshes\SInicio_Fluerescente006.m3d"/>
+	<static_mesh name="SInicio_Fluerescente011" filename="data\Meshes\SInicio_Fluerescente011.m3d"/>
+	<static_mesh name="SInicio_Fluerescente013" filename="data\Meshes\SInicio_Fluerescente013.m3d"/>
+	<static_mesh name="SInicio_Fluerescente015" filename="data\Meshes\SInicio_Fluerescente015.m3d"/>
+	<static_mesh name="SInicio_Fluerescente016" filename="data\Meshes\SInicio_Fluerescente016.m3d"/>
+	<static_mesh name="SInicio_Fluerescente010" filename="data\Meshes\SInicio_Fluerescente010.m3d"/>
+	<static_mesh name="SInicio_Fluerescente012" filename="data\Meshes\SInicio_Fluerescente012.m3d"/>
+	<static_mesh name="SInicio_Fluerescente008" filename="data\Meshes\SInicio_Fluerescente008.m3d"/>
+	<static_mesh name="SInicio_Fluerescente007" filename="data\Meshes\SInicio_Fluerescente007.m3d"/>
+	<static_mesh name="SInicio_Fluerescente018" filename="data\Meshes\SInicio_Fluerescente018.m3d"/>
+	<static_mesh name="SInicio_Fluerescente019" filename="data\Meshes\SInicio_Fluerescente019.m3d"/>
+	<static_mesh name="recargaenergia" filename="data\Meshes\recargaenergia.m3d"/>
+	<static_mesh name="SInicio_Fluerescente020" filename="data\Meshes\SInicio_Fluerescente020.m3d"/>
+	<static_mesh name="SInicio_Fluerescente021" filename="data\Meshes\SInicio_Fluerescente021.m3d"/>
+	<static_mesh name="SInicio_Fluerescente022" filename="data\Meshes\SInicio_Fluerescente022.m3d"/>
+	<static_mesh name="SInicio_Fluerescente023" filename="data\Meshes\SInicio_Fluerescente023.m3d"/>
+	<static_mesh name="SInicio_Fluerescente024" filename="data\Meshes\SInicio_Fluerescente024.m3d"/>
+	<static_mesh name="SInicio_Fluerescente025" filename="data\Meshes\SInicio_Fluerescente025.m3d"/>
+	<static_mesh name="SInicio_Fluerescente004" filename="data\Meshes\SInicio_Fluerescente004.m3d"/>
+	<static_mesh name="SInicio_Fluerescente026" filename="data\Meshes\SInicio_Fluerescente026.m3d"/>
+	<static_mesh name="SInicio_Fluerescente027" filename="data\Meshes\SInicio_Fluerescente027.m3d"/>
+	<static_mesh name="SInicio_Fluerescente028" filename="data\Meshes\SInicio_Fluerescente028.m3d"/>
+	<static_mesh name="Exit signal003" filename="data\Meshes\Exit signal003.m3d"/>
+	<static_mesh name="Exit signal004" filename="data\Meshes\Exit signal004.m3d"/>
+	<static_mesh name="luz emergencia028" filename="data\Meshes\luz emergencia028.m3d"/>
+	<static_mesh name="luz emergencia029" filename="data\Meshes\luz emergencia029.m3d"/>
+	<static_mesh name="luz emergencia030" filename="data\Meshes\luz emergencia030.m3d"/>
+	<static_mesh name="luz emergencia031" filename="data\Meshes\luz emergencia031.m3d"/>
+	<static_mesh name="luz emergencia032" filename="data\Meshes\luz emergencia032.m3d"/>
+	<static_mesh name="luz emergencia033" filename="data\Meshes\luz emergencia033.m3d"/>
+	<static_mesh name="luz emergencia034" filename="data\Meshes\luz emergencia034.m3d"/>
+	<static_mesh name="luz emergencia035" filename="data\Meshes\luz emergencia035.m3d"/>
+	<static_mesh name="luz emergencia036" filename="data\Meshes\luz emergencia036.m3d"/>
+	<static_mesh name="luz emergencia037" filename="data\Meshes\luz emergencia037.m3d"/>
+	<static_mesh name="luz emergencia038" filename="data\Meshes\luz emergencia038.m3d"/>
+	<static_mesh name="luz emergencia039" filename="data\Meshes\luz emergencia039.m3d"/>
+	<static_mesh name="luz emergencia040" filename="data\Meshes\luz emergencia040.m3d"/>
+	<static_mesh name="luz emergencia041" filename="data\Meshes\luz emergencia041.m3d"/>
+	<static_mesh name="luz emergencia042" filename="data\Meshes\luz emergencia042.m3d"/>
+	<static_mesh name="luz emergencia043" filename="data\Meshes\luz emergencia043.m3d"/>
+	<static_mesh name="luz emergencia044" filename="data\Meshes\luz emergencia044.m3d"/>
+	<static_mesh name="luz emergencia045" filename="data\Meshes\luz emergencia045.m3d"/>
+	<static_mesh name="luz emergencia046" filename="data\Meshes\luz emergencia046.m3d"/>
+	<static_mesh name="Pasillo_ME_Giro003" filename="data\Meshes\Pasillo_ME_Giro003.m3d"/>
+	<static_mesh name="Pasillo_ME_Centroconpuerta06" filename="data\Meshes\Pasillo_ME_Centroconpuerta06.m3d"/>
+	<static_mesh name="Pasillo_ME_Centroconpuerta05" filename="data\Meshes\Pasillo_ME_Centroconpuerta05.m3d"/>
+	<static_mesh name="Pasillo_MR_Puerta009" filename="data\Meshes\Pasillo_MR_Puerta009.m3d"/>
+	<static_mesh name="Pasillo_ME_Giro002" filename="data\Meshes\Pasillo_ME_Giro002.m3d"/>
+	<static_mesh name="Pasillo_MR_Puerta010" filename="data\Meshes\Pasillo_MR_Puerta010.m3d"/>
+	<static_mesh name="Pasillo_ME_Centroconpuerta04" filename="data\Meshes\Pasillo_ME_Centroconpuerta04.m3d"/>
+	<static_mesh name="Pasillo_MR_Puerta011" filename="data\Meshes\Pasillo_MR_Puerta011.m3d"/>
+	<static_mesh name="Pasillo_ME_Centroconpuerta03" filename="data\Meshes\Pasillo_ME_Centroconpuerta03.m3d"/>
+	<static_mesh name="Pasillo_ME_Centroconpuerta02" filename="data\Meshes\Pasillo_ME_Centroconpuerta02.m3d"/>
+	<static_mesh name="Pasillo_MR_Puerta012" filename="data\Meshes\Pasillo_MR_Puerta012.m3d"/>
+	<static_mesh name="Pasillo_MR_Puerta013" filename="data\Meshes\Pasillo_MR_Puerta013.m3d"/>
+	<static_mesh name="Pasillo_ME_Extremo01" filename="data\Meshes\Pasillo_ME_Extremo01.m3d"/>
+	<static_mesh name="Pasillo_ME_Centroconpuerta01" filename="data\Meshes\Pasillo_ME_Centroconpuerta01.m3d"/>
+	<static_mesh name="Pasillo_ME_Giro01" filename="data\Meshes\Pasillo_ME_Giro01.m3d"/>
+	<static_mesh name="Lasersoporte019" filename="data\Meshes\Lasersoporte019.m3d"/>
+	<static_mesh name="Lasersoporte020" filename="data\Meshes\Lasersoporte020.m3d"/>
+	<static_mesh name="Lasersoporte021" filename="data\Meshes\Lasersoporte021.m3d"/>
+	<static_mesh name="Lasersoporte022" filename="data\Meshes\Lasersoporte022.m3d"/>
+	<static_mesh name="Lasersoporte023" filename="data\Meshes\Lasersoporte023.m3d"/>
+	<static_mesh name="Lasersoporte024" filename="data\Meshes\Lasersoporte024.m3d"/>
+	<static_mesh name="Lasersoporte025" filename="data\Meshes\Lasersoporte025.m3d"/>
+	<static_mesh name="Lasersoporte026" filename="data\Meshes\Lasersoporte026.m3d"/>
+	<static_mesh name="Lasersoporte027" filename="data\Meshes\Lasersoporte027.m3d"/>
+	<static_mesh name="Lasersoporte028" filename="data\Meshes\Lasersoporte028.m3d"/>
+	<static_mesh name="Lasersoporte029" filename="data\Meshes\Lasersoporte029.m3d"/>
+	<static_mesh name="Lasersoporte030" filename="data\Meshes\Lasersoporte030.m3d"/>
+	<static_mesh name="Lasersoporte031" filename="data\Meshes\Lasersoporte031.m3d"/>
+	<static_mesh name="Lasersoporte032" filename="data\Meshes\Lasersoporte032.m3d"/>
+	<static_mesh name="Lasersoporte033" filename="data\Meshes\Lasersoporte033.m3d"/>
+	<static_mesh name="Lasersoporte034" filename="data\Meshes\Lasersoporte034.m3d"/>
+	<static_mesh name="Lasersoporte035" filename="data\Meshes\Lasersoporte035.m3d"/>
+	<static_mesh name="Lasersoporte036" filename="data\Meshes\Lasersoporte036.m3d"/>
+	<static_mesh name="Lasersoporte037" filename="data\Meshes\Lasersoporte037.m3d"/>
+	<static_mesh name="Laser001" filename="data\Meshes\Laser001.m3d"/>
+	<static_mesh name="luz emergencia047" filename="data\Meshes\luz emergencia047.m3d"/>
+	<static_mesh name="espejorotatorio_ME" filename="data\Meshes\espejorotatorio_ME.m3d"/>
+	<static_mesh name="SInicio_Pica02" filename="data\Meshes\SInicio_Pica02.m3d"/>
+	<static_mesh name="Cadaver" filename="data\Meshes\Cadaver.m3d"/>
+	<static_mesh name="SInicio_Pica01" filename="data\Meshes\SInicio_Pica01.m3d"/>
+	<static_mesh name="SInicio_ME_PuertaG01" filename="data\Meshes\SInicio_ME_PuertaG01.m3d"/>
+	<static_mesh name="SInicio_MR_Espejolargo01" filename="data\Meshes\SInicio_MR_Espejolargo01.m3d"/>
+	<static_mesh name="SInicio_ME_Espejolargo01" filename="data\Meshes\SInicio_ME_Espejolargo01.m3d"/>
+	<static_mesh name="espejoestatico_ME" filename="data\Meshes\espejoestatico_ME.m3d"/>
+	<static_mesh name="espejoestatico_MR" filename="data\Meshes\espejoestatico_MR.m3d"/>
+	<static_mesh name="espejorotatorio_MR" filename="data\Meshes\espejorotatorio_MR.m3d"/>
+	<static_mesh name="Ascensor_decor_MR" filename="data\Meshes\Ascensor_decor_MR.m3d"/>
+	<static_mesh name="Ascensor_MR" filename="data\Meshes\Ascensor_MR.m3d"/>
+	<static_mesh name="Puerta_Fisica_Ascensor_MR_Level01" filename="data\Meshes\Puerta_Fisica_Ascensor_MR_Level01.m3d"/>
+	<static_mesh name="recargavida01" filename="data\Meshes\recargavida01.m3d"/>
+	<static_mesh name="recargavida02" filename="data\Meshes\recargavida02.m3d"/>
+	<static_mesh name="recargavida_escalo" filename="data\Meshes\recargavida_escalo.m3d"/>
+	<static_mesh name="bicho" filename="data\Meshes\bicho.m3d"/>
+	<static_mesh name="MR_plane laser" filename="data\Meshes\MR_plane laser.m3d"/>
+	<static_mesh name="MR_plane laser001" filename="data\Meshes\MR_plane laser001.m3d"/>
+	<static_mesh name="MR_plane laser002" filename="data\Meshes\MR_plane laser002.m3d"/>
+	<static_mesh name="MR_plane laser003" filename="data\Meshes\MR_plane laser003.m3d"/>
+	<static_mesh name="MR_plane laser004" filename="data\Meshes\MR_plane laser004.m3d"/>
+	<static_mesh name="MR_plane laser005" filename="data\Meshes\MR_plane laser005.m3d"/>
+	<static_mesh name="MR_plane laser006" filename="data\Meshes\MR_plane laser006.m3d"/>
+	<static_mesh name="MR_plane laser007" filename="data\Meshes\MR_plane laser007.m3d"/>
+	<static_mesh name="MR_plane laser008" filename="data\Meshes\MR_plane laser008.m3d"/>
+	<static_mesh name="MR_plane laser009" filename="data\Meshes\MR_plane laser009.m3d"/>
+	<static_mesh name="MR_plane laser010" filename="data\Meshes\MR_plane laser010.m3d"/>
+	<static_mesh name="MR_plane laser011" filename="data\Meshes\MR_plane laser011.m3d"/>
+	<static_mesh name="MR_plane laser013" filename="data\Meshes\MR_plane laser013.m3d"/>
+	<static_mesh name="MR_plane laser014" filename="data\Meshes\MR_plane laser014.m3d"/>
+	<static_mesh name="MR_plane laser015" filename="data\Meshes\MR_plane laser015.m3d"/>
+	<static_mesh name="MR_plane laser016" filename="data\Meshes\MR_plane laser016.m3d"/>
+	<static_mesh name="MR_plane laser017" filename="data\Meshes\MR_plane laser017.m3d"/>
+	<static_mesh name="MR_plane laser018" filename="data\Meshes\MR_plane laser018.m3d"/>
+	<static_mesh name="MR_plane laser019" filename="data\Meshes\MR_plane laser019.m3d"/>
+	<static_mesh name="MR_plane laser020" filename="data\Meshes\MR_plane laser020.m3d"/>
+	<static_mesh name="ME_plane laser" filename="data\Meshes\ME_plane laser.m3d"/>
+	<static_mesh name="MR_plane laser022" filename="data\Meshes\MR_plane laser022.m3d"/>
+	<static_mesh name="MR_plane laser023" filename="data\Meshes\MR_plane laser023.m3d"/>
+	<static_mesh name="MR_plane laser024" filename="data\Meshes\MR_plane laser024.m3d"/>
+	<static_mesh name="MR_plane laser025" filename="data\Meshes\MR_plane laser025.m3d"/>
+	<static_mesh name="MR_plane laser026" filename="data\Meshes\MR_plane laser026.m3d"/>
+	<static_mesh name="MR_plane laser027" filename="data\Meshes\MR_plane laser027.m3d"/>
+	<static_mesh name="MR_plane laser028" filename="data\Meshes\MR_plane laser028.m3d"/>
+	<static_mesh name="MR_plane laser029" filename="data\Meshes\MR_plane laser029.m3d"/>
+	<static_mesh name="MR_plane laser030" filename="data\Meshes\MR_plane laser030.m3d"/>
+	<static_mesh name="MR_plane laser031" filename="data\Meshes\MR_plane laser031.m3d"/>
+	<static_mesh name="MR_plane laser032" filename="data\Meshes\MR_plane laser032.m3d"/>
+	<static_mesh name="MR_plane laser033" filename="data\Meshes\MR_plane laser033.m3d"/>
+	<static_mesh name="MR_plane laser034" filename="data\Meshes\MR_plane laser034.m3d"/>
+	<static_mesh name="MR_plane laser035" filename="data\Meshes\MR_plane laser035.m3d"/>
+	<static_mesh name="MR_plane laser036" filename="data\Meshes\MR_plane laser036.m3d"/>
+	<static_mesh name="MR_plane laser037" filename="data\Meshes\MR_plane laser037.m3d"/>
+	<static_mesh name="MR_plane laser038" filename="data\Meshes\MR_plane laser038.m3d"/>
+	<static_mesh name="MR_plane laser039" filename="data\Meshes\MR_plane laser039.m3d"/>
+	<static_mesh name="MR_plane laser040" filename="data\Meshes\MR_plane laser040.m3d"/>
+	<static_mesh name="Suelo_Falso_Grande_Piso1_MR" filename="data\Meshes\Suelo_Falso_Grande_Piso1_MR.m3d"/>
+	<static_mesh name="SViglancias_Ventilador002_MR" filename="data\Meshes\SViglancias_Ventilador002_MR.m3d"/>
+	<static_mesh name="SControl_Ventilador005_ME" filename="data\Meshes\SControl_Ventilador005_ME.m3d"/>
+</Static_Meshes>

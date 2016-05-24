@@ -2,7 +2,6 @@
 #include "AnimatedInstanceModel.h"
 
 #define CONTROLLER_HEIGHT		0.7f		// PhysX
-#define SOLDIER_CAPSULE_HEIGHT	1.17f
 
 class CXMLTreeNode;
 class CPhysicController;

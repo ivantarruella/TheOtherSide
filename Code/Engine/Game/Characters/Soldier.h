@@ -1,6 +1,9 @@
 #pragma once
 #include "Character.h"
 
+#define SOLDIER_CAPSULE_HEIGHT	1.17f
+
+
 class CXMLTreeNode;
 class CTaskManager;
 class CPlayer;

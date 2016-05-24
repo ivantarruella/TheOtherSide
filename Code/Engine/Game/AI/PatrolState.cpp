@@ -282,22 +282,22 @@ bool CPatrolState::isReachable(Vect3f pos)
 	Vect3f l_dir = (pos - m_Owner->GetPosition()).Normalize();
 	Vect3f l_pos = m_Owner->GetPosition();
 
-	l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos + l_up * 1.05f +l_dir*0.2f + l_right * 0.1f, l_dir , 0xffffffff, l_info);
+	l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos + l_up * 1.05f +l_dir*0.2f + l_right * 0.1f, l_dir , 0x1, l_info);
 	if(l_user == m_Player->GetPhysicUserData())
 	{
 		return true;
 	}
-	l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos + l_up * 0.95f +l_dir*0.2f - l_right * 0.1f, l_dir, 0xffffffff, l_info);
+	l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos + l_up * 0.95f +l_dir*0.2f - l_right * 0.1f, l_dir, 0x1, l_info);
 	if(l_user == m_Player->GetPhysicUserData())
 	{
 		return true;
 	}
-	l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos + l_up * 1.05f +l_dir*0.2f - l_right * 0.1f, l_dir, 0xffffffff, l_info);
+	l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos + l_up * 1.05f +l_dir*0.2f - l_right * 0.1f, l_dir, 0x1, l_info);
 	if(l_user == m_Player->GetPhysicUserData())
 	{
 		return true;
 	}
-	l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos + l_up * 0.95f +l_dir*0.2f + l_right * 0.1f, l_dir, 0xffffffff, l_info);
+	l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos + l_up * 0.95f +l_dir*0.2f + l_right * 0.1f, l_dir, 0x1, l_info);
 	if(l_user == m_Player->GetPhysicUserData())
 	{
 		return true;

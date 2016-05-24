@@ -1,3 +1,11 @@
+# boost
+Code/Engine/3dParty/
+Code/Engine/3dParty/cal3d-0.11rc2/src/cal3d/
+bin/
+ipch/
+Run/
+videogame.*
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

@@ -8,6 +8,8 @@
 	<static_mesh name="SVigilancia_Camara02" filename="data\Meshes\SVigilancia_Camara02.m3d"/>
 	<static_mesh name="SInicio_Camilla01" filename="data\Meshes\SInicio_Camilla01.m3d"/>
 	<static_mesh name="SVigilancia_Mesa01_MR" filename="data\Meshes\SVigilancia_Mesa01_MR.m3d"/>
+	<static_mesh name="Hall01_Planta01_MR" filename="data\Meshes\Hall01_Planta01_MR.m3d"/>
+	<static_mesh name="Hall01_Planta01_ME" filename="data\Meshes\Hall01_Planta01_ME.m3d"/>
 	<static_mesh name="SInicio_Escritorio01" filename="data\Meshes\SInicio_Escritorio01.m3d"/>
 	<static_mesh name="SVigilancia_Fluerescente01" filename="data\Meshes\SVigilancia_Fluerescente01.m3d"/>
 	<static_mesh name="SVigilancia_Fluerescente02" filename="data\Meshes\SVigilancia_Fluerescente02.m3d"/>

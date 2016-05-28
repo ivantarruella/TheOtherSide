@@ -13,6 +13,9 @@
 	<mesh_instance name="SInicio_Camara01" core="SInicio_Camara01" layer="solid_MR" pos="20.1806 2.76643 -5.91686" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
 	<mesh_instance name="SVigilancia_Camara02" core="SVigilancia_Camara02" layer="solid_MR" pos="20.2592 2.76643 6.49156" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
 	<mesh_instance name="SInicio_Camilla01" core="SInicio_Camilla01" layer="solid_MR" pos="26.6274 0.720174 -3.87579" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
+	<mesh_instance name="Hall01_Planta01_MR" core="Hall01_Planta01_MR" layer="solid_MR" pos="27.5274 0.420174 -5.23579" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
+	<mesh_instance name="Hall01_Planta01_ME" core="Hall01_Planta01_ME" layer="solid_ME" pos="-27.55 0.420175 -5.27761" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
+	
 	<mesh_instance name="SVigilancia_Mesa01_MR" core="SVigilancia_Mesa01_MR" layer="solid_MR" pos="25.603 1.07673 2.69878" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
 	<mesh_instance name="SInicio_Escritorio01" core="SInicio_Escritorio01" layer="solid_MR" pos="23.7422 1.02908 -1.69084" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
 	<mesh_instance name="SVigilancia_Fluerescente01" core="SVigilancia_Fluerescente01" layer="solid_MR" pos="21.9042 3.03742 4.30598" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="false" generate_physics="false" physics_type="triangle_mesh" />

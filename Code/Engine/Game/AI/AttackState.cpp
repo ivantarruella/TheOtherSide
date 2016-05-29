@@ -49,31 +49,8 @@ void CAttackState::Update(float ElapsedTime)
 		}
 		else
 		{	
-			if(isFaced())
-			{
-				Vect3f l_dir = (m_Player->GetPosition() - m_Owner->GetPosition()).Normalize();
-				m_Owner->SetYaw(atan2(-l_dir.x, l_dir.z));
-				Vect3f l_pos = m_Player->GetPosition() - l_dir;
-				
-				Vect3f l_new = m_Owner->GetPosition() + l_dir * ElapsedTime*m_WalkSpeed;
-				Vect3f l_old = (l_pos - l_new).Normalize();
-
-				if((l_dir * l_old) > 0.0f){							
-					m_Owner->ChangeCharacterAnimation(WALK_ANIM, 0.3f);
-					m_Owner->SetPosition(l_new);
-					m_Owner->SetPosition(m_Owner->GetFront()*m_WalkSpeed, ElapsedTime);
-				}
-				else{		
-					m_Owner->ChangeCharacterAnimation(WAIT_ANIM, 0.3f);
-					l_dir = l_pos - m_Owner->GetPosition();
-					l_dir.y=0.0f;
-					m_Owner->SetPosition(l_dir, ElapsedTime);
-					//m_Owner->SetPosition(l_pos);
-				}
-
-				return;
-			}
-			else{			
+			if(!isFaced())
+			{			
 				m_Owner->ChangeCharacterAnimation(WALK_ANIM, 0.3f);			
 				if( isAtLeft())
 				{

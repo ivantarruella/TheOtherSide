@@ -34,10 +34,10 @@ protected:
 
 public:
 	CState()
-		: m_HearDistance(6.0f)
-		, m_VisionDistance(12.0f)
-		, m_VisionAngle(90.0f)
-		, m_WalkSpeed(0.025f)
+		: m_HearDistance(8.0f)
+		, m_VisionDistance(18.0f)
+		, m_VisionAngle(120.0f)
+		, m_WalkSpeed(0.035f)
 		, m_Player(NULL)
 	{
 		m_Player=(CCharacter*)CORE->GetRenderableObjectsLayersManager()->GetResource("solid")->GetInstance("PLAYER");

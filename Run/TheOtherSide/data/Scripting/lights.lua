@@ -33,6 +33,7 @@ end
 
 
 function luces_sala_inicial_ME_level01_ON()
+	_LIGHTM:set_light_active('Light00_Omni_ME', true)
 	_LIGHTM:set_light_active('Light01_Omni_ME', true)
 	_LIGHTM:set_light_active('Light02_Omni_ME', true)
 	_LIGHTM:set_light_active('Light03_Omni_ME', false)
@@ -41,6 +42,7 @@ function luces_sala_inicial_ME_level01_ON()
 end
 
 function luces_pasillo_ME_level01_ON()
+	_LIGHTM:set_light_active('Light00_Omni_ME', false)
 	_LIGHTM:set_light_active('Light01_Omni_ME', false)
 	_LIGHTM:set_light_active('Light02_Omni_ME', true)
 	_LIGHTM:set_light_active('Light03_Omni_ME', true)

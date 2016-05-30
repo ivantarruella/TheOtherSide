@@ -2,6 +2,7 @@
 #include "Matrix44.h"
 #include "RenderManager.h"
 #include <assert.h>
+#include "CubeTexture.h"
 #include "RenderManager.h"
 #include "EffectManager.h"
 #include "Camera\Camera.h"
@@ -42,91 +43,86 @@ void COmniLight::updateViewProjMat(CEffectManager *EM, float Aspect, D3DXVECTOR3
 
 void COmniLight::createCamForPositiveX(CEffectManager *EM, float Aspect)
 {
-	Vect3f m_Direction(1.0f, 0.0f, 0.0f);
-	Vect3f eye=m_Position-m_Direction;
-	D3DXVECTOR3 l_Eye(eye.x,eye.y,eye.z);
-	D3DXVECTOR3 l_LookAt(m_Position.x,m_Position.y,m_Position.z);
-	D3DXVECTOR3 l_Up(0.0f,1.0f,0.0f); 
-
-	updateViewProjMat(EM, Aspect, l_Eye, l_LookAt, l_Up);
+	updateViewProjMat(EM, Aspect, m_NegativeLookZ, m_PositiveLookX, m_PositiveLookY);
 }
 
 void COmniLight::createCamForNegativeX(CEffectManager *EM, float Aspect)
 {
-	Vect3f m_Direction(-1.0f, 0.0f, 0.0f);
-	Vect3f eye=m_Position-m_Direction;
-	D3DXVECTOR3 l_Eye(eye.x,eye.y,eye.z);
-	D3DXVECTOR3 l_LookAt(m_Position.x,m_Position.y,m_Position.z);
-	D3DXVECTOR3 l_Up(0.0f,1.0f,0.0f); 
-
-	updateViewProjMat(EM, Aspect, l_Eye, l_LookAt, l_Up);
+	updateViewProjMat(EM, Aspect, m_PositiveLookZ, m_NegativeLookX, m_PositiveLookY);
 }
 
 void COmniLight::createCamForPositiveY(CEffectManager *EM, float Aspect)
 {
-	// no hacen falta sombras en el techo
+	updateViewProjMat(EM, Aspect, m_PositiveLookX, m_PositiveLookY, m_NegativeLookZ);
 }
 
 void COmniLight::createCamForNegativeY(CEffectManager *EM, float Aspect)
 {
-	Vect3f m_Direction(0.0f, -1.0f, 0.0f);
-	Vect3f eye=m_Position-m_Direction;
-	D3DXVECTOR3 l_Eye(eye.x,eye.y,eye.z);
-	D3DXVECTOR3 l_LookAt(m_Position.x,m_Position.y,m_Position.z);
-	D3DXVECTOR3 l_Up(0.0f,0.0f,1.0f); 
-	
-	updateViewProjMat(EM, Aspect, l_Eye, l_LookAt, l_Up);
+	updateViewProjMat(EM, Aspect, m_NegativeLookX, m_NegativeLookY, m_NegativeLookZ);
 }
 
 void COmniLight::createCamForPositiveZ(CEffectManager *EM, float Aspect)
 {
-	Vect3f m_Direction(0.0f, 0.0f, 1.0f);
-	Vect3f eye=m_Position-m_Direction;
-	D3DXVECTOR3 l_Eye(eye.x,eye.y,eye.z);
-	D3DXVECTOR3 l_LookAt(m_Position.x,m_Position.y,m_Position.z);
-	D3DXVECTOR3 l_Up(0.0f,1.0f,0.0f); 
-	
-	updateViewProjMat(EM, Aspect, l_Eye, l_LookAt, l_Up);
+	updateViewProjMat(EM, Aspect, m_PositiveLookX, m_PositiveLookZ, m_PositiveLookY);
 }
 
 void COmniLight::createCamForNegativeZ(CEffectManager *EM, float Aspect)
 {
-	Vect3f m_Direction(0.0f, 0.0f, -1.0f);
-	Vect3f eye=m_Position-m_Direction;
-	D3DXVECTOR3 l_Eye(eye.x,eye.y,eye.z);
-	D3DXVECTOR3 l_LookAt(m_Position.x,m_Position.y,m_Position.z);
-	D3DXVECTOR3 l_Up(0.0f,1.0f,0.0f); 
-	
-	updateViewProjMat(EM, Aspect, l_Eye, l_LookAt, l_Up);
+	updateViewProjMat(EM, Aspect, m_NegativeLookX, m_NegativeLookZ, m_PositiveLookY);
 }
 
 void COmniLight::SetShadowMap(CRenderManager *RM)
 {
-#if 0	
 	CEffectManager *l_EM=CORE->GetEffectManager();
-	
 	uint32 w,h;
 	RM->GetWidthAndHeight(w,h);
 	float l_Aspect = (float)(w/h);
-	
-	// Y-
+
+	// render the scene depth to positive X side of the cube map
+	cubeFace = m_CubeTexture->GetCubeFacePX();
+	m_face = D3DCUBEMAP_FACE_POSITIVE_X;
+	createCamForPositiveX(l_EM, l_Aspect);
+	RenderShadowMap(RM);
+
+	// render the scene depth to positive Y side of the cube map
+	cubeFace = m_CubeTexture->GetCubeFacePY();
+	m_face = D3DCUBEMAP_FACE_POSITIVE_Y;
+	createCamForPositiveY(l_EM, l_Aspect);
+	RenderShadowMap(RM);
+
+	// render the scene depth to positive Z side of the cube map
+	cubeFace = m_CubeTexture->GetCubeFacePZ();
+	m_face = D3DCUBEMAP_FACE_POSITIVE_Z;
+	createCamForPositiveZ(l_EM, l_Aspect);
+	RenderShadowMap(RM);
+
+	// render the scene depth to negative X side of the cube map
+	cubeFace = m_CubeTexture->GetCubeFaceNX();
+	m_face = D3DCUBEMAP_FACE_NEGATIVE_X;
+	createCamForNegativeX(l_EM, l_Aspect);
+	RenderShadowMap(RM);
+
+	// render the scene depth to negative Y side of the cube map
+	cubeFace = m_CubeTexture->GetCubeFaceNY();
+	m_face = D3DCUBEMAP_FACE_NEGATIVE_Y;
 	createCamForNegativeY(l_EM, l_Aspect);
-	CLight::RenderShadowMap(RM);
+	RenderShadowMap(RM);
 
-	// X+ no va bien
-	//createCamForPositiveX(l_EM, l_Aspect);
-	//CLight::RenderShadowMap(RM);
-	// X- no va bien
-	//createCamForNegativeX(l_EM, l_Aspect);
-	//CLight::RenderShadowMap(RM);
+	// render the scene depth to negative Z side of the cube map
+	cubeFace = m_CubeTexture->GetCubeFaceNZ();
+	m_face = D3DCUBEMAP_FACE_NEGATIVE_Z;
+	createCamForNegativeZ(l_EM, l_Aspect);
+	RenderShadowMap(RM);
+}
 
-	// Z+ no va bien
-	//createCamForPositiveZ(l_EM, l_Aspect);
-	//CLight::RenderShadowMap(RM);
-	// Z- no va bien
-	//createCamForNegativeZ(l_EM, l_Aspect);
-	//CLight::RenderShadowMap(RM);
-#endif
+void COmniLight::RenderShadowMap(CRenderManager *RM)
+{
+	// Generate cube depth map texture	
+	m_CubeTexture->SetAsRenderTarget(m_face);
+	RM->Clear(true, true, true, 0xffffffff);
+	for(size_t i=0;i<m_DynamicShadowMapRenderableObjectsManagers.size();++i)
+		m_DynamicShadowMapRenderableObjectsManagers[i]->RenderShadow(RM, this);
+	m_CubeTexture->UnsetAsRenderTarget();
 }
 
 bool COmniLight::isVisible(CRenderManager &RM, const CFrustum* Frustum)

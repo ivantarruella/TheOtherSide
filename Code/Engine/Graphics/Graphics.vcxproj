@@ -24,6 +24,7 @@
     <ClCompile Include="Camera\ThirdPersonCamera.cpp" />
     <ClCompile Include="Camera\ThPSCamera.cpp" />
     <ClCompile Include="CircleEmitter.cpp" />
+    <ClCompile Include="CubeTexture.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="Camera\ThirdPersonCamera.h" />
     <ClInclude Include="Camera\ThPSCamera.h" />
     <ClInclude Include="CircleEmitter.h" />
+    <ClInclude Include="CubeTexture.h" />
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />

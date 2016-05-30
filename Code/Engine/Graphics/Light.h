@@ -13,10 +13,12 @@
 #define DYNAMIC_SHADOW_MAP_STAGE 6
 #define STATIC_SHADOW_MAP_STAGE  7
 #define	SHADOW_MAP_MASK_STAGE	 8
+#define CUBE_MAP_STAGE			 9
 
 
 class CRenderManager;
 class CTexture;
+class CCubeTexture;
 class CRenderableObjectsManager;
 class CEffect;
 class CInstanceMesh;
@@ -66,6 +68,7 @@ protected:
 	bool m_SoftShadow;
 	CTexture *m_StaticShadowMap, *m_DynamicShadowMap, *m_ShadowMaskTexture;
 	CTexture *m_DynamicShadowMapBlurH, *m_DynamicShadowMapBlurV; 
+	CCubeTexture *m_CubeTexture;
 	std::vector<CRenderableObjectsManager *> m_StaticShadowMapRenderableObjectsManagers,m_DynamicShadowMapRenderableObjectsManagers;
 	Mat44f m_ViewShadowMap, m_ProjectionShadowMap;
 	CFrustum m_LightFrustum;
@@ -127,13 +130,14 @@ public:
 	CTexture * GetStaticShadowMap() const;
 	CTexture * GetDynamicShadowMap() const;
 	CTexture * GetShadowMaskTexture() const;
+	CCubeTexture* GetCubeShadowMap() const;
 	std::vector<CRenderableObjectsManager *> & GetStaticShadowMapRenderableObjectsManagers();
 	std::vector<CRenderableObjectsManager *> & GetDynamicShadowMapRenderableObjectsManagers();
 	void GenerateShadowMap(CRenderManager *RM);
 	void BlurShadowMapH(CRenderManager *RM);
 	void BlurShadowMapV(CRenderManager *RM);
 	void DeleteShadowMap(CEffect *Effect);
-	void RenderShadowMap(CRenderManager *RM);
+	virtual void RenderShadowMap(CRenderManager *RM);
 	const Mat44f & GetViewShadowMap() const;
 	const Mat44f & GetProjectionShadowMap() const;
 	void BeginRenderEffectManagerShadowMap(CEffect *Effect);

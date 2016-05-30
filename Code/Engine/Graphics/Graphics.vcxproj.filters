@@ -226,6 +226,9 @@
     <ClCompile Include="Renderer\BlurVShadowMapsSceneRendererCommand.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="CubeTexture.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenderManager.h" />
@@ -455,6 +458,9 @@
     </ClInclude>
     <ClInclude Include="Renderer\RenderMirrorsSceneRendererCommand.h">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeTexture.h">
+      <Filter>Textures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

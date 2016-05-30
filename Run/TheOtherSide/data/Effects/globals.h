@@ -266,6 +266,16 @@ sampler gShadowMapMaskTextureSampler : register( s8 ) = sampler_state
 	AddressV = Clamp;
 };
 
+samplerCUBE gCubeTextureSampler : register( s9 ) = sampler_state
+{
+	MipFilter = Linear;
+	MinFilter = Linear;
+	MagFilter = Linear;
+	AddressU = Wrap;
+	AddressV = Wrap;
+	AddressW = Wrap;
+};
+
 sampler gS0LinearWrapSampler : register( s0 ) = sampler_state 
 {
 	MagFilter = Linear;

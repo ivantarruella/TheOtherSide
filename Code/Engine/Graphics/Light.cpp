@@ -1,6 +1,7 @@
 #include "Light.h"
 #include "SpotLight.h"
 #include "Texture.h"
+#include "CubeTexture.h"
 #include "Effect.h"
 #include "Renderer\RenderableObjectsLayersManager.h"
 #include "RenderManager.h"
@@ -18,7 +19,7 @@
 
 CLight::CLight()
 	: m_Color(colBLACK), m_Type(OMNI), m_RenderShadows(false), m_StartRangeAttenuation(0.0f), m_EndRangeAttenuation(0.0f), m_StaticShadowMap(NULL), m_DynamicShadowMap(NULL), 
-	m_ShadowMaskTexture(NULL), m_DynamicShadowMapBlurH(NULL), m_DynamicShadowMapBlurV(NULL), m_GenerateDynamicShadowMap(false), m_GenerateStaticShadowMap(false), 
+	m_ShadowMaskTexture(NULL), m_DynamicShadowMapBlurH(NULL), m_DynamicShadowMapBlurV(NULL), m_CubeTexture(NULL), m_GenerateDynamicShadowMap(false), m_GenerateStaticShadowMap(false), 
 	m_MustUpdateStaticShadowMap(false), m_SoftShadow(false),m_BlurShadowMap(false), m_bIsIntermittent(false), m_fTime(0.f), m_fChange(0.f), m_fTMin(0.f), m_fTMax(0.f), m_World(0), m_fVarTime(0.f), 
 	m_fOffTime(0.0f), m_bVarIntensity(false), m_bVarAtt(false), m_fAttTime(0.0f), m_fCurrAttTime(0.0f), m_fAttInc(0.0f), m_bRisingAtt(true), m_LightMesh(NULL), m_TextureON(NULL), 
 	m_TextureOFF(NULL), m_bActive(true), m_bMoving(false), m_iMaxMoves(0), m_fIncMove(0.0f)
@@ -204,6 +205,11 @@ CTexture * CLight::GetShadowMaskTexture() const
 	return m_ShadowMaskTexture;
 }
 
+CCubeTexture * CLight::GetCubeShadowMap() const
+{
+	return m_CubeTexture;
+}
+
 std::vector<CRenderableObjectsManager *> & CLight::GetStaticShadowMapRenderableObjectsManagers()
 {
 	return m_StaticShadowMapRenderableObjectsManagers;
@@ -316,10 +322,14 @@ void CLight::BeginRenderEffectManagerShadowMap(CEffect *Effect)
 		if(m_GenerateStaticShadowMap)
 			m_StaticShadowMap->Activate(STATIC_SHADOW_MAP_STAGE);
 		
-		if (m_SoftShadow && m_BlurShadowMap)
-			m_DynamicShadowMapBlurV->Activate(DYNAMIC_SHADOW_MAP_STAGE);
-		else
-			m_DynamicShadowMap->Activate(DYNAMIC_SHADOW_MAP_STAGE);
+		if (m_Type != OMNI) {
+			if (m_SoftShadow && m_BlurShadowMap)
+				m_DynamicShadowMapBlurV->Activate(DYNAMIC_SHADOW_MAP_STAGE);
+			else
+				m_DynamicShadowMap->Activate(DYNAMIC_SHADOW_MAP_STAGE);
+		}
+		else 
+			m_CubeTexture->Activate(CUBE_MAP_STAGE);
 
 		Effect->SetShadowMapParameters(m_ShadowMaskTexture!=NULL, m_GenerateStaticShadowMap, m_GenerateDynamicShadowMap && m_DynamicShadowMapRenderableObjectsManagers.size()!=0);
 		m_LightFrustum.Update(m_ViewShadowMap.GetD3DXMatrix() * m_ProjectionShadowMap.GetD3DXMatrix());
@@ -338,10 +348,14 @@ void CLight::DeleteShadowMap(CEffect *Effect)
 		if(m_GenerateStaticShadowMap)
 			m_StaticShadowMap->Deactivate(STATIC_SHADOW_MAP_STAGE);
 		
-		if (m_SoftShadow && m_BlurShadowMap)
-			m_DynamicShadowMapBlurV->Deactivate(DYNAMIC_SHADOW_MAP_STAGE);
+		if (m_Type != OMNI) {
+			if (m_SoftShadow && m_BlurShadowMap)
+				m_DynamicShadowMapBlurV->Deactivate(DYNAMIC_SHADOW_MAP_STAGE);
+			else
+				m_DynamicShadowMap->Deactivate(DYNAMIC_SHADOW_MAP_STAGE);
+		}
 		else
-			m_DynamicShadowMap->Deactivate(DYNAMIC_SHADOW_MAP_STAGE);
+			m_CubeTexture->Deactivate(CUBE_MAP_STAGE);
 
 		Effect->SetShadowMapParameters(false, false, false);
 		m_LightFrustum.Update(m_ViewShadowMap.GetD3DXMatrix() * m_ProjectionShadowMap.GetD3DXMatrix());
@@ -373,32 +387,44 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode)
 		bool error=false;
 		if (m_GenerateDynamicShadowMap)
 		{
-			unsigned int l_DynamicShadowMapWidth=LightsNode.GetIntProperty("shadow_map_width",0);
-			unsigned int l_DynamicShadowMapHeight=LightsNode.GetIntProperty("shadow_map_height",0);
-			l_FormatType =  m_DynamicShadowMap->GetFormatTypeFromString(l_DynamicShadowMapFormatType);
-			m_DynamicShadowMap=new CTexture();
-			error=m_DynamicShadowMap->Create("DynamicShadowMapTexture_"+m_Name,l_DynamicShadowMapWidth,l_DynamicShadowMapHeight,1,CTexture::RENDERTARGET,CTexture::DEFAULT,l_FormatType);
-			if(error)
-			{
-				std::string msg_error = "CLight::SetParameters()-> Imposible crear textura DynamicShadowMap ";
-				LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
-			}
-
-			if (m_SoftShadow)
-			{
-				m_DynamicShadowMapBlurH=new CTexture();
-				error=m_DynamicShadowMapBlurH->Create("DynamicShadowMapTextureBlurH_"+m_Name,l_DynamicShadowMapWidth,l_DynamicShadowMapHeight,1,CTexture::RENDERTARGET,CTexture::DEFAULT,l_FormatType);
+			if (m_Type != OMNI) {	// spot & directional lights
+				unsigned int l_DynamicShadowMapWidth=LightsNode.GetIntProperty("shadow_map_width",0);
+				unsigned int l_DynamicShadowMapHeight=LightsNode.GetIntProperty("shadow_map_height",0);
+				l_FormatType =  m_DynamicShadowMap->GetFormatTypeFromString(l_DynamicShadowMapFormatType);
+				m_DynamicShadowMap=new CTexture();
+				error=m_DynamicShadowMap->Create("DynamicShadowMapTexture_"+m_Name,l_DynamicShadowMapWidth,l_DynamicShadowMapHeight,1,CTexture::RENDERTARGET,CTexture::DEFAULT,l_FormatType);
 				if(error)
 				{
-					std::string msg_error = "CLight::SetParameters()-> Imposible crear textura DynamicShadowMapBlurH_"+m_Name;
+					std::string msg_error = "CLight::SetParameters()-> Imposible crear textura DynamicShadowMap ";
 					LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
 				}
 
-				m_DynamicShadowMapBlurV=new CTexture();
-				error=m_DynamicShadowMapBlurV->Create("DynamicShadowMapTextureBlurV_"+m_Name,l_DynamicShadowMapWidth,l_DynamicShadowMapHeight,1,CTexture::RENDERTARGET,CTexture::DEFAULT,l_FormatType);
-				if(error)
+				if (m_SoftShadow)
 				{
-					std::string msg_error = "CLight::SetParameters()-> Imposible crear textura DynamicShadowMapBlurV_"+m_Name;
+					m_DynamicShadowMapBlurH=new CTexture();
+					error=m_DynamicShadowMapBlurH->Create("DynamicShadowMapTextureBlurH_"+m_Name,l_DynamicShadowMapWidth,l_DynamicShadowMapHeight,1,CTexture::RENDERTARGET,CTexture::DEFAULT,l_FormatType);
+					if(error)
+					{
+						std::string msg_error = "CLight::SetParameters()-> Imposible crear textura DynamicShadowMapBlurH_"+m_Name;
+						LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+					}
+
+					m_DynamicShadowMapBlurV=new CTexture();
+					error=m_DynamicShadowMapBlurV->Create("DynamicShadowMapTextureBlurV_"+m_Name,l_DynamicShadowMapWidth,l_DynamicShadowMapHeight,1,CTexture::RENDERTARGET,CTexture::DEFAULT,l_FormatType);
+					if(error)
+					{
+						std::string msg_error = "CLight::SetParameters()-> Imposible crear textura DynamicShadowMapBlurV_"+m_Name;
+						LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+					}
+				}
+			}
+			else {		// omni lights
+				unsigned int l_Size=LightsNode.GetIntProperty("shadow_map_width",0);
+				CCubeTexture::TFormatType formatType =  m_CubeTexture->GetFormatTypeFromString(l_DynamicShadowMapFormatType);
+				m_CubeTexture=new CCubeTexture();
+				if(!m_CubeTexture->Create("CubeMapTexture_"+m_Name,l_Size,1,CCubeTexture::RENDERTARGET,CCubeTexture::DEFAULT,formatType))
+				{
+					std::string msg_error = "CLight::SetParameters()-> Imposible crear textura CubeMap ";
 					LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
 				}
 			}

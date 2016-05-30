@@ -62,7 +62,7 @@
 	<render_scene layer="alpha_blend_objects_MR" active="true" forward="true"/>
 	<render_scene layer="alpha_blend_objects_ME" active="true" forward="true"/>
 	<render_particles/>
-	<!--<render_debug_lights/>	-->
+	<!--<render_debug_lights/>-->
 	
 
 	<!-- POST PROCESS EFFECTS -->

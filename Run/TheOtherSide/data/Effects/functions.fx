@@ -257,32 +257,29 @@ float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
 {
 	float lightAmount = 1.0;
 	
-	if (g_UseDynamicShadowMap /*|| g_UseStaticShadowMap*/)
+	if (g_UseDynamicShadowMap)
 	{
 		float2 Depth=(float2)0;
 		float4 ShadowText=(float4)0;
 		float2 ShadowTexC = getProjectedTexCoords(Pos, Depth);
 		float3 VToLight=normalize(g_LightsPosition[0] - Pos.xyz);
 		
-		/*if (g_UseStaticShadowMap)
-			ShadowText = tex2D( gStaticShadowMapTextureSampler, ShadowTexC );
-		else if (g_UseDynamicShadowMap) */
-		ShadowText = tex2D( gDynamicShadowMapTextureSampler, ShadowTexC );
-
 		if (Tipo == SPOT)
 		{
+			ShadowText = tex2D( gDynamicShadowMapTextureSampler, ShadowTexC );
 			if (saturate(dot (VToLight, -g_LightsDirection[0])) > g_LightFallOff[0])
 			{
 				lightAmount = ((ShadowText + SHADOW_EPSILON )< Depth)? 0.0: 1.0;
 				lightAmount *= saturate(dot(VToLight, Nn));
 			}
 		}
-		/*else if(Tipo == OMNI) 
+		/*if(Tipo == OMNI) 
 		{
+			ShadowText = tex2D( gCubeTextureSampler, float3(ShadowTexC,0.0) );
 			lightAmount = ((ShadowText + SHADOW_EPSILON )< Depth)? 0.0: 1.0;
 			lightAmount *= saturate(dot(VToLight, Nn));
 		}
-		else if(Tipo == DIRECTIONAL)
+		if(Tipo == DIRECTIONAL)
 		{
 			lightAmount = ((ShadowText + SHADOW_EPSILON )< Depth)? 0.0: 1.0;
 		}*/
@@ -291,7 +288,7 @@ float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
 	return lightAmount;
 }
 
-float calcShadowCoeffVSM(int Tipo, float4 Pos, sampler _shadowMapSampler)
+float calcShadowCoeffVSM(int Tipo, float4 Pos)
 {
 	float lightAmount = 1.0;
 	
@@ -305,7 +302,7 @@ float calcShadowCoeffVSM(int Tipo, float4 Pos, sampler _shadowMapSampler)
 				float2 depth = (float2) 0;
 				float2 ShadowTexC = getProjectedTexCoords(Pos, depth);
 
-				float2 moments = tex2D( _shadowMapSampler, ShadowTexC ).xy;
+				float2 moments = tex2D( gDynamicShadowMapTextureSampler, ShadowTexC ).xy;
 				
 				float mean = moments.x;
 				float meanSqr = moments.y;	
@@ -321,7 +318,28 @@ float calcShadowCoeffVSM(int Tipo, float4 Pos, sampler _shadowMapSampler)
 				
 				lightAmount = max(p, depth <= mean);
 			}
-		}	
+		}
+		if (Tipo == OMNI)
+		{
+			float2 depth = (float2) 0;
+			float2 ShadowTexC = getProjectedTexCoords(Pos, depth);
+			//TODO: access texCUBE sampler incorrect!!
+			float2 moments = texCUBE( gCubeTextureSampler, float3(ShadowTexC,0.0) ).xy;
+			
+			float mean = moments.x;
+			float meanSqr = moments.y;	
+			float Ex_2 = mean * mean;
+			float E_x2 = meanSqr;
+			float variance = min(max(E_x2 - Ex_2, 0.0f) + SHADOW_EPSILON2, 1.0f);
+			float m_d = (depth - mean);
+			float p = variance / (variance + m_d * m_d);
+
+			// Reduce light bleeding
+			float min = 2.5f;
+			p = saturate(pow(p, min) + 0.2f);
+			
+			lightAmount = max(p, depth <= mean);	
+		}
 	}
 	return lightAmount;
 }
@@ -333,7 +351,7 @@ float4 calcDeferredLighting(float4 Pos, float3 Nn, float4 Albedo, float Specular
 	float l_Attenuation = getAttenuation(g_LightsTypes[0], g_LightsPosition[0], Pos.xyz, g_LightStartAtten[0], g_LightEndAtten[0], g_LightsDirection[0], g_LightAngle[0], g_LightFallOff[0]);
 	if (l_Attenuation > 0.0)
 	{
-		float lightAmount = calcShadowCoeffVSM(g_LightsTypes[0], Pos, gDynamicShadowMapTextureSampler);
+		float lightAmount = calcShadowCoeffVSM(g_LightsTypes[0], Pos);
 		if (lightAmount!= 0.0)		
 		{
 			// Calculamos diffuseContrib, specular Contrib i aplicamos attenuation si el pixel no esta sombreado

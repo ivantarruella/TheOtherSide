@@ -42,9 +42,33 @@ bool CCubeTexture::SetAsRenderTarget(D3DCUBEMAP_FACES face, size_t IdStage, bool
 	if(FAILED( m_CubeTexture->GetCubeMapSurface(face, 0, &m_RenderTargetTexture )) )
 		return false;
 
-	l_Device->SetRenderTarget( (DWORD)IdStage, m_RenderTargetTexture );
+	switch(face){
+	case D3DCUBEMAP_FACE_POSITIVE_X:
+		l_Device->SetRenderTarget( (DWORD)IdStage, cubeFacePX );
+		CHECKED_RELEASE(cubeFacePX);
+		break;
+	case D3DCUBEMAP_FACE_POSITIVE_Y:
+		l_Device->SetRenderTarget( (DWORD)IdStage, cubeFacePY );
+		CHECKED_RELEASE(cubeFacePY);
+		break;
+	case D3DCUBEMAP_FACE_POSITIVE_Z:
+		l_Device->SetRenderTarget( (DWORD)IdStage, cubeFacePZ );
+		CHECKED_RELEASE(cubeFacePZ);
+		break;
+	case D3DCUBEMAP_FACE_NEGATIVE_X:
+		l_Device->SetRenderTarget( (DWORD)IdStage, cubeFaceNX );
+		CHECKED_RELEASE(cubeFaceNX);
+		break;
+	case D3DCUBEMAP_FACE_NEGATIVE_Y:
+		l_Device->SetRenderTarget( (DWORD)IdStage, cubeFaceNY );
+		CHECKED_RELEASE(cubeFaceNY);
+		break;
+	case D3DCUBEMAP_FACE_NEGATIVE_Z:
+		l_Device->SetRenderTarget( (DWORD)IdStage, cubeFaceNZ );
+		CHECKED_RELEASE(cubeFaceNZ);
+		break;
+	};
 
-	CHECKED_RELEASE(m_RenderTargetTexture);
 
 	m_ViewportStencil=viewportStencil;
 	if(!m_ViewportStencil)

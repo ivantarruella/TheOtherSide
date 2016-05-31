@@ -111,7 +111,7 @@ void COmniLight::RenderShadowMap(CRenderManager *RM, D3DCUBEMAP_FACES face)
 {
 	// Generate cube depth map texture	
 	m_CubeTexture->SetAsRenderTarget(face);
-	RM->Clear(true, true, true, 0xffffffff);
+	RM->GetDevice()->Clear(NULL, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0x00000000, 1.0f, NULL);
 	for(size_t i=0;i<m_DynamicShadowMapRenderableObjectsManagers.size();++i)
 		m_DynamicShadowMapRenderableObjectsManagers[i]->RenderShadow(RM, this);
 	m_CubeTexture->UnsetAsRenderTarget();

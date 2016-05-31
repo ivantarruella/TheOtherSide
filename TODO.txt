@@ -1,0 +1,6 @@
+- Particles mirror reflection
+- shots mirror reflection
+- shadows mirror reflection (involves forward rendering shadow calculation)
+- point light shadow cube maps
+- reposition enemies
+- monster bug: movement glitches.

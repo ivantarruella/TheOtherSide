@@ -291,12 +291,14 @@ D3DXHANDLE CEffect::GetTechniqueByName(const std::string &TechniqueName)
 
 void CEffect::GetParameterBySemantic(const std::string &SemanticName, D3DXHANDLE &l_Handle)
 {
-	l_Handle = m_Effect->GetParameterBySemantic(NULL,SemanticName.c_str());
+	if (m_Effect!=NULL) {
+		l_Handle = m_Effect->GetParameterBySemantic(NULL,SemanticName.c_str());
 
-	if (l_Handle==NULL)
-	{
-		std::string msg_info = "Parameter by semantic " + SemanticName + " wasn't found on effect " + m_FileName;
-		LOGGER->AddNewLog(ELL_WARNING, msg_info.c_str());
+		if (l_Handle==NULL)
+		{
+			std::string msg_info = "Parameter by semantic " + SemanticName + " wasn't found on effect " + m_FileName;
+			LOGGER->AddNewLog(ELL_WARNING, msg_info.c_str());
+		}
 	}
 }
 

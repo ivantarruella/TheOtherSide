@@ -217,72 +217,22 @@ float2 getProjectedTexCoords(float4 Pos, out float2 Depth)
 	return ShadowTexC;
 }
 
-float calcLightAmountPFC2x2(float4 Pos, out float Color)
+float calcLightAmount(int Tipo, float4 Pos)
 {
 	float lightAmount = 1.0;
 	
 	if (g_UseDynamicShadowMap)
 	{
-		float4 l_PosView=mul(float4(Pos.xyz, 1.0), g_ViewMatrix);
-		float4 PosLight = mul(l_PosView, g_ViewToLightProj);
-		
-		// Project the texture coords and scale/offset to [0, 1].
-		PosLight.xy /= PosLight.w;
-		PosLight.x =  0.5f*PosLight.x + 0.5f;
-		PosLight.y = -0.5f*PosLight.y + 0.5f;
-
-		// Compute pixel depth for shadowing.
-		float depth = PosLight.z / PosLight.w; // depth in [0, 1] range
-
-		// Transform to texel space.
-		float2 texelpos = SMAP_SIZE * PosLight.xy;
-
-		// Determine the lerp amounts.
-		float2 lerps = frac( texelpos );
-
-		// 2x2 percentage closest filter.
-		float dx = 1.0f / SMAP_SIZE;
-		float s0 = (tex2D(gDynamicShadowMapTextureSampler, PosLight.xy).r  + SHADOW_EPSILON2 < depth) ? 0.0f : 1.0f;
-		float s1 = (tex2D(gDynamicShadowMapTextureSampler, PosLight.xy + float2(dx, 0.0f)).r + SHADOW_EPSILON2 < depth) ? 0.0f : 1.0f;
-		float s2 = (tex2D(gDynamicShadowMapTextureSampler, PosLight.xy + float2(0.0f, dx)).r + SHADOW_EPSILON2 < depth) ? 0.0f : 1.0f;
-		float s3 = (tex2D(gDynamicShadowMapTextureSampler, PosLight.xy + float2(dx, dx)).r + SHADOW_EPSILON2 < depth) ? 0.0f : 1.0f;
-
-		Color = lerp(lerp( s0, s1, lerps.x), lerp( s2, s3, lerps.x), lerps.y);
-	}
-	
-	return lightAmount;
-}
-
-float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
-{
-	float lightAmount = 1.0;
-	
-	if (g_UseDynamicShadowMap)
-	{
-		float2 Depth=(float2)0;
-		float4 ShadowText=(float4)0;
-		float2 ShadowTexC = getProjectedTexCoords(Pos, Depth);
-		float3 VToLight=normalize(g_LightsPosition[0] - Pos.xyz);
-		
-		if (Tipo == SPOT)
+		if(Tipo == OMNI) 
 		{
-			ShadowText = tex2D( gDynamicShadowMapTextureSampler, ShadowTexC );
-			if (saturate(dot (VToLight, -g_LightsDirection[0])) > g_LightFallOff[0])
-			{
-				lightAmount = ((ShadowText + SHADOW_EPSILON )< Depth)? 0.0: 1.0;
-				lightAmount *= saturate(dot(VToLight, Nn));
-			}
+			float4 PLightDirection = 0.0f;
+			PLightDirection.xyz = g_LightsPosition[0].xyz - Pos.xyz;
+			float distance = length(PLightDirection.xyz);
+			PLightDirection.xyz = PLightDirection.xyz / distance;
+			float shadowMapDepth = texCUBE(gCubeTextureSampler, float4(-(PLightDirection.xyz), 0.0f)).x;
+			if (distance > shadowMapDepth)
+				lightAmount = 0.0f;
 		}
-		/*if(Tipo == OMNI) 
-		{
-			ShadowText = tex2D( gCubeTextureSampler, float3(ShadowTexC,0.0) );
-			lightAmount = ((ShadowText + SHADOW_EPSILON )< Depth)? 0.0: 1.0;
-			lightAmount *= saturate(dot(VToLight, Nn));
-		}
-		if(Tipo == DIRECTIONAL)
-		{
-			lightAmount = ((ShadowText + SHADOW_EPSILON )< Depth)? 0.0: 1.0;
-		}*/
 	}
 	
 	return lightAmount;
@@ -319,27 +269,6 @@ float calcShadowCoeffVSM(int Tipo, float4 Pos)
 				lightAmount = max(p, depth <= mean);
 			}
 		}
-		if (Tipo == OMNI)
-		{
-			float2 depth = (float2) 0;
-			float2 ShadowTexC = getProjectedTexCoords(Pos, depth);
-			//TODO: access texCUBE sampler incorrect!!
-			float2 moments = texCUBE( gCubeTextureSampler, float3(ShadowTexC,0.0) ).xy;
-			
-			float mean = moments.x;
-			float meanSqr = moments.y;	
-			float Ex_2 = mean * mean;
-			float E_x2 = meanSqr;
-			float variance = min(max(E_x2 - Ex_2, 0.0f) + SHADOW_EPSILON2, 1.0f);
-			float m_d = (depth - mean);
-			float p = variance / (variance + m_d * m_d);
-
-			// Reduce light bleeding
-			float min = 2.5f;
-			p = saturate(pow(p, min) + 0.2f);
-			
-			lightAmount = max(p, depth <= mean);	
-		}
 	}
 	return lightAmount;
 }
@@ -352,6 +281,7 @@ float4 calcDeferredLighting(float4 Pos, float3 Nn, float4 Albedo, float Specular
 	if (l_Attenuation > 0.0)
 	{
 		float lightAmount = calcShadowCoeffVSM(g_LightsTypes[0], Pos);
+		//float lightAmount = calcLightAmount(g_LightsTypes[0], Pos);
 		if (lightAmount!= 0.0)		
 		{
 			// Calculamos diffuseContrib, specular Contrib i aplicamos attenuation si el pixel no esta sombreado

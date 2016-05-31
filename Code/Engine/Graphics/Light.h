@@ -137,7 +137,7 @@ public:
 	void BlurShadowMapH(CRenderManager *RM);
 	void BlurShadowMapV(CRenderManager *RM);
 	void DeleteShadowMap(CEffect *Effect);
-	virtual void RenderShadowMap(CRenderManager *RM);
+	void RenderShadowMap(CRenderManager *RM);
 	const Mat44f & GetViewShadowMap() const;
 	const Mat44f & GetProjectionShadowMap() const;
 	void BeginRenderEffectManagerShadowMap(CEffect *Effect);

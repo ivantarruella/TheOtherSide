@@ -29,7 +29,6 @@ void VertShadowStaticMeshes(float4 Pos : POSITION, float3 Normal : NORMAL, out f
 
 void VertShadowAnimatedModels(CAL3D_HW_VERTEX_VS IN, out float4 oPos : POSITION, out float2 Depth : TEXCOORD1)
 {
-
 	float3 l_Position=CalcAnimtedPos(float4(IN.Position.xyz,1.0), IN.Indices, IN.Weight);
 	
 	oPos = mul(float4(l_Position, 1.0), g_WorldViewProj );
@@ -39,17 +38,30 @@ void VertShadowAnimatedModels(CAL3D_HW_VERTEX_VS IN, out float4 oPos : POSITION,
 	//
 	Depth.xy = oPos.zw;
 }
-
-//Pixel Shader
 /*
-void PixShadow( float2 Depth : TEXCOORD0, out float4 Color : COLOR )
+void VertShadowStaticMeshes2(float4 Pos : POSITION, out float4 oPos : POSITION, out float3 lightVect : TEXCOORD0, out float2 UV_out : TEXCOORD1, in float2 UV_in : TEXCOORD1 )
 {
 	//
-	// Depth is z / w
+	// Compute the projected coordinates
 	//
-	Color = Depth.x / Depth.y;
+	oPos = mul( Pos, g_WorldViewProj );
+
+	lightVect = g_LightsPosition[0] - oPos.xyz;
+	
+	UV_out = UV_in;
+}
+
+void VertShadowAnimatedModels2(CAL3D_HW_VERTEX_VS IN, out float4 oPos : POSITION, out float3 lightVect : TEXCOORD0)
+{
+	float3 l_Position=CalcAnimtedPos(float4(IN.Position.xyz,1.0), IN.Indices, IN.Weight);
+	
+	oPos = mul(float4(l_Position, 1.0), g_WorldViewProj );
+
+	lightVect = g_LightsPosition[0] - oPos.xyz;
 }
 */
+
+//Pixel Shader
 
 float4 PixShadow(float2 Depth : TEXCOORD1, float2 UV_in : TEXCOORD0) : COLOR
 {
@@ -67,7 +79,15 @@ float4 PixShadow(float2 Depth : TEXCOORD1, float2 UV_in : TEXCOORD0) : COLOR
 
     return float4(moment1, moment2, 0, 1.0f);
 }
-
+/*
+float4 PixShadow2(float3 lightVect : TEXCOORD0, float2 UV_in : TEXCOORD1) : COLOR0
+{
+	if (tex2D(gDiffuseSampler, UV_in).a < 0.5)
+		discard;
+	 
+	return length(lightVect) + 0.5f;
+}
+*/
 // Techniques
 
 technique ShadowVertexTechniqueStaticMeshes 

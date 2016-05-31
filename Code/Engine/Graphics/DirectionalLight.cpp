@@ -50,7 +50,12 @@ void CDirectionalLight::RenderDebug(CRenderManager *RM)
 void CDirectionalLight::SetShadowMap(CRenderManager *RM)
 {
 	CCamera *l_Camera=CORE->GetCamera();
-	if (l_Camera==NULL) return;
+	if (l_Camera==NULL) 
+		return;
+	
+	if (FAILED(RM->GetDevice()->SetRenderState(D3DRS_COLORWRITEENABLE, D3DCOLORWRITEENABLE_RED | D3DCOLORWRITEENABLE_GREEN)))
+		return;
+
 	CEffectManager *l_EffectManager=CORE->GetEffectManager();
 	
 	Mat44f l_ProjectionMatrix;
@@ -79,6 +84,10 @@ void CDirectionalLight::SetShadowMap(CRenderManager *RM)
 	l_EffectManager->ActivateCamera(m_ViewShadowMap, m_ProjectionShadowMap, m_Position);
 
 	CLight::RenderShadowMap(RM);
+
+	// restore color writes
+	RM->GetDevice()->SetRenderState(D3DRS_COLORWRITEENABLE, 
+		D3DCOLORWRITEENABLE_ALPHA | D3DCOLORWRITEENABLE_RED | D3DCOLORWRITEENABLE_GREEN | D3DCOLORWRITEENABLE_BLUE);
 }
 
 void CDirectionalLight::SetOrthoShadowMapSize(float w,float h)

@@ -28,18 +28,18 @@ public:
 
 	void RenderDebug(CRenderManager *RM);
 	void SetShadowMap(CRenderManager *RM);
-	void RenderShadowMap(CRenderManager *RM);
+	void RenderShadowMap(CRenderManager *RM, D3DCUBEMAP_FACES face);
 	bool isVisible(CRenderManager &RM, const CFrustum* Frustum);
 	float GetRadius();
 
 private:
-	void updateViewProjMat(CEffectManager *EM, float Aspect, D3DXVECTOR3 l_Eye, D3DXVECTOR3 l_LookAt, D3DXVECTOR3 l_Up);
-	void createCamForPositiveX(CEffectManager *EM, float Aspect);
-	void createCamForNegativeX(CEffectManager *EM, float Aspect);
-	void createCamForPositiveY(CEffectManager *EM, float Aspect);
-	void createCamForNegativeY(CEffectManager *EM, float Aspect);
-	void createCamForPositiveZ(CEffectManager *EM, float Aspect);
-	void createCamForNegativeZ(CEffectManager *EM, float Aspect);
+	void updateViewProjMat(CEffectManager *EM, D3DXVECTOR3 l_Eye, D3DXVECTOR3 l_LookAt, D3DXVECTOR3 l_Up);
+	void createCamForPositiveX(CEffectManager *EM);
+	void createCamForNegativeX(CEffectManager *EM);
+	void createCamForPositiveY(CEffectManager *EM);
+	void createCamForNegativeY(CEffectManager *EM);
+	void createCamForPositiveZ(CEffectManager *EM);
+	void createCamForNegativeZ(CEffectManager *EM);
 
 private:
 	LPDIRECT3DSURFACE9 cubeFace;

@@ -28,7 +28,7 @@ public:
 
 	void RenderDebug(CRenderManager *RM);
 	void SetShadowMap(CRenderManager *RM);
-	void RenderShadowMap(CRenderManager *RM, D3DCUBEMAP_FACES face);
+	void RenderShadowMap(CRenderManager *RM, LPDIRECT3DSURFACE9 inCubeFaceSurface, D3DCUBEMAP_FACES face);
 	bool isVisible(CRenderManager &RM, const CFrustum* Frustum);
 	float GetRadius();
 

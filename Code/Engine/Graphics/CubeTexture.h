@@ -44,7 +44,6 @@ protected:
 	LPDIRECT3DSURFACE9 cubeFaceNZ;
 
 	LPDIRECT3DSURFACE9 m_OldRenderTarget;
-	LPDIRECT3DSURFACE9 m_RenderTargetTexture;
 	LPDIRECT3DSURFACE9 m_OldDepthStencilRenderTarget;
 	LPDIRECT3DSURFACE9 m_DepthStencilRenderTargetTexture;
 	
@@ -63,7 +62,7 @@ public:
 	void Activate(size_t StageId);
 	void Deactivate(size_t StageId);
 	
-	bool SetAsRenderTarget(D3DCUBEMAP_FACES face, size_t IdStage=0, bool viewportStencil=false);
+	bool SetAsRenderTarget(D3DCUBEMAP_FACES face, LPDIRECT3DSURFACE9 inCubeFaceSurface, size_t IdStage=0, bool viewportStencil=false);
 	void UnsetAsRenderTarget(size_t IdStage=0);	
 	static CCubeTexture::TFormatType GetFormatTypeFromString(const std::string &FormatType);
 	bool Create(const std::string &Name, unsigned int Size, unsigned int MipMaps, TUsageType UsageType, TPoolType PoolType, TFormatType FormatType);

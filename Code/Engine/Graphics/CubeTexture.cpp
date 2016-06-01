@@ -34,41 +34,17 @@ void CCubeTexture::Release()
 	cubeFaceNX=NULL;
 }
 
-bool CCubeTexture::SetAsRenderTarget(D3DCUBEMAP_FACES face, size_t IdStage, bool viewportStencil)
+bool CCubeTexture::SetAsRenderTarget(D3DCUBEMAP_FACES face, LPDIRECT3DSURFACE9 inCubeFaceSurface, size_t IdStage, bool viewportStencil)
 {
 	LPDIRECT3DDEVICE9 l_Device= CORE->GetRenderManager()->GetDevice();
 	l_Device->GetRenderTarget((DWORD)IdStage, &m_OldRenderTarget);
 
-	if(FAILED( m_CubeTexture->GetCubeMapSurface(face, 0, &m_RenderTargetTexture )) )
+	if(FAILED( m_CubeTexture->GetCubeMapSurface(face, 0, &inCubeFaceSurface )) )
 		return false;
 
-	switch(face){
-	case D3DCUBEMAP_FACE_POSITIVE_X:
-		l_Device->SetRenderTarget( (DWORD)IdStage, cubeFacePX );
-		CHECKED_RELEASE(cubeFacePX);
-		break;
-	case D3DCUBEMAP_FACE_POSITIVE_Y:
-		l_Device->SetRenderTarget( (DWORD)IdStage, cubeFacePY );
-		CHECKED_RELEASE(cubeFacePY);
-		break;
-	case D3DCUBEMAP_FACE_POSITIVE_Z:
-		l_Device->SetRenderTarget( (DWORD)IdStage, cubeFacePZ );
-		CHECKED_RELEASE(cubeFacePZ);
-		break;
-	case D3DCUBEMAP_FACE_NEGATIVE_X:
-		l_Device->SetRenderTarget( (DWORD)IdStage, cubeFaceNX );
-		CHECKED_RELEASE(cubeFaceNX);
-		break;
-	case D3DCUBEMAP_FACE_NEGATIVE_Y:
-		l_Device->SetRenderTarget( (DWORD)IdStage, cubeFaceNY );
-		CHECKED_RELEASE(cubeFaceNY);
-		break;
-	case D3DCUBEMAP_FACE_NEGATIVE_Z:
-		l_Device->SetRenderTarget( (DWORD)IdStage, cubeFaceNZ );
-		CHECKED_RELEASE(cubeFaceNZ);
-		break;
-	};
+	l_Device->SetRenderTarget( (DWORD)IdStage, inCubeFaceSurface );
 
+	CHECKED_RELEASE(inCubeFaceSurface);
 
 	m_ViewportStencil=viewportStencil;
 	if(!m_ViewportStencil)

@@ -146,7 +146,7 @@ void CSpotLight::RenderDebug(CRenderManager *RM)
 
 void CSpotLight::SetShadowMap(CRenderManager *RM)
 {
-	if (FAILED(RM->GetDevice()->SetRenderState(D3DRS_COLORWRITEENABLE, D3DCOLORWRITEENABLE_RED /*| D3DCOLORWRITEENABLE_GREEN*/)))
+	if (FAILED(RM->GetDevice()->SetRenderState(D3DRS_COLORWRITEENABLE, D3DCOLORWRITEENABLE_RED | D3DCOLORWRITEENABLE_GREEN)))
 		return;
 	
 	CEffectManager *l_EffectManager=CORE->GetEffectManager();

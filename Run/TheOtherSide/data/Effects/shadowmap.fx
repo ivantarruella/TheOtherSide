@@ -13,7 +13,8 @@ date: YYMMDD
 
 //Vertex Shader
 
-void VertShadowStaticMeshes(float4 Pos : POSITION, float3 Normal : NORMAL, out float4 oPos : POSITION, out float2 Depth : TEXCOORD1, out float2 UV_out : TEXCOORD0, in float2 UV_in : TEXCOORD0 )
+void VertShadowStaticMeshes(float4 Pos : POSITION, float3 Normal : NORMAL, out float4 oPos : POSITION, out float3 lightVec :
+TEXCOORD2, out float2 Depth : TEXCOORD1, out float2 UV_out : TEXCOORD0, in float2 UV_in : TEXCOORD0 )
 {
 	//
 	// Compute the projected coordinates
@@ -24,10 +25,14 @@ void VertShadowStaticMeshes(float4 Pos : POSITION, float3 Normal : NORMAL, out f
 	//
 	Depth.xy = oPos.zw;
 	
+    float4 positionW = mul( Pos, g_WorldMatrix );
+	lightVec = g_LightsPosition[0] - positionW.xyz;	
+	
 	UV_out = UV_in;
 }
 
-void VertShadowAnimatedModels(CAL3D_HW_VERTEX_VS IN, out float4 oPos : POSITION, out float2 Depth : TEXCOORD1)
+void VertShadowAnimatedModels(CAL3D_HW_VERTEX_VS IN, out float4 oPos : POSITION, out float2 Depth : TEXCOORD1,
+out float3 lightVec : TEXCOORD2)
 {
 	float3 l_Position=CalcAnimtedPos(float4(IN.Position.xyz,1.0), IN.Indices, IN.Weight);
 	
@@ -37,57 +42,46 @@ void VertShadowAnimatedModels(CAL3D_HW_VERTEX_VS IN, out float4 oPos : POSITION,
 	// Store z and w in our spare texcoord
 	//
 	Depth.xy = oPos.zw;
-}
-/*
-void VertShadowStaticMeshes2(float4 Pos : POSITION, out float4 oPos : POSITION, out float3 lightVect : TEXCOORD0, out float2 UV_out : TEXCOORD1, in float2 UV_in : TEXCOORD1 )
-{
-	//
-	// Compute the projected coordinates
-	//
-	oPos = mul( Pos, g_WorldViewProj );
-
-	lightVect = g_LightsPosition[0] - oPos.xyz;
 	
-	UV_out = UV_in;
+    float4 positionW = mul( float4(IN.Position, 1.0), g_WorldMatrix );
+	lightVec = g_LightsPosition[0] - positionW.xyz;		
 }
-
-void VertShadowAnimatedModels2(CAL3D_HW_VERTEX_VS IN, out float4 oPos : POSITION, out float3 lightVect : TEXCOORD0)
-{
-	float3 l_Position=CalcAnimtedPos(float4(IN.Position.xyz,1.0), IN.Indices, IN.Weight);
-	
-	oPos = mul(float4(l_Position, 1.0), g_WorldViewProj );
-
-	lightVect = g_LightsPosition[0] - oPos.xyz;
-}
-*/
 
 //Pixel Shader
-
-float4 PixShadow(float2 Depth : TEXCOORD1, float2 UV_in : TEXCOORD0) : COLOR
+#if defined( VARIANCE_SHADOW_MAP_ENABLED )
+void PixShadow( float2 Depth : TEXCOORD1, float3 lightVec : TEXCOORD2, float2 UV_in : TEXCOORD0, out float4 Color : COLOR )
 {
+	// pixels with more then 50% alpha don't cast shadow
 	if (tex2D(gDiffuseSampler, UV_in).a < 0.5)
 		discard;
-	 
-	float d = Depth.x / Depth.y;
-	float moment1 = d;
-	float moment2 = d * d;
-
-	// Adjusting moments (this is sort of bias per pixel) using partial derivative
-	float dx = ddx(d);
-	float dy = ddy(d);
-	moment2 += 0.25 * (dx * dx + dy * dy) ;
-
-    return float4(moment1, moment2, 0, 1.0f);
+		
+	if (g_LightsTypes[0] == SPOT) {                           
+		float d = Depth.x / Depth.y;
+		float moment1 = d;
+		float moment2 = d * d;
+		float dx = ddx(d);
+		float dy = ddy(d);
+		moment2 += 0.25 * (dx * dx + dy * dy) ;
+		Color = float4(moment1, moment2, 0, 1.0f);	
+	}
+	
+	//if (g_LightsTypes[0] == OMNI) 
+	//	TODO!
 }
-/*
-float4 PixShadow2(float3 lightVect : TEXCOORD0, float2 UV_in : TEXCOORD1) : COLOR0
+#else	// NORMAL SHADOW MAP
+void PixShadow( float2 Depth : TEXCOORD1, float3 lightVec : TEXCOORD2, float2 UV_in : TEXCOORD0, out float4 Color : COLOR )
 {
+	// pixels with more then 50% alpha don't cast shadow
 	if (tex2D(gDiffuseSampler, UV_in).a < 0.5)
 		discard;
-	 
-	return length(lightVect) + 0.5f;
+		
+	if (g_LightsTypes[0] == SPOT)                            
+		Color = Depth.x / Depth.y;
+	if (g_LightsTypes[0] == OMNI) 
+		Color = length(lightVec) + zOffset;
 }
-*/
+#endif
+
 // Techniques
 
 technique ShadowVertexTechniqueStaticMeshes 

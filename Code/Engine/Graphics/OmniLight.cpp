@@ -30,45 +30,46 @@ void COmniLight::RenderDebug(CRenderManager *RM)
 	}
 }
 
-void COmniLight::updateViewProjMat(CEffectManager *EM, D3DXVECTOR3 Eye, D3DXVECTOR3 LookAt, D3DXVECTOR3 Up)
+void COmniLight::updateViewProjMat(CEffectManager *EM, D3DXVECTOR3 LookAt, D3DXVECTOR3 Up, D3DXVECTOR3 Eye)
 {
 	D3DXMATRIX l_ViewMatrix;
 	D3DXMATRIX l_ProjectionMatrix;
-	D3DXMatrixLookAtLH(&l_ViewMatrix,&Eye , &LookAt,&Up);	
-	D3DXMatrixPerspectiveFovLH( &l_ProjectionMatrix, D3DX_PI /2.0f , 1.0f, m_StartRangeAttenuation, m_EndRangeAttenuation); 
+	D3DXMatrixLookAtLH(&l_ViewMatrix, &Eye, &LookAt, &Up);	
+	D3DXMatrixPerspectiveFovLH(&l_ProjectionMatrix, D3DX_PI /2.0f, 1.0f, m_StartRangeAttenuation, m_EndRangeAttenuation); 
 	m_ViewShadowMap= Mat44f(l_ViewMatrix);
 	m_ProjectionShadowMap= Mat44f(l_ProjectionMatrix);
 	EM->ActivateCamera(m_ViewShadowMap, m_ProjectionShadowMap, m_Position);
+	m_LightFrustum.Update(m_ViewShadowMap.GetD3DXMatrix() * m_ProjectionShadowMap.GetD3DXMatrix());
 }
 
 void COmniLight::createCamForPositiveX(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_NegativeLookZ, m_PositiveLookX, m_PositiveLookY);
+	updateViewProjMat(EM, m_PositiveLookX, m_PositiveLookY, m_NegativeLookZ);
 }
 
 void COmniLight::createCamForNegativeX(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_PositiveLookZ, m_NegativeLookX, m_PositiveLookY);
+	updateViewProjMat(EM, m_NegativeLookX, m_PositiveLookY, m_PositiveLookZ);
 }
 
 void COmniLight::createCamForPositiveY(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_PositiveLookX, m_PositiveLookY, m_NegativeLookZ);
+	updateViewProjMat(EM, m_PositiveLookY, m_NegativeLookZ, m_PositiveLookX);
 }
 
 void COmniLight::createCamForNegativeY(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_NegativeLookX, m_NegativeLookY, m_NegativeLookZ);
+	updateViewProjMat(EM, m_NegativeLookY, m_NegativeLookZ, m_NegativeLookX);
 }
 
 void COmniLight::createCamForPositiveZ(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_PositiveLookX, m_PositiveLookZ, m_PositiveLookY);
+	updateViewProjMat(EM, m_PositiveLookZ, m_PositiveLookY, m_PositiveLookX);
 }
 
 void COmniLight::createCamForNegativeZ(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_NegativeLookX, m_NegativeLookZ, m_PositiveLookY);
+	updateViewProjMat(EM, m_NegativeLookZ, m_PositiveLookY, m_NegativeLookX);
 }
 
 void COmniLight::SetShadowMap(CRenderManager *RM)

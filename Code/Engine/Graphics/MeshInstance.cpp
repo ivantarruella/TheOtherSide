@@ -54,7 +54,7 @@ CInstanceMesh::~CInstanceMesh()
 {
 }
 
-void CInstanceMesh::DrawMesh(CRenderManager *RM, const CFrustum* Frustum, bool forwardRender)
+void CInstanceMesh::PositionMesh(CRenderManager *RM)
 {
 	Mat44f mat, mat2;
 	mat.SetIdentity();
@@ -71,8 +71,18 @@ void CInstanceMesh::DrawMesh(CRenderManager *RM, const CFrustum* Frustum, bool f
 	mat2.Scale(CObject3D::m_Scale.x, CObject3D::m_Scale.y, CObject3D::m_Scale.z);
 	
 	RM->SetTransform(mat * mat2);
+}
 
+void CInstanceMesh::DrawMesh(CRenderManager *RM, const CFrustum* Frustum, bool forwardRender)
+{
+	PositionMesh(RM);
 	m_StaticMesh->Render(RM, m_Position, Frustum, forwardRender);
+}
+
+void CInstanceMesh::DrawMeshShadow(CRenderManager *RM, const CFrustum* Frustum, CLight* Light)
+{
+	PositionMesh(RM);
+	m_StaticMesh->RenderShadow(RM, m_Position, Frustum, Light);
 }
 
 void CInstanceMesh::Render(CRenderManager *RM, const CFrustum* Frustum, bool forwardRender)
@@ -94,8 +104,9 @@ void CInstanceMesh::RenderShadow(CRenderManager *RM, CLight* Light)
 	float l_Radius=m_StaticMesh->getStaticMeshBSRadius();
 	
 	const CFrustum& l_Frustum = Light->GetLightFrustum();
-	if(RM->GetFrustum().SphereVisible(l_Center, l_Radius) && l_Frustum.SphereVisible(l_Center, l_Radius))
-		DrawMesh(RM, &l_Frustum, false);
+	bool visibleInLightFrustum = l_Frustum.SphereVisible(l_Center, l_Radius);
+	if(visibleInLightFrustum)
+		DrawMeshShadow(RM, &l_Frustum, Light);
 }
 
 

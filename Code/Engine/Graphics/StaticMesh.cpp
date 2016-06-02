@@ -273,7 +273,42 @@ void CStaticMesh::Render (CRenderManager *RM, const Vect3f& position, const CFru
 	}
 }
 
+void CStaticMesh::RenderShadow (CRenderManager *RM, const Vect3f& position, const CFrustum* Frustum, CLight* Light) const
+{
+	CEffectTechnique* l_EffectTechnique = NULL;
+	for(size_t i=0;i<m_RVs.size();++i)
+	{
+		for (size_t t=0;t<m_Textures[i].size();++t)
+		{
+			CTexture* l_Text = m_Textures[i][t];
+			if (l_Text!=NULL)
+			{
+				l_Text->Activate(t);
+			}
+		}
 
+		if (m_RenderableObjectTechniques.size())
+		{
+			// Render usando effects, si hay techniques cargadas
+			CRenderableObjectTechnique *l_Technique = m_RenderableObjectTechniques[i];
+			if (l_Technique != NULL)
+			{
+				l_EffectTechnique = l_Technique->GetEffectTechnique();
+				if ( l_EffectTechnique != NULL)
+				{
+					l_EffectTechnique->GetEffect()->SetLight(0, Light);
+					l_EffectTechnique->BeginRender();
+					m_RVs[i]->Render(RM, l_EffectTechnique);
+				}
+			}
+		}
+		else
+		{
+			// Render sin usar effects efecto
+			m_RVs[i]->Render(RM);		
+		}
+	}
+}
 
 void CStaticMesh::Release()
 {

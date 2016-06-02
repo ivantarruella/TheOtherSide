@@ -10,12 +10,12 @@
 	<!-- SHADOW MAP: --> 	
 	<set_pool_renderable_objects_technique	pool="generate_shadow_map_renderable_objects_technique"/>
 	<generate_shadow_maps />
-	
 	<!-- SOFT SHADOWS -->
 	<set_pool_renderable_objects_technique	pool="blurH_pool_renderable_object_technique_shadows"/>
 	<blurH_shadow_maps />
 	<set_pool_renderable_objects_technique	pool="blurV_pool_renderable_object_technique_shadows"/>
 	<blurV_shadow_maps />
+	
 	
 	<!-- MIRROR RENDERING -->
 	<set_pool_renderable_objects_technique	pool="mirror_pool_renderable_object_technique"/>

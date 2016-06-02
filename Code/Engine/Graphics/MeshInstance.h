@@ -25,7 +25,9 @@ public:
 	CStaticMesh* GetStaticMesh() { return m_StaticMesh; }
 
 private:
+	void PositionMesh(CRenderManager *RM);
 	void DrawMesh(CRenderManager *RM, const CFrustum* Frustum, bool forwardRender);
+	void DrawMeshShadow(CRenderManager *RM, const CFrustum* Frustum, CLight* Light);
 
 private:
 	CStaticMesh *m_StaticMesh;

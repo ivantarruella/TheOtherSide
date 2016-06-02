@@ -170,6 +170,7 @@ void CSpotLight::SetShadowMap(CRenderManager *RM)
 	m_ProjectionShadowMap= Mat44f(l_ProjectionMatrix);
 	
 	l_EffectManager->ActivateCamera(m_ViewShadowMap, m_ProjectionShadowMap, m_Position);
+	m_LightFrustum.Update(m_ViewShadowMap.GetD3DXMatrix() * m_ProjectionShadowMap.GetD3DXMatrix());
 
 	CLight::RenderShadowMap(RM);
 

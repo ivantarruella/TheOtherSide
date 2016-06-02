@@ -33,7 +33,7 @@ public:
 	float GetRadius();
 
 private:
-	void updateViewProjMat(CEffectManager *EM, D3DXVECTOR3 l_Eye, D3DXVECTOR3 l_LookAt, D3DXVECTOR3 l_Up);
+	void updateViewProjMat(CEffectManager *EM, D3DXVECTOR3 LookAt, D3DXVECTOR3 Up, D3DXVECTOR3 Eye);
 	void createCamForPositiveX(CEffectManager *EM);
 	void createCamForNegativeX(CEffectManager *EM);
 	void createCamForPositiveY(CEffectManager *EM);

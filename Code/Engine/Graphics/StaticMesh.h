@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "Math/Vector3.h"
+#include "Light.h"
 
 class CTexture;
 class CRenderableVertexs;
@@ -50,6 +51,7 @@ public:
 	bool Load (const std::string &FileName);
 	bool ReLoad ();
 	void Render (CRenderManager *RM, const Vect3f& position, const CFrustum* Frustum, bool forwardRender) const;
+	void RenderShadow (CRenderManager *RM, const Vect3f& position, const CFrustum* Frustum, CLight* Light) const;
 	
 	bool GetRenderableObjectTechnique();
 

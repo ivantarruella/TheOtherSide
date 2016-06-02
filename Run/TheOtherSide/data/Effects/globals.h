@@ -8,10 +8,15 @@
 #define PI_CONSTANT		3.1415926535
 #define MAXBONES		29
 
-#define SHADOW_EPSILON   0.0005f //0.000005f	
-#define SHADOW_EPSILON2  0.00005f //0.000005f	
+#define SHADOW_SM_EPSILON   0.005f 
+#define SHADOW_VSM_EPSILON  0.00005f 
 	
 #define SMAP_SIZE 1024
+
+#define zOffset 0.5f 
+
+// if following define is enabled remember to use shadow map format type RG32F textures, if not, use R32F (lights.xml)
+//#define VARIANCE_SHADOW_MAP_ENABLED		
 
 // GLOBAL SHADERS DATA
 float g_SpecularPower = 200.0;
@@ -268,12 +273,11 @@ sampler gShadowMapMaskTextureSampler : register( s8 ) = sampler_state
 
 samplerCUBE gCubeTextureSampler : register( s9 ) = sampler_state
 {
-	MipFilter = Linear;
-	MinFilter = Linear;
-	MagFilter = Linear;
+	MipFilter = NONE;
+	MinFilter = NONE;
+	MagFilter = NONE;
 	AddressU = Wrap;
 	AddressV = Wrap;
-	AddressW = Wrap;
 };
 
 sampler gS0LinearWrapSampler : register( s0 ) = sampler_state 

@@ -61,12 +61,8 @@ CAnimatedInstanceModel::~CAnimatedInstanceModel()
 	CHECKED_DELETE(m_PhysicElement);
 }
 
-void CAnimatedInstanceModel::DrawAnimatedModel(CRenderManager *RM, const CFrustum* Frustum, bool forwardRender)
+void CAnimatedInstanceModel::PositionAnimatedModel(CRenderManager *RM)
 {
-	CCamera* l_Cam = CORE->GetCamera();
-	if (l_Cam==NULL)
-		return;
-
 	Mat44f mat, mat1;
 	mat.SetIdentity();
 	mat1.SetIdentity();
@@ -76,14 +72,21 @@ void CAnimatedInstanceModel::DrawAnimatedModel(CRenderManager *RM, const CFrustu
 	mat.RotByAngleZ(CObject3D::m_fRoll);
 	mat.Translate(CObject3D::m_Position);
 	mat1.Scale(CObject3D::m_Scale.x, CObject3D::m_Scale.y, CObject3D::m_Scale.z);	
-	
-	RM->SetTransform(mat*mat1);
+}
+
+void CAnimatedInstanceModel::DrawAnimatedModel(CRenderManager *RM, const CFrustum* Frustum, bool forwardRender)
+{
+	CCamera* l_Cam = CORE->GetCamera();
+	if (l_Cam==NULL)
+		return;
 
 	Vect3f l_Center = m_AnimatedCoreModel->GetVtxCenter() + GetPosition();
     float l_Radius = m_AnimatedCoreModel->GetRadius();
 	float l_Dist = l_Cam->GetEye().Distance(GetPosition());
-	if(Frustum->SphereVisible(l_Center, l_Radius) && l_Dist<MAX_DIST_RENDER)
+	if(Frustum->SphereVisible(l_Center, l_Radius) && l_Dist<MAX_DIST_RENDER) {
+		PositionAnimatedModel(RM);
 		RenderModelByHardware(RM, Frustum, forwardRender);
+	}
 }
 
 void CAnimatedInstanceModel::DrawAnimatedModelShadow(CRenderManager *RM, const CFrustum* Frustum, bool forwardRender)
@@ -92,23 +95,16 @@ void CAnimatedInstanceModel::DrawAnimatedModelShadow(CRenderManager *RM, const C
 	if (l_Cam==NULL)
 		return;
 
-	Mat44f mat, mat1;
-	mat.SetIdentity();
-	mat1.SetIdentity();
-	
-	mat.RotByAngleY(CObject3D::m_fYaw);
-	mat.RotByAngleX(CObject3D::m_fPitch);
-	mat.RotByAngleZ(CObject3D::m_fRoll);
-	mat.Translate(CObject3D::m_Position);
-	mat1.Scale(CObject3D::m_Scale.x, CObject3D::m_Scale.y, CObject3D::m_Scale.z);	
-	
-	RM->SetTransform(mat*mat1);
-
 	Vect3f l_Center = m_AnimatedCoreModel->GetVtxCenter() + GetPosition();
     float l_Radius = m_AnimatedCoreModel->GetRadius();
 	float l_Dist = l_Cam->GetEye().Distance(GetPosition());
-	if(RM->GetFrustum().SphereVisible(l_Center, l_Radius) && Frustum->SphereVisible(l_Center, l_Radius) && l_Dist<MAX_DIST_RENDER)
+	//bool bInCamFrustum = RM->GetFrustum().SphereVisible(l_Center, l_Radius);
+	bool bInLightFrustum = Frustum->SphereVisible(l_Center, l_Radius);
+	bool nNear = l_Dist<MAX_DIST_RENDER;
+	if(/*bInCamFrustum &&*/ bInLightFrustum  && nNear) {
+		PositionAnimatedModel(RM);
 		RenderModelByHardware(RM, Frustum, forwardRender);
+	}
 }
 
 void CAnimatedInstanceModel::Render(CRenderManager *RM, const CFrustum* Frustum, bool forwardRender)

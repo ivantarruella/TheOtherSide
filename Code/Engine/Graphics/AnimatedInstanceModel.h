@@ -70,6 +70,7 @@ public:
 private:
 	//bool LoadVertexBuffer(CRenderManager *RM);		// RenderModelBySoftware()
 	void LoadTextures();
+	void PositionAnimatedModel(CRenderManager *RM);
 	void DrawAnimatedModel(CRenderManager *RM, const CFrustum* Frustum, bool forwardRender);
 	void DrawAnimatedModelShadow(CRenderManager *RM, const CFrustum* Frustum, bool forwardRender);
 };

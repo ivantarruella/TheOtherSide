@@ -3,4 +3,7 @@
 - shadows mirror reflection (involves forward rendering shadow calculation)
 - point light shadow cube maps
 - reposition enemies
+- add enemy nodes
 - monster bug: movement glitches.
+- sync particles with lighting on/off
+- phsics in some objects (chair...)

@@ -30,10 +30,11 @@ void COmniLight::RenderDebug(CRenderManager *RM)
 	}
 }
 
-void COmniLight::updateViewProjMat(CEffectManager *EM, D3DXVECTOR3 LookAt, D3DXVECTOR3 Up, D3DXVECTOR3 Eye)
+void COmniLight::updateViewProjMat(CEffectManager *EM, D3DXVECTOR3 LookAt, D3DXVECTOR3 Up)
 {
 	D3DXMATRIX l_ViewMatrix;
 	D3DXMATRIX l_ProjectionMatrix;
+	D3DXVECTOR3 Eye(m_Position.x, m_Position.y, m_Position.z);
 	D3DXMatrixLookAtLH(&l_ViewMatrix, &Eye, &LookAt, &Up);	
 	D3DXMatrixPerspectiveFovLH(&l_ProjectionMatrix, D3DX_PI /2.0f, 1.0f, m_StartRangeAttenuation, m_EndRangeAttenuation); 
 	m_ViewShadowMap= Mat44f(l_ViewMatrix);
@@ -44,32 +45,32 @@ void COmniLight::updateViewProjMat(CEffectManager *EM, D3DXVECTOR3 LookAt, D3DXV
 
 void COmniLight::createCamForPositiveX(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_PositiveLookX, m_PositiveLookY, m_NegativeLookZ);
+	updateViewProjMat(EM, m_PositiveLookX, m_PositiveLookY);
 }
 
 void COmniLight::createCamForNegativeX(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_NegativeLookX, m_PositiveLookY, m_PositiveLookZ);
+	updateViewProjMat(EM, m_NegativeLookX, m_PositiveLookY);
 }
 
 void COmniLight::createCamForPositiveY(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_PositiveLookY, m_NegativeLookZ, m_PositiveLookX);
+	updateViewProjMat(EM, m_PositiveLookY, m_NegativeLookZ);
 }
 
 void COmniLight::createCamForNegativeY(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_NegativeLookY, m_NegativeLookZ, m_NegativeLookX);
+	updateViewProjMat(EM, m_NegativeLookY, m_NegativeLookZ);
 }
 
 void COmniLight::createCamForPositiveZ(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_PositiveLookZ, m_PositiveLookY, m_PositiveLookX);
+	updateViewProjMat(EM, m_PositiveLookZ, m_PositiveLookY);
 }
 
 void COmniLight::createCamForNegativeZ(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_NegativeLookZ, m_PositiveLookY, m_NegativeLookX);
+	updateViewProjMat(EM, m_NegativeLookZ, m_PositiveLookY);
 }
 
 void COmniLight::SetShadowMap(CRenderManager *RM)
@@ -78,51 +79,53 @@ void COmniLight::SetShadowMap(CRenderManager *RM)
 		return;
 
 	LPDIRECT3DDEVICE9 l_Device= RM->GetDevice();
-	LPDIRECT3DSURFACE9 frameBuffer;
-	l_Device->GetRenderTarget(0, &frameBuffer);
+	//LPDIRECT3DSURFACE9 frameBuffer;
+	//l_Device->GetRenderTarget(0, &frameBuffer);
 	
 	CEffectManager *l_EM=CORE->GetEffectManager();
 
 	// render the scene depth to positive X side of the cube map
-	createCamForPositiveX(l_EM);
-	RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFacePX());
+	//createCamForPositiveX(l_EM);
+	//RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFacePX());
 
 	// render the scene depth to positive Y side of the cube map
 	createCamForPositiveY(l_EM);
-	RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFacePY());
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_Y, GetCubeShadowMap()->GetCubeFacePY());
 
 	// render the scene depth to positive Z side of the cube map
-	createCamForPositiveZ(l_EM);
-	RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFacePZ());
+	//createCamForPositiveZ(l_EM);
+	//RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFacePZ());
 
 	// render the scene depth to negative X side of the cube map
-	createCamForNegativeX(l_EM);
-	RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFaceNX());
+	//createCamForNegativeX(l_EM);
+	//RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFaceNX());
 
 	// render the scene depth to negative Y side of the cube map
-	createCamForNegativeY(l_EM);
-	RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFaceNY());
+	//createCamForNegativeY(l_EM);
+	//RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFaceNY());
 
 	// render the scene depth to negative Z side of the cube map
-	createCamForNegativeZ(l_EM);
-	RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFaceNZ());
+	//createCamForNegativeZ(l_EM);
+	//RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFaceNZ());
 
 	// restore frame buffer
-	l_Device->SetRenderTarget(0, frameBuffer);
+	//l_Device->SetRenderTarget(0, frameBuffer);
 
 	// restore color writes
 	RM->GetDevice()->SetRenderState(D3DRS_COLORWRITEENABLE, 
 		D3DCOLORWRITEENABLE_ALPHA | D3DCOLORWRITEENABLE_RED | D3DCOLORWRITEENABLE_GREEN | D3DCOLORWRITEENABLE_BLUE);
 }
 
-void COmniLight::RenderShadowMap(CRenderManager *RM, LPDIRECT3DSURFACE9 inCubeFaceSurface)
+void COmniLight::RenderShadowMap(CRenderManager *RM, D3DCUBEMAP_FACES face, LPDIRECT3DSURFACE9 inCubeFaceSurface)
 {
 	// Generate cube depth map texture	
 	LPDIRECT3DDEVICE9 l_Device= RM->GetDevice();
-	if(SUCCEEDED(l_Device->SetRenderTarget( (DWORD)0, inCubeFaceSurface ))) {
+	//if(SUCCEEDED(l_Device->SetRenderTarget( (DWORD)0, inCubeFaceSurface ))) {
+	if (m_CubeTexture->SetAsRenderTarget(face, inCubeFaceSurface)) {
 		l_Device->Clear(NULL, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0x00000000, 1.0f, NULL);
 		for(size_t i=0;i<m_DynamicShadowMapRenderableObjectsManagers.size();++i)
 			m_DynamicShadowMapRenderableObjectsManagers[i]->RenderShadow(RM, this);
+		m_CubeTexture->UnsetAsRenderTarget();
 	}
 }
 

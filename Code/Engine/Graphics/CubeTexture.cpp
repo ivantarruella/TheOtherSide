@@ -40,13 +40,8 @@ bool CCubeTexture::SetAsRenderTarget(D3DCUBEMAP_FACES face, LPDIRECT3DSURFACE9 i
 	LPDIRECT3DDEVICE9 l_Device= CORE->GetRenderManager()->GetDevice();
 	l_Device->GetRenderTarget((DWORD)IdStage, &m_OldRenderTarget);
 
-	//if(FAILED( m_CubeTexture->GetCubeMapSurface(face, 0, &inCubeFaceSurface )) )
-	//	return false;
-
 	l_Device->SetRenderTarget( (DWORD)IdStage, inCubeFaceSurface );
 
-	CHECKED_RELEASE(inCubeFaceSurface);
-	
 	m_ViewportStencil=viewportStencil;
 	if(!m_ViewportStencil)
 	{

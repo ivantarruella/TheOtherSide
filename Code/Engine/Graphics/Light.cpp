@@ -32,6 +32,7 @@ CLight::~CLight()
 	if (m_GenerateDynamicShadowMap)
 	{
 		CHECKED_DELETE(m_DynamicShadowMap);
+		CHECKED_DELETE(m_CubeTexture);
 	}
 	if (m_SoftShadow)
 	{

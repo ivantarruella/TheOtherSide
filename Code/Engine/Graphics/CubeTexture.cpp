@@ -18,8 +18,6 @@ void CCubeTexture::Deactivate(size_t StageId)
 
 void CCubeTexture::Release()
 {
-	CHECKED_RELEASE(m_CubeTexture);
-	m_CubeTexture=NULL;
 	CHECKED_RELEASE(cubeFacePX);
 	cubeFacePX=NULL;
 	CHECKED_RELEASE(cubeFacePY);
@@ -32,6 +30,9 @@ void CCubeTexture::Release()
 	cubeFaceNX=NULL;
 	CHECKED_RELEASE(cubeFaceNX);
 	cubeFaceNX=NULL;
+
+	CHECKED_RELEASE(m_CubeTexture);
+	m_CubeTexture=NULL;
 }
 
 bool CCubeTexture::SetAsRenderTarget(D3DCUBEMAP_FACES face, LPDIRECT3DSURFACE9 inCubeFaceSurface, size_t IdStage, bool viewportStencil)

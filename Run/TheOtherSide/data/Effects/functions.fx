@@ -272,24 +272,24 @@ float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
 				float4 ShadowText=(float4)0;
 				float2 ShadowTexC = getProjectedTexCoords(Pos, Depth);
 				ShadowText = tex2D( gDynamicShadowMapTextureSampler, ShadowTexC );
-				lightAmount = ((ShadowText + SHADOW_SM_EPSILON )< Depth)? 0.4f: 1.0f;
+				lightAmount = ((ShadowText + SHADOW_SM_EPSILON )< Depth)? 0.2f: 1.0f;
 				lightAmount *= saturate(dot(VToLight, Nn));
 			}
 		}
 		if(Tipo == OMNI) 
 		{
 			float4 PLightDirection = 0.0f;
-			PLightDirection.xyz = g_LightsPosition[0] - Pos.xyz;
+			PLightDirection.xyz = Pos.xyz - g_LightsPosition[0];
 			float distance = length(PLightDirection.xyz);
 			PLightDirection.xyz = PLightDirection.xyz / distance;
 
 			//sample depth from cubic shadow map                         		 
-			float shadowMapDepth = texCUBE(gCubeTextureSampler, float4(-(PLightDirection.xyz), 0.0f)).x;
+			float shadowMapDepth = texCUBE(gCubeTextureSampler, float4((PLightDirection.xyz), 0.0f)).x;
 			//depth comparison
 			if(distance > shadowMapDepth)    
 			{
 				//the pixel is shadowed, so return zero for diffuse and specular
-				lightAmount = 0.0;
+				lightAmount = 0.2f;
 			}
 		}
 	}

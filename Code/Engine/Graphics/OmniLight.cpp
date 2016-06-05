@@ -34,9 +34,11 @@ void COmniLight::updateViewProjMat(CEffectManager *EM, D3DXVECTOR3 LookAt, D3DXV
 {
 	D3DXMATRIX l_ViewMatrix;
 	D3DXMATRIX l_ProjectionMatrix;
+
 	D3DXVECTOR3 Eye(m_Position.x, m_Position.y, m_Position.z);
-	D3DXMatrixLookAtLH(&l_ViewMatrix, &Eye, &LookAt, &Up);	
-	D3DXMatrixPerspectiveFovLH(&l_ProjectionMatrix, D3DX_PI /2.0f, 1.0f, m_StartRangeAttenuation, m_EndRangeAttenuation); 
+	D3DXVECTOR3 lookAt(m_Position.x + LookAt.x, m_Position.y + LookAt.y, m_Position.z + LookAt.z);
+	D3DXMatrixLookAtLH(&l_ViewMatrix, &Eye, &lookAt, &Up);	
+	D3DXMatrixPerspectiveFovLH(&l_ProjectionMatrix, D3DX_PI /2.0f, 1.0f, 0.1f, m_EndRangeAttenuation); 
 	m_ViewShadowMap= Mat44f(l_ViewMatrix);
 	m_ProjectionShadowMap= Mat44f(l_ProjectionMatrix);
 	EM->ActivateCamera(m_ViewShadowMap, m_ProjectionShadowMap, m_Position);
@@ -60,7 +62,7 @@ void COmniLight::createCamForPositiveY(CEffectManager *EM)
 
 void COmniLight::createCamForNegativeY(CEffectManager *EM)
 {
-	updateViewProjMat(EM, m_NegativeLookY, m_NegativeLookZ);
+	updateViewProjMat(EM, m_NegativeLookY, m_PositiveLookZ);
 }
 
 void COmniLight::createCamForPositiveZ(CEffectManager *EM)
@@ -75,41 +77,35 @@ void COmniLight::createCamForNegativeZ(CEffectManager *EM)
 
 void COmniLight::SetShadowMap(CRenderManager *RM)
 {
-	if (FAILED(RM->GetDevice()->SetRenderState(D3DRS_COLORWRITEENABLE, D3DCOLORWRITEENABLE_RED)))
+	LPDIRECT3DDEVICE9 l_Device= RM->GetDevice();
+	if (FAILED(l_Device->SetRenderState(D3DRS_COLORWRITEENABLE, D3DCOLORWRITEENABLE_RED)))
 		return;
 
-	LPDIRECT3DDEVICE9 l_Device= RM->GetDevice();
-	//LPDIRECT3DSURFACE9 frameBuffer;
-	//l_Device->GetRenderTarget(0, &frameBuffer);
-	
 	CEffectManager *l_EM=CORE->GetEffectManager();
 
 	// render the scene depth to positive X side of the cube map
-	//createCamForPositiveX(l_EM);
-	//RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFacePX());
+	createCamForPositiveX(l_EM);
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_X, GetCubeShadowMap()->GetCubeFacePX());
 
 	// render the scene depth to positive Y side of the cube map
-	createCamForPositiveY(l_EM);
+	createCamForPositiveY(l_EM);		// OK
 	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_Y, GetCubeShadowMap()->GetCubeFacePY());
 
 	// render the scene depth to positive Z side of the cube map
-	//createCamForPositiveZ(l_EM);
-	//RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFacePZ());
+	createCamForPositiveZ(l_EM);		// OK
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_Z, GetCubeShadowMap()->GetCubeFacePZ());
 
 	// render the scene depth to negative X side of the cube map
-	//createCamForNegativeX(l_EM);
-	//RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFaceNX());
+	createCamForNegativeX(l_EM);
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_X, GetCubeShadowMap()->GetCubeFaceNX());
 
 	// render the scene depth to negative Y side of the cube map
-	//createCamForNegativeY(l_EM);
-	//RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFaceNY());
+	createCamForNegativeY(l_EM);
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_Y, GetCubeShadowMap()->GetCubeFaceNY());
 
 	// render the scene depth to negative Z side of the cube map
-	//createCamForNegativeZ(l_EM);
-	//RenderShadowMap(RM, GetCubeShadowMap()->GetCubeFaceNZ());
-
-	// restore frame buffer
-	//l_Device->SetRenderTarget(0, frameBuffer);
+	createCamForNegativeZ(l_EM);		// OK
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_Z, GetCubeShadowMap()->GetCubeFaceNZ());
 
 	// restore color writes
 	RM->GetDevice()->SetRenderState(D3DRS_COLORWRITEENABLE, 

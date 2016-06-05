@@ -26,7 +26,7 @@ TEXCOORD2, out float2 Depth : TEXCOORD1, out float2 UV_out : TEXCOORD0, in float
 	Depth.xy = oPos.zw;
 	
     float4 positionW = mul( Pos, g_WorldMatrix );
-	lightVec = g_LightsPosition[0] - positionW.xyz;	
+	lightVec = positionW.xyz - g_LightsPosition[0];	
 	
 	UV_out = UV_in;
 }
@@ -44,7 +44,7 @@ out float3 lightVec : TEXCOORD2)
 	Depth.xy = oPos.zw;
 	
     float4 positionW = mul( float4(IN.Position, 1.0), g_WorldMatrix );
-	lightVec = g_LightsPosition[0] - positionW.xyz;		
+	lightVec = positionW.xyz - g_LightsPosition[0];		
 }
 
 //Pixel Shader
@@ -78,7 +78,7 @@ void PixShadow( float2 Depth : TEXCOORD1, float3 lightVec : TEXCOORD2, float2 UV
 	if (g_LightsTypes[0] == SPOT)                            
 		Color = Depth.x / Depth.y;
 	if (g_LightsTypes[0] == OMNI) 
-		Color = length(lightVec) + zOffset;
+		Color = length(lightVec) + 0.07f;
 }
 #endif
 

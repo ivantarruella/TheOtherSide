@@ -52,9 +52,9 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_MR"/>
 	</light>
 -->
-	<light name="Light03_Omni_MR" type="omni" pos="21.8604 2.03955 4.05336" color="190.0 213.0 218.0" att_start_range="1.0" att_end_range="5.0" world="1"
+	<light name="Light03_Omni_MR" type="omni" pos="21.8604 2.03955 4.05336" color="150.0 173.0 178.0" att_start_range="1.0" att_end_range="5.0" world="1"
 	render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
-	shadow_map_width="512" shadow_map_height="512" soft_shadow="false">
+	shadow_map_width="1024" shadow_map_height="1024" soft_shadow="false">
 		<dynamic renderable_objects_manager="solid"/>
 		<dynamic renderable_objects_manager="solid_MR"/>
 		<dynamic renderable_objects_manager="alpha_blend_objects_MR"/>	

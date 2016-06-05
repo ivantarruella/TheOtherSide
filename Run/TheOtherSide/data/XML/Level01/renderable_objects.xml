@@ -18,7 +18,7 @@
 	
 	<mesh_instance name="SVigilancia_Mesa01_MR" core="SVigilancia_Mesa01_MR" layer="solid_MR" pos="25.603 1.07673 2.69878" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
 	<mesh_instance name="SInicio_Escritorio01" core="SInicio_Escritorio01" layer="solid_MR" pos="23.7422 1.02908 -1.69084" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
-	<mesh_instance name="SVigilancia_Fluerescente01" core="SVigilancia_Fluerescente01" layer="solid_MR" pos="21.9042 3.03742 4.30598" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="false" generate_physics="false" physics_type="triangle_mesh" />
+	<mesh_instance name="SVigilancia_Fluerescente01" core="SVigilancia_Fluerescente01" layer="solid_MR" pos="21.9042 3.03742 4.30598" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="false" physics_type="triangle_mesh" />
 	<mesh_instance name="SVigilancia_Fluerescente02" core="SVigilancia_Fluerescente02" layer="solid_MR" pos="25.629 3.04602 4.25493" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="false" generate_physics="false" physics_type="triangle_mesh" />
 	<mesh_instance name="SVigilancia_Fluerescente03" core="SVigilancia_Fluerescente03" layer="solid_MR" pos="25.978 3.03254 0.589921" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="false" generate_physics="false" physics_type="triangle_mesh" />
 	<mesh_instance name="SVigilancia_Fluerescente04" core="SVigilancia_Fluerescente04" layer="solid_MR" pos="21.9537 3.03254 0.589921" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="false" generate_physics="false" physics_type="triangle_mesh" />

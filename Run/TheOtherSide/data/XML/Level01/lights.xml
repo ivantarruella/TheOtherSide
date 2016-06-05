@@ -103,7 +103,7 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_MR"/>	
 	</light>
 	
-	<light name="Light06_Omni_MR" type="omni" pos="7.68615 2.0 0.598777" color="222.0 250.0 255.0" att_start_range="1" att_end_range="4.0" world="1"
+	<light name="Light06_Omni_MR" type="omni" pos="7.68615 2.0 0.598777" color="192.0 192.0 192.0" att_start_range="1" att_end_range="4.0" world="1"
 	render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	shadow_map_width="1024" shadow_map_height="1024" soft_shadow="false"		
 	>
@@ -112,7 +112,7 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_MR"/>	
 	</light>	
 	
-	<light name="Light04_Omni_MR" type="omni" pos="18.431 2.0 0.598777" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="5.0" world="1"
+	<light name="Light04_Omni_MR" type="omni" pos="18.431 2.0 0.598777" color="192.0 192.0 192.0" att_start_range="1.0" att_end_range="5.0" world="1"
 	render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	shadow_map_width="1024" shadow_map_height="1024" soft_shadow="false"	
 	>
@@ -164,7 +164,7 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	</light>
 	
-	<light name="Light02_Omni_ME" type="omni" pos="-21.8604 2.0 4.25336" color="214.0 222.0 202.0" att_start_range="0.5" att_end_range="5.0" 
+	<light name="Light02_Omni_ME" type="omni" pos="-21.8604 2.0 4.25336" color="121.0 137.0 119.0" att_start_range="0.5" att_end_range="5.0" 
 	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="1024" shadow_map_height="1024" soft_shadow="false"
 	 varible_attenuation="true" time="0.02" inc="0.5" offtime="3.0"
@@ -175,7 +175,7 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	</light>
 
-	<light name="Light03_Omni_ME" type="omni" pos="-7.98748 2.0 0.965848" color="214.0 222.0 202.0" att_start_range="1.0" att_end_range="4.5" 
+	<light name="Light03_Omni_ME" type="omni" pos="-7.98748 2.0 0.965848" color="121.0 137.0 119.0" att_start_range="1.0" att_end_range="4.5" 
 	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="1024" shadow_map_height="1024" soft_shadow="false"
 	 intermittent="true" tmin="0.5" tmax="1.0" 
@@ -186,7 +186,7 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	</light>
 	
-	<light name="Light04_Omni_ME" type="omni" pos="-7.78194 2.0 12.207" color="214.0 222.0 202.0" att_start_range="1.0" att_end_range="4.5" 
+	<light name="Light04_Omni_ME" type="omni" pos="-7.78194 2.0 12.207" color="121.0 137.0 119.0" att_start_range="1.0" att_end_range="4.5" 
  	world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="1024" shadow_map_height="1024" soft_shadow="false"
 	 varible_intensity="true" tmin="0.05" offtime="7.0"

@@ -30,8 +30,8 @@ end
 
 function level1_enemigos()
 	if enemies01_level1 == false then
-		local position_MR = Vect3f(7.68321,0.00,8.29533)
-		local position_ME = Vect3f(-7.68321,0.00,8.29533)
+		local position_MR = Vect3f(7.68321,0.00,4.29533)
+		local position_ME = Vect3f(-7.68321,0.00,4.29533)
 		_ENEMYM:create_enemy('Soldier001', position_MR, 'Monster001', position_ME)
 		
 		--local position_MR = Vect3f(19.7242,0.00, 28.6705)

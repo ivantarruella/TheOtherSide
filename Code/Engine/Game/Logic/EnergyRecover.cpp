@@ -68,8 +68,8 @@ CEnergyRecover::CEnergyRecover(CXMLTreeNode &atts)
 			std::string msg_error = "CEnergyRecover::CEnergyRecover->No se encuentra la luz " + l_LightName + " de la maquina de recarga de energia!";
 			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
 		}
-
-		m_Light->SetEndRangeAttenuation(m_Light->GetEndRangeAttenuation()*7.5f);
+		else
+			m_Light->SetEndRangeAttenuation(m_Light->GetEndRangeAttenuation()*7.5f);
 	}
 }
 

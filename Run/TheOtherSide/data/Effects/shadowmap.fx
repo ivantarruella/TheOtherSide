@@ -43,7 +43,7 @@ out float3 lightVec : TEXCOORD2)
 	//
 	Depth.xy = oPos.zw;
 	
-    float4 positionW = mul( float4(IN.Position, 1.0), g_WorldMatrix );
+    float4 positionW = mul( float4(l_Position, 1.0), g_WorldMatrix );
 	lightVec = positionW.xyz - g_LightsPosition[0];		
 }
 

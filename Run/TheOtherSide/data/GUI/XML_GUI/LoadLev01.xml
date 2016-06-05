@@ -4,7 +4,6 @@
 		 OnUpdateWindows="_LOGICOBJECTSM:change_state_all(1, true)
 						  _LOGICOBJECTSM:set_mirror_active('Trigger_SVigilado_Espejo_MR', true)
 						  _EFFECTM:set_mirror_dark_coef(0.8)	
-						  level1_enemigos()
 						  _GUI:active_windows('Game.xml')"
 		>
 		 

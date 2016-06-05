@@ -289,7 +289,7 @@ float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
 			if(distance > shadowMapDepth)    
 			{
 				//the pixel is shadowed, so return zero for diffuse and specular
-				lightAmount = 0.2f;
+				lightAmount = 0.0f;
 			}
 		}
 	}

@@ -38,7 +38,7 @@ void COmniLight::updateViewProjMat(CEffectManager *EM, D3DXVECTOR3 LookAt, D3DXV
 	D3DXVECTOR3 Eye(m_Position.x, m_Position.y, m_Position.z);
 	D3DXVECTOR3 lookAt(m_Position.x + LookAt.x, m_Position.y + LookAt.y, m_Position.z + LookAt.z);
 	D3DXMatrixLookAtLH(&l_ViewMatrix, &Eye, &lookAt, &Up);	
-	D3DXMatrixPerspectiveFovLH(&l_ProjectionMatrix, D3DX_PI /2.0f, 1.0f, 0.1f, m_EndRangeAttenuation); 
+	D3DXMatrixPerspectiveFovLH(&l_ProjectionMatrix, D3DX_PI /2.0f, 1.0f, 0.01f, m_EndRangeAttenuation); 
 	m_ViewShadowMap= Mat44f(l_ViewMatrix);
 	m_ProjectionShadowMap= Mat44f(l_ProjectionMatrix);
 	EM->ActivateCamera(m_ViewShadowMap, m_ProjectionShadowMap, m_Position);
@@ -88,11 +88,11 @@ void COmniLight::SetShadowMap(CRenderManager *RM)
 	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_X, GetCubeShadowMap()->GetCubeFacePX());
 
 	// render the scene depth to positive Y side of the cube map
-	createCamForPositiveY(l_EM);		// OK
+	createCamForPositiveY(l_EM);		
 	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_Y, GetCubeShadowMap()->GetCubeFacePY());
 
 	// render the scene depth to positive Z side of the cube map
-	createCamForPositiveZ(l_EM);		// OK
+	createCamForPositiveZ(l_EM);		
 	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_Z, GetCubeShadowMap()->GetCubeFacePZ());
 
 	// render the scene depth to negative X side of the cube map
@@ -104,7 +104,7 @@ void COmniLight::SetShadowMap(CRenderManager *RM)
 	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_Y, GetCubeShadowMap()->GetCubeFaceNY());
 
 	// render the scene depth to negative Z side of the cube map
-	createCamForNegativeZ(l_EM);		// OK
+	createCamForNegativeZ(l_EM);		
 	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_Z, GetCubeShadowMap()->GetCubeFaceNZ());
 
 	// restore color writes

@@ -157,7 +157,7 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	</light>
 	
-	<light name="Light02_Omni_ME" type="omni" pos="-23.5 2.5 4.3" color="121.0 137.0 119.0" att_start_range="1.5" att_end_range="5.5" 
+	<light name="Light02_Omni_ME" type="omni" pos="-23.5 2.5 4.3" color="121.0 137.0 119.0" att_start_range="0.1" att_end_range="5.5" 
 	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="1024" shadow_map_height="1024" soft_shadow="false"
 	 >

@@ -272,7 +272,7 @@ float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
 				float4 ShadowText=(float4)0;
 				float2 ShadowTexC = getProjectedTexCoords(Pos, Depth);
 				ShadowText = tex2D( gDynamicShadowMapTextureSampler, ShadowTexC );
-				lightAmount = ((ShadowText + SHADOW_SM_EPSILON )< Depth)? 0.25f: 1.0f;
+				lightAmount = ((ShadowText + SHADOW_SM_EPSILON )< Depth)? 0.0f: 1.0f;
 				lightAmount *= saturate(dot(VToLight, Nn));
 			}
 		}
@@ -289,7 +289,7 @@ float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
 			if(distance > shadowMapDepth)    
 			{
 				//the pixel is shadowed, so return zero for diffuse and specular
-				lightAmount = 0.25f;
+				lightAmount = 0.0f;
 			}
 		}
 	}

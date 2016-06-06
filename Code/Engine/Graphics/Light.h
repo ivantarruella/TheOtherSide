@@ -24,6 +24,7 @@ class CEffect;
 class CInstanceMesh;
 class CTexture;
 class CFrustum;
+class CParticleEmitter;
 
 class CLight : public CObject3D, public CNamed
 {
@@ -81,6 +82,10 @@ protected:
 	bool m_bMoving;
 	int  m_iMaxMoves;
 	float m_fIncMove;
+
+	// Particulas
+	std::string m_EmitterName;
+	CParticleEmitter* m_Emitter;
 
 public:
 	CLight();

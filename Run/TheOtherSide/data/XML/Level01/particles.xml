@@ -7,7 +7,7 @@
 			<size time="0.0" mins="0.01" maxs="0.1"/>
 			<aceleration time="0.0" acel1="0 1 0" acel2="0 2 0"/>
 		</PointEmitter>
-		<PointEmitter type="point" name="core2" gravity="true" life_time_min="1.0" life_time_max="2.0" emit_rate_min="0.0"
+		<PointEmitter type="point" name="core2" gravity="true" life_time_min="1.0" life_time_max="2.0" emit_rate_min="10.0"
 			emit_rate_max="100.0" tex="data\Textures\Electric sparkle8.png" angle="0.0">
 			<color time="0.0" color1="1 1 1 1" color2="1 1 1 1"/>
 			<direction time="0.0" dir1="1 1.5 0" dir2="-1 -1.5 -1"/>
@@ -66,7 +66,7 @@
 		<Instance name="fog00_MR" id="fog3" pos1="24.0216 2.408065 3.8" pos2="24.0216 2.408065 3.8" size="1.5" world="1"/>
 		<Instance name="fog00_ME" id="fog3" pos1="-24.0216 2.658065 3.8" pos2="-24.0216 2.658065 3.8" size="1.5" world="2"/>
 		
-		<Instance name="fluorescente01" id="core2" pos1="25.5709 2.95591 -3.41141" pos2="25.5709 2.95591 -3.41141" world="1" size="0.5"/>
+		<Instance name="fluorescente01" id="core2" pos1="25.5709 2.95591 -3.45" pos2="25.5709 2.95591 -3.45" world="1" size="0.5"/>
 		
 		<Instance name="healer01_MR" id="healer" pos1="11.954 0.200 21.677" pos2="11.954 0.200 21.677" size="0.7" world="1"/>
 	</Instances>

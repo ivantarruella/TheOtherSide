@@ -7,6 +7,7 @@
 #include "RenderManager.h"
 #include "EffectManager.h"
 #include "TextureManager.h"
+#include "ParticleManager.h"
 #include "MeshInstance.h"
 #include "Renderer\DrawQuadRendererCommand.h"
 #include "Renderer\RenderableObjectsTechniqueManager.h"
@@ -22,7 +23,7 @@ CLight::CLight()
 	m_ShadowMaskTexture(NULL), m_DynamicShadowMapBlurH(NULL), m_DynamicShadowMapBlurV(NULL), m_CubeTexture(NULL), m_GenerateDynamicShadowMap(false), m_GenerateStaticShadowMap(false), 
 	m_MustUpdateStaticShadowMap(false), m_SoftShadow(false),m_BlurShadowMap(false), m_bIsIntermittent(false), m_fTime(0.f), m_fChange(0.f), m_fTMin(0.f), m_fTMax(0.f), m_World(0), m_fVarTime(0.f), 
 	m_fOffTime(0.0f), m_bVarIntensity(false), m_bVarAtt(false), m_fAttTime(0.0f), m_fCurrAttTime(0.0f), m_fAttInc(0.0f), m_bRisingAtt(true), m_LightMesh(NULL), m_TextureON(NULL), 
-	m_TextureOFF(NULL), m_bActive(true), m_bMoving(false), m_iMaxMoves(0), m_fIncMove(0.0f)
+	m_TextureOFF(NULL), m_bActive(true), m_bMoving(false), m_iMaxMoves(0), m_fIncMove(0.0f), m_EmitterName(""), m_Emitter(NULL)
 {
 }
 
@@ -116,6 +117,14 @@ void CLight::Update(float ElapsedTime)
 
 			m_LightMesh->GetStaticMesh()->SetTexture(bOnOff ? m_TextureON : m_TextureOFF, 1);
 		}
+	}
+
+	// Cambia el estado del emisor de particulas asociado a la luz
+	if (m_EmitterName != "") {
+		if (m_Emitter==NULL)
+			m_Emitter = (CParticleEmitter*) CORE->GetParticleManager()->GetParticleEmitter(m_EmitterName);	
+		if (m_Emitter!=NULL)
+			m_Emitter->SetEnabled(m_Visible);
 	}
 }
 
@@ -563,6 +572,9 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode, const std::string& shadows_
 		m_TextureON = CORE->GetTextureManager()->GetTexture(l_TextureON);
 	if (l_TextureOFF != "")
 		m_TextureOFF = CORE->GetTextureManager()->GetTexture(l_TextureOFF);
+
+	//Particulas
+	m_EmitterName = LightsNode.GetPszProperty("particles","");
 
 	// Propiedades de movimiento
 	m_bMoving = LightsNode.GetBoolProperty("moving", false);

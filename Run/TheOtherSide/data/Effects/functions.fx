@@ -385,14 +385,18 @@ float4 calcLighting(float3 Pos, float3 Nn, float4 Albedo, float SpecularFactor)
 	// Calculamos diffuseContrib, specular Contrib i attenuation para todas las luces
 	for(int i=0; i<MAX_LIGHTS; i++)
 	{
-		l_Attenuation = getAttenuation(g_LightsTypes[i], g_LightsPosition[i], Pos, g_LightStartAtten[i], g_LightEndAtten[i], g_LightsDirection[i], g_LightAngle[i], g_LightFallOff[i]);
-		if (l_Attenuation > 0.0)
-		{
-			l_Diffuse = getDiffuseContrib(g_LightsTypes[i], g_LightsPosition[i], Nn, Pos, g_LightsDirection[i], g_LightFallOff[i], g_LightsColor[i]);  
-			l_DiffuseContrib = l_DiffuseContrib + (g_LightsColor[i] * l_Diffuse * Albedo.rgb * l_Attenuation) ;	
-			l_Specular = SpecularFactor*getSpecularContrib(g_LightsTypes[i], g_LightsPosition[i], g_CameraPosition, Nn, Pos, g_LightsDirection[i], g_LightFallOff[i], g_SpecularPower, g_LightsColor[i]);  
-			l_SpecularContrib = l_SpecularContrib + (l_Specular * l_Attenuation);	
-		}
+		//float lightAmount = calcLightAmount(g_LightsTypes[0], float4(Pos,1.0), Nn);
+		//if (lightAmount!= 0.0) 
+		//{		
+			l_Attenuation = getAttenuation(g_LightsTypes[i], g_LightsPosition[i], Pos, g_LightStartAtten[i], g_LightEndAtten[i], g_LightsDirection[i], g_LightAngle[i], g_LightFallOff[i]);
+			if (l_Attenuation > 0.0)
+			{
+				l_Diffuse = getDiffuseContrib(g_LightsTypes[i], g_LightsPosition[i], Nn, Pos, g_LightsDirection[i], g_LightFallOff[i], g_LightsColor[i]);  
+				l_DiffuseContrib = l_DiffuseContrib + (g_LightsColor[i] * l_Diffuse * Albedo.rgb * l_Attenuation) ;	
+				l_Specular = SpecularFactor*getSpecularContrib(g_LightsTypes[i], g_LightsPosition[i], g_CameraPosition, Nn, Pos, g_LightsDirection[i], g_LightFallOff[i], g_SpecularPower, g_LightsColor[i]);  
+				l_SpecularContrib = l_SpecularContrib + (l_Specular * l_Attenuation);	
+			}
+		//}
 	}
 
 	return float4 ( l_DiffuseContrib + l_SpecularContrib, Albedo.a);

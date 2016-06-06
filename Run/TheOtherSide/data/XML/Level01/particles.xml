@@ -63,8 +63,8 @@
 		<Instance name="fog03_MR" id="fog2" pos1="7.634 0.200 8.043" pos2="7.634 0.200 8.043" size="1.5" world="1"/>
 		<Instance name="fog04_MR" id="fog2" pos1="7.634 0.200 5.043" pos2="7.634 0.200 5.043" size="1.5" world="1"/>
 
-		<Instance name="fog00_MR" id="fog3" pos1="24.0216 2.408065 -3.808411" pos2="24.0216 2.408065 -3.808411" size="1.0" world="1"/>
-		<Instance name="fog00_ME" id="fog3" pos1="-24.0216 2.658065 -3.808411" pos2="-24.0216 2.658065 -3.808411" size="1.0" world="2"/>
+		<Instance name="fog00_MR" id="fog3" pos1="24.0216 2.408065 3.8" pos2="24.0216 2.408065 3.8" size="1.5" world="1"/>
+		<Instance name="fog00_ME" id="fog3" pos1="-24.0216 2.658065 3.8" pos2="-24.0216 2.658065 3.8" size="1.5" world="2"/>
 		
 		<Instance name="fluorescente01" id="core2" pos1="25.5709 2.95591 -3.41141" pos2="25.5709 2.95591 -3.41141" world="1" size="0.5"/>
 		

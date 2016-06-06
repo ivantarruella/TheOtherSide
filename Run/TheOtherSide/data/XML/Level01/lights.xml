@@ -76,7 +76,7 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_MR"/>
 	</light>	
 
-	<light name="Light12_Omni_MR" type="omni" pos="19.655 2.25 26.5" color="192.0 192.0 192.0" att_start_range="1.0" att_end_range="4.5" 
+	<light name="Light12_Omni_MR" type="omni" pos="19.655 2.0 26.5" color="192.0 192.0 192.0" att_start_range="1.0" att_end_range="4.5" 
 	 world="1" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="1024" shadow_map_height="1024" soft_shadow="false"
 	 varible_attenuation="true" time="0.02" inc="0.5" offtime="3.0"

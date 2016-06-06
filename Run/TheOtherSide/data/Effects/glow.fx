@@ -16,7 +16,7 @@ float BloomIntensity = 1.5;			// Controls the Intensity of the bloom texture
 float OriginalIntensity = 1.0;		// Controls the Intensity of the original scene texture
 float BloomSaturation = 0.5	;		// Saturation amount on bloom
 float OriginalSaturation = 0.9;		// Saturation amount on original texture
-float GlowIntensity = 1.0;			// Controls the Intensity of the glow texture
+float GlowIntensity = 1.2;			// Controls the Intensity of the glow texture
 
 // Pixel shaders
 /*

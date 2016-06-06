@@ -95,15 +95,15 @@ void CAnimatedInstanceModel::DrawAnimatedModelShadow(CRenderManager *RM, const C
 	if (l_Cam==NULL)
 		return;
 
-	Vect3f l_Center = m_AnimatedCoreModel->GetVtxCenter() + GetPosition();
-    float l_Radius = m_AnimatedCoreModel->GetRadius();
 	float l_Dist = l_Cam->GetEye().Distance(GetPosition());
-	//bool bInCamFrustum = RM->GetFrustum().SphereVisible(l_Center, l_Radius);
-	bool bInLightFrustum = Frustum->SphereVisible(l_Center, l_Radius);
-	bool nNear = l_Dist<MAX_DIST_RENDER;
-	if(/*bInCamFrustum &&*/ bInLightFrustum  && nNear) {
-		PositionAnimatedModel(RM);
-		RenderModelByHardware(RM, Frustum, forwardRender);
+	if (l_Dist<MAX_DIST_RENDER) {
+		Vect3f l_Center = m_AnimatedCoreModel->GetVtxCenter() + GetPosition();
+		float l_Radius = m_AnimatedCoreModel->GetRadius();
+		bool bInLightFrustum = Frustum->SphereVisible(l_Center, l_Radius);
+		if(bInLightFrustum) {
+			PositionAnimatedModel(RM);
+			RenderModelByHardware(RM, Frustum, forwardRender);
+		}
 	}
 }
 

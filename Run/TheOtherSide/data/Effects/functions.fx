@@ -272,7 +272,7 @@ float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
 				float4 ShadowText=(float4)0;
 				float2 ShadowTexC = getProjectedTexCoords(Pos, Depth);
 				ShadowText = tex2D( gDynamicShadowMapTextureSampler, ShadowTexC );
-				lightAmount = ((ShadowText + SHADOW_SM_EPSILON )< Depth)? 0.2f: 1.0f;
+				lightAmount = ((ShadowText + SHADOW_SM_EPSILON )< Depth)? 0.25f: 1.0f;
 				lightAmount *= saturate(dot(VToLight, Nn));
 			}
 		}
@@ -289,7 +289,7 @@ float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
 			if(distance > shadowMapDepth)    
 			{
 				//the pixel is shadowed, so return zero for diffuse and specular
-				lightAmount = 0.0f;
+				lightAmount = 0.25f;
 			}
 		}
 	}
@@ -302,11 +302,11 @@ float4 calcDeferredLighting(float4 Pos, float3 Nn, float4 Albedo, float Specular
 {
 	float3 l_Light = (float3)0;
 	
-	float l_Attenuation = getAttenuation(g_LightsTypes[0], g_LightsPosition[0], Pos.xyz, g_LightStartAtten[0], g_LightEndAtten[0], g_LightsDirection[0], g_LightAngle[0], g_LightFallOff[0]);
-	if (l_Attenuation > 0.0)
-	{
-		float lightAmount = calcLightAmount(g_LightsTypes[0], Pos, Nn);
-		if (lightAmount!= 0.0)		
+	float lightAmount = calcLightAmount(g_LightsTypes[0], Pos, Nn);
+	if (lightAmount!= 0.0)		
+	{	
+		float l_Attenuation = getAttenuation(g_LightsTypes[0], g_LightsPosition[0], Pos.xyz, g_LightStartAtten[0], g_LightEndAtten[0], g_LightsDirection[0], g_LightAngle[0], g_LightFallOff[0]);
+		if (l_Attenuation > 0.0)
 		{
 			// Calculamos diffuseContrib, specular Contrib i aplicamos attenuation si el pixel no esta sombreado
 			float3 l_DiffuseContrib =  Albedo.rgb * g_LightsColor[0] * getDiffuseContrib(g_LightsTypes[0], g_LightsPosition[0], Nn, Pos.xyz, g_LightsDirection[0], g_LightFallOff[0], g_LightsColor[0]) ;	

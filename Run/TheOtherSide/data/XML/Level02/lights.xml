@@ -1,6 +1,13 @@
 <Lights>
+	<!-- Common -->
+	<light name="AMBIENT_MR" type="omni" pos="-5.47186 0.0 -54.5536" color="132.0 152.0 151.0" att_start_range="1.0" att_end_range="2.0">
+	</light> 
+
+	<light name="AMBIENT_ME" type="omni" pos="-10.4677 0.0 -54.5395" color="15.0 7.0 7.0" att_start_range="1.0" att_end_range="2.0">
+	</light> 
+	
 	<light name="LINTERNA" type="spot" pos="-1.19651 0.0 -13.5044" color="224.0 200.0 162.0" att_start_range="1.0" att_end_range="8.0" dir="-0.0264862 0.0 -0.999649"
-	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="RG32F"
+	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"
 	 angle="10.0" fall_off="45.0">
 		<dynamic renderable_objects_manager="solid_ME"/>
@@ -8,19 +15,238 @@
 	</light> 
 
 	<light name="LASER" type="spot" pos="7.36404 2.58032 -13.5044" color="65.0 255.0 19.0" att_start_range="7.0" att_end_range="8.0" dir="0.00513604 0.00172818 -0.999985" 
-	 world="2" render_shadows="false" generate_shadow_map="true" shadow_map_format_type="RG32F"
+	 world="2" render_shadows="false" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"
  	 angle="30.0" fall_off="40.0">
 		<dynamic renderable_objects_manager="solid_ME"/>
 		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	 </light>
 
-	<light name="AMBIENT_MR" type="omni" pos="-5.47186 0.0 -54.5536" color="132.0 152.0 151.0" att_start_range="1.0" att_end_range="2.0">
+	<!-- REAL WORLD -->
+	<light name="llum_sol" type="spot" pos="16.2895 30.5467 -17.032" color="255.0 255.0 255.0" att_start_range="30.0" att_end_range="1000.0" dir="0.111022 -0.900534 0.420371"
+	 world="1" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
+	 shadow_map_width="2048" shadow_map_height="2048" soft_shadow="false"
+	 angle="10.0" fall_off="45.0">
+		<dynamic renderable_objects_manager="solid"/>
+		<dynamic renderable_objects_manager="solid_MR"/>
+		<dynamic renderable_objects_manager="alpha_blend_objects_MR"/>	 
+	</light>
+	
+	<light name="Omni_SControl01" type="omni" pos="41.0192 2.25 -9.79728" color="192.0 192.0 192.0" 
+	 att_start_range="0.5" att_end_range="5.0" 
+	 world="1" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
+	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"
+	 >
+		<dynamic renderable_objects_manager="solid"/>
+		<dynamic renderable_objects_manager="solid_MR"/>
+		<dynamic renderable_objects_manager="alpha_blend_objects_MR"/>
 	</light> 
 
-	<light name="AMBIENT_ME" type="omni" pos="-10.4677 0.0 -54.5395" color="15.0 7.0 7.0" att_start_range="1.0" att_end_range="2.0">
+	<light name="P_omni_MR002" type="omni" pos="46.9853 2.25 -16.0739" color="192.0 192.0 192.0" att_start_range="0.5" att_end_range="4.0" 
+	 world="1" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
+	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	  
+	 intermittent="true" tmin="0.1" tmax="1.5" light_mesh="Ascensor_Fluerescente01_MR" layer="solid_MR" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds"
+	 >
+		<dynamic renderable_objects_manager="solid"/>
+		<dynamic renderable_objects_manager="solid_MR"/>
+	</light> 
+	
+	<light name="Omni_hall1_01" type="omni" pos="40.2028 1.71362 -2.16948" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.0" world="1">
 	</light> 
 
+	<light name="Omni_hall1_00" type="omni" pos="40.157 1.49487 3.68955" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.0" world="1">
+	</light> 
+
+	<light name="Omni_hall1_aplique" type="omni" pos="24.6186 1.27735 10.0327" color="233.0 255.0 254.0" att_start_range="0.0" att_end_range="2.0" world="1" intermittent="true" tmin="0.2" tmax="0.9">
+	</light> 
+
+	<light name="Omni_hall1_03" type="omni" pos="20.1727 1.56933 -14.6633" color="255.0 253.0 211.0" att_start_range="0.0" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="Omni_hall1_006" type="omni" pos="40.157 1.49487 9.14488" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.0" world="1">
+	</light> 
+
+	<light name="Omni_hall1_007" type="omni" pos="31.2989 1.5971 9.42359" color="255.0 253.0 186.0" att_start_range="0.0" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="P_omni_MR" type="omni" pos="35.7227 2.43265 -15.1866" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1" varible_intensity="true" tmin="0.05">
+	</light> 
+
+	<light name="P_omni_MR003" type="omni" pos="46.957 2.43265 -8.28603" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="P_omni_MR004" type="omni" pos="46.957 2.43265 -2.14472" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1" varible_intensity="true" tmin="0.1">
+	</light> 
+
+	<light name="Omni_hall1_008" type="omni" pos="25.7216 1.43713 -12.1673" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="Omni_hall1_aplique001" type="omni" pos="27.6636 1.62988 -25.4179" color="233.0 255.0 254.0" att_start_range="0.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="Omni_hall1_aplique002" type="omni" pos="24.4325 1.6001 -19.6217" color="233.0 255.0 254.0" att_start_range="0.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="P_omni_MR005" type="omni" pos="16.3028 5.43172 19.1434" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="P_omni_MR006" type="omni" pos="30.7819 5.43172 19.1724" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1" varible_intensity="true" tmin="0.09">
+	</light> 
+
+	<light name="P_omni_MR007" type="omni" pos="12.2287 5.43172 14.5985" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="P_omni_MR008" type="omni" pos="35.2552 5.43172 14.613" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="P_omni_MR009" type="omni" pos="26.8259 5.43172 14.6198" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="P_omni_MR010" type="omni" pos="16.3028 5.43172 25.5017" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1" varible_intensity="true" tmin="0.09">
+	</light> 
+
+	<light name="Omni_SControl002" type="omni" pos="25.5086 5.05776 23.1425" color="196.0 240.0 199.0" att_start_range="4.0" att_end_range="5.0" world="1">
+	</light> 
+
+	<light name="Omni_SControl003" type="omni" pos="21.0436 5.05494 24.7288" color="196.0 234.0 194.0" att_start_range="0.0" att_end_range="3.0" world="1" intermittent="true" tmin="0.5" tmax="1.0" light_mesh="SVigilado_Fluerescente19_MR" layer="solid_MR" texture_on="data\Meshes\D_BlancoVerdosoBase.dds" texture_off="data\Meshes\D_BlancoVerdosoBaseAlfaBlanco.dds">
+	</light> 
+
+	<light name="Omni_hall1_aplique003" type="omni" pos="12.0874 1.76086 9.03138" color="233.0 255.0 254.0" att_start_range="0.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="Omni_hall1_009" type="omni" pos="19.1801 1.41394 9.49653" color="254.0 255.0 211.0" att_start_range="0.0" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="Omni_hall2_011" type="omni" pos="24.9212 4.57759 10.0237" color="231.0 228.0 191.0" att_start_range="0.0" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="Omni_hall2_012" type="omni" pos="32.4763 4.57759 10.1474" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="Omni_hall2_013" type="omni" pos="38.3096 4.57759 6.26641" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="Omni_hall2_015" type="omni" pos="27.8453 4.57759 -19.9103" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="Omni_hall1_aplique004" type="omni" pos="27.6636 5.10706 -25.4179" color="233.0 255.0 254.0" att_start_range="0.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="Omni_hall3" type="omni" pos="38.3317 7.73551 4.31955" color="211.0 255.0 251.0" att_start_range="0.5" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="Omni_hall3_002" type="omni" pos="41.1487 7.73551 -3.07268" color="225.0 219.0 182.0" att_start_range="0.5" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="Omni_hall1_aplique005" type="omni" pos="38.407 8.25369 -4.50539" color="211.0 238.0 237.0" att_start_range="0.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="Omni_hall1_010" type="omni" pos="33.5828 1.5971 4.28354" color="255.0 253.0 186.0" att_start_range="0.0" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="Omni_hall1_aplique007" type="omni" pos="37.5344 1.80334 -1.35932" color="197.0 243.0 255.0" att_start_range="0.5" att_end_range="1.5" world="1">
+	</light> 
+
+	<light name="Omni_hall1_aplique008" type="omni" pos="37.5344 1.80334 -4.23658" color="197.0 243.0 255.0" att_start_range="0.5" att_end_range="1.5" world="1">
+	</light> 
+
+	<light name="P_omni_MR012" type="omni" pos="34.9434 2.43265 -8.12848" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1" varible_intensity="true" tmin="0.05">
+	</light> 
+
+	<light name="Omni_hall2_016" type="omni" pos="40.7765 4.57759 -1.62287" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="Omni_hall2_017" type="omni" pos="21.807 4.57759 -19.848" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="Omni_hall2_018" type="omni" pos="17.4041 4.57759 10.0237" color="231.0 228.0 191.0" att_start_range="0.0" att_end_range="2.5" world="1">
+	</light> 
+	
+	<light name="Light_Omni_Vida01_MR" type="omni" pos="24.184 1.47463 -26.1636" color="8.0 217.0 255.0" att_start_range="0.5" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="Light_Omni_Vida02_MR" type="omni" pos="24.184 4.65917 -26.1636" color="8.0 217.0 255.0" att_start_range="0.5" att_end_range="2.5" world="1">
+	</light> 
+
+	<light name="Light_Omni_Vida03_MR" type="omni" pos="35.1464 1.11597 11.4051" color="8.0 217.0 255.0" att_start_range="0.5" att_end_range="2.5" world="1">
+	</light> 
+	
+	<light name="Light_Omni_Arma01_MR" type="omni" pos="23.5732 1.51831 -24.0903" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
+	</light> 
+
+	<light name="Light_Omni_Arma02_MR" type="omni" pos="23.5732 4.61992 -24.0903" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
+	</light> 
+
+	<light name="Light_Omni_Arma03_MR" type="omni" pos="48.2934 1.51831 -4.99323" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
+	</light> 
+
+	<light name="Light_Omni_Arma04_MR" type="omni" pos="30.9073 4.65915 26.2171" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
+	</light> 
+
+	<light name="Light_Omni_Arma05_MR" type="omni" pos="8.4582 4.65915 14.6519" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
+	</light> 
+	
+	<light name="Light_Omni_Arma04_ME" type="omni" pos="-30.8187 4.65915 26.1668" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
+	</light> 
+	
+	<light name="Omni_boto_pis2_MR" type="omni" pos="24.4477 4.22524 26.8995" color="217.0 40.0 40.0" att_start_range="0.1" att_end_range="0.3" world="1" intermittent="true" tmin="0.5" tmax="0.5">
+	</light> 
+
+	<light name="Omni_SControl005_2" type="omni" pos="21.0436 5.05494 21.4007" color="196.0 234.0 194.0" att_start_range="0.0" att_end_range="3.0" world="1">
+	</light> 
+
+	<light name="Omni_Lasers_MR_Level2" type="omni" pos="20.8528 4.55457 14.5763" color="217.0 40.0 40.0" att_start_range="0.5" att_end_range="2.3" world="1">
+	</light> 
+
+	<light name="Light_PC_Hall" type="omni" pos="37.4333 1.00943 -4.03297" color="8.0 217.0 255.0" att_start_range="0.1" att_end_range="0.4" world="1">
+	</light> 
+
+	<light name="Light_PC_SalaControl" type="omni" pos="44.1372 1.32846 -8.42751" color="8.0 217.0 255.0" att_start_range="0.1" att_end_range="0.4" world="1">
+	</light> 
+	
+	<light name="Omni_maq_comida01_MR" type="omni" pos="32.9981 1.29246 10.1156" color="255.0 248.0 248.0" att_start_range="1.0" att_end_range="2.0" world="1">
+	</light> 
+
+	<light name="Omni_maq_comida02_MR" type="omni" pos="31.2658 1.29246 10.1156" color="255.0 248.0 248.0" att_start_range="1.0" att_end_range="2.0" world="1">
+	</light> 
+
+	<light name="Omni_maq_comida01_MR01" type="omni" pos="42.4816 7.47919 5.32028" color="255.0 248.0 248.0" att_start_range="1.0" att_end_range="2.0" world="1">
+	</light> 
+
+	<light name="Omni_maq_comida01_MR02" type="omni" pos="42.5296 7.4672 3.75292" color="255.0 248.0 248.0" att_start_range="1.0" att_end_range="2.0" world="1">
+	</light> 
+
+	<!-- MIRROR WORLD -->
+
+	<light name="llum_lluna" type="spot" pos="-38.522 30.7944 -0.753885" color="64.0 39.0 39.0" att_start_range="30.0" att_end_range="500.0" dir="0.552602 -0.961698 -0.0287221"
+	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
+	 shadow_map_width="2048" shadow_map_height="2048" soft_shadow="false"
+	 angle="25.0" fall_off="40.0">
+		<dynamic renderable_objects_manager="solid"/>
+		<dynamic renderable_objects_manager="solid_ME"/>
+		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>	 
+	</light> 
+	
+	<light name="Omni pasillo ME_attenuation" type="omni" pos="-41.0192 2.25 -9.79728" color="121.0 137.0 119.0" att_start_range="2.0" att_end_range="4.5" 
+	 world="2" intermittent="true" tmin="0.1" tmax="1.5" light_mesh="Scontrol_Fluerescente21_ME" layer="solid_ME" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds" 
+	 render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
+	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"
+	 >
+		<dynamic renderable_objects_manager="solid"/>
+		<dynamic renderable_objects_manager="solid_ME"/>
+		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
+	</light> 
+
+	<light name="P_omni_ME002" type="omni" pos="-46.9853 2.25 -16.0739" color="121.0 137.0 119.0" att_start_range="2.0" att_end_range="4.0" 
+	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
+	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	 
+	 intermittent="true" tmin="0.1" tmax="1.5"
+	 light_mesh="Ascensor_Fluerescente01_ME" layer="solid_ME" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds"
+	 >
+		<dynamic renderable_objects_manager="solid"/>
+		<dynamic renderable_objects_manager="solid_ME"/>
+	</light>
+	
 	<light name="Omni_llumverda01" type="omni" pos="-37.5253 2.52169 -8.05804" color="37.0 164.0 37.0" att_start_range="0.3" att_end_range="0.5" world="2">
 	</light> 
 
@@ -153,128 +379,7 @@
 	<light name="ApliqueOmni ME_attenuation002" type="omni" pos="-39.6735 8.98434 -4.16958" color="198.0 235.0 222.0" att_start_range="0.5" att_end_range="3.0" world="2" varible_intensity="true" tmin="0.7" light_mesh="aplique011_ME" layer="solid_ME" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds">
 	</light> 
 
-
-	<light name="Omni_hall1_01" type="omni" pos="40.2028 1.71362 -2.16948" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.0" world="1">
-	</light> 
-
-	<light name="Omni_hall1_00" type="omni" pos="40.157 1.49487 3.68955" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.0" world="1">
-	</light> 
-
-	<light name="Omni_hall1_aplique" type="omni" pos="24.6186 1.27735 10.0327" color="233.0 255.0 254.0" att_start_range="0.0" att_end_range="2.0" world="1" intermittent="true" tmin="0.2" tmax="0.9">
-	</light> 
-
-	<light name="Omni_hall1_03" type="omni" pos="20.1727 1.56933 -14.6633" color="255.0 253.0 211.0" att_start_range="0.0" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="Omni_hall1_006" type="omni" pos="40.157 1.49487 9.14488" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.0" world="1">
-	</light> 
-
-	<light name="Omni_hall1_007" type="omni" pos="31.2989 1.5971 9.42359" color="255.0 253.0 186.0" att_start_range="0.0" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="P_omni_MR" type="omni" pos="35.7227 2.43265 -15.1866" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1" varible_intensity="true" tmin="0.05">
-	</light> 
-
-	<light name="P_omni_MR003" type="omni" pos="46.957 2.43265 -8.28603" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1">
-	</light> 
-
-	<light name="P_omni_MR004" type="omni" pos="46.957 2.43265 -2.14472" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1" varible_intensity="true" tmin="0.1">
-	</light> 
-
-	<light name="Omni_hall1_008" type="omni" pos="25.7216 1.43713 -12.1673" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="Omni_hall1_aplique001" type="omni" pos="27.6636 1.62988 -25.4179" color="233.0 255.0 254.0" att_start_range="0.0" att_end_range="3.0" world="1">
-	</light> 
-
-	<light name="Omni_hall1_aplique002" type="omni" pos="24.4325 1.6001 -19.6217" color="233.0 255.0 254.0" att_start_range="0.0" att_end_range="3.0" world="1">
-	</light> 
-
-	<light name="P_omni_MR005" type="omni" pos="16.3028 5.43172 19.1434" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1">
-	</light> 
-
-	<light name="P_omni_MR006" type="omni" pos="30.7819 5.43172 19.1724" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1" varible_intensity="true" tmin="0.09">
-	</light> 
-
-	<light name="P_omni_MR007" type="omni" pos="12.2287 5.43172 14.5985" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1">
-	</light> 
-
-	<light name="P_omni_MR008" type="omni" pos="35.2552 5.43172 14.613" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1">
-	</light> 
-
-	<light name="P_omni_MR009" type="omni" pos="26.8259 5.43172 14.6198" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1">
-	</light> 
-
-	<light name="P_omni_MR010" type="omni" pos="16.3028 5.43172 25.5017" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1" varible_intensity="true" tmin="0.09">
-	</light> 
-
-	<light name="Omni_SControl002" type="omni" pos="25.5086 5.05776 23.1425" color="196.0 240.0 199.0" att_start_range="4.0" att_end_range="5.0" world="1">
-	</light> 
-
-	<light name="Omni_SControl003" type="omni" pos="21.0436 5.05494 24.7288" color="196.0 234.0 194.0" att_start_range="0.0" att_end_range="3.0" world="1" intermittent="true" tmin="0.5" tmax="1.0" light_mesh="SVigilado_Fluerescente19_MR" layer="solid_MR" texture_on="data\Meshes\D_BlancoVerdosoBase.dds" texture_off="data\Meshes\D_BlancoVerdosoBaseAlfaBlanco.dds">
-	</light> 
-
-	<light name="Omni_hall1_aplique003" type="omni" pos="12.0874 1.76086 9.03138" color="233.0 255.0 254.0" att_start_range="0.0" att_end_range="3.0" world="1">
-	</light> 
-
-	<light name="Omni_hall1_009" type="omni" pos="19.1801 1.41394 9.49653" color="254.0 255.0 211.0" att_start_range="0.0" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="Omni_hall2_011" type="omni" pos="24.9212 4.57759 10.0237" color="231.0 228.0 191.0" att_start_range="0.0" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="Omni_hall2_012" type="omni" pos="32.4763 4.57759 10.1474" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="Omni_hall2_013" type="omni" pos="38.3096 4.57759 6.26641" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="3.0" world="1">
-	</light> 
-
-	<light name="Omni_hall2_015" type="omni" pos="27.8453 4.57759 -19.9103" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="Omni_hall1_aplique004" type="omni" pos="27.6636 5.10706 -25.4179" color="233.0 255.0 254.0" att_start_range="0.0" att_end_range="3.0" world="1">
-	</light> 
-
-	<light name="Omni_hall3" type="omni" pos="38.3317 7.73551 4.31955" color="211.0 255.0 251.0" att_start_range="0.5" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="Omni_hall3_002" type="omni" pos="41.1487 7.73551 -3.07268" color="225.0 219.0 182.0" att_start_range="0.5" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="Omni_hall1_aplique005" type="omni" pos="38.407 8.25369 -4.50539" color="211.0 238.0 237.0" att_start_range="0.0" att_end_range="3.0" world="1">
-	</light> 
-
-	<light name="Omni_hall1_010" type="omni" pos="33.5828 1.5971 4.28354" color="255.0 253.0 186.0" att_start_range="0.0" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="Omni_hall1_aplique007" type="omni" pos="37.5344 1.80334 -1.35932" color="197.0 243.0 255.0" att_start_range="0.5" att_end_range="1.5" world="1">
-	</light> 
-
-	<light name="Omni_hall1_aplique008" type="omni" pos="37.5344 1.80334 -4.23658" color="197.0 243.0 255.0" att_start_range="0.5" att_end_range="1.5" world="1">
-	</light> 
-
-	<light name="P_omni_MR012" type="omni" pos="34.9434 2.43265 -8.12848" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1" varible_intensity="true" tmin="0.05">
-	</light> 
-
-	<light name="Omni_hall2_016" type="omni" pos="40.7765 4.57759 -1.62287" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="3.0" world="1">
-	</light> 
-
-	<light name="Omni_hall2_017" type="omni" pos="21.807 4.57759 -19.848" color="211.0 255.0 251.0" att_start_range="0.0" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="Omni_hall2_018" type="omni" pos="17.4041 4.57759 10.0237" color="231.0 228.0 191.0" att_start_range="0.0" att_end_range="2.5" world="1">
-	</light> 
-
 	<light name="Omni_Espejo01_ME_Level02" type="omni" pos="-34.9367 2.03544 -7.97699" color="205.0 233.0 203.0" att_start_range="1.5" att_end_range="2.5" world="2" intermittent="true" tmin="0.1" tmax="0.5" light_mesh="Pasillos_Fluerescente03_ME" layer="solid_ME" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds">
-	</light> 
-
-	<light name="Light_Omni_Vida01_MR" type="omni" pos="24.184 1.47463 -26.1636" color="8.0 217.0 255.0" att_start_range="0.5" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="Light_Omni_Vida02_MR" type="omni" pos="24.184 4.65917 -26.1636" color="8.0 217.0 255.0" att_start_range="0.5" att_end_range="2.5" world="1">
-	</light> 
-
-	<light name="Light_Omni_Vida03_MR" type="omni" pos="35.1464 1.11597 11.4051" color="8.0 217.0 255.0" att_start_range="0.5" att_end_range="2.5" world="1">
 	</light> 
 
 	<light name="Light_Omni_Vida01_ME" type="omni" pos="-24.2719 1.47463 -26.214" color="8.0 217.0 255.0" att_start_range="0.5" att_end_range="2.5" world="2">
@@ -286,21 +391,6 @@
 	<light name="Light_Omni_Vida03_ME" type="omni" pos="-31.6251 1.50677 11.3548" color="8.0 217.0 255.0" att_start_range="0.5" att_end_range="2.5" world="2">
 	</light> 
 
-	<light name="Light_Omni_Arma01_MR" type="omni" pos="23.5732 1.51831 -24.0903" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
-	</light> 
-
-	<light name="Light_Omni_Arma02_MR" type="omni" pos="23.5732 4.61992 -24.0903" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
-	</light> 
-
-	<light name="Light_Omni_Arma03_MR" type="omni" pos="48.2934 1.51831 -4.99323" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
-	</light> 
-
-	<light name="Light_Omni_Arma04_MR" type="omni" pos="30.9073 4.65915 26.2171" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
-	</light> 
-
-	<light name="Light_Omni_Arma05_MR" type="omni" pos="8.4582 4.65915 14.6519" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
-	</light> 
-
 	<light name="Light_Omni_Arma01_ME" type="omni" pos="-23.5479 1.51831 -24.1639" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="2">
 	</light> 
 
@@ -308,9 +398,6 @@
 	</light> 
 
 	<light name="Light_Omni_Arma03_ME" type="omni" pos="-48.2789 1.51831 -5.02031" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="2">
-	</light> 
-
-	<light name="Light_Omni_Arma04_ME" type="omni" pos="-30.8187 4.65915 26.1668" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
 	</light> 
 
 	<light name="Light_Omni_Arma05_ME" type="omni" pos="-8.53024 4.65915 14.6099" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="2">
@@ -418,22 +505,7 @@
 	<light name="Omni_vermella_pasillo_ME035" type="omni" pos="-32.1215 0.344166 23.5992" color="217.0 40.0 40.0" att_start_range="0.2" att_end_range="0.7" world="2">
 	</light> 
 
-	<light name="Omni_boto_pis2_MR" type="omni" pos="24.4477 4.22524 26.8995" color="217.0 40.0 40.0" att_start_range="0.1" att_end_range="0.3" world="1" intermittent="true" tmin="0.5" tmax="0.5">
-	</light> 
-
-	<light name="Omni_SControl005_2" type="omni" pos="21.0436 5.05494 21.4007" color="196.0 234.0 194.0" att_start_range="0.0" att_end_range="3.0" world="1">
-	</light> 
-
 	<light name="Omni_Lasers_ME_Level01" type="omni" pos="-21.0182 4.79602 14.526" color="217.0 40.0 40.0" att_start_range="0.5" att_end_range="2.3" world="2">
-	</light> 
-
-	<light name="Omni_Lasers_MR_Level2" type="omni" pos="20.8528 4.55457 14.5763" color="217.0 40.0 40.0" att_start_range="0.5" att_end_range="2.3" world="1">
-	</light> 
-
-	<light name="Light_PC_Hall" type="omni" pos="37.4333 1.00943 -4.03297" color="8.0 217.0 255.0" att_start_range="0.1" att_end_range="0.4" world="1">
-	</light> 
-
-	<light name="Light_PC_SalaControl" type="omni" pos="44.1372 1.32846 -8.42751" color="8.0 217.0 255.0" att_start_range="0.1" att_end_range="0.4" world="1">
 	</light> 
 
 	<light name="Omni_maq_comida01_ME" type="omni" pos="-35.3272 1.29246 10.0519" color="255.0 248.0 248.0" att_start_range="1.0" att_end_range="2.0" world="2">
@@ -442,80 +514,10 @@
 	<light name="Omni_maq_comida02_ME" type="omni" pos="-33.7326 1.29246 10.0694" color="255.0 248.0 248.0" att_start_range="1.0" att_end_range="2.0" world="2">
 	</light> 
 
-	<light name="Omni_maq_comida01_MR" type="omni" pos="32.9981 1.29246 10.1156" color="255.0 248.0 248.0" att_start_range="1.0" att_end_range="2.0" world="1">
-	</light> 
-
-	<light name="Omni_maq_comida02_MR" type="omni" pos="31.2658 1.29246 10.1156" color="255.0 248.0 248.0" att_start_range="1.0" att_end_range="2.0" world="1">
-	</light> 
-
-	<light name="Omni_maq_comida01_MR01" type="omni" pos="42.4816 7.47919 5.32028" color="255.0 248.0 248.0" att_start_range="1.0" att_end_range="2.0" world="1">
-	</light> 
-
-	<light name="Omni_maq_comida01_MR02" type="omni" pos="42.5296 7.4672 3.75292" color="255.0 248.0 248.0" att_start_range="1.0" att_end_range="2.0" world="1">
-	</light> 
-
 	<light name="Omni_maq_comida01_ME01" type="omni" pos="-42.4394 7.47919 5.32028" color="255.0 248.0 248.0" att_start_range="1.0" att_end_range="2.0" world="2">
 	</light> 
 
 	<light name="Omni_maq_comida01_ME02" type="omni" pos="-42.4394 7.47919 3.73126" color="255.0 248.0 248.0" att_start_range="1.0" att_end_range="2.0" world="2">
 	</light> 
 
-	<light name="Omni pasillo ME_attenuation" type="spot" pos="-40.8692 5.32994 -9.79728" color="255.0 255.0 255.0" att_start_range="3.0" att_end_range="10.0" dir="-0.00220507 -0.999998 0.0"
-	 world="2" intermittent="true" tmin="0.1" tmax="1.5" light_mesh="Scontrol_Fluerescente21_ME" layer="solid_ME" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds" 
-	 render_shadows="true" generate_shadow_map="true" shadow_map_format_type="RG32F"
-	 shadow_map_width="512" shadow_map_height="512" soft_shadow="true"
-	 angle="60.0" fall_off="100.0">
-		<dynamic renderable_objects_manager="solid"/>
-		<dynamic renderable_objects_manager="solid_ME"/>
-		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
-	</light> 
-
-	<light name="Omni_SControl01" type="spot" pos="41.0192 5.32994 -9.79728" color="255.0 255.0 255.0" att_start_range="3.0" att_end_range="10.0" dir="-0.00220507 -0.999998 0.0"
-	 world="1" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="RG32F"
-	 shadow_map_width="512" shadow_map_height="512" soft_shadow="true"
-	 angle="30.0" fall_off="100.0">
-		<dynamic renderable_objects_manager="solid"/>
-		<dynamic renderable_objects_manager="solid_MR"/>
-		<dynamic renderable_objects_manager="alpha_blend_objects_MR"/>
-	</light> 
-
-	<light name="llum_sol" type="spot" pos="16.2895 30.5467 -17.032" color="255.0 255.0 255.0" att_start_range="30.0" att_end_range="1000.0" dir="0.111022 -0.900534 0.420371"
-	 world="1" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="RG32F"
-	 shadow_map_width="2048" shadow_map_height="2048" soft_shadow="false"
-	 angle="10.0" fall_off="45.0">
-		<dynamic renderable_objects_manager="solid"/>
-		<dynamic renderable_objects_manager="solid_MR"/>
-		<dynamic renderable_objects_manager="alpha_blend_objects_MR"/>	 
-	</light> 
-
-	<light name="llum_lluna" type="spot" pos="-38.522 30.7944 -0.753885" color="64.0 39.0 39.0" att_start_range="30.0" att_end_range="500.0" dir="0.552602 -0.961698 -0.0287221"
-	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="RG32F"
-	 shadow_map_width="2048" shadow_map_height="2048" soft_shadow="false"
-	 angle="25.0" fall_off="40.0">
-		<dynamic renderable_objects_manager="solid"/>
-		<dynamic renderable_objects_manager="solid_ME"/>
-		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>	 
-	</light> 	
-
-	<!--<light name="P_omni_MR002" type="omni" pos="46.4485 2.43265 -15.2235" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1" intermittent="true" tmin="0.3" tmax="0.4" light_mesh="Pasillos_Fluerescente020_MR" layer="solid_MR" texture_on="data\Meshes\D_BlancoVerdosoBase.dds" texture_off="data\Meshes\D_BlancoVerdosoBaseAlfaBlanco.dds">
-	</light> -->
-
-	<light name="P_omni_MR002" type="spot" pos="46.9853 2.3985 -19.0739" color="255.0 255.0 255.0" att_start_range="2.0" att_end_range="9.0" dir="0.0 -0.272339 0.962201"
-	 world="1" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="RG32F"
-	 shadow_map_width="512" shadow_map_height="512" soft_shadow="true"	  
-	 intermittent="true" tmin="0.1" tmax="1.5" light_mesh="Ascensor_Fluerescente01_MR" layer="solid_MR" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds"
-	 angle="45.0" fall_off="95.0">
-		<dynamic renderable_objects_manager="solid"/>
-		<dynamic renderable_objects_manager="solid_MR"/>
-	</light> 
-
-	<light name="P_omni_ME002" type="spot" pos="-46.9853 2.0985 -19.0739" color="255.0 255.0 255.0" att_start_range="3.0" att_end_range="12.0" dir="0.0 -0.2072339 0.962201"
-	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="RG32F"
-	 shadow_map_width="512" shadow_map_height="512" soft_shadow="true"	 
-	 intermittent="true" tmin="0.1" tmax="1.5"
-	 light_mesh="Ascensor_Fluerescente01_ME" layer="solid_ME" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds"
-	 angle="75.0" fall_off="95.0">
-		<dynamic renderable_objects_manager="solid"/>
-		<dynamic renderable_objects_manager="solid_ME"/>
-	</light> 		
 </Lights>

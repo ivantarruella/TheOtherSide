@@ -12,7 +12,7 @@
 class CLevelManager 
 {
 public:
-	CLevelManager();
+	CLevelManager(const std::string& shadows_type);
 	~CLevelManager();
 
 	bool Update();
@@ -31,6 +31,7 @@ private:
 	SLevelPaths m_LevelPaths;
 	bool		m_bIsOk;
 	bool		m_bChanging;
+	std::string m_shadowsType;
 };
 
 #endif

@@ -190,6 +190,7 @@ bool CEngine::LoadConfig (const std::string& pathFile)
 			m_InitParams.y	= l_ScreenNode.GetIntProperty("y_ini",0);
 			m_InitParams.w	= l_ScreenNode.GetIntProperty("nWidth",640);
 			m_InitParams.h	= l_ScreenNode.GetIntProperty("nHeight",480);
+			m_InitParams.shadows_type = l_ScreenNode.GetPszProperty("shadows_type", "PREDEFINED");
 		}
 
 		// Obtenemos configuración de las fuentes

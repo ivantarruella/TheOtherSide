@@ -13,13 +13,14 @@ class CLightManager : public CVectorMapManager<CLight>
 {
 private:
 	std::string m_Path;
+	std::string m_ShadowsType;
 	Vect3f m_AmbientLight;
 
 public:
 	CLightManager();
 	~CLightManager();
 
-	void Load(const std::string &FileName);
+	void Load(const std::string &FileName, const std::string& shadows_type);
 	void Reload();
 	void Update(float ElapsedTime);
 	void Render(CRenderManager *RenderManager);

@@ -363,7 +363,23 @@ void CLight::DeleteShadowMap(CEffect *Effect)
 	}
 }
 
-void CLight::SetParameters(CXMLTreeNode &LightsNode)
+void CLight::GetShadowsType(const std::string& shadows_type, unsigned int& width, unsigned int& height)
+{
+	if(shadows_type=="LOW") {
+		width = height = 512;
+	}
+	else if(shadows_type=="MEDIUM") {
+		width = height = 1024;
+	}
+	else if(shadows_type=="HIGH") {
+		width = height = 2048;
+	}
+	else if(shadows_type=="ULTRA") {
+		width = height = 4096;
+	}
+}
+
+void CLight::SetParameters(CXMLTreeNode &LightsNode, const std::string& shadows_type)
 {
 	// LLenamos todos los parametros que afectan a todos los tipos de luces
 	m_Name = LightsNode.GetPszProperty("name","");
@@ -374,7 +390,8 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode)
 
 	m_StartRangeAttenuation=LightsNode.GetFloatProperty("att_start_range",0.0f);
 	m_EndRangeAttenuation=LightsNode.GetFloatProperty("att_end_range",0.0f);
-	m_RenderShadows=LightsNode.GetBoolProperty("render_shadows",false);
+	if (shadows_type != "OFF")
+		m_RenderShadows=LightsNode.GetBoolProperty("render_shadows",false);
 	m_World=LightsNode.GetIntProperty("world", 0);
 	
 	//Shadow Map
@@ -389,8 +406,15 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode)
 		if (m_GenerateDynamicShadowMap)
 		{
 			if (m_Type != OMNI) {	// spot & directional lights
-				unsigned int l_DynamicShadowMapWidth=LightsNode.GetIntProperty("shadow_map_width",0);
-				unsigned int l_DynamicShadowMapHeight=LightsNode.GetIntProperty("shadow_map_height",0);
+				unsigned int l_DynamicShadowMapWidth=0;
+				unsigned int l_DynamicShadowMapHeight=0;
+				if(shadows_type=="PREDEFINED") {
+					l_DynamicShadowMapWidth=LightsNode.GetIntProperty("shadow_map_width",0);
+					l_DynamicShadowMapHeight=LightsNode.GetIntProperty("shadow_map_height",0);
+				}
+				else
+					GetShadowsType(shadows_type, l_DynamicShadowMapWidth, l_DynamicShadowMapHeight);
+
 				l_FormatType =  m_DynamicShadowMap->GetFormatTypeFromString(l_DynamicShadowMapFormatType);
 				m_DynamicShadowMap=new CTexture();
 				error=m_DynamicShadowMap->Create("DynamicShadowMapTexture_"+m_Name,l_DynamicShadowMapWidth,l_DynamicShadowMapHeight,1,CTexture::RENDERTARGET,CTexture::DEFAULT,l_FormatType);
@@ -420,7 +444,12 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode)
 				}
 			}
 			else {		// omni lights
-				unsigned int l_Size=LightsNode.GetIntProperty("shadow_map_width",0);
+				unsigned int l_Size = 0;
+				if(shadows_type=="PREDEFINED")
+					l_Size=LightsNode.GetIntProperty("shadow_map_width",0);
+				else
+					GetShadowsType(shadows_type, l_Size, l_Size);
+
 				CCubeTexture::TFormatType formatType =  m_CubeTexture->GetFormatTypeFromString(l_DynamicShadowMapFormatType);
 				m_CubeTexture=new CCubeTexture();
 				if(!m_CubeTexture->Create("CubeMapTexture_"+m_Name,l_Size,1,CCubeTexture::RENDERTARGET,CCubeTexture::DEFAULT,formatType))
@@ -437,8 +466,16 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode)
 		{
 			std::string l_StaticShadowMapFormatType=LightsNode.GetPszProperty("static_shadow_map_format_type","");
 			l_FormatType =  m_DynamicShadowMap->GetFormatTypeFromString(l_StaticShadowMapFormatType);
-			unsigned int l_StaticShadowMapWidth=LightsNode.GetIntProperty("static_shadow_map_width",0);
-			unsigned int l_StaticShadowMapHeight=LightsNode.GetIntProperty("static_shadow_map_height",0);
+			
+			unsigned int l_StaticShadowMapWidth=0;
+			unsigned int l_StaticShadowMapHeight=0;
+			if(shadows_type=="PREDEFINED") {
+				l_StaticShadowMapWidth=LightsNode.GetIntProperty("static_shadow_map_width",0);
+				l_StaticShadowMapHeight=LightsNode.GetIntProperty("static_shadow_map_height",0);
+			}
+			else
+				GetShadowsType(shadows_type, l_StaticShadowMapWidth, l_StaticShadowMapHeight);
+
 			m_StaticShadowMap=new CTexture();
 			error=m_StaticShadowMap->Create("StaticShadowMapTexture",l_StaticShadowMapWidth,l_StaticShadowMapHeight,1,CTexture::RENDERTARGET,CTexture::DEFAULT,l_FormatType);
 			if(error)

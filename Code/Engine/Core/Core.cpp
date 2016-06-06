@@ -114,7 +114,7 @@ bool CCore::Init(HWND hWnd, CProcess* Process, const SInitParams& params)
 	m_pCoverManager = new CCoverManager();
 	m_pTriggerManager = new CTriggerManager();
 	m_pLogicObjectsManager = new CLogicObjectsManager();
-	m_pLevelManager = new CLevelManager();
+	m_pLevelManager = new CLevelManager(params.shadows_type);
 	m_pEnemyManager = new CEnemyManager();
 	m_pBulletManager = new CBulletManager();
 
@@ -336,6 +336,6 @@ void CCore::DrawFPS()
 		else if (m_fFPS > 25.0f && m_fFPS <= 50.0f)
 			col = colYELLOW;
 
-		GetFontManager()->DrawText( w - 25, 0, col, l_font1, buff.str().c_str() );
+		GetFontManager()->DrawText( w - 25, h - 25, col, l_font1, buff.str().c_str() );
 	}
 }

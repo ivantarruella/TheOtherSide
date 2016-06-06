@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <Engine>
-  <screen fullscreen="false"  show_fps="true"  limit_fps="true"  x_ini="200"	y_ini="450"	nWidth="640" nHeight="360" exclusiveModeinMouse="true"/>
+  <screen 	fullscreen="false"  
+		    nWidth="1280" nHeight="720"
+			show_fps="true"  limit_fps="true"  
+			x_ini="0"	y_ini="0"	 
+			exclusiveModeinMouse="true" 
+			shadows_type="LOW"	
+  />
+  <!-- shadows_type: OFF, PREDEFINED, LOW, MEDIUM, HIGH, ULTRA -->
   <fonts  file_path="data/XML/fonts.xml"/>
   <languages default_lang="english">
 		<language id="spanish" file_path="data/Language/spanish.xml"/>

@@ -23,8 +23,8 @@
 #include "Base.h"
 
 
-CLevelManager::CLevelManager()
-	: m_bIsOk(false), m_bChanging(false)
+CLevelManager::CLevelManager(const std::string& shadows_type)
+	: m_bIsOk(false), m_bChanging(false), m_shadowsType(shadows_type)
 {
 }
 
@@ -223,7 +223,7 @@ bool CLevelManager::InitLevel ()
 	bInitOk = (m_LevelPaths.m_sLightsPath!="");
 	if (bInitOk)
 	{
-		l_LightManager->Load(xml_file+m_LevelPaths.m_sLightsPath);
+		l_LightManager->Load(xml_file+m_LevelPaths.m_sLightsPath, m_shadowsType);
 	}
 	if (!bInitOk && l_ManagerError=="")
 		l_ManagerError = "LightManager";

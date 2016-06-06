@@ -18,7 +18,7 @@ CLightManager::~CLightManager()
 	Destroy();
 }
 
-void CLightManager::Load(const std::string &FileName)
+void CLightManager::Load(const std::string &FileName, const std::string & shadows_type)
 {
 	CXMLTreeNode parser;
 	if (!parser.LoadFile(FileName.c_str()))
@@ -29,6 +29,7 @@ void CLightManager::Load(const std::string &FileName)
 	}
 
 	m_Path = FileName;
+	m_ShadowsType = shadows_type;
 
 	// Obtenemos el nodo "Lights"
 	CXMLTreeNode  l_LightsNode = parser["Lights"];
@@ -73,7 +74,7 @@ void CLightManager::Load(const std::string &FileName)
 					if (l_Light!=NULL) 
 					{
 						std::string l_Name = l_LightsNode(i).GetPszProperty("name","");
-						l_Light->SetParameters(l_LightsNode(i));
+						l_Light->SetParameters(l_LightsNode(i), shadows_type);
 						
 						// Añadimos resource al mapa de luces
 						AddResource(l_Name, l_Light);
@@ -96,7 +97,7 @@ void CLightManager::Reload()
 	if (m_Path!="")
 	{
 		Destroy();
-		Load(m_Path);
+		Load(m_Path, m_ShadowsType);
 	}
 }
 

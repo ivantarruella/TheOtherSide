@@ -34,7 +34,6 @@ public:
 		SPOT	
 	};
 
-
 protected:
 	CColor m_Color;
 	TLightType m_Type;
@@ -92,7 +91,7 @@ public:
 	virtual bool isVisible(CRenderManager &RM, const CFrustum* Frustum)=0;
 	virtual float GetRadius()=0;
 
-	void SetParameters(CXMLTreeNode &atts);
+	void SetParameters(CXMLTreeNode &atts, const std::string & shadows_type);
 	void SetColor(const CColor &Color);
 	const CColor & GetColor() const;
 	void SetStartRangeAttenuation(const float StartRangeAttenuation);
@@ -141,6 +140,7 @@ public:
 	const Mat44f & GetViewShadowMap() const;
 	const Mat44f & GetProjectionShadowMap() const;
 	void BeginRenderEffectManagerShadowMap(CEffect *Effect);
+	void GetShadowsType(const std::string& shadows_type, unsigned int& width, unsigned int& height);
 };
 
 #endif

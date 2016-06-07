@@ -91,19 +91,13 @@ void CAnimatedInstanceModel::DrawAnimatedModel(CRenderManager *RM, const CFrustu
 
 void CAnimatedInstanceModel::DrawAnimatedModelShadow(CRenderManager *RM, const CFrustum* Frustum, bool forwardRender)
 {
-	CCamera* l_Cam = CORE->GetCamera();
-	if (l_Cam==NULL)
-		return;
-
-	float l_Dist = l_Cam->GetEye().Distance(GetPosition());
-	if (l_Dist<MAX_DIST_RENDER) {
-		Vect3f l_Center = m_AnimatedCoreModel->GetVtxCenter() + GetPosition();
-		float l_Radius = m_AnimatedCoreModel->GetRadius();
-		bool bInLightFrustum = Frustum->SphereVisible(l_Center, l_Radius);
-		if(bInLightFrustum) {
-			PositionAnimatedModel(RM);
-			RenderModelByHardware(RM, Frustum, forwardRender);
-		}
+	Vect3f l_Center = m_AnimatedCoreModel->GetVtxCenter() + GetPosition();
+	float l_Radius = m_AnimatedCoreModel->GetRadius();
+	
+	bool bInLightFrustum = Frustum->SphereVisible(l_Center, l_Radius);
+	if(bInLightFrustum) {
+		PositionAnimatedModel(RM);
+		RenderModelByHardware(RM, Frustum, forwardRender);
 	}
 }
 

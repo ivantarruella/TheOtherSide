@@ -82,46 +82,49 @@ void COmniLight::SetShadowMap(CRenderManager *RM)
 		return;
 
 	CEffectManager *l_EM=CORE->GetEffectManager();
+	CCubeTexture* cubeText = GetCubeShadowMap(calcShadowMapQuality());
 
 	// render the scene depth to positive X side of the cube map
 	createCamForPositiveX(l_EM);
-	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_X, GetCubeShadowMap()->GetCubeFacePX());
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_X, cubeText, cubeText->GetCubeFacePX());
 
 	// render the scene depth to positive Y side of the cube map
 	createCamForPositiveY(l_EM);		
-	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_Y, GetCubeShadowMap()->GetCubeFacePY());
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_Y, cubeText, cubeText->GetCubeFacePY());
 
 	// render the scene depth to positive Z side of the cube map
 	createCamForPositiveZ(l_EM);		
-	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_Z, GetCubeShadowMap()->GetCubeFacePZ());
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_Z, cubeText, cubeText->GetCubeFacePZ());
 
 	// render the scene depth to negative X side of the cube map
 	createCamForNegativeX(l_EM);
-	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_X, GetCubeShadowMap()->GetCubeFaceNX());
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_X, cubeText, cubeText->GetCubeFaceNX());
 
 	// render the scene depth to negative Y side of the cube map
 	createCamForNegativeY(l_EM);
-	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_Y, GetCubeShadowMap()->GetCubeFaceNY());
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_Y, cubeText, cubeText->GetCubeFaceNY());
 
 	// render the scene depth to negative Z side of the cube map
 	createCamForNegativeZ(l_EM);		
-	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_Z, GetCubeShadowMap()->GetCubeFaceNZ());
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_Z, cubeText, cubeText->GetCubeFaceNZ());
 
 	// restore color writes
 	RM->GetDevice()->SetRenderState(D3DRS_COLORWRITEENABLE, 
 		D3DCOLORWRITEENABLE_ALPHA | D3DCOLORWRITEENABLE_RED | D3DCOLORWRITEENABLE_GREEN | D3DCOLORWRITEENABLE_BLUE);
 }
 
-void COmniLight::RenderShadowMap(CRenderManager *RM, D3DCUBEMAP_FACES face, LPDIRECT3DSURFACE9 inCubeFaceSurface)
+void COmniLight::RenderShadowMap(CRenderManager *RM, D3DCUBEMAP_FACES face, CCubeTexture* cubeText, LPDIRECT3DSURFACE9 inCubeFaceSurface)
 {
-	// Generate cube depth map texture	
 	LPDIRECT3DDEVICE9 l_Device= RM->GetDevice();
-	//if(SUCCEEDED(l_Device->SetRenderTarget( (DWORD)0, inCubeFaceSurface ))) {
-	if (m_CubeTexture->SetAsRenderTarget(face, inCubeFaceSurface)) {
+	
+	
+	if (cubeText->SetAsRenderTarget(face, inCubeFaceSurface)) 
+	{
 		l_Device->Clear(NULL, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0x00000000, 1.0f, NULL);
 		for(size_t i=0;i<m_DynamicShadowMapRenderableObjectsManagers.size();++i)
 			m_DynamicShadowMapRenderableObjectsManagers[i]->RenderShadow(RM, this);
-		m_CubeTexture->UnsetAsRenderTarget();
+		
+		cubeText->UnsetAsRenderTarget();
 	}
 }
 

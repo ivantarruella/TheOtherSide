@@ -15,6 +15,8 @@
 #define	SHADOW_MAP_MASK_STAGE	 8
 #define CUBE_MAP_STAGE			 9
 
+#define MAX_DISTANCE_SHADOWMAP	 20.0f		
+
 
 class CRenderManager;
 class CTexture;
@@ -68,7 +70,7 @@ protected:
 	bool m_SoftShadow;
 	CTexture *m_StaticShadowMap, *m_DynamicShadowMap, *m_ShadowMaskTexture;
 	CTexture *m_DynamicShadowMapBlurH, *m_DynamicShadowMapBlurV; 
-	CCubeTexture *m_CubeTexture;
+	CCubeTexture *m_CubeTextNear, *m_CubeTextMedium, *m_CubeTextFar;
 	std::vector<CRenderableObjectsManager *> m_StaticShadowMapRenderableObjectsManagers,m_DynamicShadowMapRenderableObjectsManagers;
 	Mat44f m_ViewShadowMap, m_ProjectionShadowMap;
 	CFrustum m_LightFrustum;
@@ -125,6 +127,8 @@ public:
 
 	//Shadow Map
 	virtual void SetShadowMap(CRenderManager *RM)=0;
+	virtual void BeginRenderEffectManagerShadowMap(CEffect *Effect);
+	
 	void SetGenerateDynamicShadowMap(bool GenerateDynamicShadowMap);
 	bool GetGenerateDynamicShadowMap() const;
 	void SetGenerateStaticShadowMap(bool GenerateStaticShadowMap);
@@ -134,7 +138,7 @@ public:
 	CTexture * GetStaticShadowMap() const;
 	CTexture * GetDynamicShadowMap() const;
 	CTexture * GetShadowMaskTexture() const;
-	CCubeTexture* GetCubeShadowMap() const;
+	CCubeTexture* GetCubeShadowMap(unsigned int quality) const;
 	std::vector<CRenderableObjectsManager *> & GetStaticShadowMapRenderableObjectsManagers();
 	std::vector<CRenderableObjectsManager *> & GetDynamicShadowMapRenderableObjectsManagers();
 	void GenerateShadowMap(CRenderManager *RM);
@@ -144,8 +148,8 @@ public:
 	void RenderShadowMap(CRenderManager *RM);
 	const Mat44f & GetViewShadowMap() const;
 	const Mat44f & GetProjectionShadowMap() const;
-	void BeginRenderEffectManagerShadowMap(CEffect *Effect);
 	void GetShadowsType(const std::string& shadows_type, unsigned int& width, unsigned int& height);
+	unsigned int calcShadowMapQuality();
 };
 
 #endif

@@ -4,6 +4,6 @@
 x- point light shadow cube maps (fix +X shadow error on animated models)
 - reposition enemies
 - add enemy nodes
-x- monster bug: movement glitches.
+- monster bug: movement glitches and low fps
 x- sync particles with lighting on/off (fix: level02 lights...)
 - phsics in some objects (chair...)

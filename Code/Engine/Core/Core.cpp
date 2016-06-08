@@ -285,7 +285,7 @@ void CCore::Update(bool show_fps)
 	#endif
 		if (l_Update)
 		{
-			//m_pPhysicsManager->WaitForSimulation();	//???
+			m_pPhysicsManager->WaitForSimulation();	
 			m_pEnemyManager->Update(elapsedTime);
 			m_pLogicObjectsManager->Update(elapsedTime);
 			m_pLightManager->Update(elapsedTime);

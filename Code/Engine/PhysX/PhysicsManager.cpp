@@ -366,9 +366,6 @@ void CPhysicsManager::Update (float elapsedTime)
 
 	// Fetch simulation results
 	m_pScene->flushStream();
-	m_pScene->fetchResults(NX_RIGID_BODY_FINISHED,  true);
-
-	m_pControllerManager->updateControllers();	
 }
 
 bool CPhysicsManager::AddPhysicActor (CPhysicActor* actor)

@@ -51,7 +51,6 @@ function replay_game()
 	else 
 		if current_level == "Level02 - Aqueronte Corp." then
 			level2_restart_enemies()
-			level2_enemigos_pasillos_entrada()
 			objetivos_OFF()
 			espejo_inicial_MR_level02_ON()
 			_LOGICOBJECTSM:set_mirror_on('Trigger_SVigilado_Espejo_MR_Level02', false)

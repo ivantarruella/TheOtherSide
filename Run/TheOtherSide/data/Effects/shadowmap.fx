@@ -48,7 +48,6 @@ out float3 lightVec : TEXCOORD2)
 }
 
 //Pixel Shader
-#if defined( VARIANCE_SHADOW_MAP_ENABLED )
 void PixShadow( float2 Depth : TEXCOORD1, float3 lightVec : TEXCOORD2, float2 UV_in : TEXCOORD0, out float4 Color : COLOR )
 {
 	// pixels with more then 50% alpha don't cast shadow
@@ -65,22 +64,9 @@ void PixShadow( float2 Depth : TEXCOORD1, float3 lightVec : TEXCOORD2, float2 UV
 		Color = float4(moment1, moment2, 0, 1.0f);	
 	}
 	
-	//if (g_LightsTypes[0] == OMNI) 
-	//	TODO!
-}
-#else	// NORMAL SHADOW MAP
-void PixShadow( float2 Depth : TEXCOORD1, float3 lightVec : TEXCOORD2, float2 UV_in : TEXCOORD0, out float4 Color : COLOR )
-{
-	// pixels with more then 50% alpha don't cast shadow
-	if (tex2D(gDiffuseSampler, UV_in).a < 0.5)
-		discard;
-		
-	if (g_LightsTypes[0] == SPOT)                            
-		Color = Depth.x / Depth.y;
 	if (g_LightsTypes[0] == OMNI) 
-		Color = length(lightVec) + 0.07f;
+		Color = (length(lightVec) + SHADOW_SM_EPSILON);
 }
-#endif
 
 // Techniques
 

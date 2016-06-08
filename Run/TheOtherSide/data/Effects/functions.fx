@@ -217,16 +217,15 @@ float2 getProjectedTexCoords(float4 Pos, out float2 Depth)
 	return ShadowTexC;
 }
 
-#if defined( VARIANCE_SHADOW_MAP_ENABLED )
 float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
 {
 	float lightAmount = 1.0;
 	
 	if (g_UseDynamicShadowMap)
 	{
-		float3 VToLight=normalize(g_LightsPosition[0] - Pos.xyz);
-		if (Tipo == SPOT)
+		if (Tipo == SPOT)		// VARIANCE SHADOW MAP
 		{
+			float3 VToLight=normalize(g_LightsPosition[0] - Pos.xyz);
 			if (saturate(dot (VToLight, -g_LightsDirection[0])) > g_LightFallOff[0])
 			{
 				float2 depth = (float2) 0;
@@ -246,37 +245,9 @@ float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
 				p = saturate(pow(p, min) + 0.2f);
 				
 				lightAmount = max(p, depth <= mean);
-			}	
-		}
-		if(Tipo == OMNI) 
-		{
-			// TODO!
-		}
-	}
-	
-	return lightAmount;
-}
-#else	// NORMAL SHADOW MAP
-float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
-{
-	float lightAmount = 1.0;
-	
-	if (g_UseDynamicShadowMap)
-	{
-		float3 VToLight=normalize(g_LightsPosition[0] - Pos.xyz);
-		if (Tipo == SPOT)
-		{
-			if (saturate(dot (VToLight, -g_LightsDirection[0])) > g_LightFallOff[0])
-			{
-				float2 Depth=(float2)0;
-				float4 ShadowText=(float4)0;
-				float2 ShadowTexC = getProjectedTexCoords(Pos, Depth);
-				ShadowText = tex2D( gDynamicShadowMapTextureSampler, ShadowTexC );
-				lightAmount = ((ShadowText + SHADOW_SM_EPSILON )< Depth)? 0.0f: 1.0f;
-				lightAmount *= saturate(dot(VToLight, Nn));
 			}
 		}
-		if(Tipo == OMNI) 
+		if(Tipo == OMNI) 		// OMNIDIRECTIONAL SHADOW MAP
 		{
 			float4 PLightDirection = 0.0f;
 			PLightDirection.xyz = Pos.xyz - g_LightsPosition[0];
@@ -296,7 +267,6 @@ float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
 	
 	return lightAmount;
 }
-#endif
 
 float4 calcDeferredLighting(float4 Pos, float3 Nn, float4 Albedo, float SpecularFactor, float SpecularPower)
 {

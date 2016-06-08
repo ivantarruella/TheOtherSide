@@ -42,39 +42,23 @@ function level1_enemigos()
 	end
 end
 
-function level2_enemigos_pasillos_entrada()
-	if enemies01_level2 == false then
-		--local position_MR = Vect3f(34.9448,0.00,-10.5629)
-		--local position_ME = Vect3f(-34.9448,0.00,-10.5629)
-		--_ENEMYM:create_enemy('Soldier001a', position_MR, 'Monster001a', position_ME)
-
-		local position_MR = Vect3f(40.8783,0.00,-9.53521)
-		local position_ME = Vect3f(-40.8783,0.00,-9.53521)
-		_ENEMYM:create_enemy('Soldier001b', position_MR, 'Monster001b', position_ME)
-		
-		enemies01_level2 = true
-	end
-	
-	level2_enemigos_hall_piso1()
-end
-
 function level2_enemigos_hall_piso1()
 	if enemies02_level2 == false then
 		local position_MR = Vect3f(39.2831,0.00,10.4767)
 		local position_ME = Vect3f(-39.2831,0.00,10.4767)
 		_ENEMYM:create_enemy('Soldier002', position_MR, 'Monster002', position_ME)
 		
-		position_MR = Vect3f(16.0906,0.00,-14.59991)
-		position_ME = Vect3f(-16.0906,0.00,-14.59991)
-		_ENEMYM:create_enemy('Soldier003', position_MR, 'Monster003', position_ME)
+		--position_MR = Vect3f(16.0906,0.00,-14.59991)
+		--position_ME = Vect3f(-16.0906,0.00,-14.59991)
+		--_ENEMYM:create_enemy('Soldier003', position_MR, 'Monster003', position_ME)
 		
-		position_MR = Vect3f(27.7563,0.00,-22.7989)
-		position_ME = Vect3f(-27.7563,0.00,-22.7989)
-		_ENEMYM:create_enemy('Soldier004', position_MR, 'Monster004', position_ME)
+		--position_MR = Vect3f(27.7563,0.00,-22.7989)
+		--position_ME = Vect3f(-27.7563,0.00,-22.7989)
+		--_ENEMYM:create_enemy('Soldier004', position_MR, 'Monster004', position_ME)
 
-		position_MR = Vect3f(17.0178,0.00,5.25064)
-		position_ME = Vect3f(-17.0178,0.00,5.25064)
-		_ENEMYM:create_enemy('Soldier005', position_MR, 'Monster005', position_ME)
+		--position_MR = Vect3f(17.0178,0.00,5.25064)
+		--position_ME = Vect3f(-17.0178,0.00,5.25064)
+		--_ENEMYM:create_enemy('Soldier005', position_MR, 'Monster005', position_ME)
 		
 		enemies02_level2 = true
 	end

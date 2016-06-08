@@ -223,7 +223,7 @@ unsigned int CLight::calcShadowMapQuality()
 	CCamera* l_Cam = CORE->GetCamera();
 	if (l_Cam!=NULL) {
 		float l_Dist = l_Cam->GetEye().Distance(GetPosition());
-		if (l_Dist > m_EndRangeAttenuation*1.25f && l_Dist <= m_EndRangeAttenuation*1.75f)
+		if (l_Dist > m_EndRangeAttenuation && l_Dist <= m_EndRangeAttenuation*1.5f)
 			quality = 1;	//medium shadow map quality
 		else if (l_Dist > m_EndRangeAttenuation*4)
 			quality = 2;	//lowest shadow map quality
@@ -267,7 +267,7 @@ void CLight::GenerateShadowMap(CRenderManager *RM)
 	CCamera* l_Cam = CORE->GetCamera();
 	if (l_Cam!=NULL) {	
 		float l_Dist = CORE->GetCamera()->GetEye().Distance(GetPosition());
-		if (l_Dist <= MAX_DISTANCE_SHADOWMAP) {
+		if (l_Dist <= m_EndRangeAttenuation*4.0f) {
 			if (m_SoftShadow) {		// opt.:don't blur far shadows
 				const float MAX_DIST_SHADOW_BLUR = 8.0f;
 				m_BlurShadowMap = (l_Dist < max(MAX_DIST_SHADOW_BLUR, m_EndRangeAttenuation - m_StartRangeAttenuation));
@@ -409,9 +409,6 @@ void CLight::GetShadowsType(const std::string& shadows_type, unsigned int& width
 	}
 	else if(shadows_type=="HIGH") {
 		width = height = 2048;
-	}
-	else if(shadows_type=="ULTRA") {
-		width = height = 4096;
 	}
 }
 

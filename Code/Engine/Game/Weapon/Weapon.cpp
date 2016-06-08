@@ -101,12 +101,15 @@ void CWeapon::Light(float dt)
 			CORE->GetEnemyManager()->CheckLightedMonsters(m_LanternLight);
 
 		}
-		else if(/*IsAiming() &&*/ m_LanternLight != NULL){
-			m_LanternLight->SetVisible(true);
+		else if(m_LanternLight != NULL){
+			bool bAiming = IsAiming();
+			m_LanternLight->SetVisible(bAiming);
 			m_Laser->SetVisible(false);
 
-			m_fLanternTimer -= 0.1f*dt;
-			m_iAvailableBullets = (int)(BULLETPERSEC*m_fLanternTimer);
+			if (bAiming) {
+				m_fLanternTimer -= 0.1f*dt;
+				m_iAvailableBullets = (int)(BULLETPERSEC*m_fLanternTimer);
+			}
 		}
 	}
 }

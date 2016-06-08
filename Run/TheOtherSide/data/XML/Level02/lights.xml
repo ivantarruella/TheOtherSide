@@ -9,18 +9,12 @@
 	<light name="LINTERNA" type="spot" pos="-1.19651 0.0 -13.5044" color="224.0 200.0 162.0" att_start_range="1.0" att_end_range="8.0" dir="-0.0264862 0.0 -0.999649"
 	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"
-	 angle="10.0" fall_off="45.0">
+	 angle="30.0" fall_off="50.0">
 		<dynamic renderable_objects_manager="solid_ME"/>
 		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	</light> 
 
-	<light name="LASER" type="spot" pos="7.36404 2.58032 -13.5044" color="65.0 255.0 19.0" att_start_range="7.0" att_end_range="8.0" dir="0.00513604 0.00172818 -0.999985" 
-	 world="2" render_shadows="false" generate_shadow_map="true" shadow_map_format_type="R32F"
-	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"
- 	 angle="30.0" fall_off="40.0">
-		<dynamic renderable_objects_manager="solid_ME"/>
-		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
-	 </light>
+	<light name="LASER" type="spot" pos="7.36404 2.58032 -13.5044" color="65.0 255.0 19.0" att_start_range="7.0" att_end_range="8.0" dir="0.00513604 0.00172818 -0.999985" world="2" angle="20.0" fall_off="25.0"/>
 
 	<!-- REAL WORLD -->
 	<light name="llum_sol" type="spot" pos="16.2895 30.5467 -17.032" color="255.0 255.0 255.0" att_start_range="30.0" att_end_range="1000.0" dir="0.111022 -0.900534 0.420371"

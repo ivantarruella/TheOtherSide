@@ -15,9 +15,6 @@
 #define	SHADOW_MAP_MASK_STAGE	 8
 #define CUBE_MAP_STAGE			 9
 
-#define MAX_DISTANCE_SHADOWMAP	 20.0f		
-
-
 class CRenderManager;
 class CTexture;
 class CCubeTexture;

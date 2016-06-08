@@ -1,9 +1,9 @@
 - Particles mirror reflection
 - shots mirror reflection
 - shadows mirror reflection (involves forward rendering shadow calculation)
-- point light shadow cube maps
+x- point light shadow cube maps (fix +X shadow error on animated models)
 - reposition enemies
 - add enemy nodes
-- monster bug: movement glitches.
-- sync particles with lighting on/off
+x- monster bug: movement glitches.
+x- sync particles with lighting on/off (fix: level02 lights...)
 - phsics in some objects (chair...)

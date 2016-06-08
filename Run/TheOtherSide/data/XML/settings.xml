@@ -5,9 +5,9 @@
 			show_fps="true"  limit_fps="true"  
 			x_ini="0"	y_ini="0"	 
 			exclusiveModeinMouse="true" 
-			shadows_type="LOW"	
+			shadows_type="PREDEFINED"	
   />
-  <!-- shadows_type: OFF, PREDEFINED, LOW, MEDIUM, HIGH, ULTRA -->
+  <!-- shadows_type: OFF, PREDEFINED, LOW, MEDIUM, HIGH -->
   <fonts  file_path="data/XML/fonts.xml"/>
   <languages default_lang="english">
 		<language id="spanish" file_path="data/Language/spanish.xml"/>

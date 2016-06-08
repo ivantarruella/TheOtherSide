@@ -46,7 +46,6 @@ function replay_game()
 	local current_level = _LEVELM:get_level()
 	if current_level == "Level01-Tutorial" then
 		level1_restart_enemies()
-		--level1_enemigos()
 		espejo_largo_MR_level01_ON()
 	else 
 		if current_level == "Level02 - Aqueronte Corp." then

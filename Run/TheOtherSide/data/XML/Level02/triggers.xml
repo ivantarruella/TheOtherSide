@@ -5,7 +5,8 @@
 		<onTrigger lua="_GAMEPROCESS:lasers_trigger('OnTrigger','Trigger_Pasillo_Lasers_ME')" />
 	</trigger>
 	<trigger name="Trigger_Pasillo01_EspejoEstatico_ME" pos="-34.9451 1.11578 -6.73122" size="0.43483 0.925344 0.324389" mask="" >
-		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Pasillo01_EspejoEstatico_ME', 'Trigger_Pasillo01_EspejoEstatico_MR', '')" />
+		<onEnter lua="	opt_luces03_level2()
+						_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Pasillo01_EspejoEstatico_ME', 'Trigger_Pasillo01_EspejoEstatico_MR', '')" />
 		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Pasillo01_EspejoEstatico_ME', 'Trigger_Pasillo01_EspejoEstatico_MR', '')" />
 		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Pasillo01_EspejoEstatico_ME', 'Trigger_Pasillo01_EspejoEstatico_MR', '')" />
 	</trigger>
@@ -52,12 +53,12 @@
 	<trigger name="Trigger_OptEspejos_02_ME" pos="-45.0943 0.868603 -1.8959" size="0.147587 0.88746 1.11054" mask="" >
 		<onEnter lua="" />
 		<onLeave lua="" />
-		<onTrigger lua="level02_exit_hall_ME()" />
+		<onTrigger lua="level02_enter_hall_ME()" />
 	</trigger>
 	<trigger name="Trigger_OptEspejos_03_ME" pos="-44.403 0.849226 -1.8959" size="0.147587 0.892202 1.11054" mask="" >
 		<onEnter lua="" />
 		<onLeave lua="" />
-		<onTrigger lua="level02_enter_hall_ME()" />
+		<onTrigger lua="level02_exit_hall_ME()" />
 	</trigger>
 	<trigger name="Trigger_OptEspejos_04_ME" pos="-27.7176 0.869567 -28.483" size="1.11054 0.953168 0.147589" mask="" >
 		<onEnter lua="espejos_hall01_ME_level02_ON()" />

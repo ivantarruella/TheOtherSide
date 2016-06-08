@@ -221,7 +221,6 @@ end
 
 function luces_pasillo_inicial_level2_ME_ON()
 	_LIGHTM:set_light_active('Omni_Espejo01_ME_Level02', true)
-	--_LIGHTM:set_light_active('Omni_pasillo', true)
 	_LIGHTM:set_light_active('Omni019', true)
 end
 
@@ -251,7 +250,6 @@ function luces_ascensor_hall_piso1_ME_level2_ON()
 end
 
 function luces_pasillo_inicial_level2_ME_OFF()
-	--_LIGHTM:set_light_active('Omni_pasillo', false)
 	_LIGHTM:set_light_active('Omni019', false)
 	_LIGHTM:set_light_active('Omni pasillo ME_attenuation', false)
 	_LIGHTM:set_light_active('Omni_Espejo01_ME_Level02', false)

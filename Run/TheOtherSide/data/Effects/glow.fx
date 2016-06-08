@@ -12,7 +12,7 @@ SOURCE GLOW :
 // Shader parameters
 
 float Threshold = 0.20;				// Get the threshold of what brightness level we want to glow (1.0 = blanco)
-float BloomIntensity = 1.5;			// Controls the Intensity of the bloom texture
+float BloomIntensity = 1.0;			// Controls the Intensity of the bloom texture
 float OriginalIntensity = 1.0;		// Controls the Intensity of the original scene texture
 float BloomSaturation = 0.5	;		// Saturation amount on bloom
 float OriginalSaturation = 0.9;		// Saturation amount on original texture

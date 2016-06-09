@@ -19,8 +19,8 @@
 #include "Base.h"
 
 
-#define MONSTER_BBOX_SIZE	0.30f
-#define MONSTER_BBOX_HEIGHT	0.7f
+#define MONSTER_BBOX_SIZE	0.33f
+#define MONSTER_BBOX_HEIGHT	0.75f
 
 CMonster::CMonster()
 {
@@ -139,7 +139,6 @@ void CMonster::Update(float ElapsedTime)
 	if(!IsDead()) {
 		if(!m_bFrozen && abs(l_pla.y - l_mon.y)<2.0f)
 		{
-			std::string l_name = GetName();
 			if(m_TimeDead == 0.0f)
 			{
 				if(m_Player->GetLife() > 0.0f)
@@ -166,13 +165,7 @@ void CMonster::SetPosition(const Vect3f &Position){
 
 }
 void CMonster::SetPosition(const Vect3f & Direction, float ElapsedTime){
-	if(GetPhysicController()!=NULL)
-	{
-		GetPhysicController()->Move(Direction, ElapsedTime);
-		CAnimatedInstanceModel::SetPosition(GetPhysicController()->GetPosition()-Vect3f(0.0f,GetHeight()+0.15f,0.0f));
-	}
-	else
-		CAnimatedInstanceModel::SetPosition(GetPosition()+Direction*ElapsedTime);
+	CCharacter::SetPosition(Direction, ElapsedTime);
 }
 
 void CMonster::SetPlayer(CPlayer * player)

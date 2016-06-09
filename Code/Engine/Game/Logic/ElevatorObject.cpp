@@ -13,6 +13,7 @@
 #include "Logger.h"
 #include "Base.h"
 
+#define ELEVATOR_CONTROLLER_HEIGHT		0.7f		// PhysX
  
 CElevatorObject::CElevatorObject()
 	: CLogicObject(), m_UseItemFile(""), m_fUseTime(0.f), m_bUseActive(false), 
@@ -181,8 +182,8 @@ void CElevatorObject::Trigger(const std::string& action, CPlayer* player)
 				int l_CabineBone = l_pSkeleton->getCoreSkeleton()->getCoreBoneId("Ascensor Prop3");				
 				CalBone* l_pBone = l_pSkeleton->getBone(l_CabineBone);
 				CalVector l_vTranslation = l_pBone->getTranslationAbsolute();
-				Vect3f l_newpos = m_AnimatedPhysicModel->GetTransform() * Vect3f(l_vTranslation.x, l_vTranslation.y - CONTROLLER_HEIGHT + 0.15f, l_vTranslation.z);
-				Vect3f l_doorpos = Vect3f(m_vDoorIniPos.x, l_newpos.y + CONTROLLER_HEIGHT, m_vDoorIniPos.z);
+				Vect3f l_newpos = m_AnimatedPhysicModel->GetTransform() * Vect3f(l_vTranslation.x, l_vTranslation.y - ELEVATOR_CONTROLLER_HEIGHT + 0.15f, l_vTranslation.z);
+				Vect3f l_doorpos = Vect3f(m_vDoorIniPos.x, l_newpos.y + ELEVATOR_CONTROLLER_HEIGHT, m_vDoorIniPos.z);
 				m_DoorPhysicMesh->GetPhysicElement()->m_PhysicActor->SetGlobalPosition(l_doorpos);
 
 				m_bStart = true;
@@ -207,17 +208,17 @@ void CElevatorObject::UpdateAnimationPhysX()
 	// bone translation
 	CalBone* l_pBone = l_pSkeleton->getBone(l_CabineBone);
 	CalVector l_vTranslation = l_pBone->getTranslationAbsolute();
-	Vect3f l_newpos = m_AnimatedPhysicModel->GetTransform() * Vect3f(l_vTranslation.x, l_vTranslation.y - CONTROLLER_HEIGHT + 0.15f, l_vTranslation.z);
+	Vect3f l_newpos = m_AnimatedPhysicModel->GetTransform() * Vect3f(l_vTranslation.x, l_vTranslation.y - ELEVATOR_CONTROLLER_HEIGHT + 0.15f, l_vTranslation.z);
 	
 	// door physic position
-	Vect3f l_doorpos = Vect3f(m_vDoorIniPos.x, l_newpos.y + CONTROLLER_HEIGHT, m_vDoorIniPos.z);
+	Vect3f l_doorpos = Vect3f(m_vDoorIniPos.x, l_newpos.y + ELEVATOR_CONTROLLER_HEIGHT, m_vDoorIniPos.z);
 	m_DoorPhysicMesh->GetPhysicElement()->m_PhysicActor->SetGlobalPosition(l_doorpos);
 
 	// player physic position
 	if (m_player != NULL)
 	{
 		Vect3f l_playerpos = m_player->GetPosition();
-		Vect3f l_pos = Vect3f(l_playerpos.x, l_newpos.y + CONTROLLER_HEIGHT, l_playerpos.z);
+		Vect3f l_pos = Vect3f(l_playerpos.x, l_newpos.y + ELEVATOR_CONTROLLER_HEIGHT, l_playerpos.z);
 		m_player->GetPhysicController()->SetPosition(l_pos);
 	}
 

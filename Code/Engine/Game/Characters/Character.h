@@ -1,8 +1,6 @@
 #pragma once
 #include "AnimatedInstanceModel.h"
 
-#define CONTROLLER_HEIGHT		0.7f		// PhysX
-
 class CXMLTreeNode;
 class CPhysicController;
 
@@ -49,8 +47,8 @@ class CCharacter :
 {
 public:
 	CCharacter(void);
-	CCharacter(const CXMLTreeNode& XmlData, float size,float height=CONTROLLER_HEIGHT);
-	CCharacter(const Vect3f &pos, const std::string &CoreName, const std::string &Name, float size,float height=CONTROLLER_HEIGHT);
+	CCharacter(const CXMLTreeNode& XmlData, float size,float height);
+	CCharacter(const Vect3f &pos, const std::string &CoreName, const std::string &Name, float size,float height);
 	virtual ~CCharacter(void);
 	// PhysX
 	CPhysicController* GetPhysicController(){return m_PhysicController;}
@@ -93,5 +91,6 @@ private:
 	bool m_bHit, m_bDead;
 
 	float m_fHeight;
+	float m_fSkinWidth;
 };
 

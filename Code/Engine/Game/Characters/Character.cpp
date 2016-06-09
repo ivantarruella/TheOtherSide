@@ -59,18 +59,17 @@ bool CCharacter::Init()
 		if(GetPhysicUserData())
 		{
 			//S'ha de passar per parametre o bounding box
-			Vect3f l_Size=GetBBSize();
-			float l_Radius=m_Size;//(l_Size.x>l_Size.z)?l_Size.x/2.f:l_Size.z/2.f;
-			float l_Height=m_fHeight;//CONTROLLER_HEIGHT;
+			//Vect3f l_Size=GetBBSize();
+			//float l_Radius=m_Size;//(l_Size.x>l_Size.z)?l_Size.x/2.f:l_Size.z/2.f;
+			//float l_Height=m_fHeight;
 
 			//Offset-> altura maxima para subir escalones = 0.5f
 			float l_StepOffset=0.5f;
-			//grupos de colision
 			uint32 l_CollisionGroupsMask=1<<0; // Mascara, sols col·lisiona amb ECG_ESCENARI
-			float l_SkinWidth=0.15f;
+			m_fSkinWidth=0.15f;
 
 			// Character Controller
-			CPhysicController* l_Controller= new CPhysicController(l_Radius, l_Height, mathUtils::Deg2Rad(45.0f), l_SkinWidth, l_StepOffset, l_CollisionGroupsMask, GetPhysicUserData(), m_Position+Vect3f(0.f,m_fHeight,0.f));
+			CPhysicController* l_Controller= new CPhysicController(m_Size, m_fHeight, mathUtils::Deg2Rad(45.0f), m_fSkinWidth, l_StepOffset, l_CollisionGroupsMask, GetPhysicUserData(), m_Position+Vect3f(0.f,m_fHeight,0.f));
 			SetPhysicController(l_Controller);
 			CORE->GetPhysicsManager()->AddPhysicController(l_Controller);
 
@@ -82,16 +81,12 @@ bool CCharacter::Init()
 			l_Controller->SetVisible(GetVisible());
 			l_Controller->SetCastShadows(GetCastShadows());
 			l_Controller->SetCreatePhysics(GetCreatePhysics());
-			l_Controller->SetPosition(GetPosition()+Vect3f(0.0f,m_fHeight,0.0f));
-
-
 		}
 	}
 
-
 	ClearAllAnims();
-	return true;
 
+	return true;
 }
 
 void CCharacter::ClearAllAnims()
@@ -106,8 +101,6 @@ void CCharacter::Update(float ElapsedTime){
 		SetIsDead(true);
 
 	CAnimatedInstanceModel::Update(ElapsedTime);
-
-
 }
 
 // Teletransportar objeto animado y controller a otra posicion
@@ -115,24 +108,19 @@ void CCharacter::SetPosition(const Vect3f & Position)
 {
 	//seteamos a partir de posicion del player
 	if(m_PhysicController!=NULL)
-	{
-		CAnimatedInstanceModel::SetPosition(Position);
-		m_PhysicController->SetPosition(Position+Vect3f(0.0f,m_fHeight,0.0f));
-	}
-	else
-		CAnimatedInstanceModel::SetPosition(Position);
+		m_PhysicController->SetPosition(Position+Vect3f(0.f,m_fHeight,0.f));
+
+	CAnimatedInstanceModel::SetPosition(Position);
 }
 
 // Mover objeto animado y controller
 void CCharacter::SetPosition(const Vect3f & Direction, float ElapsedTime)
 {
 	if(m_PhysicController!=NULL)
-	{
 		m_PhysicController->Move(Direction, ElapsedTime);
-		CAnimatedInstanceModel::SetPosition(m_PhysicController->GetPosition()-Vect3f(0.0f,m_fHeight,0.0f));
-	}
-	else
-		CAnimatedInstanceModel::SetPosition(GetPosition()+Direction*ElapsedTime);
+	
+	Vect3f instancePos = m_PhysicController->GetPosition() - Vect3f(0.f,m_fHeight + 0.075f,0.f);
+	CAnimatedInstanceModel::SetPosition(instancePos+Direction*ElapsedTime);
 }
 
 void CCharacter::ChangeCharacterAnimation(tAnimationStates NewAnim, float delay, float weight)

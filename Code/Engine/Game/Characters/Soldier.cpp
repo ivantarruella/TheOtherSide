@@ -204,15 +204,11 @@ void CSoldier::Update(float ElapsedTime)
 void CSoldier::SetPosition(const Vect3f &Position)
 {
 	CCharacter::SetPosition(Position);
-	if(GetPhysicActor())
-		GetPhysicActor()->SetGlobalPosition(Position+Vect3f(0.f,SOLDIER_CAPSULE_HEIGHT,0.f));
 }
 
 void CSoldier::SetPosition(const Vect3f & Direction, float ElapsedTime)
 {
 	CCharacter::SetPosition(Direction,  ElapsedTime);
-	if(GetPhysicActor() )
-		GetPhysicActor()->SetGlobalPosition(GetPosition()+Vect3f(0.f,SOLDIER_CAPSULE_HEIGHT,0.f));
 }
 
 void CSoldier::SetPlayer(CPlayer * player)
@@ -247,7 +243,7 @@ void CSoldier::CreateCapsuleForBullets()
 {
 	if(GetCreatePhysics())
 	{
-		GetPhysicActor()->AddCapsuleShape(SOLDIER_BBOX_SIZE,SOLDIER_BBOX_HEIGHT, m_Position+Vect3f(0.f,SOLDIER_BBOX_HEIGHT,0.f),v3fZERO,0,ECG_ENEMICS);
+		GetPhysicActor()->AddCapsuleShape(SOLDIER_BBOX_SIZE,SOLDIER_BBOX_HEIGHT, m_Position/*+Vect3f(0.f,SOLDIER_BBOX_HEIGHT,0.f)*/,v3fZERO,0,ECG_ENEMICS);
 		CORE->GetPhysicsManager()->AddPhysicActor(GetPhysicActor());
 	}
 }

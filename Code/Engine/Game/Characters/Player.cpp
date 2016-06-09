@@ -45,7 +45,7 @@ using namespace luabind;
 #define PLAYER_HIT_TIME			0.2f
 #define SHOOT_SOUND_TIME		0.2f
 
-#define PLAYER_BBOX_HEIGHT		0.7f
+#define PLAYER_BBOX_HEIGHT		0.65f
 #define PLAYER_BBOX_SIZE		0.25f
 
 CPlayer::CPlayer()

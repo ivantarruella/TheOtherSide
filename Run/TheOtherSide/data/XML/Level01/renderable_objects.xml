@@ -5,6 +5,9 @@
 	<layer name="alpha_blend_objects_MR"/>
 	<layer name="alpha_blend_objects_ME"/>
 	<layer name="particles"/>
+
+	<animated_model_instance name="PLAYER" core="Player" layer="solid" pos="21.6771 0.0 -3.65642" yaw="-1.047" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
+
 	<mesh_instance name="SVigilancia_ArchivadorRojo01" core="SVigilancia_ArchivadorRojo01" layer="solid_MR" pos="21.7522 2.07712 6.17487" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
 	<mesh_instance name="SVigilancia_ArchivadorNegro01" core="SVigilancia_ArchivadorNegro01" layer="solid_MR" pos="22.0007 2.07712 6.17487" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
 	<mesh_instance name="SVigilancia_ArchivadorMarron01" core="SVigilancia_ArchivadorMarron01" layer="solid_MR" pos="22.2012 2.07712 6.14346" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
@@ -192,7 +195,6 @@
 	<mesh_instance name="SInicio_Fluerescente018" core="SInicio_Fluerescente018" layer="solid_MR" pos="7.72683 3.11658 0.635671" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="false" generate_physics="false" physics_type="triangle_mesh" />
 	<mesh_instance name="SInicio_Fluerescente019" core="SInicio_Fluerescente019" layer="solid_MR" pos="19.6303 3.11658 22.7762" yaw="1.00179e-005" pitch="0.0" roll="0.0" visible="true" cast_shadows="false" generate_physics="false" physics_type="triangle_mesh" />
 	<mesh_instance name="recargaenergia" core="recargaenergia" layer="solid_MR" pos="15.141 0.696985 23.5182" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
-	<animated_model_instance name="PLAYER" core="Player" layer="solid" pos="21.6771 0 -3.65642" yaw="-1.047" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
 	<mesh_instance name="SInicio_Fluerescente020" core="SInicio_Fluerescente020" layer="solid_ME" pos="-12.1993 3.08545 12.4178" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="false" generate_physics="false" physics_type="triangle_mesh" />
 	<mesh_instance name="SInicio_Fluerescente021" core="SInicio_Fluerescente021" layer="solid_ME" pos="-15.224 3.08545 12.4178" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="false" generate_physics="false" physics_type="triangle_mesh" />
 	<mesh_instance name="SInicio_Fluerescente022" core="SInicio_Fluerescente022" layer="solid_ME" pos="-19.6787 3.08545 12.8668" yaw="1.00179e-005" pitch="0.0" roll="0.0" visible="true" cast_shadows="false" generate_physics="false" physics_type="triangle_mesh" />

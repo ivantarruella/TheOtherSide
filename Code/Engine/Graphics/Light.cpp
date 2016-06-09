@@ -267,14 +267,14 @@ void CLight::GenerateShadowMap(CRenderManager *RM)
 	CCamera* l_Cam = CORE->GetCamera();
 	if (l_Cam!=NULL) {	
 		float l_Dist = CORE->GetCamera()->GetEye().Distance(GetPosition());
-		if (l_Dist <= m_EndRangeAttenuation*4.0f) {
+		//if (l_Dist <= m_EndRangeAttenuation*4.0f) {
 			if (m_SoftShadow) {		// opt.:don't blur far shadows
 				const float MAX_DIST_SHADOW_BLUR = 8.0f;
 				m_BlurShadowMap = (l_Dist < max(MAX_DIST_SHADOW_BLUR, m_EndRangeAttenuation - m_StartRangeAttenuation));
 			}
 
 			SetShadowMap(RM);
-		}
+		//}
 	}
 }
 

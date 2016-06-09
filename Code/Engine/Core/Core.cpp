@@ -274,6 +274,8 @@ void CCore::Update(bool show_fps)
 
 	float elapsedTime = GetElapsedTime();
 	
+	m_pPhysicsManager->WaitForSimulation();
+
 	m_pInputManager->Update();
 
 	if (!m_pLevelManager->Update())
@@ -285,7 +287,6 @@ void CCore::Update(bool show_fps)
 	#endif
 		if (l_Update)
 		{
-			m_pPhysicsManager->WaitForSimulation();	
 			m_pEnemyManager->Update(elapsedTime);
 			m_pLogicObjectsManager->Update(elapsedTime);
 			m_pLightManager->Update(elapsedTime);

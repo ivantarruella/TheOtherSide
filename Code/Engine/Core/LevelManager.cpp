@@ -164,7 +164,7 @@ bool CLevelManager::InitLevel ()
 	// Get Managers
 	CStaticMeshManager* l_StaticMeshManager = CORE->GetStaticMeshManager();
 	CRenderableObjectsLayersManager* l_RenderableObjectsLayersManager = CORE->GetRenderableObjectsLayersManager();
-	CPhysicsManager* l_PhysicsManager = CORE->GetPhysicsManager();
+	//CPhysicsManager* l_PhysicsManager = CORE->GetPhysicsManager();
 	CBulletManager* l_BulletManager = CORE->GetBulletManager();
 	CLightManager* l_LightManager = CORE->GetLightManager();
 	CBillboardManager* l_BillboardManager = CORE->GetBillboardManager();

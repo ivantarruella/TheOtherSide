@@ -115,7 +115,7 @@ void CAnimatedInstanceModel::RenderShadow(CRenderManager *RM, CLight* Light)
 		return;		// no generamos shadow map de los modelos animados que no generan sombra
 
 	const CFrustum& l_LightFrustum = Light->GetLightFrustum();
-	DrawAnimatedModelShadow(RM, &l_LightFrustum, false);
+	DrawAnimatedModelShadow(RM, &l_LightFrustum, true);
 }
 
 void CAnimatedInstanceModel::RenderDebug(CRenderManager *RM)

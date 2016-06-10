@@ -118,6 +118,20 @@ void CAnimatedInstanceModel::RenderShadow(CRenderManager *RM, CLight* Light)
 	DrawAnimatedModelShadow(RM, &l_LightFrustum, true);
 }
 
+void CAnimatedInstanceModel::RenderReflected(CRenderManager *RM, CRenderableObject* Mesh, const CFrustum* Frustum)
+{	
+	CCamera* l_Cam = CORE->GetCamera();
+	if (l_Cam==NULL)
+		return;
+
+	Vect3f l_Center = m_AnimatedCoreModel->GetVtxCenter() + GetPosition();
+    float l_Radius = m_AnimatedCoreModel->GetRadius();
+    
+	float l_Dist = l_Cam->GetEye().SqDistance(GetPosition());
+	if(Frustum->SphereVisible(l_Center, l_Radius) && l_Dist<MAX_DIST_RENDER*2)
+		RenderModelByHardware(RM, Frustum, true);
+}
+
 void CAnimatedInstanceModel::RenderDebug(CRenderManager *RM)
 {	
 }
@@ -430,16 +444,3 @@ bool CAnimatedInstanceModel::GetRenderableObjectTechnique()
 	return l_Ok;
 }
 
-void CAnimatedInstanceModel::RenderReflected(CRenderManager *RM, CRenderableObject* Mesh, const CFrustum* Frustum)
-{	
-	CCamera* l_Cam = CORE->GetCamera();
-	if (l_Cam==NULL)
-		return;
-
-	Vect3f l_Center = m_AnimatedCoreModel->GetVtxCenter() + GetPosition();
-    float l_Radius = m_AnimatedCoreModel->GetRadius();
-    
-	float l_Dist = l_Cam->GetEye().SqDistance(GetPosition());
-	if(Frustum->SphereVisible(l_Center, l_Radius) && l_Dist<MAX_DIST_RENDER*2)
-		RenderModelByHardware(RM, Frustum, true);
-}

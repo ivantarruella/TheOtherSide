@@ -348,7 +348,7 @@ void CLight::BlurShadowMapV(CRenderManager *RM)
 	}
 }
 
-void CLight::BeginRenderEffectManagerShadowMap(CEffect *Effect)
+void CLight::BeginRenderEffectManagerShadowMap(CEffect *Effect, size_t idx)
 {
 	if(m_GenerateDynamicShadowMap)
 	{
@@ -356,24 +356,24 @@ void CLight::BeginRenderEffectManagerShadowMap(CEffect *Effect)
 		l_EM->SetLightViewMatrix(m_ViewShadowMap);
 		l_EM->SetShadowProjectionMatrix(m_ProjectionShadowMap);
 		if(m_ShadowMaskTexture!=NULL)
-			m_ShadowMaskTexture->Activate(SHADOW_MAP_MASK_STAGE);
+			m_ShadowMaskTexture->Activate(SHADOW_MAP_MASK_STAGE + 4*idx);
 		if(m_GenerateStaticShadowMap)
-			m_StaticShadowMap->Activate(STATIC_SHADOW_MAP_STAGE);
+			m_StaticShadowMap->Activate(STATIC_SHADOW_MAP_STAGE + 4*idx);
 		
 		if (m_Type != OMNI) {
 			if (m_SoftShadow && m_BlurShadowMap)
-				m_DynamicShadowMapBlurV->Activate(DYNAMIC_SHADOW_MAP_STAGE);
+				m_DynamicShadowMapBlurV->Activate(DYNAMIC_SHADOW_MAP_STAGE + 4*idx);
 			else
-				m_DynamicShadowMap->Activate(DYNAMIC_SHADOW_MAP_STAGE);
+				m_DynamicShadowMap->Activate(DYNAMIC_SHADOW_MAP_STAGE + 4*idx);
 		}
 		else 
-			GetCubeShadowMap(calcShadowMapQuality())->Activate(CUBE_MAP_STAGE);
+			GetCubeShadowMap(calcShadowMapQuality())->Activate(CUBE_SHADOW_MAP_STAGE + 4*idx);
 	}
 
-	Effect->SetShadowMapParameters(m_ShadowMaskTexture!=NULL, m_GenerateStaticShadowMap, m_GenerateDynamicShadowMap && m_DynamicShadowMapRenderableObjectsManagers.size()!=0);
+	Effect->SetShadowMapParameters(m_ShadowMaskTexture!=NULL, m_GenerateStaticShadowMap, m_GenerateDynamicShadowMap && m_DynamicShadowMapRenderableObjectsManagers.size()!=0, idx);
 }
 
-void CLight::DeleteShadowMap(CEffect *Effect)
+void CLight::DeleteShadowMap(CEffect *Effect, size_t idx)
 {
 	if(m_GenerateDynamicShadowMap)
 	{
@@ -381,21 +381,21 @@ void CLight::DeleteShadowMap(CEffect *Effect)
 		l_EM->SetLightViewMatrix(m_ViewShadowMap);
 		l_EM->SetShadowProjectionMatrix(m_ProjectionShadowMap);
 		if(m_ShadowMaskTexture!=NULL)
-			m_ShadowMaskTexture->Deactivate(SHADOW_MAP_MASK_STAGE);
+			m_ShadowMaskTexture->Deactivate(SHADOW_MAP_MASK_STAGE + 4*idx);
 		if(m_GenerateStaticShadowMap)
-			m_StaticShadowMap->Deactivate(STATIC_SHADOW_MAP_STAGE);
+			m_StaticShadowMap->Deactivate(STATIC_SHADOW_MAP_STAGE + 4*idx);
 		
 		if (m_Type != OMNI) {
 			if (m_SoftShadow && m_BlurShadowMap)
-				m_DynamicShadowMapBlurV->Deactivate(DYNAMIC_SHADOW_MAP_STAGE);
+				m_DynamicShadowMapBlurV->Deactivate(DYNAMIC_SHADOW_MAP_STAGE + 4*idx);
 			else
-				m_DynamicShadowMap->Deactivate(DYNAMIC_SHADOW_MAP_STAGE);
+				m_DynamicShadowMap->Deactivate(DYNAMIC_SHADOW_MAP_STAGE + 4*idx);
 		}
 		else
-			GetCubeShadowMap(calcShadowMapQuality())->Deactivate(CUBE_MAP_STAGE);
+			GetCubeShadowMap(calcShadowMapQuality())->Deactivate(CUBE_SHADOW_MAP_STAGE + 4*idx);
 	}
 
-	Effect->SetShadowMapParameters(false, false, false);
+	Effect->SetShadowMapParameters(false, false, false, idx);
 }
 
 void CLight::GetShadowsType(const std::string& shadows_type, unsigned int& width, unsigned int& height)

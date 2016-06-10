@@ -36,6 +36,9 @@ CEffect::CEffect()
 	m_UseShadowMaskTextureParameter(NULL),
 	m_UseStaticShadowmapParameter(NULL),
 	m_UseDynamicShadowmapParameter(NULL),
+	m_UseShadowMaskTextureParameter2(NULL),
+	m_UseStaticShadowmapParameter2(NULL),
+	m_UseDynamicShadowmapParameter2(NULL),
 	m_UseRenderTargetSizeParameter(NULL)
 {
 	memset(m_LightsEnabled, 0, sizeof(m_LightsEnabled));
@@ -134,6 +137,10 @@ bool CEffect::LoadEffect()
 	GetParameterBySemantic("STATICSHADOWMAP", m_UseStaticShadowmapParameter);
 	GetParameterBySemantic("SHADOWMAPMASK", m_UseShadowMaskTextureParameter);
 
+	GetParameterBySemantic("DYNAMICSHADOWMAP2", m_UseDynamicShadowmapParameter2);
+	GetParameterBySemantic("STATICSHADOWMAP2", m_UseStaticShadowmapParameter2);
+	GetParameterBySemantic("SHADOWMAPMASK2", m_UseShadowMaskTextureParameter2);
+
 	return true;
 }
 
@@ -228,9 +235,11 @@ void CEffect::SetLights(size_t MAXShaderLights, const Vect3f& center, const CFru
 	}
 
 	// finalmente seteamos las luces encontradas al shader
-	for (size_t l=0; l<MAX_LIGHTS_BY_SHADER; ++l)
-		if (l_LightsOK[l] != NULL)
+	for (size_t l=0; l<MAX_LIGHTS_BY_SHADER;++l)
+		if (l_LightsOK[l] != NULL) {
 			SetLight(l, l_LightsOK[l]);
+			l_LightsOK[l]->BeginRenderEffectManagerShadowMap(this, l);
+		}
 }
 
 bool CEffect::SetLight(size_t Index, CLight* Light)
@@ -266,13 +275,20 @@ bool CEffect::SetLight(size_t Index, CLight* Light)
 	return true;
 }
 
-void CEffect::SetShadowMapParameters(bool UseShadowMaskTexture, bool UseStaticShadowmap, bool UseDynamicShadowmap)
+void CEffect::SetShadowMapParameters(bool UseShadowMaskTexture, bool UseStaticShadowmap, bool UseDynamicShadowmap, size_t idx)
 {
 	if (m_Effect != NULL)
 	{
-		m_Effect->SetBool(m_UseShadowMaskTextureParameter, UseShadowMaskTexture ? TRUE : FALSE);
-		m_Effect->SetBool(m_UseStaticShadowmapParameter, UseStaticShadowmap ? TRUE : FALSE);
-		m_Effect->SetBool(m_UseDynamicShadowmapParameter, UseDynamicShadowmap ? TRUE : FALSE);
+		if (idx == 0) {
+			m_Effect->SetBool(m_UseShadowMaskTextureParameter, UseShadowMaskTexture ? TRUE : FALSE);
+			m_Effect->SetBool(m_UseStaticShadowmapParameter, UseStaticShadowmap ? TRUE : FALSE);
+			m_Effect->SetBool(m_UseDynamicShadowmapParameter, UseDynamicShadowmap ? TRUE : FALSE);
+		} 
+		else {
+			m_Effect->SetBool(m_UseShadowMaskTextureParameter2, UseShadowMaskTexture ? TRUE : FALSE);
+			m_Effect->SetBool(m_UseStaticShadowmapParameter2, UseStaticShadowmap ? TRUE : FALSE);
+			m_Effect->SetBool(m_UseDynamicShadowmapParameter2, UseDynamicShadowmap ? TRUE : FALSE);
+		}
 	}
 }
 

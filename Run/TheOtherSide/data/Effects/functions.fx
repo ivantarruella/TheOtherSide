@@ -217,20 +217,20 @@ float2 getProjectedTexCoords(float4 Pos, out float2 Depth)
 	return ShadowTexC;
 }
 
-float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
+float calcLightAmount(int Tipo, int num, float4 Pos, float3 Nn, float useDynamicShadowMap, sampler dynamicSampler, samplerCUBE cubeSampler)
 {
 	float lightAmount = 1.0;
 	
-	if (g_UseDynamicShadowMap)
+	if (useDynamicShadowMap)
 	{
 		if (Tipo == SPOT)		// VARIANCE SHADOW MAP
 		{
-			float3 VToLight=normalize(g_LightsPosition[0] - Pos.xyz);
-			if (saturate(dot (VToLight, -g_LightsDirection[0])) > g_LightFallOff[0])
+			float3 VToLight=normalize(g_LightsPosition[num] - Pos.xyz);
+			if (saturate(dot (VToLight, -g_LightsDirection[num])) > g_LightFallOff[num])
 			{
 				float2 depth = (float2) 0;
 				float2 ShadowTexC = getProjectedTexCoords(Pos, depth);
-				float2 moments = tex2D( gDynamicShadowMapTextureSampler, ShadowTexC ).xy;
+				float2 moments = tex2D( dynamicSampler, ShadowTexC ).xy;
 				
 				float mean = moments.x;
 				float meanSqr = moments.y;	
@@ -247,15 +247,15 @@ float calcLightAmount(int Tipo, float4 Pos, float3 Nn)
 				lightAmount = max(p, depth <= mean);
 			}
 		}
-		if(Tipo == OMNI) 		// OMNIDIRECTIONAL SHADOW MAP
+		else 		// OMNIDIRECTIONAL SHADOW MAP
 		{
 			float4 PLightDirection = 0.0f;
-			PLightDirection.xyz = Pos.xyz - g_LightsPosition[0];
+			PLightDirection.xyz = Pos.xyz - g_LightsPosition[num];
 			float distance = length(PLightDirection.xyz);
 			PLightDirection.xyz = PLightDirection.xyz / distance;
 
 			//sample depth from cubic shadow map                         		 
-			float shadowMapDepth = texCUBE(gCubeTextureSampler, float4((PLightDirection.xyz), 0.0f)).x;
+			float shadowMapDepth = texCUBE(cubeSampler, float4((PLightDirection.xyz), 0.0f)).x;
 			//depth comparison
 			if(distance > shadowMapDepth)    
 			{
@@ -272,7 +272,7 @@ float4 calcDeferredLighting(float4 Pos, float3 Nn, float4 Albedo, float Specular
 {
 	float3 l_Light = (float3)0;
 	
-	float lightAmount = calcLightAmount(g_LightsTypes[0], Pos, Nn);
+	float lightAmount = calcLightAmount(g_LightsTypes[0], 0, Pos, Nn, g_UseDynamicShadowMap, gDynamicShadowMapTextureSampler, gCubeTextureSampler);
 	if (lightAmount!= 0.0)		
 	{	
 		float l_Attenuation = getAttenuation(g_LightsTypes[0], g_LightsPosition[0], Pos.xyz, g_LightStartAtten[0], g_LightEndAtten[0], g_LightsDirection[0], g_LightAngle[0], g_LightFallOff[0]);
@@ -290,27 +290,6 @@ float4 calcDeferredLighting(float4 Pos, float3 Nn, float4 Albedo, float Specular
 
 	return float4(l_Light, Albedo.a);
 }
-
-/*
-float3 GetRadiosityNormalMap2(float3 Nn, float3 FaceNormal, float3 Tn, float3 Bn, float2 UV)
-{
-	float3x3 l_TriangleMatrix;
-	l_TriangleMatrix[0] = normalize(Tn);
-	l_TriangleMatrix[1] = normalize(Bn);
-	l_TriangleMatrix[2] = normalize(FaceNormal);
-
-	float3 l_LightmapX=(tex2D(gS1LinearClampSampler, UV).xyz);
-	float3 l_LightmapY=(tex2D(gS2LinearClampSampler, UV).xyz);
-	float3 l_LightmapZ=(tex2D(gS3LinearClampSampler, UV).xyz);
-	float3 l_BumpBasisX=normalize(mul(float3(0.816496580927726, 0.5773502691896258, 0 ),l_TriangleMatrix));
-	float3 l_BumpBasisY=normalize(mul(float3(-0.408248290463863, 0.5773502691896258,0.7071067811865475 ),l_TriangleMatrix));
-	float3 l_BumpBasisZ=normalize(mul(float3(-0.408248290463863, 0.5773502691896258, -0.7071067811865475),l_TriangleMatrix));
-	float3 diffuseLighting=saturate( dot( Nn, l_BumpBasisX ) ) * l_LightmapX + saturate( dot( Nn, l_BumpBasisY ) ) * l_LightmapY + saturate( dot( Nn, l_BumpBasisZ ) ) * l_LightmapZ;
-	
-	//return tex2D(gS4LinearWrapSampler, UV).xyz*2;
-	return diffuseLighting;
-}
-*/
 
 float3 GetRadiosityNormalMap(float3 Nn, float3 FaceNormal, float3 Tn, float3 Bn, float2 UV)
 {
@@ -355,9 +334,16 @@ float4 calcLighting(float3 Pos, float3 Nn, float4 Albedo, float SpecularFactor)
 	// Calculamos diffuseContrib, specular Contrib i attenuation para todas las luces
 	for(int i=0; i<MAX_LIGHTS; i++)
 	{
-		//float lightAmount = calcLightAmount(g_LightsTypes[0], float4(Pos,1.0), Nn);
-		//if (lightAmount!= 0.0) 
-		//{		
+		float lightAmount = 1.0;
+		if (i==0) {
+			lightAmount = calcLightAmount(g_LightsTypes[i], i, float4(Pos,1.0), Nn, g_UseDynamicShadowMap, gDynamicShadowMapTextureSampler, gCubeTextureSampler);	
+		}		
+		if (i==1) {
+			lightAmount = calcLightAmount(g_LightsTypes[i], i, float4(Pos,1.0), Nn, g_UseDynamicShadowMap2, gDynamicShadowMapTextureSampler2, gCubeTextureSampler2);
+		}
+
+		if (lightAmount!= 0.0) 
+		{		
 			l_Attenuation = getAttenuation(g_LightsTypes[i], g_LightsPosition[i], Pos, g_LightStartAtten[i], g_LightEndAtten[i], g_LightsDirection[i], g_LightAngle[i], g_LightFallOff[i]);
 			if (l_Attenuation > 0.0)
 			{
@@ -366,7 +352,7 @@ float4 calcLighting(float3 Pos, float3 Nn, float4 Albedo, float SpecularFactor)
 				l_Specular = SpecularFactor*getSpecularContrib(g_LightsTypes[i], g_LightsPosition[i], g_CameraPosition, Nn, Pos, g_LightsDirection[i], g_LightFallOff[i], g_SpecularPower, g_LightsColor[i]);  
 				l_SpecularContrib = l_SpecularContrib + (l_Specular * l_Attenuation);	
 			}
-		//}
+		}
 	}
 
 	return float4 ( l_DiffuseContrib + l_SpecularContrib, Albedo.a);

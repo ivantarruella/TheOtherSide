@@ -4,7 +4,7 @@
 #define SPOT 2
 
 #define MAX_NUM_LIGHTS 	4
-#define MAX_LIGHTS		(MAX_NUM_LIGHTS - 1)		
+#define MAX_LIGHTS		(MAX_NUM_LIGHTS - 2)		
 #define PI_CONSTANT		3.1415926535
 #define MAXBONES		29
 
@@ -34,20 +34,24 @@ float3 	g_AmbientLight		: AMBIENTLIGHT;
 
 float3 g_CameraPosition : WORLD_CAMERA_POSITION;
 
-int g_LightsTypes[MAX_NUM_LIGHTS] : LIGHTS_TYPE;
-float3 g_LightsPosition[MAX_NUM_LIGHTS] : LIGHTS_POSITION;
-float3 g_LightsDirection[MAX_NUM_LIGHTS] : LIGHTS_DIRECTION;
-float3 g_LightsColor[MAX_NUM_LIGHTS] : LIGHTS_COLOR;
-float g_LightStartAtten[MAX_NUM_LIGHTS] : CONSTANTATTENUATION;
-float g_LightEndAtten[MAX_NUM_LIGHTS] : LINEARATTENUATION;
-float g_LightAngle[MAX_NUM_LIGHTS] : FALLOFFANGLE;
-float g_LightFallOff[MAX_NUM_LIGHTS] : FALLOFFEXPONENT;
+int g_LightsTypes[MAX_LIGHTS] : LIGHTS_TYPE;
+float3 g_LightsPosition[MAX_LIGHTS] : LIGHTS_POSITION;
+float3 g_LightsDirection[MAX_LIGHTS] : LIGHTS_DIRECTION;
+float3 g_LightsColor[MAX_LIGHTS] : LIGHTS_COLOR;
+float g_LightStartAtten[MAX_LIGHTS] : CONSTANTATTENUATION;
+float g_LightEndAtten[MAX_LIGHTS] : LINEARATTENUATION;
+float g_LightAngle[MAX_LIGHTS] : FALLOFFANGLE;
+float g_LightFallOff[MAX_LIGHTS] : FALLOFFEXPONENT;
 
 float3x4 g_Bones[MAXBONES] : BONES;
 
 float g_UseDynamicShadowMap : DYNAMICSHADOWMAP;
 float g_UseStaticShadowMap : STATICSHADOWMAP;
 float g_UseShadowMapMask : SHADOWMAPMASK;
+
+float g_UseDynamicShadowMap2 : DYNAMICSHADOWMAP2;
+float g_UseStaticShadowMap2 : STATICSHADOWMAP2;
+float g_UseShadowMapMask2 : SHADOWMAPMASK2;
 
 float g_Time : TIME;
 float2 g_RenderTargetSize : RENDERTARGETSIZE;
@@ -269,6 +273,42 @@ sampler gShadowMapMaskTextureSampler : register( s8 ) = sampler_state
 };
 
 samplerCUBE gCubeTextureSampler : register( s9 ) = sampler_state
+{
+	MipFilter = NONE;
+	MinFilter = NONE;
+	MagFilter = NONE;
+	AddressU = Wrap;
+	AddressV = Wrap;
+};
+
+sampler gDynamicShadowMapTextureSampler2 : register( s10 ) = sampler_state
+{
+	MipFilter = Linear;
+	MinFilter = Linear;
+	MagFilter = Linear;
+	AddressU = Clamp;
+	AddressV = Clamp;
+};
+
+sampler gStaticShadowMapTextureSampler2 : register( s11 ) = sampler_state
+{
+	MipFilter = Linear;
+	MinFilter = Linear;
+	MagFilter = Linear;
+	AddressU = Clamp;
+	AddressV = Clamp;
+};
+
+sampler gShadowMapMaskTextureSampler2 : register( s12 ) = sampler_state
+{
+	MipFilter = Linear;
+	MinFilter = Linear;
+	MagFilter = Linear;
+	AddressU = Clamp;
+	AddressV = Clamp;
+};
+
+samplerCUBE gCubeTextureSampler2 : register( s13 ) = sampler_state
 {
 	MipFilter = NONE;
 	MinFilter = NONE;

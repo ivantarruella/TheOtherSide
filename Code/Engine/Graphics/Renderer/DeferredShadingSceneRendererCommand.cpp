@@ -65,7 +65,7 @@ void CDeferredShadingSceneRendererCommand::Execute(CRenderManager &RM)
 				if	(l_Light->isVisible(RM, &l_Frustum))
 				{
 					l_Effect->SetLight(0, l_Light);	
-					l_Light->BeginRenderEffectManagerShadowMap(l_Effect);
+					l_Light->BeginRenderEffectManagerShadowMap(l_Effect, 0);
 					l_Device->SetRenderState(D3DRS_SCISSORTESTENABLE, TRUE);
 					RECT rect = DetermineClipRect(l_Light);
 					l_Device->SetScissorRect(&rect);
@@ -73,7 +73,7 @@ void CDeferredShadingSceneRendererCommand::Execute(CRenderManager &RM)
 					l_Device->SetRenderState( D3DRS_SCISSORTESTENABLE, FALSE );
 				}
 				else if (l_Light->GetCastShadows())
-					l_Light->DeleteShadowMap(l_Effect);		// destruimos shadowmap de las luces dinamicas que generan sombras apagadas
+					l_Light->DeleteShadowMap(l_Effect, 0);		// destruimos shadowmap de las luces dinamicas que generan sombras apagadas
 			}
 		}
 	}

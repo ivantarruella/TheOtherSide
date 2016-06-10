@@ -63,6 +63,10 @@ private:
 		m_UseStaticShadowmapParameter,
 		m_UseDynamicShadowmapParameter;
 
+	D3DXHANDLE      m_UseShadowMaskTextureParameter2,
+		m_UseStaticShadowmapParameter2,
+		m_UseDynamicShadowmapParameter2;
+
 	D3DXHANDLE		m_UseRenderTargetSizeParameter;
 
 
@@ -79,7 +83,7 @@ public:
 	bool SetLight(size_t Index, CLight* Light);
 	bool Load(const std::string &FileName);
 	bool Reload();
-	void SetShadowMapParameters(bool UseShadowMaskTexture, bool UseStaticShadowmap, bool UseDynamicShadowmap);
+	void SetShadowMapParameters(bool UseShadowMaskTexture, bool UseStaticShadowmap, bool UseDynamicShadowmap, size_t idx);
 
 	//DirectX Methods Interface
 	LPD3DXEFFECT GetD3DEffect() const;

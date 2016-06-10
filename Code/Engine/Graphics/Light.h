@@ -10,10 +10,15 @@
 #include <string>
 #include <vector>
 
-#define DYNAMIC_SHADOW_MAP_STAGE 6
-#define STATIC_SHADOW_MAP_STAGE  7
-#define	SHADOW_MAP_MASK_STAGE	 8
-#define CUBE_MAP_STAGE			 9
+#define DYNAMIC_SHADOW_MAP_STAGE	6
+#define STATIC_SHADOW_MAP_STAGE		7
+#define	SHADOW_MAP_MASK_STAGE		8
+#define CUBE_SHADOW_MAP_STAGE		9
+
+#define DYNAMIC_SHADOW_MAP_STAGE2	10
+#define STATIC_SHADOW_MAP_STAGE2	11
+#define	SHADOW_MAP_MASK_STAGE2		12
+#define CUBE_SHADOW_MAP_STAGE2		13
 
 class CRenderManager;
 class CTexture;
@@ -124,7 +129,7 @@ public:
 
 	//Shadow Map
 	virtual void SetShadowMap(CRenderManager *RM)=0;
-	virtual void BeginRenderEffectManagerShadowMap(CEffect *Effect);
+	virtual void BeginRenderEffectManagerShadowMap(CEffect *Effect, size_t idx);
 	
 	void SetGenerateDynamicShadowMap(bool GenerateDynamicShadowMap);
 	bool GetGenerateDynamicShadowMap() const;
@@ -141,7 +146,7 @@ public:
 	void GenerateShadowMap(CRenderManager *RM);
 	void BlurShadowMapH(CRenderManager *RM);
 	void BlurShadowMapV(CRenderManager *RM);
-	void DeleteShadowMap(CEffect *Effect);
+	void DeleteShadowMap(CEffect *Effect, size_t idx);
 	void RenderShadowMap(CRenderManager *RM);
 	const Mat44f & GetViewShadowMap() const;
 	const Mat44f & GetProjectionShadowMap() const;

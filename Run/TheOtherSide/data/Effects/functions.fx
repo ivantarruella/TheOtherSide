@@ -55,7 +55,7 @@ float getAttenuation(int Tipo, float3 posLight, float3 posPixel, float StartAtte
 		float l_NormAttenuation = l_Attenuation = (1 - saturate((l_Dist - StartAtten)/(EndAtten-StartAtten)));
 		l_Attenuation = l_NormAttenuation * l_AngAttenuation;
 	}
-	else if(Tipo == OMNI)
+	else //if(Tipo == OMNI)
 	{
 		float3 VToLight=posLight - posPixel;
 		float l_Dist=length(VToLight);
@@ -69,16 +69,19 @@ float getAttenuation(int Tipo, float3 posLight, float3 posPixel, float StartAtte
 float3 getDiffuseContrib(int Tipo, float3 posLight, float3 normalN, float3 posPixel, float3 dirLight, float falloff, float3 color)
 {
 	float3 l_DiffuseContrib=(float3)0;
+	/*
 	if(Tipo==DIRECTIONAL)
 	{
 		l_DiffuseContrib = saturate(dot(normalN, -dirLight));
 	}
-	else if(Tipo == SPOT)
+	else 
+	*/
+	if(Tipo == SPOT)
 	{
 		float3 Lp = normalize(posLight-posPixel);
 		l_DiffuseContrib = (saturate(dot (Lp, -dirLight)) > falloff) ? saturate(dot(Lp, normalN)) : float3(0.0,0.0,0.0);	
 	}
-	else if(Tipo == OMNI)
+	else //if(Tipo == OMNI)
 	{
 		float3 Ln= normalize(posLight - posPixel);
 		l_DiffuseContrib = saturate(dot(Ln, normalN));
@@ -90,20 +93,22 @@ float3 getDiffuseContrib(int Tipo, float3 posLight, float3 normalN, float3 posPi
 float3 getSpecularContrib(int Tipo, float3 posLight, float3 eye, float3 normalN, float3 posPixel, float3 dirLight, float angle, float specularPow, float3 color)
 {
 	float3 l_SpecularContrib=(float3)0;
-	
+	/*
 	if(Tipo == DIRECTIONAL)
 	{
 		float3 Hn = normalize(normalize(eye - posPixel) - dirLight);
 		l_SpecularContrib = pow(saturate(dot(normalN,Hn)), specularPow) * color;
 	}
-	else if(Tipo == SPOT)
+	else 
+	*/
+	if(Tipo == SPOT)
 	{
 		float3 Lp = normalize(posLight - posPixel);
 		
 		float3 Hn=normalize(normalize(eye - posPixel) + Lp);
 		l_SpecularContrib = (saturate(dot (Lp, -dirLight)) > angle && dot(normalN,-dirLight)>0) ? (pow(saturate(dot(normalN,Hn)), specularPow) * color) : 0.0;
 	}
-	else if(Tipo == OMNI)
+	else //if(Tipo == OMNI)
 	{
 		float3 Ln= normalize(posLight - posPixel);
 		float3 Hn=normalize(normalize(eye - posPixel) + Ln);
@@ -247,7 +252,7 @@ float calcLightAmount(int Tipo, int num, float4 Pos, float3 Nn, float useDynamic
 				lightAmount = max(p, depth <= mean);
 			}
 		}
-		else 		// OMNIDIRECTIONAL SHADOW MAP
+		else 	//if (Tipo == SPOT)	// OMNIDIRECTIONAL SHADOW MAP
 		{
 			float4 PLightDirection = 0.0f;
 			PLightDirection.xyz = Pos.xyz - g_LightsPosition[num];
@@ -338,7 +343,7 @@ float4 calcLighting(float3 Pos, float3 Nn, float4 Albedo, float SpecularFactor)
 		if (i==0) {
 			lightAmount = calcLightAmount(g_LightsTypes[i], i, float4(Pos,1.0), Nn, g_UseDynamicShadowMap, gDynamicShadowMapTextureSampler, gCubeTextureSampler);	
 		}		
-		if (i==1) {
+		else {
 			lightAmount = calcLightAmount(g_LightsTypes[i], i, float4(Pos,1.0), Nn, g_UseDynamicShadowMap2, gDynamicShadowMapTextureSampler2, gCubeTextureSampler2);
 		}
 

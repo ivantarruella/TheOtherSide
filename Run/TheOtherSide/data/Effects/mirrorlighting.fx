@@ -77,16 +77,15 @@ float4 MirrorNormalTexture_PS(TNORMAL_TEXTURE1_VERTEX_OUT IN) : COLOR
 	float3 Nn=normalize(IN.WorldNormal);
 	float4 l_Lighting = calcLighting(IN.WorldPosition.xyz, Nn, l_Albedo,1.0);
 
-	float3 l_Light = float3(0,0,0);
-	if (g_MirrorDarkCoef>=0.85)
-		l_Light = ((l_Albedo.rgb * 1.0-l_Alpha) + l_Lighting.rgb) * g_MirrorDarkCoef;		// mundo espejo
+	float3 l_Light = ((g_AmbientLight * l_Albedo.rgb) + l_Lighting.rgb);	// mundo real
+	if (g_MirrorDarkCoef>=0.85) {
+		if (l_Alpha < 1.0)
+			l_Light = (( l_Albedo.rgb * 1.0-l_Alpha) + l_Lighting.rgb) * g_MirrorDarkCoef; // mundo espejo
+	}
 	else
 	{
-		l_Light = ((g_AmbientLight * l_Albedo.rgb * 2) + l_Lighting.rgb);	// mundo real
 		if (g_MirrorDarkCoef<0.50)
-		{
 			l_Light = l_Light * g_MirrorDarkCoef;
-		}		
 	}	
 
 	return float4 (l_Light, l_Alpha );

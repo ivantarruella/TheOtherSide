@@ -296,37 +296,6 @@ float4 calcDeferredLighting(float4 Pos, float3 Nn, float4 Albedo, float Specular
 	return float4(l_Light, Albedo.a);
 }
 
-float3 GetRadiosityNormalMap(float3 Nn, float3 FaceNormal, float3 Tn, float3 Bn, float2 UV)
-{
-	float3x3 l_TriangleMatrix;
-    l_TriangleMatrix[0] = normalize(Tn);
-    l_TriangleMatrix[1] = normalize(FaceNormal);
-    l_TriangleMatrix[2] = normalize(Bn);
-
-    float3 l_LightmapX=(tex2D(gS1LinearWrapSampler, UV).xyz);
-    float3 l_LightmapY=(tex2D(gS2LinearWrapSampler, UV).xyz);
-    float3 l_LightmapZ=(tex2D(gS3LinearWrapSampler, UV).xyz);
-    
-	float3 l_BumpBasisX=normalize(mul(float3(0.816496580927726, 0.5773502691896258, 0 ),l_TriangleMatrix));
-    float3 l_BumpBasisY=normalize(mul(float3(-0.408248290463863, 0.5773502691896258,0.7071067811865475 ),l_TriangleMatrix));
-    float3 l_BumpBasisZ=normalize(mul(float3(-0.408248290463863, 0.5773502691896258, -0.7071067811865475),l_TriangleMatrix));
-
-//http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_EfficientSelfShadowedRadiosityNormalMapping.pdf
-
-    float3 dp;
-    dp.x=saturate( dot( Nn, l_BumpBasisX ) );
-    dp.y=saturate( dot( Nn, l_BumpBasisY ) );
-    dp.z=saturate( dot( Nn, l_BumpBasisZ ) );
-
-    dp*=dp;
-	float sum=dot(dp, float3(1.0, 1.0, 1.0));
-    float3 l_DiffuseLight=dp.x*l_LightmapX+dp.y*l_LightmapY+dp.z*l_LightmapZ;
-    l_DiffuseLight/=sum;
-	
-    return l_DiffuseLight;
-}
-
-
 //// FORWARD LIGHTING
 float4 calcLighting(float3 Pos, float3 Nn, float4 Albedo, float SpecularFactor)
 {
@@ -361,6 +330,36 @@ float4 calcLighting(float3 Pos, float3 Nn, float4 Albedo, float SpecularFactor)
 	}
 
 	return float4 ( l_DiffuseContrib + l_SpecularContrib, Albedo.a);
+}
+
+float3 GetRadiosityNormalMap(float3 Nn, float3 FaceNormal, float3 Tn, float3 Bn, float2 UV)
+{
+	float3x3 l_TriangleMatrix;
+    l_TriangleMatrix[0] = normalize(Tn);
+    l_TriangleMatrix[1] = normalize(FaceNormal);
+    l_TriangleMatrix[2] = normalize(Bn);
+
+    float3 l_LightmapX=(tex2D(gS1LinearWrapSampler, UV).xyz);
+    float3 l_LightmapY=(tex2D(gS2LinearWrapSampler, UV).xyz);
+    float3 l_LightmapZ=(tex2D(gS3LinearWrapSampler, UV).xyz);
+    
+	float3 l_BumpBasisX=normalize(mul(float3(0.816496580927726, 0.5773502691896258, 0 ),l_TriangleMatrix));
+    float3 l_BumpBasisY=normalize(mul(float3(-0.408248290463863, 0.5773502691896258,0.7071067811865475 ),l_TriangleMatrix));
+    float3 l_BumpBasisZ=normalize(mul(float3(-0.408248290463863, 0.5773502691896258, -0.7071067811865475),l_TriangleMatrix));
+
+//http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_EfficientSelfShadowedRadiosityNormalMapping.pdf
+
+    float3 dp;
+    dp.x=saturate( dot( Nn, l_BumpBasisX ) );
+    dp.y=saturate( dot( Nn, l_BumpBasisY ) );
+    dp.z=saturate( dot( Nn, l_BumpBasisZ ) );
+
+    dp*=dp;
+	float sum=dot(dp, float3(1.0, 1.0, 1.0));
+    float3 l_DiffuseLight=dp.x*l_LightmapX+dp.y*l_LightmapY+dp.z*l_LightmapZ;
+    l_DiffuseLight/=sum;
+	
+    return l_DiffuseLight;
 }
 
 // CHANGE WORLD EFFECT

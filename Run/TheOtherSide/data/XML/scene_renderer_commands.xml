@@ -79,7 +79,7 @@
 		<dynamic_texture stage_id="0" name="GlowSourceTexture" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
 	</set_render_target>
 	<set_pool_renderable_objects_technique pool="glowSource_pool_renderable_object_technique"/>
-	<render_draw_quad active="true" texture_width_as_frame_buffer="false" width="240" height="120">
+	<render_draw_quad active="true" texture_width_as_frame_buffer="false" width="360" height="180">
 		<texture stage_id="0" file="DiffuseMapTexture"/>
 	</render_draw_quad>
 	<unset_render_target render_target="GlowSourceRenderTarget"/>
@@ -87,7 +87,7 @@
 	<set_render_target name="GenerateBlurHRenderTarget">
 		<dynamic_texture stage_id="0" name="BlurHTexture" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
 	</set_render_target>
-	<set_scissor_rect left="0" top="0" right="240" bottom="120"/>
+	<set_scissor_rect left="0" top="0" right="359" bottom="179"/>
 	<set_pool_renderable_objects_technique pool="blurH_pool_renderable_object_technique"/>
 	<render_draw_quad active="true">
 		<texture stage_id="0" file="GlowSourceTexture"/>
@@ -98,7 +98,7 @@
 	<set_render_target name="GenerateBlurVRenderTarget">
 		<dynamic_texture stage_id="0" name="BlurVTexture" texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
 	</set_render_target>
-	<set_scissor_rect left="0" top="0" right="240" bottom="120"/>
+	<set_scissor_rect left="0" top="0" right="359" bottom="179"/>
 	<set_pool_renderable_objects_technique pool="blurV_pool_renderable_object_technique"/>
 	<render_draw_quad active="true">
 		<texture stage_id="0" file="BlurHTexture"/>
@@ -107,7 +107,7 @@
 	<unset_render_target render_target="GenerateBlurVRenderTarget"/>
 	
 	<set_render_target name="GlowRenderTarget">
-		<dynamic_texture stage_id="0" name="GlowTexture"  width="240" height="120" format_type="A8R8G8B8"/>
+		<dynamic_texture stage_id="0" name="GlowTexture"  width="360" height="180" format_type="A8R8G8B8"/>
 	</set_render_target>
 	<render_draw_quad active="true">
 		<texture stage_id="0" file="BlurVTexture"/>

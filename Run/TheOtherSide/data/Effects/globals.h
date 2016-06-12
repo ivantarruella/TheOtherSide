@@ -8,7 +8,7 @@
 #define PI_CONSTANT		3.1415926535
 #define MAXBONES		29
 
-#define SHADOW_SM_EPSILON   0.075f 
+#define SHADOW_SM_EPSILON   0.1f 
 #define SHADOW_VSM_EPSILON  0.00005f 
 	
 #define SMAP_SIZE 1024

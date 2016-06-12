@@ -131,7 +131,7 @@ float4 LightmapBumpmapTextured_PS(TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_VER
 	float3 Nn = CalcBumpMap(IN.WorldNormal, IN.WorldTangent, IN.WorldBinormal, IN.UV);
 	float4 l_NormalMap=tex2D(gNormalMapSampler,IN.UV);	
 	float4 l_Lighting=calcLighting(IN.WorldPosition.xyz, Nn, l_Albedo,l_NormalMap.a);
-	
+
 	return float4 ((l_AlbedoLightmap.rgb * l_Albedo.rgb) + l_Lighting.rgb, l_Albedo.a * l_AlbedoLightmap.a);
 }
 
@@ -142,7 +142,7 @@ float4 RNMSpecTextured_PS(TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_VERTEX_OUT 
 	float3 l_NormalMap = CalcBumpMapSampled(IN.WorldNormal, IN.WorldTangent, IN.WorldBinormal, IN.UV, gS5LinearWrapSampler);
 	float3 l_SpecMap = tex2D(gS5LinearWrapSampler, IN.UV).a;
 	float3 l_AlbedoRNM=GetRadiosityNormalMap(l_NormalMap, IN.WorldNormal, IN.WorldTangent, IN.WorldBinormal, IN.UV2);	
-	float4 l_Lighting=calcLighting(IN.WorldPosition.xyz, l_NormalMap, float4(l_Albedo,l_Alpha),l_SpecMap);
+	float4 l_Lighting=calcLighting(IN.WorldPosition.xyz, l_NormalMap, float4(l_Albedo,l_Alpha),l_SpecMap)*0.75f;
 
 	return float4 ((l_AlbedoRNM.rgb * l_Albedo.rgb) + l_Lighting.rgb, l_Alpha);
 }

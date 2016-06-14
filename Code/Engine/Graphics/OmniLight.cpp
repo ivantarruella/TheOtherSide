@@ -84,29 +84,26 @@ void COmniLight::SetShadowMap(CRenderManager *RM)
 	CEffectManager *l_EM=CORE->GetEffectManager();
 	CCubeTexture* cubeText = GetCubeShadowMap(calcShadowMapQuality());
 
-	// render the scene depth to positive X side of the cube map
-	createCamForPositiveX(l_EM);
-	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_X, cubeText, cubeText->GetCubeFacePX());
-
 	// render the scene depth to positive Y side of the cube map
 	createCamForPositiveY(l_EM);		
 	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_Y, cubeText, cubeText->GetCubeFacePY());
-
-	// render the scene depth to positive Z side of the cube map
-	createCamForPositiveZ(l_EM);		
-	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_Z, cubeText, cubeText->GetCubeFacePZ());
-
-	// render the scene depth to negative X side of the cube map
-	createCamForNegativeX(l_EM);
-	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_X, cubeText, cubeText->GetCubeFaceNX());
-
 	// render the scene depth to negative Y side of the cube map
 	createCamForNegativeY(l_EM);
 	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_Y, cubeText, cubeText->GetCubeFaceNY());
 
+	// render the scene depth to positive Z side of the cube map
+	createCamForPositiveZ(l_EM);		
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_Z, cubeText, cubeText->GetCubeFacePZ());
 	// render the scene depth to negative Z side of the cube map
 	createCamForNegativeZ(l_EM);		
 	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_Z, cubeText, cubeText->GetCubeFaceNZ());
+
+	// render the scene depth to positive X side of the cube map
+	createCamForPositiveX(l_EM);
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_POSITIVE_X, cubeText, cubeText->GetCubeFacePX());
+	// render the scene depth to negative X side of the cube map
+	createCamForNegativeX(l_EM);
+	RenderShadowMap(RM, D3DCUBEMAP_FACE_NEGATIVE_X, cubeText, cubeText->GetCubeFaceNX());
 
 	// restore color writes
 	RM->GetDevice()->SetRenderState(D3DRS_COLORWRITEENABLE, 

@@ -30,7 +30,7 @@ class CWeapon;
 #define MOUSE_SENSITIVITY_MIN	0.001f
 #define MOUSE_SENSITIVITY_MAX	0.02f
 
-#define CAMERA_INI_POS			(Vect3f(22.f, 0.7f, -2.f))
+#define CAMERA_INI_POS			(Vect3f(23.f, 0.7f, -3.f))
 
 
 class CGameProcess :	public CProcess

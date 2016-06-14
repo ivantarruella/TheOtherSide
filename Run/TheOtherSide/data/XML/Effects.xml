@@ -33,6 +33,7 @@
 
 	<!-- SHADOW MAP TECHNIQUES -->
 	<technique name="ShadowVertexTechniqueStaticMeshes" effect="ShadowMapEffect" use_world_matrix="true" use_world_view_projection_matrix="true" use_lights="true" num_of_lights="1"/>
+	<technique name="ShadowVertexTechniqueStaticMeshes2" effect="ShadowMapEffect" use_world_matrix="true" use_world_view_projection_matrix="true" use_lights="true" num_of_lights="1"/>	
 	<technique name="ShadowVertexTechniqueAnimatedModels" effect="ShadowMapEffect" use_world_matrix="true" use_world_view_projection_matrix="true" use_lights="true" num_of_lights="1"/>
 	
 	<!-- DEFERRED RENDERING TECHNIQUES -->

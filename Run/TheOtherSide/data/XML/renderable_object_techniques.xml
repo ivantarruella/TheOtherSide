@@ -27,13 +27,13 @@
 	
 	<!-- Shadowmap -->
 	<pool_renderable_object_technique name="generate_shadow_map_renderable_objects_technique">
-		<default_technique vertex_type="19" technique="ShadowVertexTechniqueStaticMeshes"/>
-		<default_technique vertex_type="67" technique="ShadowVertexTechniqueStaticMeshes"/>
-		<default_technique vertex_type="3"  technique="ShadowVertexTechniqueStaticMeshes"/>
-		<default_technique vertex_type="51" technique="ShadowVertexTechniqueStaticMeshes"/>
-		<default_technique vertex_type="63" technique="ShadowVertexTechniqueStaticMeshes"/>
-		<default_technique vertex_type="67" technique="ShadowVertexTechniqueStaticMeshes"/>
-		<default_technique vertex_type="31" technique="ShadowVertexTechniqueStaticMeshes"/>
+		<default_technique vertex_type="19" technique="ShadowVertexTechniqueStaticMeshes2"/>
+		<default_technique vertex_type="67" technique="ShadowVertexTechniqueStaticMeshes2"/>
+		<default_technique vertex_type="3"  technique="ShadowVertexTechniqueStaticMeshes2"/>
+		<default_technique vertex_type="51" technique="ShadowVertexTechniqueStaticMeshes2"/>
+		<default_technique vertex_type="63" technique="ShadowVertexTechniqueStaticMeshes2"/>
+		<default_technique vertex_type="67" technique="ShadowVertexTechniqueStaticMeshes2"/>
+		<default_technique vertex_type="31" technique="ShadowVertexTechniqueStaticMeshes2"/>
 		<default_technique vertex_type="415" technique="ShadowVertexTechniqueAnimatedModels"/>
 		<default_technique vertex_type="3135" technique="ShadowVertexTechniqueStaticMeshes"/>
 	</pool_renderable_object_technique>	
@@ -125,17 +125,6 @@
 	<pool_renderable_object_technique name="blurV_pool_renderable_object_technique_shadows">
 		<default_technique vertex_type="592" technique="BlurVDepthMapTechnique"/>
 	</pool_renderable_object_technique>	
-	
-	<!-- Lensflare -->
-	<pool_renderable_object_technique name="lensflare_firstpass_pool_renderable_object_technique">
-		<default_technique vertex_type="592" technique="LensFlareFirstPass"/>
-	</pool_renderable_object_technique>
-	<pool_renderable_object_technique name="lensflare_secondpass_pool_renderable_object_technique">
-		<default_technique vertex_type="592" technique="LensFlareSecondPass"/>
-	</pool_renderable_object_technique>
-	<pool_renderable_object_technique name="lensflare_finalpass_pool_renderable_object_technique">
-		<default_technique vertex_type="592" technique="LensFlareFinalPass"/>
-	</pool_renderable_object_technique>
 	
 	</renderable_object_techniques>
 

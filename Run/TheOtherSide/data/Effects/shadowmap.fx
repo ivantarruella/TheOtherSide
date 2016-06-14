@@ -68,6 +68,22 @@ void PixShadow( float2 Depth : TEXCOORD1, float3 lightVec : TEXCOORD2, float2 UV
 		Color = (length(lightVec) + SHADOW_SM_EPSILON);
 }
 
+void PixShadow2( float2 Depth : TEXCOORD1, float3 lightVec : TEXCOORD2, float2 UV_in : TEXCOORD0, out float4 Color : COLOR )
+{
+	if (g_LightsTypes[0] == SPOT) {                           
+		float d = Depth.x / Depth.y;
+		float moment1 = d;
+		float moment2 = d * d;
+		float dx = ddx(d);
+		float dy = ddy(d);
+		moment2 += 0.25 * (dx * dx + dy * dy) ;
+		Color = float4(moment1, moment2, 0, 1.0f);	
+	}
+	
+	if (g_LightsTypes[0] == OMNI) 
+		Color = (length(lightVec) + SHADOW_SM_EPSILON);
+}
+
 // Techniques
 
 technique ShadowVertexTechniqueStaticMeshes 
@@ -77,6 +93,16 @@ technique ShadowVertexTechniqueStaticMeshes
 		//CullMode = None;
 		VertexShader = compile vs_3_0 VertShadowStaticMeshes();
 		PixelShader = compile ps_3_0 PixShadow();
+	}
+}
+
+technique ShadowVertexTechniqueStaticMeshes2 
+{
+	pass p0 
+	{
+		//CullMode = None;
+		VertexShader = compile vs_3_0 VertShadowStaticMeshes();
+		PixelShader = compile ps_3_0 PixShadow2();
 	}
 }
 

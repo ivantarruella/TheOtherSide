@@ -77,12 +77,15 @@ void COmniLight::createCamForNegativeZ(CEffectManager *EM)
 
 void COmniLight::SetShadowMap(CRenderManager *RM)
 {
+	CCubeTexture* cubeText = GetCubeShadowMap(calcShadowMapQuality());
+	if (cubeText==NULL)
+		return;
+
 	LPDIRECT3DDEVICE9 l_Device= RM->GetDevice();
 	if (FAILED(l_Device->SetRenderState(D3DRS_COLORWRITEENABLE, D3DCOLORWRITEENABLE_RED)))
 		return;
 
 	CEffectManager *l_EM=CORE->GetEffectManager();
-	CCubeTexture* cubeText = GetCubeShadowMap(calcShadowMapQuality());
 
 	// render the scene depth to positive Y side of the cube map
 	createCamForPositiveY(l_EM);		

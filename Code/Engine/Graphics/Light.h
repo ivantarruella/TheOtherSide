@@ -72,7 +72,7 @@ protected:
 	bool m_SoftShadow;
 	CTexture *m_StaticShadowMap, *m_DynamicShadowMap, *m_ShadowMaskTexture;
 	CTexture *m_DynamicShadowMapBlurH, *m_DynamicShadowMapBlurV; 
-	CCubeTexture *m_CubeTextNear, *m_CubeTextMedium, *m_CubeTextFar;
+	CCubeTexture *m_CubeTextNear, *m_CubeTextMedium, *m_CubeTextFar, *m_CubeTextVeryFar;
 	std::vector<CRenderableObjectsManager *> m_StaticShadowMapRenderableObjectsManagers,m_DynamicShadowMapRenderableObjectsManagers;
 	Mat44f m_ViewShadowMap, m_ProjectionShadowMap;
 	CFrustum m_LightFrustum;
@@ -140,7 +140,7 @@ public:
 	CTexture * GetStaticShadowMap() const;
 	CTexture * GetDynamicShadowMap() const;
 	CTexture * GetShadowMaskTexture() const;
-	CCubeTexture* GetCubeShadowMap(unsigned int quality) const;
+	CCubeTexture* GetCubeShadowMap(int quality) const;
 	std::vector<CRenderableObjectsManager *> & GetStaticShadowMapRenderableObjectsManagers();
 	std::vector<CRenderableObjectsManager *> & GetDynamicShadowMapRenderableObjectsManagers();
 	void GenerateShadowMap(CRenderManager *RM);
@@ -151,7 +151,7 @@ public:
 	const Mat44f & GetViewShadowMap() const;
 	const Mat44f & GetProjectionShadowMap() const;
 	void GetShadowsType(const std::string& shadows_type, unsigned int& width, unsigned int& height);
-	unsigned int calcShadowMapQuality();
+	int calcShadowMapQuality();
 };
 
 #endif

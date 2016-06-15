@@ -18,7 +18,7 @@
 
 CLight::CLight()
 	: m_Color(colBLACK), m_Type(OMNI), m_RenderShadows(false), m_StartRangeAttenuation(0.0f), m_EndRangeAttenuation(0.0f), m_StaticShadowMap(NULL), m_DynamicShadowMap(NULL), 
-	m_ShadowMaskTexture(NULL), m_DynamicShadowMapBlurH(NULL), m_DynamicShadowMapBlurV(NULL), m_CubeTextNear(NULL), m_CubeTextMedium(NULL), m_CubeTextFar(NULL),
+	m_ShadowMaskTexture(NULL), m_DynamicShadowMapBlurH(NULL), m_DynamicShadowMapBlurV(NULL), m_CubeTextNear(NULL), m_CubeTextMedium(NULL), m_CubeTextFar(NULL), m_CubeTextVeryFar(NULL),
 	m_GenerateDynamicShadowMap(false), m_GenerateStaticShadowMap(false), m_MustUpdateStaticShadowMap(false), m_SoftShadow(false),m_BlurShadowMap(false), m_bIsIntermittent(false), 
 	m_fTime(0.f), m_fChange(0.f), m_fTMin(0.f), m_fTMax(0.f), m_World(0), m_fVarTime(0.f), m_fOffTime(0.0f), m_bVarIntensity(false), m_bVarAtt(false), m_fAttTime(0.0f), 
 	m_fCurrAttTime(0.0f), m_fAttInc(0.0f), m_bRisingAtt(true), m_LightMesh(NULL), m_TextureON(NULL), m_TextureOFF(NULL), m_bActive(true), m_bMoving(false), m_iMaxMoves(0), 
@@ -35,6 +35,7 @@ CLight::~CLight()
 		CHECKED_DELETE(m_CubeTextNear);
 		CHECKED_DELETE(m_CubeTextMedium);
 		CHECKED_DELETE(m_CubeTextFar);
+		CHECKED_DELETE(m_CubeTextVeryFar);
 	}
 	if (m_SoftShadow)
 	{
@@ -216,30 +217,38 @@ CTexture * CLight::GetShadowMaskTexture() const
 	return m_ShadowMaskTexture;
 }
 
-unsigned int CLight::calcShadowMapQuality()
+int CLight::calcShadowMapQuality()
 {
-	int quality = 0;		// default maximum quality
+	int quality = -1;	// no shadow map
 
 	CCamera* l_Cam = CORE->GetCamera();
 	if (l_Cam!=NULL) {
-		float l_Dist = l_Cam->GetEye().Distance(GetPosition());
-		if (l_Dist > m_EndRangeAttenuation && l_Dist <= m_EndRangeAttenuation*1.5f)
-			quality = 1;	//medium shadow map quality
-		else if (l_Dist > m_EndRangeAttenuation*4)
-			quality = 2;	//lowest shadow map quality
+		float l_Dist = abs(l_Cam->GetEye().Distance(GetPosition()));
+		if (l_Dist >= 0 && l_Dist <= m_EndRangeAttenuation)
+			quality = 0;	// maximum shadow map quality
+		else if (l_Dist > m_EndRangeAttenuation && l_Dist <= m_EndRangeAttenuation*2.0f)
+			quality = 1;	// medium shadow map quality
+		else if (l_Dist > m_EndRangeAttenuation*2.0f && l_Dist <= m_EndRangeAttenuation*3.0f)
+			quality = 2;	// low shadow map quality
+		else if (l_Dist > m_EndRangeAttenuation*3.0f && l_Dist <= m_EndRangeAttenuation*4.0f)
+			quality = 3;	// lowest shadow map quality
 	}
 
 	return quality;
 }
 
-CCubeTexture * CLight::GetCubeShadowMap(unsigned int quality) const
+CCubeTexture * CLight::GetCubeShadowMap(int quality) const
 {
 	if (quality==0)
 		return m_CubeTextNear;
 	if (quality==1)
 		return m_CubeTextMedium;
-	
-	return m_CubeTextFar;
+	if (quality==2)
+		return m_CubeTextFar;
+	if (quality==3)
+		return m_CubeTextVeryFar;
+
+	return NULL;
 }
 
 std::vector<CRenderableObjectsManager *> & CLight::GetStaticShadowMapRenderableObjectsManagers()
@@ -267,14 +276,12 @@ void CLight::GenerateShadowMap(CRenderManager *RM)
 	CCamera* l_Cam = CORE->GetCamera();
 	if (l_Cam!=NULL) {	
 		float l_Dist = CORE->GetCamera()->GetEye().Distance(GetPosition());
-		//if (l_Dist <= m_EndRangeAttenuation*4.0f) {
-			if (m_SoftShadow) {		// opt.:don't blur far shadows
-				const float MAX_DIST_SHADOW_BLUR = 8.0f;
-				m_BlurShadowMap = (l_Dist < max(MAX_DIST_SHADOW_BLUR, m_EndRangeAttenuation - m_StartRangeAttenuation));
-			}
+		if (m_SoftShadow) {		// opt.:don't blur far shadows
+			const float MAX_DIST_SHADOW_BLUR = 8.0f;
+			m_BlurShadowMap = (l_Dist < max(MAX_DIST_SHADOW_BLUR, m_EndRangeAttenuation - m_StartRangeAttenuation));
+		}
 
-			SetShadowMap(RM);
-		//}
+		SetShadowMap(RM);
 	}
 }
 
@@ -350,7 +357,9 @@ void CLight::BlurShadowMapV(CRenderManager *RM)
 
 void CLight::BeginRenderEffectManagerShadowMap(CEffect *Effect, size_t idx)
 {
-	if(m_GenerateDynamicShadowMap)
+	bool bGenerateDynamicShadowMap = m_GenerateDynamicShadowMap;
+
+	if(bGenerateDynamicShadowMap)
 	{
 		CEffectManager *l_EM=CORE->GetEffectManager();
 		l_EM->SetLightViewMatrix(m_ViewShadowMap);
@@ -366,11 +375,16 @@ void CLight::BeginRenderEffectManagerShadowMap(CEffect *Effect, size_t idx)
 			else
 				m_DynamicShadowMap->Activate(DYNAMIC_SHADOW_MAP_STAGE + 4*idx);
 		}
-		else 
-			GetCubeShadowMap(calcShadowMapQuality())->Activate(CUBE_SHADOW_MAP_STAGE + 4*idx);
+		else {
+			CCubeTexture* cubeShadowMap = GetCubeShadowMap(calcShadowMapQuality());
+			if (cubeShadowMap!=NULL)
+				cubeShadowMap->Activate(CUBE_SHADOW_MAP_STAGE + 4*idx);
+			else
+				bGenerateDynamicShadowMap = false;
+		}
 	}
 
-	Effect->SetShadowMapParameters(m_ShadowMaskTexture!=NULL, m_GenerateStaticShadowMap, m_GenerateDynamicShadowMap && m_DynamicShadowMapRenderableObjectsManagers.size()!=0, idx);
+	Effect->SetShadowMapParameters(m_ShadowMaskTexture!=NULL, m_GenerateStaticShadowMap, bGenerateDynamicShadowMap && m_DynamicShadowMapRenderableObjectsManagers.size()!=0, idx);
 }
 
 void CLight::DeleteShadowMap(CEffect *Effect, size_t idx)
@@ -391,8 +405,11 @@ void CLight::DeleteShadowMap(CEffect *Effect, size_t idx)
 			else
 				m_DynamicShadowMap->Deactivate(DYNAMIC_SHADOW_MAP_STAGE + 4*idx);
 		}
-		else
-			GetCubeShadowMap(calcShadowMapQuality())->Deactivate(CUBE_SHADOW_MAP_STAGE + 4*idx);
+		else {
+			CCubeTexture* cubeShadowMap = GetCubeShadowMap(calcShadowMapQuality());
+			if (cubeShadowMap!=NULL)
+				cubeShadowMap->Deactivate(CUBE_SHADOW_MAP_STAGE + 4*idx);
+		}
 	}
 
 	Effect->SetShadowMapParameters(false, false, false, idx);
@@ -485,6 +502,7 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode, const std::string& shadows_
 				m_CubeTextNear=new CCubeTexture();
 				m_CubeTextMedium=new CCubeTexture();
 				m_CubeTextFar=new CCubeTexture();
+				m_CubeTextVeryFar=new CCubeTexture();
 				CCubeTexture::TFormatType formatType =  m_CubeTextNear->GetFormatTypeFromString(l_DynamicShadowMapFormatType);
 				
 				// omnidirectional shadow map maximum quality
@@ -501,6 +519,12 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode, const std::string& shadows_
 				}
 				// omnidirectional shadow map minimum quality
 				if(!m_CubeTextFar->Create("CubeMapTextureMin_"+m_Name,l_Size/4,1,CCubeTexture::RENDERTARGET,CCubeTexture::DEFAULT,formatType))
+				{
+					std::string msg_error = "CLight::SetParameters()-> Imposible crear textura CubeMap ";
+					LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+				}
+				// omnidirectional shadow map lowest quality
+				if(!m_CubeTextVeryFar->Create("CubeMapTextureLowest_"+m_Name,l_Size/8,1,CCubeTexture::RENDERTARGET,CCubeTexture::DEFAULT,formatType))
 				{
 					std::string msg_error = "CLight::SetParameters()-> Imposible crear textura CubeMap ";
 					LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());

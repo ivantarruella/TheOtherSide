@@ -12,6 +12,7 @@
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="true"
 	 angle="30.0" fall_off="60.0">
 		<dynamic renderable_objects_manager="solid_ME"/>
+		<dynamic renderable_objects_manager="enemies_ME"/>
 		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	</light> 
 

@@ -4,7 +4,10 @@
 	<layer name="solid_ME"/>
 	<layer name="alpha_blend_objects_MR"/>
 	<layer name="alpha_blend_objects_ME"/>
+	<layer name="enemies_MR"/>
+	<layer name="enemies_ME"/>	
 	<layer name="particles"/>
+	
 	<mesh_instance name="Pasillos_Centroventana02_ME" core="Pasillos_Centroventana02_ME" layer="solid_ME" pos="-46.9721 1.51506 -7.95921" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
 	<mesh_instance name="Pasillos_Giro01_ME" core="Pasillos_Giro01_ME" layer="solid_ME" pos="-35.3259 1.51506 -15.191" yaw="-1.00179e-005" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
 	<mesh_instance name="Pasillos_LuzEmergencia01_ME" core="Pasillos_LuzEmergencia01_ME" layer="solid_ME" pos="-36.4268 0.343935 -9.59479" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />

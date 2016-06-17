@@ -58,14 +58,8 @@ bool CCharacter::Init()
 
 		if(GetPhysicUserData())
 		{
-			//S'ha de passar per parametre o bounding box
-			//Vect3f l_Size=GetBBSize();
-			//float l_Radius=m_Size;//(l_Size.x>l_Size.z)?l_Size.x/2.f:l_Size.z/2.f;
-			//float l_Height=m_fHeight;
-
-			//Offset-> altura maxima para subir escalones = 0.5f
-			float l_StepOffset=0.5f;
-			uint32 l_CollisionGroupsMask=1<<0; // Mascara, sols col·lisiona amb ECG_ESCENARI
+			float l_StepOffset=0.5f;			//Offset-> altura maxima para subir escalones = 0.5f
+			uint32 l_CollisionGroupsMask=1<<0;	// Mascara, sols col·lisiona amb ECG_ESCENARI
 			m_fSkinWidth=0.15f;
 
 			// Character Controller
@@ -119,7 +113,7 @@ void CCharacter::SetPosition(const Vect3f & Direction, float ElapsedTime)
 	if(m_PhysicController!=NULL)
 		m_PhysicController->Move(Direction, ElapsedTime);
 	
-	Vect3f instancePos = m_PhysicController->GetPosition() - Vect3f(0.f,m_fHeight + 0.075f,0.f);
+	Vect3f instancePos = m_PhysicController->GetPosition() - Vect3f(0.f,m_fHeight + m_fSkinWidth/2.0f,0.f);
 	CAnimatedInstanceModel::SetPosition(instancePos+Direction*ElapsedTime);
 }
 

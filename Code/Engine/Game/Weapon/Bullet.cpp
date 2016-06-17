@@ -319,52 +319,6 @@ void CBullet::PrepareBillboardToScale(float _Time){
 	m_fStepWidth = m_fMaxWidth / (_Time/2.f)/30.f;
 }
 
-#if 0
-void CBullet::CheckCollision(){
-
-	//Collision Detection
-	SCollisionInfo l_sCollision;
-	uint32 l_uimpactMask = 5<<0; // BULLETS MASK
-
-	CPhysicUserData * l_pUserData=CORE->GetPhysicsManager()->RaycastClosestActorShoot (GetPos(),m_vDirection , l_uimpactMask, l_sCollision, m_fSpeed);
-
-	if(l_pUserData==NULL ) 
-	{
-		m_szCollidedObjectName="";
-		m_vCollisionPoint=NULL;
-		m_pCollidedObjectUserData = NULL;
-		return;
-	}
-	else 
-	{
-		m_pCollidedObjectUserData = l_pUserData;
-		m_vCollisionPoint = l_sCollision.m_CollisionPoint;
-		if(IsAnimatedObject(m_pCollidedObjectUserData))
-		{
-			GetCollidedCharacterPosition(m_pCollidedObjectUserData);
-		}
-		else
-		{
-			CRenderableObjectsManager* l_ObjectMan = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("solid_MR");
-			if(l_ObjectMan->isAResource(l_pUserData))
-			{
-				m_vObjAnimatedPosition = NULL;
-			}
-			else{
-				CRenderableObjectsManager* l_ObjectMan = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("alpha_blend_objects_MR");
-				if(l_ObjectMan->isAResource(l_pUserData))
-				{
-					m_vObjAnimatedPosition = NULL;
-				}
-				else{
-					m_pCollidedObjectUserData = NULL;
-					//m_vObjAnimatedPosition = NULL;
-				}
-			}
-		}
-	}
-}
-#else
 void CBullet::CheckCollision(){
 
 	//Collision Detection
@@ -393,7 +347,6 @@ void CBullet::CheckCollision(){
 
 	}
 }
-#endif
 
 bool CBullet::CheckHeadShoot(CSoldier* pSoldier)
 {

@@ -38,8 +38,11 @@ void CWorld::LoadWorld()
 	// Render
 	CORE->GetRenderableObjectsLayersManager()->SetLayerEnabled("solid_MR", false);
 	CORE->GetRenderableObjectsLayersManager()->SetLayerEnabled("alpha_blend_objects_MR", false);
+	CORE->GetRenderableObjectsLayersManager()->SetLayerEnabled("enemies_MR", false);
+
 	CORE->GetRenderableObjectsLayersManager()->SetLayerEnabled("solid_ME", false);
 	CORE->GetRenderableObjectsLayersManager()->SetLayerEnabled("alpha_blend_objects_ME", false);
+	CORE->GetRenderableObjectsLayersManager()->SetLayerEnabled("enemies_ME", false);
 	
 	// Physic
 	CORE->GetRenderableObjectsLayersManager()->EnablePhysicLayer("solid_MR", false);
@@ -80,16 +83,20 @@ void CWorld::LoadWorld()
 	switch(m_iWorld) {
 	case ALL_WORLDS:
 	case REAL_WORLD:
+		// gfx
 		CORE->GetRenderableObjectsLayersManager()->SetLayerEnabled("solid_MR", true);
 		CORE->GetRenderableObjectsLayersManager()->SetLayerEnabled("alpha_blend_objects_MR", true);
-
+		CORE->GetRenderableObjectsLayersManager()->SetLayerEnabled("enemies_MR", true);
+		// physx
 		CORE->GetRenderableObjectsLayersManager()->EnablePhysicLayer("solid_MR", true);
 		break;		
 	
 	case MIRROR_WORLD:
+		// gfx
 		CORE->GetRenderableObjectsLayersManager()->SetLayerEnabled("solid_ME", true);
 		CORE->GetRenderableObjectsLayersManager()->SetLayerEnabled("alpha_blend_objects_ME", true);
-
+		CORE->GetRenderableObjectsLayersManager()->SetLayerEnabled("enemies_ME", true);
+		// physx
 		CORE->GetRenderableObjectsLayersManager()->EnablePhysicLayer("solid_ME", true);
 		break;
 	}

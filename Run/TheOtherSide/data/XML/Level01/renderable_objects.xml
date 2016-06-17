@@ -4,6 +4,8 @@
 	<layer name="solid_ME"/>
 	<layer name="alpha_blend_objects_MR"/>
 	<layer name="alpha_blend_objects_ME"/>
+	<layer name="enemies_MR"/>
+	<layer name="enemies_ME"/>
 	<layer name="particles"/>
 
 	<animated_model_instance name="PLAYER" core="Player" layer="solid" pos="21.6771 0.0 -3.65642" yaw="-1.047" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />

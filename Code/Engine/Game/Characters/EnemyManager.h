@@ -32,8 +32,9 @@ public:
 	void AddSoldier(std::string name, CSoldier* soldier);
 	void SetConection(CMonster* monster, CSoldier* soldier);
 
-	void CreateDinamicEnemy(const std::string &InstanceNameSoldier, const Vect3f &posSoldier,
+	void CreateDynamicEnemy(const std::string &InstanceNameSoldier, const Vect3f &posSoldier,
 		const std::string &InstanceNameMonster, const Vect3f &posMonster);
+	void ActivateDynamicEnemy(const std::string &InstanceNameSoldier, const std::string &InstanceNameMonster);
 
 	void RepositionEnemies(bool isChangingToRealWorld);
 

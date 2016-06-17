@@ -124,7 +124,7 @@
 		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Maquina_Energia_MR_Level01')" />
 	</trigger>
 	<trigger name="Trigger_Sonido_ME_01" pos="-17.0831 2.02224 0.516169" size="0.110186 2.02224 1.48751" mask="" >
-		<onEnter lua="level1_enemigos()" />
+		<onEnter lua="level1_activar_enemigo()" />
 		<onLeave lua="sound_monstruo()" />
 		<onTrigger lua="" />
 	</trigger>

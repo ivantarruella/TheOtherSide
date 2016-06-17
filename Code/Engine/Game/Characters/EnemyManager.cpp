@@ -51,18 +51,39 @@ void CEnemyManager::AddSoldier(std::string name, CSoldier* soldier)
 	m_Soldiers.insert(std::pair<std::string, CSoldier*>(name,soldier));
 }
 
-void CEnemyManager::CreateDinamicEnemy(const std::string &InstanceNameSoldier, const Vect3f &posSoldier, const std::string &InstanceNameMonster, const Vect3f &posMonster)
+void CEnemyManager::CreateDynamicEnemy(const std::string &InstanceNameSoldier, const Vect3f &posSoldier, const std::string &InstanceNameMonster, const Vect3f &posMonster)
 {
-	CRenderableObjectsManager* l_ObjectMan1 = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("solid_ME");
-	l_ObjectMan1->AddAnimatedModelInstance("Monster", InstanceNameMonster, posMonster);
+	CRenderableObjectsManager* l_enemiesME = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("enemies_ME");
+	l_enemiesME->AddAnimatedModelInstance("Monster", InstanceNameMonster, posMonster);
 
-	CRenderableObjectsManager* l_ObjectMan2 = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("solid_MR");
-	l_ObjectMan2->AddAnimatedModelInstance("Soldier", InstanceNameSoldier, posSoldier);
+	CRenderableObjectsManager* l_enemiesMR = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("enemies_MR");
+	l_enemiesMR->AddAnimatedModelInstance("Soldier", InstanceNameSoldier, posSoldier);
 
 	CMonster* l_monster = GetMonster(InstanceNameMonster);
 	CSoldier* l_soldier = GetSoldier(InstanceNameSoldier);
 
 	SetConection(l_monster, l_soldier);
+
+	l_monster->Freeze();
+	l_soldier->Freeze();
+
+	l_enemiesME->GetResource(InstanceNameMonster)->SetVisible(false);
+	l_enemiesMR->GetResource(InstanceNameSoldier)->SetVisible(false);
+}
+
+void CEnemyManager::ActivateDynamicEnemy(const std::string &InstanceNameSoldier, const std::string &InstanceNameMonster)
+{
+	CMonster* l_monster = GetMonster(InstanceNameMonster);
+	CSoldier* l_soldier = GetSoldier(InstanceNameSoldier);
+	if (l_monster && l_soldier) {
+		CRenderableObjectsManager* l_enemiesME = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("enemies_ME");
+		CRenderableObjectsManager* l_enemiesMR = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("enemies_MR");
+		l_enemiesME->GetResource(InstanceNameMonster)->SetVisible(true);
+		l_enemiesMR->GetResource(InstanceNameSoldier)->SetVisible(true);
+
+		l_monster->Unfreeze();
+		l_soldier->Unfreeze();
+	}
 }
 
 void CEnemyManager::RepositionEnemies(bool isChangingToRealWorld)
@@ -123,8 +144,8 @@ void CEnemyManager::RemoveEnemies(CSoldier* soldier)
 	if(soldier->GetCreatePhysics() && soldier->GetPhysicController())
 		CORE->GetPhysicsManager()->ReleasePhysicController(soldier->GetPhysicController());
 
-	CRenderableObjectsManager* l_ObjectMan1 = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("solid_ME");
-	CRenderableObjectsManager* l_ObjectMan2 = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("solid_MR");
+	CRenderableObjectsManager* l_ObjectMan1 = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("enemies_ME");
+	CRenderableObjectsManager* l_ObjectMan2 = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("enemies_MR");
 
 	m_DeadBodies.push_back(l_ObjectMan1->GetResource(l_Monster->GetName()));
 	m_DeadBodies.push_back(l_ObjectMan2->GetResource(soldier->GetName()));
@@ -134,8 +155,8 @@ void CEnemyManager::RemoveEnemies(CSoldier* soldier)
 
 void CEnemyManager::RemoveDeadBodies()
 {
-	CRenderableObjectsManager* l_ObjectManME = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("solid_ME");
-	CRenderableObjectsManager* l_ObjectManMR = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("solid_MR");
+	CRenderableObjectsManager* l_ObjectManME = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("enemies_ME");
+	CRenderableObjectsManager* l_ObjectManMR = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("enemies_MR");
 
 	for (size_t i=0; i<m_DeadBodies.size(); ++i) {
 		bool bRemoved=false;
@@ -320,17 +341,6 @@ void CEnemyManager::AlertCloseSoldiers(CSoldier* soldier)
 
 void CEnemyManager::ResetAll()
 {
-	/*std::map<std::string, CSoldier*>::iterator l_it = m_Soldiers.begin();
-	for(; l_it!=m_Soldiers.end(); l_it++)
-	{
-		l_it->second->Reset();
-	}
-	std::map<std::string, CMonster*>::iterator l_it1 = m_Monsters.begin();
-	for(; l_it1!=m_Monsters.end(); l_it1++)
-	{
-		l_it1->second->Reset();
-	}*/
-	
 	std::map<std::string, CSoldier*>::iterator l_it = m_Soldiers.begin();
 	while(m_Soldiers.size() > 0)
 	{

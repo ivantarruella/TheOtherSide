@@ -16,6 +16,7 @@ enemies05_level2 = false
 
 function level1_restart_enemies()
 	enemies01_level1 = false
+	level1_crear_enemigo()
 end
 
 function level2_restart_enemies()
@@ -28,17 +29,19 @@ function level2_restart_enemies()
 end
 
 
-function level1_enemigos()
+function level1_crear_enemigo()
 	if enemies01_level1 == false then
 		local position_MR = Vect3f(7.68321,0.00,4.29533)
 		local position_ME = Vect3f(-7.68321,0.00,4.29533)
 		_ENEMYM:create_enemy('Soldier001', position_MR, 'Monster001', position_ME)
 		
-		--local position_MR = Vect3f(19.7242,0.00, 28.6705)
-		--local position_ME = Vect3f(-19.7242,0.00, 28.6705)
-		--_ENEMYM:create_enemy('Soldier002', position_MR, 'Monster002', position_ME)
-		
 		enemies01_level1 = true
+	end
+end
+
+function level1_activar_enemigo()
+	if enemies01_level1 == true then
+		_ENEMYM:activate_enemy('Soldier001', 'Monster001')
 	end
 end
 

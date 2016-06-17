@@ -116,7 +116,6 @@ end
 -- Entrada hall nivel 2 (mundo espejo)
 function level02_enter_hall_ME()
 	espejos_hall01_ME_level02_ON()
-	--level2_enemigos_hall_piso1()
 	opt_luces05_level2()
 	objetivo9()
 	sound_helpme()

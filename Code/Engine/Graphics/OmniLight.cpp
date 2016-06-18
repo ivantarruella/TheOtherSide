@@ -117,7 +117,6 @@ void COmniLight::RenderShadowMap(CRenderManager *RM, D3DCUBEMAP_FACES face, CCub
 {
 	LPDIRECT3DDEVICE9 l_Device= RM->GetDevice();
 	
-	
 	if (cubeText->SetAsRenderTarget(face, inCubeFaceSurface)) 
 	{
 		l_Device->Clear(NULL, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0x00000000, 1.0f, NULL);

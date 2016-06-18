@@ -263,10 +263,7 @@ float calcLightAmount(int Tipo, int num, float4 Pos, float3 Nn, float useDynamic
 			float shadowMapDepth = texCUBE(cubeSampler, float4((PLightDirection.xyz), 0.0f)).x;
 			//depth comparison
 			if(distance > shadowMapDepth)    
-			{
-				//the pixel is shadowed, so return zero for diffuse and specular
 				lightAmount = 0.0f;
-			}
 		}
 	}
 	

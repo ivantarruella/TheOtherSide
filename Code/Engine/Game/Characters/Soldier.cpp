@@ -143,15 +143,9 @@ void CSoldier::Reset()
 }
 
 
-void CSoldier::RemoveCapsuleForBullets()
-{
-	if(GetCreatePhysics())
-		CORE->GetPhysicsManager()->ReleaseActorCapsule(GetPhysicActor());
-}
-
 void CSoldier::Update(float ElapsedTime)
 {
-	if (m_Player==NULL)
+	if (m_Player==NULL || !GetEnabled())
 		return;
 
 	Vect3f l_pla=m_Player->GetPosition();
@@ -238,76 +232,17 @@ void CSoldier::GetHurt()
 	ExecuteAction(USE_ANIM, 0.3f, 0.3f);		// soldier hurt anim
 }
 
-#if 1
+void CSoldier::RemoveCapsuleForBullets()
+{
+	//if(GetCreatePhysics())
+	//	CORE->GetPhysicsManager()->ReleaseActorCapsule(GetPhysicActor());
+}
+
 void CSoldier::CreateCapsuleForBullets()
 {
 	if(GetCreatePhysics())
 	{
-		GetPhysicActor()->AddCapsuleShape(SOLDIER_BBOX_SIZE,SOLDIER_BBOX_HEIGHT, m_Position/*+Vect3f(0.f,SOLDIER_BBOX_HEIGHT,0.f)*/,v3fZERO,0,ECG_ENEMICS);
-		CORE->GetPhysicsManager()->AddPhysicActor(GetPhysicActor());
+		//GetPhysicActor()->AddCapsuleShape(SOLDIER_BBOX_SIZE,SOLDIER_BBOX_HEIGHT, m_Position/*+Vect3f(0.f,SOLDIER_BBOX_HEIGHT,0.f)*/,v3fZERO,0,ECG_ENEMICS);
+		//CORE->GetPhysicsManager()->AddPhysicActor(GetPhysicActor());
 	}
 }
-#else
-void CSoldier::CreateCapsuleForBullets()
-{
-	if(GetCreatePhysics())
-	{
-		Mat44f l_TransfMat;
-		l_TransfMat.SetIdentity();
-		Vect3f l_Pos;
-		CalSkeleton* l_pSkeleton = this->GetCalModel()->getSkeleton();
-		int l_BoneIdx = l_pSkeleton->getCoreSkeleton()->getCoreBoneId("esbirro Head");
-		if (l_BoneIdx != -1)
-		{
-			CalCoreBone* l_pBone = l_pSkeleton->getCoreSkeleton()->getCoreBone(l_BoneIdx);
-			CalVector l_vTranslation = l_pBone->getTranslationAbsolute();
-			CalQuaternion l_vRotation = l_pBone->getRotationAbsolute();
-			l_TransfMat = this->GetTransform();
-			Vect3f l_Pos = l_TransfMat * /** Vect3f(l_vRotation.x,l_vRotation.y,l_vRotation.z)* */Vect3f(l_vTranslation.x, l_vTranslation.y+0.15f, l_vTranslation.z) ;
-			GetPhysicActor()->AddSphereShape(0.15f,l_Pos,v3fZERO,0,ECG_ENEMICS);
-		}
-
-		l_TransfMat.SetIdentity();
-		l_BoneIdx = l_pSkeleton->getCoreSkeleton()->getCoreBoneId("esbirro Pelvis");
-		if (l_BoneIdx != -1)
-		{
-			CalCoreBone* l_pBone = l_pSkeleton->getCoreSkeleton()->getCoreBone(l_BoneIdx);
-			CalVector l_vTranslation = l_pBone->getTranslationAbsolute();
-			//CalQuaternion l_vRotation = l_pBone->getRotationAbsolute();
-			l_TransfMat = this->GetTransform();
-			Vect3f l_Pos = l_TransfMat * Vect3f(l_vTranslation.x, l_vTranslation.y, l_vTranslation.z) ;
-			GetPhysicActor()->AddCapsuleShape(0.3f,1.8f,l_Pos,v3fZERO,0,ECG_ENEMICS);
-		}
-
-		l_TransfMat.SetIdentity();
-		l_BoneIdx = l_pSkeleton->getCoreSkeleton()->getCoreBoneId("esbirro R Forearm");
-		if (l_BoneIdx != -1)
-		{
-			CalCoreBone* l_pBone = l_pSkeleton->getCoreSkeleton()->getCoreBone(l_BoneIdx);
-			CalVector l_vTranslation = l_pBone->getTranslationAbsolute();
-			CalQuaternion l_vRotation = l_pBone->getRotationAbsolute();
-			l_TransfMat = this->GetTransform();
-			Vect3f l_Pos = l_TransfMat * Vect3f(l_vRotation.x,l_vRotation.y,l_vRotation.z)* Vect3f(l_vTranslation.x, l_vTranslation.y, l_vTranslation.z) ;
-			GetPhysicActor()->AddCapsuleShape(0.15f,0.9f,l_Pos,v3fZERO,0,ECG_ENEMICS);
-		}
-
-		l_TransfMat.SetIdentity();
-		l_BoneIdx = l_pSkeleton->getCoreSkeleton()->getCoreBoneId("esbirro L Forearm");
-		if (l_BoneIdx != -1)
-		{
-			CalCoreBone* l_pBone = l_pSkeleton->getCoreSkeleton()->getCoreBone(l_BoneIdx);
-			CalVector l_vTranslation = l_pBone->getTranslationAbsolute();
-			CalQuaternion l_vRotation = l_pBone->getRotationAbsolute();
-			l_TransfMat = this->GetTransform();
-			Vect3f l_Pos = l_TransfMat * Vect3f(l_vRotation.x,l_vRotation.y,l_vRotation.z)* Vect3f(l_vTranslation.x, l_vTranslation.y, l_vTranslation.z) ;
-			GetPhysicActor()->AddCapsuleShape(0.15f,0.9f,l_Pos,v3fZERO,0,ECG_ENEMICS);
-		}
-
-		GetPhysicActor()->AddSphereShape(0.15f, m_Position+Vect3f(0.f,1.85f-GetHeight(),0.f),v3fZERO,0,ECG_ENEMICS);
-		GetPhysicActor()->AddCapsuleShape(0.4f,1.8f, m_Position+Vect3f(0.f,1.17f-SOLDIER_BBOX_HEIGHT,0.f),v3fZERO,0,ECG_ENEMICS);
-
-		//CreatePhysics(m_Position+Vect3f(0.f,1.17f-SOLDIER_BBOX_HEIGHT,0.f),0.4f,1.8f,ECG_ENEMICS);
-		CORE->GetPhysicsManager()->AddPhysicActor(GetPhysicActor());
-	}
-}
-#endif

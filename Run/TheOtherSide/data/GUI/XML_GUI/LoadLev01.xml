@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <Windows OnLoadWindows="_LEVELM:load_level('data/XML/Level01')"
 	     OnSaveWindows="" 
-		 OnUpdateWindows="level1_crear_enemigo()
-		                  _LOGICOBJECTSM:change_state_all(1, false)
+		 OnUpdateWindows="_LOGICOBJECTSM:change_state_all(1, true)
 						  _LOGICOBJECTSM:set_mirror_active('Trigger_SVigilado_Espejo_MR', true)
-						  _EFFECTM:set_mirror_dark_coef(0.4)
+						  _EFFECTM:set_mirror_dark_coef(0.8)
 						  _GUI:active_windows('Game.xml')
 						  "
 		>

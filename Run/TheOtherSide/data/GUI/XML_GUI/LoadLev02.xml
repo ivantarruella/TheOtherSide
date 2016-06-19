@@ -2,8 +2,7 @@
 <Windows OnLoadWindows="_SOUNDM:stop()
 						_LEVELM:load_level('data/XML/Level02')"
 	     OnSaveWindows="" 
-		 OnUpdateWindows="level2_crear_enemigos()
-						  _LOGICOBJECTSM:change_state_all(1, true)
+		 OnUpdateWindows="_LOGICOBJECTSM:change_state_all(1, true)
 						  _LOGICOBJECTSM:set_mirror_on('Trigger_SVigilado_Espejo_MR_Level02', false)	
 						  _EFFECTM:set_mirror_dark_coef(0.8)
 						  objetivo8()

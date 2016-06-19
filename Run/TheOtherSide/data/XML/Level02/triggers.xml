@@ -20,11 +20,13 @@
 		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Hall02_EspejoEstatico_ME', 'Trigger_Hall02_EspejoRotatorio_ME', '')" />
 		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Hall02_EspejoEstatico_ME', 'Trigger_Hall02_EspejoRotatorio_ME', '')" />
 	</trigger>
+	
 	<trigger name="Trigger_SVigilado_Espejo_ME_Level02" pos="-23.4133 4.53106 23.0064" size="0.190115 0.925346 3.89001" mask="" >
 		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_SVigilado_Espejo_ME_Level02', 'Trigger_SVigilado_Espejo_MR_Level02', '')" />
 		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_SVigilado_Espejo_ME_Level02', 'Trigger_SVigilado_Espejo_MR_Level02', '')" />
 		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_SVigilado_Espejo_ME_Level02', 'Trigger_SVigilado_Espejo_MR_Level02', '')" />
 	</trigger>
+	
 	<trigger name="Trigger_Espejo_Final_ME" pos="-33.9407 9.30648 3.27894" size="0.982889 0.185687 0.466732" mask="" >
 		<onEnter lua="_GAMEPROCESS:mirror_trigger('OnEnter', 'Trigger_Espejo_Final_ME', '', '')" />
 		<onLeave lua="_GAMEPROCESS:mirror_trigger('OnLeave', 'Trigger_Espejo_Final_ME', '', '')" />
@@ -72,7 +74,7 @@
 	</trigger>
 	<trigger name="Trigger_OptEspejos_07_ME" pos="-12.2818 4.04998 12.1297" size="0.864611 0.953168 0.147589" mask="" >
 		<onEnter lua="espejos_hall02_ME_level02_ON()" />
-		<onLeave lua="" />
+		<onLeave lua="level2_enemigos02_hall_piso2_ME()" />
 		<onTrigger lua="luces_entrada_piso1_ME_level02_ON()" />
 	</trigger>
 	<trigger name="Trigger_OptEspejos_08_ME" pos="-38.6351 4.04998 12.1297" size="0.864609 0.953168 0.147589" mask="" >
@@ -400,7 +402,7 @@
 	</trigger>
 	<trigger name="Trigger_Sonido_Risa_ME" pos="-27.6322 0.868603 -22.6085" size="1.49054 0.88746 0.149652" mask="" >
 		<onEnter lua="sound_risa()" />
-		<onLeave lua="" />
+		<onLeave lua="level2_enemigo2_hall_piso1()" />
 		<onTrigger lua="" />
 	</trigger>
 	<trigger name="Trigger_Objetivo_final_ME" pos="-33.775 7.71167 3.27363" size="0.466942 0.556907 0.362703" mask="" >
@@ -424,13 +426,13 @@
 		<onTrigger lua="sound_grito()" />
 	</trigger>
 	<trigger name="Trigger_Sonido_Grito2_ME" pos="-22.2391 0.87761 -16.1251" size="0.14992 0.88746 1.49056" mask="" >
-		<onEnter lua="" />
+		<onEnter lua="level2_enemigo4_hall_piso1()" />
 		<onLeave lua="" />
 		<onTrigger lua="sound_scream()" />
 	</trigger>
 	<trigger name="Trigger_Sonido_Risa2_ME" pos="-15.0801 0.840575 -12.4602" size="1.82974 0.88746 0.149652" mask="" >
 		<onEnter lua="" />
 		<onLeave lua="" />
-		<onTrigger lua="sound_laugh()" />
+		<onTrigger lua="level2_enemigo3_hall_piso1()" />
 	</trigger>
 </TriggerManager>

@@ -122,7 +122,7 @@ function level02_enter_hall_ME()
 end
 
 function level02_exit_hall_ME()
-	level2_enemigos_hall_piso1()
+	level2_enemigo1_hall_piso1()
 	opt_luces06_level2()
 end
 
@@ -132,11 +132,11 @@ function level02_enter_hall_MR()
 end
 
 function level02_hall_piso2_MR()
-	level2_enemigos_hall_piso2()
+	level2_enemigos01_hall_piso2()
 	espejos_hall02_MR_level02_ON()
 end
 
 function level02_hall_piso2_ME()
-	level2_enemigos_hall_piso2()
+	level2_enemigos01_hall_piso2()
 	espejos_hall02_ME_level02_ON()
 end

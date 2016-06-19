@@ -130,7 +130,7 @@ void CMonster::Reset()
 
 void CMonster::Update(float ElapsedTime)
 {
-	if (m_Player==NULL)
+	if (m_Player==NULL || !GetEnabled())
 		return;
 
 	Vect3f l_pla=m_Player->GetPosition();

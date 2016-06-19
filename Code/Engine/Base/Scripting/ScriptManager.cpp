@@ -608,7 +608,6 @@ void CScriptManager::RegisterEnemyManager()
 			.def("unfreeze_all",&CEnemyManager::UnfreezeAll)
 			.def("reset_all",&CEnemyManager::ResetAll)
 			.def("create_enemy",&CEnemyManager::CreateDynamicEnemy)
-			.def("activate_enemy",&CEnemyManager::ActivateDynamicEnemy)
 		];
 	luabind::globals(m_LS)
 		[

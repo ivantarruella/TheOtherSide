@@ -6,6 +6,7 @@
 #include "Renderer\RenderableObjectsLayersManager.h"
 #include "RenderableObjectsManager.h"
 #include "PhysicsManager.h"
+#include "PhysicController.h"
 #include "Core.h"
 
 #include "Base.h"
@@ -63,27 +64,6 @@ void CEnemyManager::CreateDynamicEnemy(const std::string &InstanceNameSoldier, c
 	CSoldier* l_soldier = GetSoldier(InstanceNameSoldier);
 
 	SetConection(l_monster, l_soldier);
-
-	l_monster->Freeze();
-	l_soldier->Freeze();
-
-	l_enemiesME->GetResource(InstanceNameMonster)->SetVisible(false);
-	l_enemiesMR->GetResource(InstanceNameSoldier)->SetVisible(false);
-}
-
-void CEnemyManager::ActivateDynamicEnemy(const std::string &InstanceNameSoldier, const std::string &InstanceNameMonster)
-{
-	CMonster* l_monster = GetMonster(InstanceNameMonster);
-	CSoldier* l_soldier = GetSoldier(InstanceNameSoldier);
-	if (l_monster && l_soldier) {
-		CRenderableObjectsManager* l_enemiesME = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("enemies_ME");
-		CRenderableObjectsManager* l_enemiesMR = CORE->GetRenderableObjectsLayersManager()->GetRenderableObjectManager("enemies_MR");
-		l_enemiesME->GetResource(InstanceNameMonster)->SetVisible(true);
-		l_enemiesMR->GetResource(InstanceNameSoldier)->SetVisible(true);
-
-		l_monster->Unfreeze();
-		l_soldier->Unfreeze();
-	}
 }
 
 void CEnemyManager::RepositionEnemies(bool isChangingToRealWorld)

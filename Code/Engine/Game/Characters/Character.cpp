@@ -63,7 +63,7 @@ bool CCharacter::Init()
 			m_fSkinWidth=0.15f;
 
 			// Character Controller
-			CPhysicController* l_Controller= new CPhysicController(m_Size, m_fHeight, mathUtils::Deg2Rad(45.0f), m_fSkinWidth, l_StepOffset, l_CollisionGroupsMask, GetPhysicUserData(), m_Position+Vect3f(0.f,m_fHeight,0.f));
+			CPhysicController* l_Controller= new CPhysicController(m_Size, m_fHeight, mathUtils::Deg2Rad(45.0f), m_fSkinWidth, l_StepOffset, l_CollisionGroupsMask, GetPhysicUserData(), m_Position+Vect3f(0.f,m_fHeight/2.0f + m_Size + m_fSkinWidth,0.f));
 			SetPhysicController(l_Controller);
 			CORE->GetPhysicsManager()->AddPhysicController(l_Controller);
 
@@ -102,7 +102,7 @@ void CCharacter::SetPosition(const Vect3f & Position)
 {
 	//seteamos a partir de posicion del player
 	if(m_PhysicController!=NULL)
-		m_PhysicController->SetPosition(Position+Vect3f(0.f,m_fHeight,0.f));
+		m_PhysicController->SetPosition(Position+Vect3f(0.f,m_fHeight/2.0f + m_Size + m_fSkinWidth,0.f));
 
 	CAnimatedInstanceModel::SetPosition(Position);
 }
@@ -113,7 +113,7 @@ void CCharacter::SetPosition(const Vect3f & Direction, float ElapsedTime)
 	if(m_PhysicController!=NULL)
 		m_PhysicController->Move(Direction, ElapsedTime);
 	
-	Vect3f instancePos = m_PhysicController->GetPosition() - Vect3f(0.f,m_fHeight + m_fSkinWidth/2.0f,0.f);
+	Vect3f instancePos = m_PhysicController->GetPosition() - Vect3f(0.f,m_fHeight/2.0f + m_Size + m_fSkinWidth,0.f);
 	CAnimatedInstanceModel::SetPosition(instancePos+Direction*ElapsedTime);
 }
 

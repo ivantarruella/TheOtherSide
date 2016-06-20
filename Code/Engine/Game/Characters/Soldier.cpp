@@ -18,9 +18,9 @@
 #include "PhysicsManager.h"
 #include "Base.h"
 
-#define	SOLDIER_BBOX_HEIGHT		0.9f
-#define	SOLDIER_BBOX_SIZE		0.35f
-#define MAX_LIFE_SOLDIER		4.0f
+#define	SOLDIER_BBOX_HEIGHT		0.90f
+#define	SOLDIER_BBOX_SIZE		0.25f
+#define MAX_LIFE_SOLDIER		2.5f
 
 CSoldier::CSoldier()
 	:m_Alarm(false), m_bFrozen(false), m_TimeDead(0.0f), m_Cover(-1)
@@ -202,7 +202,7 @@ void CSoldier::SetPosition(const Vect3f &Position)
 
 void CSoldier::SetPosition(const Vect3f & Direction, float ElapsedTime)
 {
-	CCharacter::SetPosition(Direction,  ElapsedTime);
+	CCharacter::SetPosition(Direction, ElapsedTime);
 }
 
 void CSoldier::SetPlayer(CPlayer * player)

@@ -3,7 +3,7 @@
 	<Billboard name="bLaserHalo" color="1.0 1.0 1.0 1.0" height="1.0" width="1.0" tex="data\\Textures\\Particles\\laser_halo.png" />
 	<Billboard name="bReboteDisparo" color="1.0 1.0 1.0 1.0" height="0.5" width="0.5" tex="data\\Textures\\Particles\\rebote_disparo.png" />
 	<Billboard name="bBlood1" color="1.0 1.0 1.0 0.5" height="0.35" width="0.35" tex="data\\Textures\\Particles\\blood.png" />
-	<Billboard name="bBlood2" color="1.0 1.0 1.0 0.5" height="0.35" width="0.35" tex="data\\Textures\\Particles\\blood2.png" />
+	<Billboard name="bBlood2" color="1.0 1.0 1.0 0.5" height="0.5" width="0.5" tex="data\\Textures\\Particles\\blood2.png" />
 	<Billboard name="bBlood3" color="1.0 1.0 1.0 0.5" height="0.35" width="0.35" tex="data\\Textures\\Particles\\blood3.png" />	
 </Billboards>
 

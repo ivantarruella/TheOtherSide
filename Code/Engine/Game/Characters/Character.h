@@ -81,6 +81,11 @@ public:
 
 	void ClearAllAnims();
 
+protected:
+
+	float m_fHeight;
+	float m_fSkinWidth;
+
 private:
 	CPhysicController* m_PhysicController;
 	
@@ -90,7 +95,5 @@ private:
 	float m_fLife;
 	bool m_bHit, m_bDead;
 
-	float m_fHeight;
-	float m_fSkinWidth;
 };
 

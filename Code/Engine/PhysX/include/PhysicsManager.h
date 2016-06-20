@@ -42,7 +42,6 @@ class CScriptManager;
 
 enum ECollisionGroup {
 	ECG_ESCENARI,
-	ECG_TRIGGERS,
 	ECG_ENEMICS,
 	ECG_PERSONATGE,
 	ECG_ARMA,
@@ -58,6 +57,7 @@ enum ECollisionGroup {
 	ECG_RAGDOLL,
 	ECG_RAGDOLL_PLAYER,
 	ECG_VIGIA,
+	ECG_TRIGGERS,
 
 	//aquest ha de ser l'últim sempre!!!!
 	ECG_LAST_GROUP

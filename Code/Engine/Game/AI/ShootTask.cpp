@@ -74,7 +74,7 @@ void CShootTask::doAction(float ElapsedTime)
 				action << "sound_disparo_soldado(" << vol << ")";
 				CORE->GetScriptManager()->RunCode(action.str());				
 				
-				CORE->GetBulletManager()->AddBullet(l_vGunPosition, l_dir, m_Player, 40.0f, 0.1f);
+				CORE->GetBulletManager()->AddBullet(l_vGunPosition, l_dir, m_Player, 30.0f, 0.1f);
 				isShooting=false;
 			}
 			m_shoot=true;

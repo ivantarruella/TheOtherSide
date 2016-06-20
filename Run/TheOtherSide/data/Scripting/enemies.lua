@@ -18,8 +18,6 @@ level2_final_enemies_spawned = false
 
 function level1_restart_enemies()
 	level1_enemies01_spawned = false
-	
-	level1_crear_enemigo()
 end
 
 function level2_restart_enemies()
@@ -34,8 +32,6 @@ function level2_restart_enemies()
 	level2_floor2_enemies03_spawned = false
 	
 	level2_final_enemies_spawned = false
-	
-	level2_crear_enemigos()
 end
 
 -- LEVEL 01

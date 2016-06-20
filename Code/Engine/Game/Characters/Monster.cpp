@@ -19,7 +19,7 @@
 #include "Base.h"
 
 
-#define MONSTER_BBOX_SIZE	0.33f
+#define MONSTER_BBOX_SIZE	0.30f
 #define MONSTER_BBOX_HEIGHT	0.70f
 
 CMonster::CMonster()

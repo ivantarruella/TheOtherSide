@@ -8,13 +8,13 @@
 	 att_start_range="1.0" att_end_range="6.0" dir="-0.0264862 0.0 -0.999649"
 	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="RG32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="true"
-	 angle="30.0" fall_off="60.0">
+	 angle="50.0" fall_off="80.0">
 		<dynamic renderable_objects_manager="solid_ME"/>
 		<dynamic renderable_objects_manager="enemies_ME"/>
 		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	</light> 
 
-	<light name="LASER" type="spot" pos="7.36404 2.58032 -13.5044" color="65.0 255.0 19.0" att_start_range="4.0" att_end_range="6.0" dir="0.00513604 0.00172818 -0.999985" world="2" angle="15.0" fall_off="20.0"/>
+	<light name="LASER" type="spot" pos="7.36404 2.58032 -13.5044" color="65.0 255.0 19.0" att_start_range="4.0" att_end_range="6.0" dir="0.00513604 0.00172818 -0.999985" world="2" angle="30.0" fall_off="50.0"/>
 
 	<!-- REAL WORLD -->
 	<light name="Light01_Omni_MR" type="omni" pos="21.8216 2.25 -3.78411" color="192.0 192.0 192.0" att_start_range="0.5" att_end_range="4.0" 

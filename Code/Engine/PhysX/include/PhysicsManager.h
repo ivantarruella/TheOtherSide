@@ -64,29 +64,6 @@ enum ECollisionGroup {
 };
 
 
-//enum ECollisionGroup {
-//	ECG_ESCENARI,
-//	ECG_PERSONATGE,
-//	ECG_ENEMICS,
-//	ECG_TRIGGERS,
-//	ECG_MALGLOBAL,
-//	ECG_COBERTURES,
-//	ECG_OBJECTES_DINAMICS,
-//	ECG_EXPLOSIONS,
-//	ECG_RAY_SHOOT,
-//	ECG_RAY_SHOOT_PLAYER,
-//	ECG_FORCE,
-//	ECG_RAY_IA_GRAPH,
-//	ECG_CAMERA,
-//	ECG_RAGDOLL,
-//	ECG_RAGDOLL_PLAYER,
-//	ECG_VIGIA,
-//
-//	//aquest ha de ser l'últim sempre!!!!
-//	ECG_LAST_GROUP
-//};
-
-
 int GetCollisionGroup(const std::string& _szGroup);
 
 //---- Declaracion de nuevos tipos------------

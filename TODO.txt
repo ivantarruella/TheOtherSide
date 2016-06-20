@@ -1,13 +1,16 @@
 TODO:
-- Particles mirror reflection
-- shots mirror reflection
-- phsics in some objects (chair...)
-- reposition enemies 
-- add enemy nodes
+- reflejo particulas y disparos en espejos
+- fisica en algunos objetos que se puedan mover (sillas, papeleras,...)
+- modificación lógica botón de activación de espejo:
+  que active espejo y desactive lasers del mundo real durante 30 seg, cerra la puerta de entrada al espejo y que se tenga que
+  pasar por los lasers, quitar lasers mundo espejo para obligar al player a salir del nivel por el mundo espejo
+- eliminar máquinas de regeneración de arma y dejar arma en el suelo al lado de cada soldado muerto.
+  el player empezará sin energia en el arma y deberá coger la que se encuentre encima del primer cadaver en el nivel1.
+
 
 BUGFIXES:
-- monster bug: movement glitches and low fps
-- level02 lighting, add new layers and optimize static layers 
+- luz sol/luna no genera sombras en el player en muchas ocasiones
+- capsula colisión soldados (no pasan por las puertas del nivel2-piso2, no funcionan los disparos en la cabeza,...)
 
 
 

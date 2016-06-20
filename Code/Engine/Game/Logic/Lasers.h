@@ -4,7 +4,7 @@
 
 #include "LogicObject.h"
 
-#define LASER_PLAYER_DAMAGE		0.05f	//0.03f
+#define LASER_PLAYER_DAMAGE		0.25f	//0.03f
 #define	LASER_TIME_DAMAGE		0.001f
 
 class CPlayer;

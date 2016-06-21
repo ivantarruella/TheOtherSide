@@ -205,6 +205,12 @@ void CPhysicsManager::DebugRender (CRenderManager* render)
 		DrawActor(actor, render);
 	}
 
+	// Render all controllers in the scene
+	int nbControllers =m_pControllerManager->getNbControllers();
+	while(nbControllers--)
+	{
+		DrawActor(m_pControllerManager->getController(nbControllers)->getActor(), render);
+	}
 }
 
 

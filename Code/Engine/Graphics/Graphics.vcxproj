@@ -66,6 +66,7 @@
     <ClCompile Include="Renderer\RenderDebugCameraSceneRendererCommand.cpp" />
     <ClCompile Include="Renderer\RenderDebugInfoSceneRendererCommand.cpp" />
     <ClCompile Include="Renderer\RenderDebugLightsSceneSceneRendererCommand.cpp" />
+    <ClCompile Include="Renderer\RenderDebugPhysXSceneRendererCommand.cpp" />
     <ClCompile Include="Renderer\RenderDebugSceneSceneRendererCommand.cpp" />
     <ClCompile Include="Renderer\RenderDebugShadowMapsSceneRendererCommand.cpp" />
     <ClCompile Include="Renderer\RenderGUISceneRendererCommand.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Renderer\RenderDebugCameraSceneRendererCommand.h" />
     <ClInclude Include="Renderer\RenderDebugInfoSceneRendererCommand.h" />
     <ClInclude Include="Renderer\RenderDebugLightsSceneSceneRendererCommand.h" />
+    <ClInclude Include="Renderer\RenderDebugPhysXSceneRendererCommand.h" />
     <ClInclude Include="Renderer\RenderDebugSceneSceneRendererCommand.h" />
     <ClInclude Include="Renderer\RenderDebugShadowMapsSceneRendererCommand.h" />
     <ClInclude Include="Renderer\RenderGUISceneRendererCommand.h" />

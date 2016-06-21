@@ -229,6 +229,9 @@
     <ClCompile Include="CubeTexture.cpp">
       <Filter>Textures</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\RenderDebugPhysXSceneRendererCommand.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenderManager.h" />
@@ -461,6 +464,9 @@
     </ClInclude>
     <ClInclude Include="CubeTexture.h">
       <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\RenderDebugPhysXSceneRendererCommand.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

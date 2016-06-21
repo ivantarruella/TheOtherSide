@@ -63,8 +63,12 @@
 	<render_scene layer="alpha_blend_objects_MR" active="true" forward="true"/>
 	<render_scene layer="alpha_blend_objects_ME" active="true" forward="true"/>
 	<render_particles/>
-	<!--<render_debug_lights/>-->
 	
+	<!-- DEBUG -->
+	<!--<render_debug_camera/>-->
+	<render_debug_info/>
+	<!--<render_debug_lights/>-->
+	<!--<render_debug_physX/>-->
 
 	<!-- POST PROCESS EFFECTS -->
 
@@ -166,10 +170,6 @@
 		</render_draw_quad>
 		<unset_scissor_rect/>
 	-->
-	
-	<!-- DEBUG -->
-	<!--<render_debug_camera/>-->
-	<render_debug_info/>
 	
 	<!-- GUI -->
 	<render_gui active="true"/>

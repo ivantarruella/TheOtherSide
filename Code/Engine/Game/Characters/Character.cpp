@@ -75,6 +75,7 @@ bool CCharacter::Init()
 			l_Controller->SetVisible(GetVisible());
 			l_Controller->SetCastShadows(GetCastShadows());
 			l_Controller->SetCreatePhysics(GetCreatePhysics());
+			l_Controller->GetUserData()->SetPaint(true);
 		}
 	}
 

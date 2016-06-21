@@ -97,65 +97,63 @@ Vect3f CObject3D::xzFromAngle( float radians )
 }
 
 bool CObject3D::CreateMeshPhysics(const std::vector<Vect3f>& vertices, const std::vector<uint32>& faces){
-	if(!m_CreatePhysics) return false;
+	if (!m_CreatePhysics) 
+		return false;
 
-	if(m_PhysicElement->m_PhysicsType=="triangle_mesh"){
-		CPhysicActor* l_Actor=GetPhysicActor();
-		CPhysicUserData* l_UserData=GetPhysicUserData();
-		if(l_UserData){
-			//l_Actor->CreateBody(9.8f);
-			l_UserData->SetPaint(true);
-		} else return false;
+	if(m_PhysicElement->m_PhysicsType!="triangle_mesh") 
+		return false;
 
+	CPhysicActor* l_Actor=GetPhysicActor();
+	CPhysicUserData* l_UserData=GetPhysicUserData();
+	if(l_UserData) {
+		//l_Actor->CreateBody(9.8f);
+		l_UserData->SetPaint(true);
+	} 
+	else 
+		return false;
+
+	CORE->GetPhysicsManager()->GetCookingMesh()->CreatePhysicMesh(vertices,faces,l_UserData->GetName());
+	NxTriangleMesh* l_TriangleMesh= CORE->GetPhysicsManager()->GetCookingMesh()->GetPhysicMesh(l_UserData->GetName());
+	l_Actor->AddMeshShape(l_TriangleMesh,m_Position,v3fZERO,0,ECG_ESCENARI);
 		
-		CORE->GetPhysicsManager()->GetCookingMesh()->CreatePhysicMesh(vertices,faces,l_UserData->GetName());
-		NxTriangleMesh* l_TriangleMesh= CORE->GetPhysicsManager()->GetCookingMesh()->GetPhysicMesh(l_UserData->GetName());
-		l_Actor->AddMeshShape(l_TriangleMesh,m_Position,v3fZERO,0,ECG_ESCENARI);
-		
-		return CORE->GetPhysicsManager()->AddPhysicActor(l_Actor);
-
-		
-
-	}
-
-	else return false;
+	return CORE->GetPhysicsManager()->AddPhysicActor(l_Actor);
 }
 
 
-bool isPositive( float Number ) {
-
+inline bool isPositive( float Number ) {
 	return (Number>0.0f)?true:false;
 }
 
 
-bool CObject3D::CreatePhysics(Vect3f& FloatVector,Vect3f& FloatCenter,float Float1, float Float2, uint32 CollisionGroup){
-
+bool CObject3D::CreatePhysics(Vect3f& vSize, float radius, float height, uint32 CollisionGroup) {
 	if(!m_CreatePhysics) 
-		
 		return false;
+	
 	CPhysicActor* l_Actor=GetPhysicActor();
 	CPhysicUserData* l_UserData=GetPhysicUserData();
-	if(l_UserData){
+	if(l_UserData) {
 		//l_Actor->CreateBody(9.8f);
 		l_UserData->SetPaint(true);
-	} else return false;
+	} 
+	else 
+		return false;
 
-
-	if(m_PhysicElement->m_PhysicsType=="convex_hull"){
-		//l_Actor->
-	}else if(m_PhysicElement->m_PhysicsType=="bounding_box"){
-		if(FloatVector!=NULL)
-			l_Actor->AddBoxSphape(FloatVector,m_Position,Vect3f(0.0f));
-	}else if(m_PhysicElement->m_PhysicsType=="bounding_sphere"){
-		if(isPositive(Float1))
-			l_Actor->AddSphereShape(Float1,m_Position);
-	}else if(m_PhysicElement->m_PhysicsType=="plane"){
-		if(isPositive(Float1) && FloatVector!=NULL)
-			l_Actor->AddPlaneShape(FloatVector, Float1);
-	}else if(m_PhysicElement->m_PhysicsType=="capsule"){
-		if(isPositive(Float1)&&isPositive(Float2))
-			l_Actor->AddCapsuleShape(Float1,Float2,m_Position,v3fZERO,0,CollisionGroup);
-	} else  {
+	if(m_PhysicElement->m_PhysicsType=="bounding_box") {
+		if(vSize!=NULL)
+			l_Actor->AddBoxSphape(vSize, m_Position, v3fZERO);
+	}
+	else if(m_PhysicElement->m_PhysicsType=="bounding_sphere") {
+		if(isPositive(radius))
+			l_Actor->AddSphereShape(radius, m_Position);
+	}
+	else if(m_PhysicElement->m_PhysicsType=="capsule") {
+		if(isPositive(radius)&&isPositive(height))
+			l_Actor->AddCapsuleShape(radius, height, m_Position, v3fZERO, 0, CollisionGroup);
+	} 
+	else if(m_PhysicElement->m_PhysicsType=="convex_hull") {
+		//TODO!
+	} 
+	else  {
 		m_CreatePhysics=false;
 		return false;
 	}

@@ -45,8 +45,7 @@ CInstanceMesh::CInstanceMesh(const CXMLTreeNode &XmlData)
 				CreateMeshPhysics(m_StaticMesh->getVB(),m_StaticMesh->getIB());
 			else {
 				Vect3f size = m_StaticMesh->getStaticMeshMaxPoint() - m_StaticMesh->getStaticMeshMinPoint();
-				Vect3f center = m_StaticMesh->getStaticMeshCenter();
-				CreatePhysics(size/2.0f, center);
+				CreatePhysics(size/2.0f);
 			}
 		}
 	}

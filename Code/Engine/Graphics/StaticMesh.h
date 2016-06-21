@@ -72,7 +72,7 @@ private:
 };
 
 void CalcTangentsAndBinormals(void *VtxsData, unsigned short *IdxsData, size_t VtxCount,size_t IdxCount, size_t VertexStride, size_t GeometryStride, size_t NormalStride,size_t TangentStride, size_t BiNormalStride, size_t TextureCoordsStride);
-//void VertexCacheOptimisation( void *_VData, uint16 *_IData, size_t _iVCount, size_t _iICount, size_t _iVStride);
+void VertexCacheOptimisation( void *_VData, uint16 *_IData, size_t _iVCount, size_t _iICount, size_t _iVStride);
 
 
 #endif

@@ -128,7 +128,7 @@ bool isPositive( float Number ) {
 }
 
 
-bool CObject3D::CreatePhysics(Vect3f& FloatVector,float Float1, float Float2, uint32 CollisionGroup){
+bool CObject3D::CreatePhysics(Vect3f& FloatVector,Vect3f& FloatCenter,float Float1, float Float2, uint32 CollisionGroup){
 
 	if(!m_CreatePhysics) 
 		

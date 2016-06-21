@@ -68,7 +68,7 @@ public:
 	void		SetPhysicElement	(CPhysicElement* PhysicElement) { m_PhysicElement=PhysicElement;}
 	
 	bool		CreateMeshPhysics(const std::vector<Vect3f>& vertices, const std::vector<uint32>& faces);
-	bool		CreatePhysics(Vect3f& FloatVector=(Vect3f)NULL,float Float1=0.0f, float Float2=0.0f, uint32 CollisionGroup=0);
+	bool		CreatePhysics(Vect3f& FloatVector=(Vect3f)NULL,Vect3f& FloatCenter=(Vect3f)NULL,float Float1=0.0f, float Float2=0.0f, uint32 CollisionGroup=0);
 	
 	Vect3f		xzFromAngle( float radians );
 protected:

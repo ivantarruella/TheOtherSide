@@ -86,7 +86,7 @@
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light>
 -->	
-	<light name="Omni_hall1_aplique007" type="omni" pos="37.5344 2.00 -2.75932" color="197.0 243.0 255.0" att_start_range="0.5" att_end_range="5.5" world="1"
+	<light name="Omni_hall1_aplique007" type="omni" pos="37.5344 1.75 -2.75932" color="197.0 243.0 255.0" att_start_range="0.1" att_end_range="6.0" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -111,7 +111,7 @@
 		<dynamic renderable_objects_manager="solid_MR"/>
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
-	
+<!--	
 	<light name="Omni_hall1_007" type="omni" pos="31.2989 1.5971 9.42359" color="255.0 253.0 186.0" att_start_range="0.1" att_end_range="2.5" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
@@ -119,7 +119,7 @@
 		<dynamic renderable_objects_manager="solid_MR"/>
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light>
-
+-->
 	<light name="Omni_hall1_aplique" type="omni" pos="24.6186 1.27735 10.0327" color="233.0 255.0 254.0" att_start_range="0.1" att_end_range="3.0" 
 	world="1" intermittent="true" tmin="0.2" tmax="0.9"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
@@ -128,7 +128,7 @@
 		<dynamic renderable_objects_manager="solid_MR"/>
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
-
+<!--
 	<light name="Omni_hall1_009" type="omni" pos="19.1801 1.41394 9.49653" color="254.0 255.0 211.0" att_start_range="0.1" att_end_range="2.5" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
@@ -136,7 +136,7 @@
 		<dynamic renderable_objects_manager="solid_MR"/>
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
-
+-->
 	<light name="Omni_hall1_aplique003" type="omni" pos="12.0874 1.76086 9.03138" color="233.0 255.0 254.0" att_start_range="0.1" att_end_range="4.0" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
@@ -168,7 +168,7 @@
 		<dynamic renderable_objects_manager="solid_MR"/>
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
-
+<!--
 	<light name="Omni_hall1_010" type="omni" pos="33.5828 1.75971 4.28354" color="255.0 253.0 186.0" att_start_range="0.0" att_end_range="2.5" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
@@ -176,8 +176,8 @@
 		<dynamic renderable_objects_manager="solid_MR"/>
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
-	
-	<light name="Omni_hall1_aplique004" type="omni" pos="27.6636 5.10706 -25.4179" color="233.0 255.0 254.0" att_start_range="0.1" att_end_range="3.5" world="1"
+-->	
+	<light name="Omni_hall1_aplique004" type="omni" pos="27.6636 5.10706 -25.4179" color="233.0 255.0 254.0" att_start_range="0.1" att_end_range="7.0" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -185,7 +185,7 @@
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
 	
-	<light name="Omni_hall2_015" type="omni" pos="27.8453 4.757759 -19.9103" color="211.0 255.0 251.0" att_start_range="0.1" att_end_range="2.5" world="1"
+	<light name="Omni_hall2_015" type="omni" pos="21.8453 4.757759 -19.9103" color="211.0 255.0 251.0" att_start_range="0.1" att_end_range="2.5" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -193,7 +193,7 @@
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
 	
-	<light name="Omni_hall2_012" type="omni" pos="32.4763 4.57759 10.1474" color="211.0 255.0 251.0" att_start_range="0.1" att_end_range="3.5" world="1"
+	<light name="Omni_hall2_012" type="omni" pos="24.4763 4.57759 10.1474" color="211.0 255.0 251.0" att_start_range="0.1" att_end_range="4.0" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -202,7 +202,7 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_MR"/>
 	</light> 
 	
-	<light name="Omni_hall2_013" type="omni" pos="38.15 4.57759 6.26641" color="211.0 255.0 251.0" att_start_range="0.1" att_end_range="3.0" world="1"
+	<light name="Omni_hall2_013" type="omni" pos="40.6 4.757759 -1.26641" color="211.0 255.0 251.0" att_start_range="0.1" att_end_range="5.0" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -210,7 +210,7 @@
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
 	
-	<light name="Omni_SControl002" type="omni" pos="25.5086 5.05776 23.1425" color="196.0 240.0 199.0" att_start_range="2.5" att_end_range="5.0" world="1"
+	<light name="Omni_SControl002" type="omni" pos="25.5086 5.05776 23.1425" color="196.0 240.0 199.0" att_start_range="1.0" att_end_range="5.0" world="1" 
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -228,7 +228,7 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_MR"/>
 	</light> 
 	
-	<light name="Omni_SControl003" type="omni" pos="21.0436 5.05494 24.7288" color="196.0 234.0 194.0" att_start_range="0.1" att_end_range="3.0" world="1" 
+	<light name="Omni_SControl003" type="omni" pos="21.0436 5.05494 24.7288" color="196.0 234.0 194.0" att_start_range="0.1" att_end_range="3.5" world="1" 
 	intermittent="true" tmin="0.5" tmax="1.0" light_mesh="SVigilado_Fluerescente19_MR" layer="solid_MR" texture_on="data\Meshes\D_BlancoVerdosoBase.dds" texture_off="data\Meshes\D_BlancoVerdosoBaseAlfaBlanco.dds"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
@@ -237,7 +237,7 @@
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light>
 	
-	<light name="P_omni_MR005" type="omni" pos="16.3028 5.43172 19.1434" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1"
+	<light name="P_omni_MR005" type="omni" pos="16.3028 5.43172 21.7434" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="5.0" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -245,7 +245,7 @@
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
 
-	<light name="P_omni_MR006" type="omni" pos="30.7819 5.43172 19.1724" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1" varible_intensity="true" tmin="0.09"
+	<light name="P_omni_MR006" type="omni" pos="30.5 5.43172 22.1724" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="5.0" world="1" varible_intensity="true" tmin="0.09"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -253,7 +253,7 @@
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
 
-	<light name="P_omni_MR007" type="omni" pos="12.2287 5.43172 14.5985" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1"
+	<light name="P_omni_MR007" type="omni" pos="12.2287 5.43172 14.5985" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="5.0" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -261,7 +261,7 @@
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
 
-	<light name="P_omni_MR008" type="omni" pos="35.2552 5.43172 14.613" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1"
+	<light name="P_omni_MR008" type="omni" pos="38.2552 5.43172 14.613" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="5.0" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -269,7 +269,7 @@
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
 
-	<light name="P_omni_MR009" type="omni" pos="26.8259 5.43172 14.6198" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="3.0" world="1"
+	<light name="P_omni_MR009" type="omni" pos="30.8259 5.43172 14.6198" color="222.0 250.0 255.0" att_start_range="1.0" att_end_range="5.0" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>

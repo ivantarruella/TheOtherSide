@@ -132,7 +132,16 @@ bool COmniLight::isVisible(CRenderManager &RM, const CFrustum* Frustum)
 	if (!m_bEnabled || !m_Visible || !m_bActive)
 		return false;
 
+	CCamera *l_Camera=CORE->GetCamera();
+	if (l_Camera==NULL) 
+		return false;
+
 	Vect3f l_Center = GetPosition();
+	Vect3f l_CamPos = l_Camera->GetEye();
+	float y_dist = abs(l_Center.y - l_CamPos.y);
+	
+	if (y_dist >= 2.0f)
+		return false;
 
 	//const CFrustum& l_Frustum = RM.GetFrustum();			
 	float l_Radius=GetRadius();

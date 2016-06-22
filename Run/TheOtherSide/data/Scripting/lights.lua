@@ -59,14 +59,14 @@ end
 -- Mundo real
 function luces_entrada_piso1_MR_level02_OFF()
 	_LIGHTM:set_light_active('Omni_hall1_aplique001', false)
-	_LIGHTM:set_light_active('Omni_hall1_aplique002', false)
+	--_LIGHTM:set_light_active('Omni_hall1_aplique002', false)
 	_LIGHTM:set_light_active('Omni_hall1_03', false)
 	_LIGHTM:set_light_active('Omni_hall1_008', false)
 end
 
 function luces_entrada_piso1_MR_level02_ON()
 	_LIGHTM:set_light_active('Omni_hall1_aplique001', true)
-	_LIGHTM:set_light_active('Omni_hall1_aplique002', true)
+	--_LIGHTM:set_light_active('Omni_hall1_aplique002', true)
 	_LIGHTM:set_light_active('Omni_hall1_03', true)
 	_LIGHTM:set_light_active('Omni_hall1_008', true)
 end
@@ -209,14 +209,14 @@ end
 -- Mundo espejo
 function luces_entrada_piso1_ME_level02_OFF()
 	_LIGHTM:set_light_active('ApliqueOmni ME003', false)
-	_LIGHTM:set_light_active('ApliqueOmni ME001', false)
+	--_LIGHTM:set_light_active('ApliqueOmni ME001', false)
 	_LIGHTM:set_light_active('Omni_hall001', false)
 	_LIGHTM:set_light_active('ApliqueOmni ME007', false)
 end
 
 function luces_entrada_piso1_ME_level02_ON()
 	_LIGHTM:set_light_active('ApliqueOmni ME003', true)
-	_LIGHTM:set_light_active('ApliqueOmni ME001', true)
+	--_LIGHTM:set_light_active('ApliqueOmni ME001', true)
 	_LIGHTM:set_light_active('Omni_hall001', true)
 	_LIGHTM:set_light_active('ApliqueOmni ME007', true)
 end

@@ -312,4 +312,6 @@
 	<static_mesh name="Suelo_Falso_Grande_Piso1_MR" filename="data\Meshes\Suelo_Falso_Grande_Piso1_MR.m3d"/>
 	<static_mesh name="SViglancias_Ventilador002_MR" filename="data\Meshes\SViglancias_Ventilador002_MR.m3d"/>
 	<static_mesh name="SControl_Ventilador005_ME" filename="data\Meshes\SControl_Ventilador005_ME.m3d"/>
+	<static_mesh name="SControl_BASEVentilador003_MR" filename="data\Meshes\SControl_BASEVentilador003_MR.m3d"/>
+	<static_mesh name="SControl_BASEVentilador004_MR" filename="data\Meshes\SControl_BASEVentilador004_MR.m3d"/>	
 </Static_Meshes>

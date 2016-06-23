@@ -35,9 +35,9 @@
 			<size time="0.0" mins="0.2" maxs="0.4"/>
 			<aceleration time="0.0" acel1="0 0 0" acel2="0 0 0"/>
 		</PointEmitter>
-		<PointEmitter type="plane" name="fog3" gravity="false" life_time_min="2.0" life_time_max="5.0" emit_rate_min="15.0"
+		<PointEmitter type="plane" name="fog3" gravity="true" life_time_min="0.1" life_time_max="0.5" emit_rate_min="15.0"
 			emit_rate_max="35.0" tex="data\Textures\smoke.tga" angle="2.0">
-			<color time="0.0" color1="0.05 0.05 0.05 0.05" color2="0.05 0.05 0.05 0.03"/>
+			<color time="0.0" color1="0.1 0.1 0.1 0.05" color2="0.1 0.1 0.1 0.03"/>
 			<direction time="0.0" dir1="-0.09 -0.01 -0.09" dir2="0.09 0.01 0.09"/>
 			<size time="0.0" mins="0.5" maxs="0.9"/>
 			<aceleration time="0.0" acel1="0 0 0" acel2="0 0 0"/>

@@ -248,6 +248,7 @@ function luces_hall_level2_ME_ON()
 	
 	_LIGHTM:set_light_active('Omni_pasillo001', true)
 	_LIGHTM:set_light_active('Omni pasillo ME_attenuation001', true)
+	_LIGHTM:set_light_active('Omni pasillo ME_attenuation001b', true)
 	_LIGHTM:set_light_active('Omni_sales_pis2', true)	
 end
 
@@ -292,6 +293,7 @@ function luces_hall_level2_ME_OFF()
 	
 	_LIGHTM:set_light_active('Omni_pasillo001', false)
 	_LIGHTM:set_light_active('Omni pasillo ME_attenuation001', false)
+	_LIGHTM:set_light_active('Omni pasillo ME_attenuation001b', false)
 	_LIGHTM:set_light_active('Omni_sales_pis2', false)
 end
 

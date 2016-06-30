@@ -503,7 +503,7 @@
 		<dynamic renderable_objects_manager="enemies_ME"/>
 	</light> 
 	
-	<light name="ApliqueOmni ME005" type="omni" pos="-29.6638 5.79337 -24.992" color="198.0 235.0 222.0" att_start_range="0.5" att_end_range="4.0" 
+	<light name="ApliqueOmni ME005" type="omni" pos="-27.6638 5.69337 -24.992" color="198.0 235.0 222.0" att_start_range="1.5" att_end_range="6.0" 
 	world="2" varible_intensity="true" tmin="0.05" light_mesh="aplique008_ME" layer="solid_ME" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds"
 	 render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false" >
@@ -530,15 +530,23 @@
 		<dynamic renderable_objects_manager="enemies_ME"/>
 	</light> 	
 	
-	<light name="Omni pasillo ME_attenuation001" type="omni" pos="-26.7473 5.3 14.5057" color="235.0 198.0 198.0" att_start_range="0.8" att_end_range="3.5" world="2" 
+	<light name="Omni pasillo ME_attenuation001" type="omni" pos="-30.7473 5.3 14.5057" color="235.0 198.0 198.0" att_start_range="0.8" att_end_range="4.0" world="2" 
+	intermittent="true" tmin="0.05" tmax="1.5" light_mesh="Pasillos_Fluerescente11_ME" layer="solid_ME" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds"
+	 render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
+	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false" >
+		<dynamic renderable_objects_manager="solid"/>
+		<dynamic renderable_objects_manager="solid_ME"/>
+		<dynamic renderable_objects_manager="enemies_ME"/>
+	</light>
+	<light name="Omni pasillo ME_attenuation001b" type="omni" pos="-37.7473 5.3 14.5057" color="235.0 198.0 198.0" att_start_range="0.8" att_end_range="5.0" world="2" 
 	varible_intensity="true" tmin="0.05" light_mesh="Pasillos_Fluerescente11_ME" layer="solid_ME" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds"
 	 render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false" >
 		<dynamic renderable_objects_manager="solid"/>
 		<dynamic renderable_objects_manager="solid_ME"/>
 		<dynamic renderable_objects_manager="enemies_ME"/>
-	</light> 	
-	
+	</light> 	 	
+	<!--
 	<light name="Omni_pasillo002" type="omni" pos="-30.7847 5.30899 25.4063" color="224.0 166.0 166.0" att_start_range="0.7" att_end_range="3.0" world="2"
 	 render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false" >
@@ -546,7 +554,7 @@
 		<dynamic renderable_objects_manager="solid_ME"/>
 		<dynamic renderable_objects_manager="enemies_ME"/>
 	</light> 
-
+	-->
 	<light name="ApliqueOmni ME_attenuation002" type="omni" pos="-38.6735 8.98434 -4.16958" color="198.0 235.0 222.0" att_start_range="0.5" att_end_range="5.5" world="2" 
 	varible_intensity="true" tmin="0.1" light_mesh="aplique011_ME" layer="solid_ME" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds"
 	 render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
@@ -562,6 +570,24 @@
 		<dynamic renderable_objects_manager="solid"/>
 		<dynamic renderable_objects_manager="solid_ME"/>
 		<dynamic renderable_objects_manager="enemies_ME"/>
+	</light> 
+	
+	<light name="Omni_hall003" type="omni" pos="-25 4.45792 10.3067" color="168.0 111.0 111.0" att_start_range="0.7" att_end_range="3.5" world="2" varible_intensity="true" tmin="0.1" light_mesh="lampara017_ME" layer="solid_ME" texture_on="data\Meshes\D_Lampara.dds" texture_off="data\Meshes\D_Lampara.tga"
+	 render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
+	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false" >
+		<dynamic renderable_objects_manager="solid"/>
+		<dynamic renderable_objects_manager="solid_ME"/>
+		<dynamic renderable_objects_manager="enemies_ME"/>
+		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
+	</light> 
+	
+	<light name="Omni_hall005" type="omni" pos="-40.8299 5 -1.38216" color="168.0 111.0 111.0" att_start_range="1.0" att_end_range="4.0" world="2" intermittent="true" tmin="0.2" tmax="0.5" light_mesh="lampara018_ME" layer="solid_ME" texture_on="data\Meshes\D_lampara.dds" texture_off="data\Meshes\D_lampara.tga"
+	 render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
+	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false" >
+		<dynamic renderable_objects_manager="solid"/>
+		<dynamic renderable_objects_manager="solid_ME"/>
+		<dynamic renderable_objects_manager="enemies_ME"/>
+		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	</light> 
 	
 <!--	
@@ -626,14 +652,8 @@
 	<light name="Omni_llumverda013" type="omni" pos="-28.1645 5.60562 22.0676" color="37.0 164.0 37.0" att_start_range="0.3" att_end_range="0.5" world="2">
 	</light> 
 
-	<light name="Omni_hall002" type="omni" pos="-32.5441 4.88651 10.4344" color="168.0 111.0 111.0" att_start_range="0.7" att_end_range="2.0" world="2">
-	</light> 
-
-	<light name="Omni_hall003" type="omni" pos="-17.48 4.45792 10.3067" color="168.0 111.0 111.0" att_start_range="0.7" att_end_range="2.0" world="2" varible_intensity="true" tmin="0.1" light_mesh="lampara017_ME" layer="solid_ME" texture_on="data\Meshes\D_Lampara.dds" texture_off="data\Meshes\D_Lampara.tga">
-	</light> 
-
-	<light name="Omni_hall005" type="omni" pos="-40.8299 4.1326 -1.38216" color="168.0 111.0 111.0" att_start_range="1.0" att_end_range="2.8" world="2" intermittent="true" tmin="0.2" tmax="0.5" light_mesh="lampara018_ME" layer="solid_ME" texture_on="data\Meshes\D_lampara.dds" texture_off="data\Meshes\D_lampara.tga">
-	</light> 
+	<!--<light name="Omni_hall002" type="omni" pos="-32.5441 4.88651 10.4344" color="168.0 111.0 111.0" att_start_range="0.7" att_end_range="2.0" world="2">
+	</light>-->
 
 <!--	
 	<light name="ApliqueOmni ME004" type="omni" pos="-26.0366 5.80313 -24.9326" color="198.0 235.0 222.0" att_start_range="0.5" att_end_range="3.0" world="2">

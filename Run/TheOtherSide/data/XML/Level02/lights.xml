@@ -86,7 +86,7 @@
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light>
 -->	
-	<light name="Omni_hall1_aplique007" type="omni" pos="37.5344 1.75 -2.75932" color="197.0 243.0 255.0" att_start_range="0.1" att_end_range="6.0" world="1"
+	<light name="Omni_hall1_aplique007" type="omni" pos="37.5344 1.75 -2.75932" color="197.0 223.0 192.0" att_start_range="0.1" att_end_range="6.0" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -153,7 +153,7 @@
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
 
-	<light name="Omni_hall1_aplique001" type="omni" pos="27.6636 1.62988 -25.4179" color="233.0 255.0 254.0" att_start_range="0.1" att_end_range="6.0" world="1"
+	<light name="Omni_hall1_aplique001" type="omni" pos="27.6636 1.62988 -25.4179" color="192.0 192.0 192.0" att_start_range="0.1" att_end_range="7.0" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -177,7 +177,7 @@
 		<dynamic renderable_objects_manager="enemies_MR"/>
 	</light> 
 -->	
-	<light name="Omni_hall1_aplique004" type="omni" pos="27.6636 5.10706 -25.4179" color="233.0 255.0 254.0" att_start_range="0.1" att_end_range="7.0" world="1"
+	<light name="Omni_hall1_aplique004" type="omni" pos="27.6636 5.10706 -25.4179" color="192.0 192.0 192.0" att_start_range="0.1" att_end_range="7.0" world="1"
      render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"	>
 		<dynamic renderable_objects_manager="solid"/>
@@ -503,7 +503,7 @@
 		<dynamic renderable_objects_manager="enemies_ME"/>
 	</light> 
 	
-	<light name="ApliqueOmni ME005" type="omni" pos="-27.6638 5.69337 -24.992" color="198.0 235.0 222.0" att_start_range="1.5" att_end_range="6.0" 
+	<light name="ApliqueOmni ME005" type="omni" pos="-27.6638 5.69337 -24.992" color="198.0 235.0 222.0" att_start_range="1.0" att_end_range="6.0" 
 	world="2" varible_intensity="true" tmin="0.05" light_mesh="aplique008_ME" layer="solid_ME" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds"
 	 render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false" >

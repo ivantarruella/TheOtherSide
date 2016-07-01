@@ -120,7 +120,7 @@ void CChaseState::Update(float ElapsedTime)
 					else{ 				
 						m_Owner->SetYaw(m_Owner->GetYaw() - rotationSpeed*ElapsedTime);
 					}
-					m_StateMachine->ChangeState("WANDER");   // itb: prueba!
+					//m_StateMachine->ChangeState("WANDER");   // itb: prueba!
 					return;
 				}
 			}
@@ -265,7 +265,7 @@ bool CChaseState::isHeared()
 	return true;
 }
 
-/* itb: prueba!
+#if 1		//itb: prueba!
 bool CChaseState::isSeen()
 {
 	Vect3f l_aux = (m_Player->GetPosition() - m_Owner->GetPosition());		
@@ -277,9 +277,7 @@ bool CChaseState::isSeen()
 		return false;
 	return true;
 }
-*/
-
-
+#else
 bool CChaseState::isSeen()
 {
 	Vect3f l_aux = (m_Player->GetPosition() - m_Owner->GetPosition());		
@@ -293,7 +291,7 @@ bool CChaseState::isSeen()
 		return false;
 	return true;
 }
-
+#endif
 
 bool CChaseState::isReachable()
 {

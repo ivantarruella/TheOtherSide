@@ -1,4 +1,4 @@
-TODO:
+IMPROVEMENTS:
 - reflejo particulas y disparos en espejos
 - fisica en algunos objetos que se puedan mover (sillas, papeleras,...)
 - modificación lógica botón de activación de espejo:
@@ -10,7 +10,7 @@ TODO:
 
 BUGFIXES:
 - luz sol/luna no genera sombras en el player en muchas ocasiones
-- capsula colisión soldados (no pasan por las puertas del nivel2-piso2, no funcionan los disparos en la cabeza,...)
+- capsula colisión soldados (en ocasiones se desplazan cuando el soldado sale de una cobertura, tamaño incorrecto, ...)
 
 
 

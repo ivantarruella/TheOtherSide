@@ -362,9 +362,10 @@ bool CMoveTask::reachCover(int numCover, float ElapsedTime)
 		else
 		{
 			//m_Owner->SetPosition(l_point);
-			l_dir = l_point - m_Owner->GetPosition();
-			l_dir.y=0.0f;
-			m_Owner->SetPosition(l_dir, ElapsedTime);
+			//l_dir = l_point - m_Owner->GetPosition();
+			//l_dir.y=0.0f;
+			m_Owner->SetPosition(m_Owner->GetFront()*0.090f, ElapsedTime);
+			//m_Owner->SetPosition(l_dir, ElapsedTime);
 			m_Owner->ChangeCharacterAnimation(WAIT_ANIM, 0.3f);
 			m_bCoverReached=true;
 			return true;
@@ -404,9 +405,10 @@ void CMoveTask::Covered(int numCover, float ElapsedTime)
 		else
 		{
 			//m_Owner->SetPosition(l_point);
-			l_dir = l_point - m_Owner->GetPosition();
-			l_dir.y=0.0f;
-			m_Owner->SetPosition(l_dir, ElapsedTime);
+			//l_dir = l_point - m_Owner->GetPosition();
+			//l_dir.y=0.0f;
+			//m_Owner->SetPosition(l_dir, ElapsedTime);
+			m_Owner->SetPosition(m_Owner->GetFront()*0.090f, ElapsedTime);
 			m_Owner->ChangeCharacterAnimation(WAIT_ANIM, 0.3f);
 			m_bCovered=true;
 		}

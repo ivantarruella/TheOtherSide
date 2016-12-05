@@ -10,7 +10,7 @@ IMPROVEMENTS:
 
 BUGFIXES:
 - luz sol/luna no genera sombras en el player en muchas ocasiones
-- capsula colisión soldados (en ocasiones se desplazan cuando el soldado sale de una cobertura, tamaño incorrecto, ...)
+
 
 
 

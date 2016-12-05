@@ -78,12 +78,12 @@ void CBullet::ChangeBillboard(const std::string& _BillboardName)
 	else if(m_bIsCollided)
 	{
 		//PrepareBillboardToScale(END_EFFECT_TIME);
-		int blood_frame = 0;
+		int blood_frame = 1;
 
 		CSoldier* l_pSoldier =  GetSoldier(m_pCollidedObjectUserData);
 		bool isHeadShoot = CheckHeadShoot(l_pSoldier);
 		if (isHeadShoot)
-			blood_frame = 1;
+			blood_frame = 0;
 
 		//Ground or ceiling
 		if(GetPos().y <GROUND_HEIGHT || GetPos().y >CEILING_HEIGHT)

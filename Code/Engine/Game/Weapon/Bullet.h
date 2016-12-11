@@ -7,9 +7,9 @@
 #include "include\PhysicsManager.h"
 #include <string>
 
-#define BULLET_SPEED 30.f
-#define START_EFFECT_TIME 0.1f
-#define END_EFFECT_TIME	0.15f
+#define BULLET_SPEED 20.f
+#define START_EFFECT_TIME 0.25f
+#define END_EFFECT_TIME	0.2f
 #define BULLET_DAMAGE	0.5f
 #define DIST_TO_WALL	0.75f
 #define MAX_DISTANCE	100.f

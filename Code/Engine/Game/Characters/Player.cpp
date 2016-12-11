@@ -36,7 +36,7 @@ using namespace luabind;
 
 #define ANIMS_DELAY				0.3f			// Blending delay entre animaciones
 
-#define MAX_LIFE_PLAYER			2.00f		// Vida inicial
+#define MAX_LIFE_PLAYER			2.50f		// Vida inicial
 #define LIFE_THRESHOLD			0.02f		
 
 #define CAM_PITCH_DOWN			(FLOAT_PI_VALUE/7.0f)

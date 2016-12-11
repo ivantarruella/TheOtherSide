@@ -20,7 +20,7 @@
 
 #define	SOLDIER_BBOX_HEIGHT		0.90f
 #define	SOLDIER_BBOX_SIZE		0.25f
-#define SOLDIER_COLLISION_BOX_HEIGHT	1.30f
+#define SOLDIER_COLLISION_BOX_HEIGHT	0.5f
 #define SOLDIER_COLLISION_BOX_SIZE		0.25f
 
 #define MAX_LIFE_SOLDIER		2.5f
@@ -207,8 +207,7 @@ void CSoldier::SetPosition(const Vect3f &Position)
 void CSoldier::SetPosition(const Vect3f & Direction, float ElapsedTime)
 {
 	CCharacter::SetPosition(Direction, ElapsedTime);
-	//GetPhysicActor()->SetGlobalPosition(CCharacter::GetPosition()+Vect3f(0.f,SOLDIER_COLLISION_BOX_HEIGHT/2.0f,0.f));
-	GetPhysicActor()->SetGlobalPosition(CCharacter::GetPosition() + Vect3f(0.f,SOLDIER_COLLISION_BOX_HEIGHT/2.0f + m_fSkinWidth*2,0.f));
+	GetPhysicActor()->SetGlobalPosition(CCharacter::GetPosition() + Vect3f(0.f,SOLDIER_COLLISION_BOX_HEIGHT + SOLDIER_BBOX_HEIGHT,0.f));
 }
 
 void CSoldier::SetPlayer(CPlayer * player)
@@ -248,7 +247,7 @@ void CSoldier::CreateCapsuleForBullets()
 {
 	if(GetCreatePhysics())
 	{
-		GetPhysicActor()->AddCapsuleShape(SOLDIER_COLLISION_BOX_SIZE,SOLDIER_COLLISION_BOX_HEIGHT, CCharacter::GetPosition() + Vect3f(0.f,SOLDIER_COLLISION_BOX_HEIGHT/2.0f + m_fSkinWidth*2,0.f),v3fZERO,0,ECG_ESCENARI);
+		GetPhysicActor()->AddCapsuleShape(SOLDIER_COLLISION_BOX_SIZE,SOLDIER_COLLISION_BOX_HEIGHT, CCharacter::GetPosition() + Vect3f(0.f,SOLDIER_COLLISION_BOX_HEIGHT+SOLDIER_BBOX_HEIGHT,0.f),v3fZERO,0,ECG_ESCENARI);
 		CORE->GetPhysicsManager()->AddPhysicActor(GetPhysicActor());
 	}
 }

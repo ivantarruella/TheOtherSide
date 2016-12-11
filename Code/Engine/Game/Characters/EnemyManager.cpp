@@ -324,6 +324,7 @@ void CEnemyManager::ResetAll()
 	std::map<std::string, CSoldier*>::iterator l_it = m_Soldiers.begin();
 	while(m_Soldiers.size() > 0)
 	{
+		l_it->second->RemoveCapsuleForBullets();
 		RemoveEnemies(l_it->second);
 		l_it = m_Soldiers.begin();
 	}

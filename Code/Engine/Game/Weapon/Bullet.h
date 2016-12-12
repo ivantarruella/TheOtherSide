@@ -8,9 +8,9 @@
 #include <string>
 
 #define BULLET_SPEED 20.f
-#define START_EFFECT_TIME 0.25f
-#define END_EFFECT_TIME	0.2f
-#define BULLET_DAMAGE	0.5f
+#define START_EFFECT_TIME 0.1f
+#define END_EFFECT_TIME	0.1f
+#define BULLET_DAMAGE	0.4f
 #define DIST_TO_WALL	0.75f
 #define MAX_DISTANCE	100.f
 #define SCALE_DISTANCE	2.0f

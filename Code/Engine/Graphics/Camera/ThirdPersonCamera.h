@@ -6,13 +6,13 @@
 #include "include\PhysicsManager.h"
 
 #define CAM_ZOOM_WALK			0.0f
-#define CAM_DIST				1.3f	// Distancia de la camara
-#define CAM_DIST_AIM			0.8f
+#define CAM_DIST				2.0f	// Distancia de la camara
+#define CAM_DIST_AIM			1.0f
 #define CAM_MIN_HEIGHT			0.0f
 #define CAM_HEIGHT				0.7f
 
 #define CAM_ZOOM_COLLISION_STEP		0.01f	// Zoom in de la camara al colisonar
-#define CAM_MIN_DIST				1.f		// Distancia al player de la camara a partir de la cual se sube para verlo desde arriba
+#define CAM_MIN_DIST				1.0f		// Distancia al player de la camara a partir de la cual se sube para verlo desde arriba
 #define CAM_MAX_HEIGHT				0.1f	// Altura maxima en caso de colision
 #define CAM_LOOKAT_HEIGHT			0.8f	// Altura a la que mira la camara en el player
 #define COLLISION_EPSILON			0.2f

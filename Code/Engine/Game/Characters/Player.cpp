@@ -31,8 +31,8 @@ using namespace luabind;
 #define PLAYER_SPEED_WALK_AIM	0.035f		// velocidad movimiento personaje andando y apuntando
 #define PLAYER_SPEED_RUN		0.070f		// velocidad movimiento personaje corriendo
 
-#define PLAYER_UPDATE_CAM_TIME	0.015f		// velocidad update camara al apuntar
-#define CAM_ZOOM_AIM_STEP		0.05f
+#define PLAYER_UPDATE_CAM_TIME	0.0001f		// velocidad update camara al apuntar
+#define CAM_ZOOM_AIM_STEP		0.1f
 
 #define ANIMS_DELAY				0.3f			// Blending delay entre animaciones
 
@@ -76,10 +76,7 @@ CPlayer::~CPlayer()
 	if(GetCreatePhysics())
 	{
 		CORE->GetPhysicsManager()->ReleasePhysicActor(GetPhysicActor());
-
 		CORE->GetPhysicsManager()->ReleasePhysicController(GetPhysicController());
-
-		//CHECKED_DELETE(m_PhysicController);
 	}
 }
 
@@ -95,7 +92,6 @@ void CPlayer::Update(float ElapsedTime)
 	if (CORE->GetLogicObjectsManager()->GetTutorialActive())
 	{
 		ChangeCharacterAnimation(WAIT_ANIM, 1.f);
-		//m_Camera->SetPlayerPitch(0.f);
 		CCharacter::Update(ElapsedTime);
 		return;
 	}
@@ -209,34 +205,30 @@ void CPlayer::UpdateCamera(float ElapsedTime)
 	if (m_fDeltaPitch)
 	{
 		float l_fPitch =  m_Camera->GetPlayerPitch() - (m_fDeltaPitch*m_fMouseSpeed);
-		if(l_fPitch < -CAM_PITCH_DOWN) l_fPitch = -CAM_PITCH_DOWN;			// ponemos tope a la camara
-		else if(l_fPitch > CAM_PITCH_UP) l_fPitch = CAM_PITCH_UP;
+		if(l_fPitch < -(float)CAM_PITCH_DOWN) l_fPitch = -(float)CAM_PITCH_DOWN;			// ponemos tope a la camara
+		else if(l_fPitch > (float)CAM_PITCH_UP) l_fPitch = (float)CAM_PITCH_UP;
 
 		m_Camera->SetPlayerPitch(l_fPitch);
 	}
 
 	// Update player zoom camera
-	if (m_fUpdateCam >= PLAYER_UPDATE_CAM_TIME)
+	if (m_fUpdateCam >= (float)PLAYER_UPDATE_CAM_TIME)
 	{
 		if (m_bIsAiming)
 		{
-			if (m_fDistance > CAM_DIST_AIM)
-				m_fDistance -= CAM_ZOOM_AIM_STEP;
-
-			if (m_fDistanceFromCenter < CAM_DIST_AIM)
-				m_fDistanceFromCenter += CAM_ZOOM_AIM_STEP;
-			
+			if (m_fDistance > (float)CAM_DIST_AIM)
+				m_fDistance -= (float)CAM_ZOOM_AIM_STEP;
+			if (m_fDistanceFromCenter < (float)CAM_DIST_AIM) 
+				m_fDistanceFromCenter += (float)CAM_ZOOM_AIM_STEP;
 			((CThirdPersonCamera*)m_Camera)->SetFrontDistance(m_fDistance);
 			((CThirdPersonCamera*)m_Camera)->SetDistanceFromCenter(m_fDistanceFromCenter);
 		}
 		else
 		{
-			if (m_fDistance < CAM_DIST)
-				m_fDistance += CAM_ZOOM_AIM_STEP;
-			
-			if (m_fDistanceFromCenter > PLAYER_DISTANCE_FROM_CENTER)
-				m_fDistanceFromCenter -= CAM_ZOOM_AIM_STEP;
-
+			if (m_fDistance < (float)CAM_DIST)
+				m_fDistance += (float)CAM_ZOOM_AIM_STEP;
+			if (m_fDistanceFromCenter > (float)PLAYER_DISTANCE_FROM_CENTER) 
+				m_fDistanceFromCenter -= (float)CAM_ZOOM_AIM_STEP;
 			((CThirdPersonCamera*)m_Camera)->SetFrontDistance(m_fDistance);
 			((CThirdPersonCamera*)m_Camera)->SetDistanceFromCenter(m_fDistanceFromCenter);
 		}

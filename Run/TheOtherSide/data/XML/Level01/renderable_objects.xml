@@ -322,8 +322,8 @@
 	<mesh_instance name="MR_plane laser039" core="MR_plane laser039" layer="alpha_blend_objects_ME" pos="-14.4723 1.78852 12.6099" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="false" />
 	<mesh_instance name="MR_plane laser040" core="MR_plane laser040" layer="alpha_blend_objects_ME" pos="-14.5227 1.78852 12.6099" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="false" />
 	<mesh_instance name="Suelo_Falso_Grande_Piso1_MR" core="Suelo_Falso_Grande_Piso1_MR" layer="solid" pos="0.287427 -0.765503 12.3084" yaw="0.0" pitch="0.0" roll="0.0" visible="false" cast_shadows="true" generate_physics="true" physics_type="bounding_box" />
-	<mesh_instance name="SViglancias_Ventilador001_MR" core="SViglancias_Ventilador002_MR" layer="solid_MR" pos="24.0216 2.775 -3.58411" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="false"/>
-	<mesh_instance name="SViglancias_Ventilador001_ME" core="SControl_Ventilador005_ME" layer="solid_ME" pos="-24.0216 2.775 -3.58411" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="false" />
+	<mesh_instance name="SViglancias_Ventilador001_MR" core="SViglancias_Ventilador002_MR" layer="solid_MR" pos="24.0216 3.08065 -3.58411" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="false"/>
 	<mesh_instance name="SControl_BASEVentilador003_MR" core="SControl_BASEVentilador003_MR" layer="solid_MR" pos="24.0216 3.08065 -3.58411" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="false" />
-	<mesh_instance name="SControl_BASEVentilador004_MR" core="SControl_BASEVentilador004_MR" layer="solid_MR" pos="-24.0216 2.98065 -3.58411" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="false" />	
+	<mesh_instance name="SViglancias_Ventilador001_ME" core="SControl_Ventilador005_ME" layer="solid_ME" pos="-24.0216 2.775 -3.58411" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="false" />
+	
 </Renderable_Objects>

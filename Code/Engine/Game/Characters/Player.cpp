@@ -32,7 +32,7 @@ using namespace luabind;
 #define PLAYER_SPEED_RUN		0.070f		// velocidad movimiento personaje corriendo
 
 #define PLAYER_UPDATE_CAM_TIME	0.0001f		// velocidad update camara al apuntar
-#define CAM_ZOOM_AIM_STEP		0.1f
+#define CAM_ZOOM_AIM_STEP		0.09f
 
 #define ANIMS_DELAY				0.3f			// Blending delay entre animaciones
 
@@ -219,7 +219,7 @@ void CPlayer::UpdateCamera(float ElapsedTime)
 			if (m_fDistance > (float)CAM_DIST_AIM)
 				m_fDistance -= (float)CAM_ZOOM_AIM_STEP;
 			if (m_fDistanceFromCenter < (float)CAM_DIST_AIM) 
-				m_fDistanceFromCenter += (float)CAM_ZOOM_AIM_STEP;
+				m_fDistanceFromCenter += (float)CAM_ZOOM_AIM_STEP/3.0f;
 			((CThirdPersonCamera*)m_Camera)->SetFrontDistance(m_fDistance);
 			((CThirdPersonCamera*)m_Camera)->SetDistanceFromCenter(m_fDistanceFromCenter);
 		}
@@ -228,7 +228,7 @@ void CPlayer::UpdateCamera(float ElapsedTime)
 			if (m_fDistance < (float)CAM_DIST)
 				m_fDistance += (float)CAM_ZOOM_AIM_STEP;
 			if (m_fDistanceFromCenter > (float)PLAYER_DISTANCE_FROM_CENTER) 
-				m_fDistanceFromCenter -= (float)CAM_ZOOM_AIM_STEP;
+				m_fDistanceFromCenter -= (float)CAM_ZOOM_AIM_STEP/3.0f;
 			((CThirdPersonCamera*)m_Camera)->SetFrontDistance(m_fDistance);
 			((CThirdPersonCamera*)m_Camera)->SetDistanceFromCenter(m_fDistanceFromCenter);
 		}

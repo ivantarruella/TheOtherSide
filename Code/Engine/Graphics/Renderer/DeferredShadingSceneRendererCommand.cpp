@@ -109,7 +109,7 @@ RECT CDeferredShadingSceneRendererCommand::DetermineClipRect(CLight* Light)
 		position = spot->GetPosition()+spot->GetDirection() * range;
 	}
 
-	if (position.SqDistance(CORE->GetCamera()->GetEye()) < range * range * 1.3f)
+	if (position.SqDistance(CORE->GetCamera()->GetEye()) < range * range * 1.5f)
 		return bbox2D;	// si camara dentro del volumen de la luz, no nos complicamos la vida, pintamos full screen quad
 
 	//compute 3D bounding box of light in world space

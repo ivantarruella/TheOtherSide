@@ -83,7 +83,7 @@ CMirrorObject::CMirrorObject(CXMLTreeNode &atts)
 		std::string l_MirrorName = GetName() + "_Texture";
 		uint32 w,h;
 		CORE->GetRenderManager()->GetWidthAndHeight(w,h);	
-		m_MirrorTex->Create(l_MirrorName,w,h,1,CTexture::RENDERTARGET,CTexture::DEFAULT,l_FormatType);
+		m_MirrorTex->Create(l_MirrorName,256,256,1,CTexture::RENDERTARGET,CTexture::DEFAULT,l_FormatType);
 
 		//m_MirrorCam = new CFreeCamera(NEAR_CLIPPING, FAR_CLIPPING,55.0f * FLOAT_PI_VALUE/180.0f, (float)w/(float)h;, l_center);
 	}

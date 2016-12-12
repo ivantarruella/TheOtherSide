@@ -8,8 +8,6 @@ IMPROVEMENTS:
   el player empezará sin energia en el arma y deberá coger la que se encuentre encima del primer cadaver en el nivel1.
 
 
-BUGFIXES:
-- luz sol/luna no genera sombras en el player en muchas ocasiones
 
 
 

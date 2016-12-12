@@ -115,7 +115,8 @@ void CAnimatedInstanceModel::RenderShadow(CRenderManager *RM, CLight* Light)
 		return;		// no generamos shadow map de los modelos animados que no generan sombra
 
 	const CFrustum& l_LightFrustum = Light->GetLightFrustum();
-	DrawAnimatedModelShadow(RM, &l_LightFrustum, false);
+	bool bForward = Light->GetType()==CLight::SPOT;		// forward rendering only for spotlights
+	DrawAnimatedModelShadow(RM, &l_LightFrustum, bForward);
 }
 
 void CAnimatedInstanceModel::RenderReflected(CRenderManager *RM, CRenderableObject* Mesh, const CFrustum* Frustum)

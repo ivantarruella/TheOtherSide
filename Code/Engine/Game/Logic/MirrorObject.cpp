@@ -519,12 +519,12 @@ void CMirrorObject::GenerateMirror(CRenderManager* RM)
 		CORE->GetRenderableObjectsLayersManager()->RenderReflected(RM, m_MirrorMesh, &m_MirrorFrustum);
 
 		// render particles from mirror
-		//Mat44f mat;
-		//mat.SetIdentity();
-		//RM->SetTransform(mat);
-		//RM->Clear(false, true, false, 0xffffffff);
+		Mat44f mat;
+		mat.SetIdentity();
+		RM->SetTransform(mat);
+		RM->Clear(false, true, false, 0xffffffff);
 		//CORE->GetParticleManager()->Render(RM, &m_MirrorFrustum);
-		//CORE->GetBulletManager()->Render(RM, &m_MirrorFrustum);
+		CORE->GetBulletManager()->Render(RM, &m_MirrorFrustum);
 
 		m_MirrorTex->UnsetAsRenderTarget(0);
 

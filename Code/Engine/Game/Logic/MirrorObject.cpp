@@ -510,7 +510,6 @@ void CMirrorObject::GenerateMirror(CRenderManager* RM)
 		// activate virtual camera from mirror
 		CORE->GetEffectManager()->ActivateCamera(Mat44f(view), Mat44f(projection), Vect3f(l_Vp.x, l_Vp.y, l_Vp.z));
 
-
 		// render scene except this mirror
 		m_MirrorTex->SetAsRenderTarget(0);
 
@@ -518,13 +517,13 @@ void CMirrorObject::GenerateMirror(CRenderManager* RM)
 		RM->Clear(true, true, true, 0xffffffff);
 		CORE->GetRenderableObjectsLayersManager()->RenderReflected(RM, m_MirrorMesh, &m_MirrorFrustum);
 
-		// render particles from mirror
-		Mat44f mat;
-		mat.SetIdentity();
-		RM->SetTransform(mat);
-		RM->Clear(false, true, false, 0xffffffff);
+		// TODO: render particles & billboards from mirror
+		//Mat44f mat;
+		//mat.SetIdentity();
+		//RM->SetTransform(mat);
+		//RM->Clear(false, true, false, 0xffffffff);
 		//CORE->GetParticleManager()->Render(RM, &m_MirrorFrustum);
-		CORE->GetBulletManager()->Render(RM, &m_MirrorFrustum);
+		//CORE->GetBulletManager()->Render(RM, &m_MirrorFrustum);
 
 		m_MirrorTex->UnsetAsRenderTarget(0);
 

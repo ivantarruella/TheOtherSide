@@ -1,7 +1,7 @@
 <Billboards>
-	<Billboard name="bLaserBeam" color="1.0 0.0 0.0 0.0" height="1.2" width="0.5" tex="data\\Textures\\Particles\\energy.png" />
-	<Billboard name="bLaserHalo" color="1.0 1.0 1.0 1.0" height="1.0" width="1.0" tex="data\\Textures\\Particles\\laser_halo.png" />
-	<Billboard name="bReboteDisparo" color="1.0 1.0 1.0 1.0" height="0.5" width="0.5" tex="data\\Textures\\Particles\\rebote_disparo.png" />
+	<Billboard name="bLaserBeam" color="1.0 0.0 0.0 0.0" height="3.0" width="0.15" tex="data\\Textures\\Particles\\laser_beam.png" />
+	<Billboard name="bLaserHalo" color="1.0 1.0 1.0 1.0" height="0.7" width="0.7" tex="data\\Textures\\Particles\\laser_halo.png" />
+	<Billboard name="bReboteDisparo" color="1.0 1.0 1.0 1.0" height="0.5" width="0.5" tex="data\\Textures\\Particles\\agujero.png" />
 	<Billboard name="bBlood" color="1.0 1.0 1.0 0.0" height="0.5" width="0.5" tex="data\\Textures\\Particles\\SteamBlur.png" />
 </Billboards>
 

@@ -29,7 +29,7 @@ using namespace luabind;
 
 #define PLAYER_SPEED_WALK		0.035f		// velocidad movimiento personaje andando
 #define PLAYER_SPEED_WALK_AIM	0.035f		// velocidad movimiento personaje andando y apuntando
-#define PLAYER_SPEED_RUN		0.070f		// velocidad movimiento personaje corriendo
+#define PLAYER_SPEED_RUN		0.075f		// velocidad movimiento personaje corriendo
 
 #define PLAYER_UPDATE_CAM_TIME	0.0001f		// velocidad update camara al apuntar
 #define CAM_ZOOM_AIM_STEP		0.09f

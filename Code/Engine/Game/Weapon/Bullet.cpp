@@ -78,23 +78,14 @@ void CBullet::ChangeBillboard(const std::string& _BillboardName)
 	else if(m_bIsCollided)
 	{
 		//PrepareBillboardToScale(END_EFFECT_TIME);
-		//int blood_frame = 1;
 
 		CSoldier* l_pSoldier =  GetSoldier(m_pCollidedObjectUserData);
 		//bool isHeadShoot = CheckHeadShoot(l_pSoldier);
-		//if (isHeadShoot)
-		//	blood_frame = 0;
-
-		//Ground or ceiling
-		if(GetPos().y <GROUND_HEIGHT || GetPos().y >CEILING_HEIGHT)
+		
+		if(GetPos().y <GROUND_HEIGHT || GetPos().y >CEILING_HEIGHT)		//Ground or ceiling
 		{
-			//if(m_szCollidedObjectName.compare(0,7,"Soldier")==0)
 			if (l_pSoldier!=NULL)
 			{
-				//std::stringstream bloodBB;
-				//bloodBB.clear();
-				//bloodBB << "bBlood" << (blood_frame+1);
-
 				CBillboard* pBillboard = CORE->GetBillboardManager()->GetBillboardCore("bBlood");
 				if (pBillboard != NULL) {
 					SetTexture(pBillboard->GetTexture());
@@ -113,13 +104,8 @@ void CBullet::ChangeBillboard(const std::string& _BillboardName)
 		{
 			float l_fSurface = 0.15f;
 			if (l_pSoldier!=NULL)
-			//if(m_szCollidedObjectName.compare(0,7,"Soldier")==0)
 			{
 				l_fSurface = 0.3f;
-
-				//std::stringstream bloodBB;
-				//bloodBB.clear();
-				//bloodBB << "bBlood" << (blood_frame+1);
 
 				CBillboard* pBillboard = CORE->GetBillboardManager()->GetBillboardCore("bBlood");
 				if (pBillboard != NULL) {
@@ -174,6 +160,10 @@ void CBullet::SetCollision()
 	m_bIsCollided = true;
 	m_fTimer = 0.0f;
 	m_szCollidedObjectName = static_cast<const std::string&>(m_pCollidedObjectUserData->GetName());
+	
+	if(m_pShotLight)
+		m_pShotLight->SetEnabled(false);
+
 	ChangeBillboard("bReboteDisparo");
 }
 

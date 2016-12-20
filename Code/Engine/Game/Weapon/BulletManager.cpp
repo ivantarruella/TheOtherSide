@@ -47,7 +47,7 @@ void CBulletManager::AddBullet(Vect3f &_Position, Vect3f &_Direction, CCharacter
 
 	std::string l_sBulletName = GetBulletName();
 
-	l_pBullet->SetPos(_Position);
+	l_pBullet->SetPos(_Position+Vect3f(0.0f, 0.025f, 0.0f));
 	l_pBullet->SetDirection(_Direction);
 	l_pBullet->SetBulletSpeed(_Speed);
 	l_pBullet->SetFirstPos(_Position);

@@ -12,7 +12,7 @@ class CCamera;
 class CXMLTreeNode;
 class CFrustum;
 
-#define GROUND_HEIGHT 0.1f
+#define GROUND_HEIGHT 0.2f
 #define CEILING_HEIGHT 2.8f
 
 

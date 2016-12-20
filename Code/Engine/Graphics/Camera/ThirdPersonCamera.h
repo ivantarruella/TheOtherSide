@@ -6,7 +6,7 @@
 #include "include\PhysicsManager.h"
 
 #define CAM_ZOOM_WALK			0.0f
-#define CAM_DIST				2.0f	// Distancia de la camara
+#define CAM_DIST				1.75f	// Distancia de la camara
 #define CAM_DIST_AIM			0.75f
 #define CAM_MIN_HEIGHT			0.0f
 #define CAM_HEIGHT				0.7f

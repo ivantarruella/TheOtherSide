@@ -15,6 +15,7 @@
 #define MAX_DISTANCE	100.f
 #define SCALE_DISTANCE	2.0f
 #define MOVEMENT_DISTANCE 0.15f
+#define SECON_FLOOR_HEIGHT 3.00f
 
 class CRenderableObject;
 class CPhysicUserData;

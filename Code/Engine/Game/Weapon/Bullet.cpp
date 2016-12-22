@@ -78,46 +78,22 @@ void CBullet::ChangeBillboard(const std::string& _BillboardName)
 	else if(m_bIsCollided)
 	{
 		//PrepareBillboardToScale(END_EFFECT_TIME);
+		float l_fSurface = 0.3f;
 
 		CSoldier* l_pSoldier =  GetSoldier(m_pCollidedObjectUserData);
-		//bool isHeadShoot = CheckHeadShoot(l_pSoldier);
-		
-		if(GetPos().y <GROUND_HEIGHT || GetPos().y >CEILING_HEIGHT)		//Ground or ceiling
+		if (l_pSoldier!=NULL)
 		{
-			if (l_pSoldier!=NULL)
-			{
-				CBillboard* pBillboard = CORE->GetBillboardManager()->GetBillboardCore("bBlood");
-				if (pBillboard != NULL) {
-					SetTexture(pBillboard->GetTexture());
-					SetWidth(pBillboard->GetWidth());
-					SetHeight(pBillboard->GetHeight());
-				}
-				SetPos(m_vCollisionPoint);
-				CBillboard::Update();
+			//bool isHeadShoot = CheckHeadShoot(l_pSoldier);
+			CBillboard* pBillboard = CORE->GetBillboardManager()->GetBillboardCore("bBlood");
+			if (pBillboard != NULL) {
+				SetTexture(pBillboard->GetTexture());
+				SetWidth(pBillboard->GetWidth());
+				SetHeight(pBillboard->GetHeight());
 			}
-			else {
-				SetPos(m_vCollisionPoint);
-				CBillboard::UpdateImpactBillboard();
-			}
-		} 
-		else 
-		{
-			float l_fSurface = 0.15f;
-			if (l_pSoldier!=NULL)
-			{
-				l_fSurface = 0.3f;
-
-				CBillboard* pBillboard = CORE->GetBillboardManager()->GetBillboardCore("bBlood");
-				if (pBillboard != NULL) {
-					SetTexture(pBillboard->GetTexture());
-					SetWidth(pBillboard->GetWidth());
-					SetHeight(pBillboard->GetHeight());
-				}
-			}
-
-			SetPos(m_vCollisionPoint-m_vDirection*l_fSurface);
-			CBillboard::Update();
 		}
+
+		SetPos(m_vCollisionPoint-m_vDirection*l_fSurface);
+		CBillboard::Update();
 	}
 }
 
@@ -258,20 +234,21 @@ void CBullet::ScaleBillboard()
 
 void CBullet::EndEffect()
 {
-
 	if(m_szCollidedObjectName != "")
 	{
 		CheckDamageCaused();
 		m_szCollidedObjectName = "";
 	}
+	
+	bool bSecondFloor = m_Player->GetPosition().y >= SECON_FLOOR_HEIGHT;
+	float impact_y = (bSecondFloor ? (GetPos().y) : GetPos().y);
+	bool bGround = (!bSecondFloor && impact_y <=GROUND_HEIGHT) || (bSecondFloor && impact_y>=SECON_FLOOR_HEIGHT && impact_y<=(SECON_FLOOR_HEIGHT+GROUND_HEIGHT));
+	bool bCeiling = (!bSecondFloor && impact_y >=CEILING_HEIGHT) || (bSecondFloor && impact_y >= (SECON_FLOOR_HEIGHT+CEILING_HEIGHT));
 
-	if(GetPos().y <GROUND_HEIGHT || GetPos().y >CEILING_HEIGHT){
+	if(bGround || bCeiling)
 		CBillboard::UpdateImpactBillboard();
-	} 
 	else 
-	{
 		CBillboard::Update();
-	}
 
 	//bReboteLineaDisparo , bReboteDisparo
 	if(m_fTimer > END_EFFECT_TIME)

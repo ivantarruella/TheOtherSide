@@ -32,7 +32,7 @@ using namespace luabind;
 #define PLAYER_SPEED_RUN		0.075f		// velocidad movimiento personaje corriendo
 
 #define PLAYER_UPDATE_CAM_TIME	0.0001f		// velocidad update camara al apuntar
-#define CAM_ZOOM_AIM_STEP		0.09f
+#define CAM_ZOOM_AIM_STEP		0.27f
 
 #define ANIMS_DELAY				0.3f			// Blending delay entre animaciones
 

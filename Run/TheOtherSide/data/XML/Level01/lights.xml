@@ -14,7 +14,7 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	</light> 
 
-	<light name="LASER" type="spot" pos="7.36404 2.58032 -13.5044" color="65.0 255.0 19.0" att_start_range="4.0" att_end_range="6.0" dir="0.00513604 0.00172818 -0.999985" world="2" angle="30.0" fall_off="50.0"/>
+	<light name="LASER" type="spot" pos="7.36404 2.58032 -13.5044" color="65.0 255.0 19.0" att_start_range="4.0" att_end_range="6.0" dir="0.00513604 0.00172818 -0.999985" world="2" angle="25.0" fall_off="40.0"/>
 
 	<!-- REAL WORLD -->
 	<light name="Light01_Omni_MR" type="omni" pos="21.8216 2.25 -3.78411" color="192.0 192.0 192.0" att_start_range="0.1" att_end_range="4.5" 
@@ -174,8 +174,10 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	</light>
 	
-	<light name="Light02_Omni_ME" type="omni" pos="-21.9268 2.25 4.30415" color="121.0 137.0 119.0" att_start_range="0.5" att_end_range="5.0" 
+	<light name="Light02_Omni_ME" type="omni" pos="-21.9268 2.25 4.30415" color="121.0 137.0 119.0" att_start_range="0.5" att_end_range="5.5" 
 	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
+	 intermittent="true" tmin="0.5" tmax="3.0"
+	 light_mesh="SVigilancia_ME_Fluerescente01" layer="solid_ME" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"
 	 >
 		<dynamic renderable_objects_manager="solid"/>
@@ -185,7 +187,7 @@
 	</light>
 
 	<light name="Light02b_Omni_ME" type="omni" pos="-25.6516 2.25 0.588093" color="121.0 137.0 119.0" att_start_range="0.1"    att_end_range="5.0" 
-	 varible_intensity="true" tmin="0.05" offtime="7.0"
+	 varible_intensity="true" tmin="0.05" offtime="1.0"
 	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"
 	 >

@@ -5,6 +5,7 @@
 #include "BillboardManager.h"
 #include "TextureManager.h"
 #include "EnemyManager.h"
+#include "BulletManager.h"
 #include "Soldier.h"
 #include "Renderer\RenderableObjectsLayersManager.h"
 #include "Player.h"
@@ -81,18 +82,23 @@ void CBullet::ChangeBillboard(const std::string& _BillboardName)
 		float l_fSurface = 0.3f;
 
 		CSoldier* l_pSoldier =  GetSoldier(m_pCollidedObjectUserData);
+		Vect3f collision_pos = m_vCollisionPoint-m_vDirection*l_fSurface;
+
 		if (l_pSoldier!=NULL)
 		{
 			//bool isHeadShoot = CheckHeadShoot(l_pSoldier);
+			
 			CBillboard* pBillboard = CORE->GetBillboardManager()->GetBillboardCore("bBlood");
 			if (pBillboard != NULL) {
 				SetTexture(pBillboard->GetTexture());
 				SetWidth(pBillboard->GetWidth());
 				SetHeight(pBillboard->GetHeight());
 			}
+
+			CORE->GetBulletManager()->AddParticles(l_pSoldier, collision_pos, l_pSoldier->GetName() + GetName(), 0.15f, 1);
 		}
 
-		SetPos(m_vCollisionPoint-m_vDirection*l_fSurface);
+		SetPos(collision_pos);
 		CBillboard::Update();
 	}
 }
@@ -140,7 +146,11 @@ void CBullet::SetCollision()
 	if(m_pShotLight)
 		m_pShotLight->SetEnabled(false);
 
-	ChangeBillboard("bReboteDisparo");
+	CSoldier* l_pSoldier =  GetSoldier(m_pCollidedObjectUserData);
+	if (l_pSoldier==NULL)
+		ChangeBillboard("bReboteDisparo");
+	else
+		ChangeBillboard("bReboteDisparo2");
 }
 
 void CBullet::RayEffect(float _DeltaTime)
@@ -259,6 +269,10 @@ void CBullet::EndEffect()
 			m_pShotLight->SetEnabled(false);
 			m_pShotLight->SetActive(false);
 		}
+
+		//CSoldier* l_pSoldier =  GetSoldier(m_pCollidedObjectUserData);
+		//if (l_pSoldier != NULL)
+		//	CORE->GetParticleManager()->RemoveParticleEmitterInstance(l_pSoldier->GetName());
 	}
 }
 

@@ -71,8 +71,6 @@ public:
 	void Update(float);
 
 private:
-
-
 	Vect3f m_vDirection, m_vCollisionPoint, m_vObjAnimatedPosition;
 	COmniLight *m_pShotLight;
 	CPhysicUserData *m_pCollidedObjectUserData;

@@ -17,7 +17,7 @@
 #define CAM_LOOKAT_HEIGHT			0.8f	// Altura a la que mira la camara en el player
 #define COLLISION_EPSILON			0.2f
 
-#define PLAYER_DISTANCE_FROM_CENTER	0.5f
+#define PLAYER_DISTANCE_FROM_CENTER	0.25f
 
 class CRenderManager;
 class CPhysicsManager;

@@ -86,8 +86,6 @@ void CBullet::ChangeBillboard(const std::string& _BillboardName)
 
 		if (l_pSoldier!=NULL)
 		{
-			//bool isHeadShoot = CheckHeadShoot(l_pSoldier);
-			
 			CBillboard* pBillboard = CORE->GetBillboardManager()->GetBillboardCore("bBlood");
 			if (pBillboard != NULL) {
 				SetTexture(pBillboard->GetTexture());
@@ -95,7 +93,8 @@ void CBullet::ChangeBillboard(const std::string& _BillboardName)
 				SetHeight(pBillboard->GetHeight());
 			}
 
-			CORE->GetBulletManager()->AddParticles(l_pSoldier, collision_pos, l_pSoldier->GetName() + GetName(), 0.15f, 1);
+			bool isHeadShoot = CheckHeadShoot(l_pSoldier);
+			CORE->GetBulletManager()->AddParticles(l_pSoldier, collision_pos, isHeadShoot, l_pSoldier->GetName() + GetName(), 0.15f, 1);
 		}
 
 		SetPos(collision_pos);
@@ -147,10 +146,10 @@ void CBullet::SetCollision()
 		m_pShotLight->SetEnabled(false);
 
 	CSoldier* l_pSoldier =  GetSoldier(m_pCollidedObjectUserData);
-	if (l_pSoldier==NULL)
-		ChangeBillboard("bReboteDisparo");
-	else
+	if (l_pSoldier!=NULL || m_Player->GetName()==m_szCollidedObjectName)
 		ChangeBillboard("bReboteDisparo2");
+	else
+		ChangeBillboard("bReboteDisparo");
 }
 
 void CBullet::RayEffect(float _DeltaTime)

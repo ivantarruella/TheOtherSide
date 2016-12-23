@@ -50,14 +50,16 @@ void CBulletManager::Update(float _ElapsedTime)
 
 	//damage particles
 	for (tdParticlesMap::iterator it = m_particles.begin(); it != m_particles.end();) {
+		CSoldier* pSoldier = it->second.first;
 		if (it->second.second.second >= REMOVE_PARTICLES_TIME) {
 			CORE->GetParticleManager()->RemoveParticleEmitterInstance(it->first);
 			it = m_particles.erase(it);
 		} 
 		else {
-			CSoldier* pSoldier = it->second.first;
 			if (pSoldier != NULL) {
-				Vect3f new_pos = Vect3f(pSoldier->GetPosition().x, pSoldier->GetPosition().y + it->second.second.first, pSoldier->GetPosition().z);
+				bool bSecondFloor = pSoldier->GetPosition().y >= SECON_FLOOR_HEIGHT;
+				float fy = (bSecondFloor ? (pSoldier->GetPosition().y + it->second.second.first - SECON_FLOOR_HEIGHT) : (pSoldier->GetPosition().y + it->second.second.first));
+				Vect3f new_pos = Vect3f(pSoldier->GetPosition().x, fy, pSoldier->GetPosition().z);
 				CParticleEmitter* pEmitter = CORE->GetParticleManager()->GetParticleEmitter(it->first);
 				if (pEmitter != NULL)
 					pEmitter->SetPos(new_pos);
@@ -89,11 +91,11 @@ void CBulletManager::AddBullet(Vect3f &_Position, Vect3f &_Direction, CCharacter
 	AddResource(l_sBulletName,l_pBullet);
 }
 
-void CBulletManager::AddParticles(CSoldier* _pSoldier, Vect3f &_Position, const std::string& _Name, float size, int world)
+void CBulletManager::AddParticles(CSoldier* _pSoldier, Vect3f &_Position, bool bIsHeadShoot, const std::string& _Name, float size, int world)
 {
 	// damage particles
 	m_particles[_Name] = std::pair<CSoldier*, std::pair<float, float> >(_pSoldier, std::pair<float, float>(_Position.y, 0.0f));
-	CORE->GetParticleManager()->AddParticleEmitterInstance("soldier_damage", _Name, _Position, _Position, size, world); 
+	CORE->GetParticleManager()->AddParticleEmitterInstance(bIsHeadShoot ? "soldier_headshoot" : "soldier_damage", _Name, _Position, _Position, size, world); 
 	CParticleEmitter* l_Particles = CORE->GetParticleManager()->GetParticleEmitter(_Name);
 	if (l_Particles!=NULL) {
 		l_Particles->SetEnabled(true);

@@ -56,13 +56,13 @@
 			<size time="0.0" mins="0.7" maxs="1.0"/>
 			<aceleration time="0.0" acel1="0 4 0" acel2="0 8 0"/>
 		</PointEmitter>	
-		<PointEmitter type="plane" name="soldier_damage" gravity="true" life_time_min="0.5" life_time_max="1.0" emit_rate_min="15.0"
-			emit_rate_max="50.0" tex="data\Textures\smoke.tga" angle="2.0">
-			<color time="0.0" color1="1.0 0.2 0.2 0.05" color2="0.5 0.0 0.0 0.03"/>
-			<direction time="0.0" dir1="-0.09 -0.01 -0.09" dir2="0.09 0.01 0.09"/>
-			<size time="0.0" mins="0.05" maxs="0.25"/>
-			<aceleration time="0.0" acel1="1 4 1" acel2="-1 8 -1"/>
-		</PointEmitter>			
+		<PointEmitter type="plane" name="soldier_damage" gravity="true" life_time_min="0.1" life_time_max="0.5" emit_rate_min="10.0"
+			emit_rate_max="25.0" tex="data\Textures\Particles\blood.png" angle="2.0">
+			<color time="0.0" color1="1.0 1.0 1.0 0.05" color2="1.0 1.0 1.0 0.05"/>
+			<direction time="0.0" dir1="-0.2 -0.1 -0.3" dir2="0.2 0.3 0.2"/>
+			<size time="0.0" mins="0.1" maxs="0.5"/>
+			<aceleration time="0.0" acel1="1 0 1" acel2="-1 0 -1"/>
+		</PointEmitter>				
 	</ParticleEmitters>
 	<Instances>
 		<Instance name="healer01_MR" id="healer" pos1="24.193 0.200 -26.187" pos2="24.193 0.200 -26.187" size="0.7" world="1"/>

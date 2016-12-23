@@ -332,6 +332,25 @@ float4 calcLighting(float3 Pos, float3 Nn, float4 Albedo, float SpecularFactor)
 float3 GetRadiosityNormalMap(float3 Nn, float3 FaceNormal, float3 Tn, float3 Bn, float2 UV)
 {
 	float3x3 l_TriangleMatrix;
+	l_TriangleMatrix[0] = normalize(Tn);
+	l_TriangleMatrix[1] = normalize(Bn);
+	l_TriangleMatrix[2] = normalize(FaceNormal);
+
+	float3 l_LightmapX=(tex2D(gS1LinearClampSampler, UV).xyz);
+	float3 l_LightmapY=(tex2D(gS2LinearClampSampler, UV).xyz);
+	float3 l_LightmapZ=(tex2D(gS3LinearClampSampler, UV).xyz);
+	float3 l_BumpBasisX=normalize(mul(float3(0.816496580927726, 0.5773502691896258, 0 ),l_TriangleMatrix));
+	float3 l_BumpBasisY=normalize(mul(float3(-0.408248290463863, 0.5773502691896258,0.7071067811865475 ),l_TriangleMatrix));
+	float3 l_BumpBasisZ=normalize(mul(float3(-0.408248290463863, 0.5773502691896258, -0.7071067811865475),l_TriangleMatrix));
+	float3 diffuseLighting=saturate( dot( Nn, l_BumpBasisX ) ) * l_LightmapX + saturate( dot( Nn, l_BumpBasisY ) ) * l_LightmapY + saturate( dot( Nn, l_BumpBasisZ ) ) * l_LightmapZ;
+	
+	//return tex2D(gS4LinearWrapSampler, UV).xyz*2;
+	return diffuseLighting;
+}
+/*
+float3 GetRadiosityNormalMap(float3 Nn, float3 FaceNormal, float3 Tn, float3 Bn, float2 UV)
+{
+	float3x3 l_TriangleMatrix;
     l_TriangleMatrix[0] = normalize(Tn);
     l_TriangleMatrix[1] = normalize(FaceNormal);
     l_TriangleMatrix[2] = normalize(Bn);
@@ -358,7 +377,7 @@ float3 GetRadiosityNormalMap(float3 Nn, float3 FaceNormal, float3 Tn, float3 Bn,
 	
     return l_DiffuseLight;
 }
-
+*/
 // CHANGE WORLD EFFECT
 float3 ChangeWorld_PS(float3 Albedo, sampler _textureSampler, float2 uv)
 {

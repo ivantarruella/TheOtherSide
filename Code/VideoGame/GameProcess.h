@@ -19,7 +19,7 @@ class CWeapon;
 
 #define CAMERA_ZNEAR			0.01f
 #define CAMERA_ZFAR				55.0f
-#define CAMERA_FOV				(60.0f * FLOAT_PI_VALUE/180.0f)
+#define CAMERA_FOV				(55.0f * FLOAT_PI_VALUE/180.0f)
 
 #define GUI_LIVE_WIDTH			24.0f
 #define GUI_ENERGY_WIDTH		24.0f

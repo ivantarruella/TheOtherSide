@@ -6,8 +6,8 @@
 #include "include\PhysicsManager.h"
 
 #define CAM_ZOOM_WALK			0.0f
-#define CAM_DIST				1.75f	// Distancia de la camara
-#define CAM_DIST_AIM			0.75f
+#define CAM_DIST				1.5f	// Distancia de la camara
+#define CAM_DIST_AIM			0.7f
 #define CAM_MIN_HEIGHT			0.0f
 #define CAM_HEIGHT				0.7f
 
@@ -17,7 +17,7 @@
 #define CAM_LOOKAT_HEIGHT			0.8f	// Altura a la que mira la camara en el player
 #define COLLISION_EPSILON			0.2f
 
-#define PLAYER_DISTANCE_FROM_CENTER	0.35f
+#define PLAYER_DISTANCE_FROM_CENTER	0.5f
 
 class CRenderManager;
 class CPhysicsManager;

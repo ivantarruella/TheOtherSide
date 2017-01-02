@@ -37,6 +37,7 @@
 	<Sound path="data\Sounds\Efectos\laser_enemigo.wav" soundId="disparo_enemigo"/>
 	<Sound path="data\Sounds\Efectos\monster_damage.wav" soundId="monster_damage"/>
 	<Sound path="data\Sounds\Efectos\soldier_die.wav" soundId="soldier_die"/>
+	<Sound path="data\Sounds\Efectos\soldier_die_headshot.wav" soundId="soldier_die_headshot"/>
 	<Sound path="data\Sounds\Efectos\switch.wav" soundId="switch"/>
 	<Sound path="data\Sounds\Efectos\broken_light.wav" soundId="broken_light"/>
 	<Sound path="data\Sounds\Efectos\soldier_hit.wav" soundId="soldier_hit"/>

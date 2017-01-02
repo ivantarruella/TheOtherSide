@@ -322,3 +322,7 @@ end
 function sound_soldier_die(_volume)
 	_SOUNDM:play_action_2D('soldier_die', _volume)
 end
+
+function sound_soldier_die_headshot(_volume)
+	_SOUNDM:play_action_2D('soldier_die_headshot', _volume)
+end

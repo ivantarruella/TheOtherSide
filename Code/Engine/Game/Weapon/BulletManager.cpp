@@ -9,7 +9,7 @@
 #include "Base.h"
 
 #define NUM_MAX_LIGHTS			20
-#define REMOVE_PARTICLES_TIME	1.0f
+#define REMOVE_PARTICLES_TIME	1.25f
 
 CBulletManager::~CBulletManager(void)
 {

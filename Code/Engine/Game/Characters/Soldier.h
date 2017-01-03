@@ -37,9 +37,13 @@ public:
 	void CreateCapsuleForBullets();
 	void RemoveCapsuleForBullets();
 
+	void SetHeadShoot(bool _bHeadShoot){m_HeadShoot = _bHeadShoot;}
+	bool GetHeadShoot() {return m_HeadShoot;}
+
 private:
 	bool m_bFrozen;
 	bool m_Alarm;
+	bool m_HeadShoot;
 	CTaskManager* m_TaskManager;
 	Vect3f m_initPosition;
 	float m_initYaw;

@@ -332,19 +332,25 @@ void CBullet::CheckCollision(){
 
 bool CBullet::CheckHeadShoot(CSoldier* pSoldier)
 {
+	bool bHeadShoot = false;
+
 	if(pSoldier != NULL)
 	{
 		float fDamage = m_fDamage;
-		if (pSoldier->GetPosition().y <= 1.0f)
+		if (pSoldier->GetPosition().y <= 1.0f) {
 			if (m_vCollisionPoint.y > 1.6f && m_vCollisionPoint.y <= 1.85f)
-				return true;
-
-		if (pSoldier->GetPosition().y >= 3.0f)
-			if (m_vCollisionPoint.y > 4.6f && m_vCollisionPoint.y <= 4.85f)
-				return true;
+				bHeadShoot = true;
+		} 
+		else {
+			if (pSoldier->GetPosition().y >= 3.0f)
+				if (m_vCollisionPoint.y > 4.6f && m_vCollisionPoint.y <= 4.85f)
+					bHeadShoot = true;
+		}
 	}
 
-	return false;
+	pSoldier->SetHeadShoot(bHeadShoot);
+
+	return bHeadShoot;
 }
 
 void CBullet::GetCollidedCharacterPosition(CPhysicUserData *_PhysicUserData) {

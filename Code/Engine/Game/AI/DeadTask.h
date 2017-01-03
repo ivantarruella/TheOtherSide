@@ -8,7 +8,7 @@
 class CDeadTask:public CTask {
 public:
 	CDeadTask()
-		:m_bDying(false),m_bDead(false)
+		:/*m_bDying(false),*/m_bDead(false)
 	{
 	};
 	
@@ -20,7 +20,7 @@ public:
 	void Reset();
 
 private:
-	bool m_bDying;
+	//bool m_bDying;
 	bool m_bDead;
 };
 

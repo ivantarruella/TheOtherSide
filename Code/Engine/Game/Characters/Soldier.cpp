@@ -39,6 +39,7 @@ CSoldier::CSoldier(const Vect3f &pos, const std::string &CoreName, const std::st
 	m_TimeDead = 0.0f;
 	m_Alarm = false;
 	m_bFrozen = false;
+	m_HeadShoot = false;
 	m_TaskManager = new CTaskManager();
 	CRootTask* l_Root = new CRootTask();
 	CIdleTask* l_Idle = new CIdleTask();
@@ -84,6 +85,7 @@ CSoldier::CSoldier(const CXMLTreeNode& XmlData):CCharacter(XmlData, SOLDIER_BBOX
 	m_TimeDead = 0.0f;
 	m_Alarm = false;
 	m_bFrozen = false;
+	m_HeadShoot = false;
 	m_TaskManager = new CTaskManager();
 	CRootTask* l_Root = new CRootTask();
 	CIdleTask* l_Idle = new CIdleTask();

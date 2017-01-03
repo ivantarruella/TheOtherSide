@@ -136,7 +136,7 @@
 		<texture stage_id="1" file="FrameBufferAfterDeferredShading"/>
 	</render_draw_quad>
 	
-	<!-- zblur
+	<!-- zblur -->
 	<capture_frame_buffer>
 		<dynamic_texture stage_id="0" name="FrameBufferCompleteTexture"	texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
 	</capture_frame_buffer>		
@@ -145,9 +145,9 @@
 		<texture stage_id="0" file="FrameBufferCompleteTexture"/>
 		<texture stage_id="3" file="DepthMapTexture"/>
 	</render_draw_quad>
-	-->
+	
 
-	<!-- ssaa 
+	<!-- ssaa --> 
 	<capture_frame_buffer>
 		<dynamic_texture stage_id="0" name="FrameBufferCompleteTextureAA"	texture_width_as_frame_buffer="true" format_type="A8R8G8B8"/>
 	</capture_frame_buffer>	
@@ -156,7 +156,7 @@
 		<texture stage_id="0" file="FrameBufferCompleteTextureAA"/>
 		<texture stage_id="2" file="NormalMapTexture"/>
 	</render_draw_quad>
-	-->
+
 	
 	<!-- FINAL GLOW -->
 	<set_pool_renderable_objects_technique pool="glow_pool_renderable_object_technique"/>

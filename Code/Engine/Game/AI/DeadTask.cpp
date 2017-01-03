@@ -15,44 +15,36 @@ CDeadTask::~CDeadTask()
 bool CDeadTask::checkCondition(float ElapsedTime)
 {
 	if(m_Owner->GetLife() <= 0.0f && !m_bDead)  //Vida menor que 0
-	{
 		return true;
-	}
-	m_Time=0.0f;
+
 	return false;
-	//TODO si se ve o escucha al player
 }
 
 void CDeadTask::doAction(float ElapsedTime)
 {
-	if (!m_bDying)
-	{
-		((CSoldier*)m_Owner)->RemoveCapsuleForBullets();
-		m_Owner->ClearAllAnims();
-		m_Owner->ExecuteAction(SHOOT_ANIM, 0.f, 0.f);
-		m_Owner->ClearCycle(WAIT_ANIM, 0.f);
-		m_Owner->ChangeCharacterAnimation(HIT_ANIM, 0.f);
-		m_bDying = true;
+	bool bIsHeadShoot = m_Owner->GetHeadShoot();
 
-		float dist = CORE->GetCamera()->GetEye().Distance(m_Owner->GetPosition());
-		std::stringstream action;
-		action.clear();
-		float vol = 1.0f - dist/25.0f;
-		action << "sound_soldier_die(" << vol << ")";
-		CORE->GetScriptManager()->RunCode(action.str());
-
-		m_Time = m_Owner->GetAnimationDuration() * 2.f;
-	}
-	else
-	{
-		m_Time -= ElapsedTime;
+	// physX
+	((CSoldier*)m_Owner)->RemoveCapsuleForBullets();
 		
-		if (m_Time <= 0.0f)
-		{
-			m_Owner->RemoveAction(SHOOT_ANIM);
-			m_Owner->SetIsDead(true);
-		}
-	}
+	// animations
+	m_Owner->ClearAllAnims();
+	m_Owner->ExecuteAction((bIsHeadShoot ? RECARGA_ARMA_ANIM : SHOOT_ANIM), 0.f, 0.f);
+	m_Owner->ClearCycle(WAIT_ANIM, 0.f);
+	m_Owner->ChangeCharacterAnimation(HIT_ANIM, 0.f);
+		
+	// sound
+	float dist = CORE->GetCamera()->GetEye().Distance(m_Owner->GetPosition());
+	std::stringstream action;
+	action.clear();
+	float vol = 1.0f - dist/25.0f;
+		
+	if (!bIsHeadShoot)
+		action << "sound_soldier_die(" << vol << ")";
+	else 
+		action << "sound_soldier_die_headshot(" << vol << ")";
+	
+	CORE->GetScriptManager()->RunCode(action.str());
 }
 
 void CDeadTask::destroy()
@@ -66,5 +58,4 @@ void CDeadTask::destroy()
 
 void CDeadTask::Reset()
 {
-	m_Time = 0.0f;
 }

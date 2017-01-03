@@ -12,6 +12,7 @@
 	<animation name="girarizq" filename="giro_izq.caf"/>
 	<animation name="girarder" filename="giro_der.caf"/>
 	<animation name="muerto" filename="esbirro_muerto.caf"/>
+	<animation name="disparo_cabeza" filename="esbirro_disparo_cabeza.caf"/>
 	
 	<texture filename="D_esbirro_arma.tga"/>
 	<texture filename="N_esbirro_arma.tga"/>

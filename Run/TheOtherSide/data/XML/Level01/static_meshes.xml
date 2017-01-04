@@ -313,5 +313,7 @@
 	<static_mesh name="SViglancias_Ventilador002_MR" filename="data\Meshes\SViglancias_Ventilador002_MR.m3d"/>
 	<static_mesh name="SControl_Ventilador005_ME" filename="data\Meshes\SControl_Ventilador005_ME.m3d"/>
 	<static_mesh name="SControl_BASEVentilador003_MR" filename="data\Meshes\SControl_BASEVentilador003_MR.m3d"/>
-	<static_mesh name="SControl_BASEVentilador004_MR" filename="data\Meshes\SControl_BASEVentilador004_MR.m3d"/>	
+	<static_mesh name="SControl_BASEVentilador004_MR" filename="data\Meshes\SControl_BASEVentilador004_MR.m3d"/>
+	<static_mesh name="Cool_Water001_MR" filename="data\Meshes\Hall02_Cool_Water001_MR.m3d"/>
+	<static_mesh name="Cool_Water001_ME" filename="data\Meshes\Hall02_Cool_Water001_ME.m3d"/>
 </Static_Meshes>

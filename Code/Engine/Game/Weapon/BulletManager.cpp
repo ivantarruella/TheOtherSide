@@ -9,7 +9,8 @@
 #include "Base.h"
 
 #define NUM_MAX_LIGHTS			20
-#define REMOVE_PARTICLES_TIME	1.25f
+#define REMOVE_DAMAGE_TIME		0.75f
+#define REMOVE_HEADSHOT_TIME	1.75f
 
 CBulletManager::~CBulletManager(void)
 {
@@ -51,7 +52,7 @@ void CBulletManager::Update(float _ElapsedTime)
 	//damage particles
 	for (tdParticlesMap::iterator it = m_particles.begin(); it != m_particles.end();) {
 		CSoldier* pSoldier = it->second.first;
-		if (it->second.second.second >= REMOVE_PARTICLES_TIME) {
+		if (it->second.second.second <= 0.f) {
 			CORE->GetParticleManager()->RemoveParticleEmitterInstance(it->first);
 			it = m_particles.erase(it);
 		} 
@@ -65,7 +66,7 @@ void CBulletManager::Update(float _ElapsedTime)
 					pEmitter->SetPos(new_pos);
 			}
 			
-			it->second.second.second += _ElapsedTime;
+			it->second.second.second -= _ElapsedTime;
 			++it;
 		}
 	}
@@ -94,7 +95,7 @@ void CBulletManager::AddBullet(Vect3f &_Position, Vect3f &_Direction, CCharacter
 void CBulletManager::AddParticles(CSoldier* _pSoldier, Vect3f &_Position, bool bIsHeadShoot, const std::string& _Name, float size, int world)
 {
 	// damage particles
-	m_particles[_Name] = std::pair<CSoldier*, std::pair<float, float> >(_pSoldier, std::pair<float, float>(_Position.y, 0.0f));
+	m_particles[_Name] = std::pair<CSoldier*, std::pair<float, float> >(_pSoldier, std::pair<float, float>(_Position.y, bIsHeadShoot ? REMOVE_HEADSHOT_TIME : REMOVE_DAMAGE_TIME));
 	CORE->GetParticleManager()->AddParticleEmitterInstance(bIsHeadShoot ? "soldier_headshoot" : "soldier_damage", _Name, _Position, _Position, size, world); 
 	CParticleEmitter* l_Particles = CORE->GetParticleManager()->GetParticleEmitter(_Name);
 	if (l_Particles!=NULL) {

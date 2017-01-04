@@ -254,7 +254,7 @@ function sound_pisadas_monstruo()
 end
 
 function sound_player_hit()
-	_SOUNDM:play_action_2D('blood', 1.0)
+	_SOUNDM:play_action_2D('blood', 0.5)
 end
 
 function sound_player_dying()
@@ -325,4 +325,8 @@ end
 
 function sound_soldier_die_headshot(_volume)
 	_SOUNDM:play_action_2D('soldier_die_headshot', _volume)
+end
+
+function sound_soldier_hit(_volume)
+	_SOUNDM:play_action_2D('blood', _volume)
 end

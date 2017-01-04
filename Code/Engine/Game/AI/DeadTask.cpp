@@ -38,7 +38,7 @@ void CDeadTask::doAction(float ElapsedTime)
 	std::stringstream action;
 	action.clear();
 	float vol = 1.0f - dist/25.0f;
-		
+	if (vol < 0.f) vol = 0.f;	
 	if (!bIsHeadShoot)
 		action << "sound_soldier_die(" << vol << ")";
 	else 

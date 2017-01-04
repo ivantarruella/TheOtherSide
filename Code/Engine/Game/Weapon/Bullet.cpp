@@ -10,6 +10,7 @@
 #include "Renderer\RenderableObjectsLayersManager.h"
 #include "Player.h"
 #include "AnimatedModelsManager.h"
+#include "Scripting\ScriptManager.h"
 #include <iostream>
 #include "Random.h"
 #include "Base.h"
@@ -95,6 +96,15 @@ void CBullet::ChangeBillboard(const std::string& _BillboardName)
 
 			bool isHeadShoot = CheckHeadShoot(l_pSoldier);
 			CORE->GetBulletManager()->AddParticles(l_pSoldier, collision_pos, isHeadShoot, l_pSoldier->GetName() + GetName(), 0.15f, 1);
+
+			// sound
+			float dist = CORE->GetCamera()->GetEye().Distance(l_pSoldier->GetPosition());
+			std::stringstream action;
+			action.clear();
+			float vol = 0.75f - dist/25.0f;
+			if (vol < 0.f) vol = 0.f;
+			action << "sound_soldier_hit(" << vol << ")";
+			CORE->GetScriptManager()->RunCode(action.str());
 		}
 
 		SetPos(collision_pos);

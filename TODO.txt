@@ -7,6 +7,10 @@ IMPROVEMENTS:
 - eliminar máquinas de regeneración de arma y dejar arma en el suelo al lado de cada soldado muerto.
   el player empezará sin energia en el arma y deberá coger la que se encuentre encima del primer cadaver en el nivel1.
 
+BUGFIX:
+- sombras generadas por luces tipo spot no se reflejan en los espejos.
+- en ocasiones los soldados se quedan corriendo en un mismo sitio.
+
 
 
 

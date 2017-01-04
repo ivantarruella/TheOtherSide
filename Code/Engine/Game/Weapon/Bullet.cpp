@@ -95,7 +95,8 @@ void CBullet::ChangeBillboard(const std::string& _BillboardName)
 			}
 
 			bool isHeadShoot = CheckHeadShoot(l_pSoldier);
-			CORE->GetBulletManager()->AddParticles(l_pSoldier, collision_pos, isHeadShoot, l_pSoldier->GetName() + GetName(), 0.15f, 1);
+			float fsize = isHeadShoot ? 0.025f : 0.10f;
+			CORE->GetBulletManager()->AddParticles(l_pSoldier, collision_pos, isHeadShoot, l_pSoldier->GetName() + GetName(), fsize, 1);
 
 			// sound
 			float dist = CORE->GetCamera()->GetEye().Distance(l_pSoldier->GetPosition());

@@ -175,7 +175,6 @@ end
 function create_final_enemies()
 	if level2_final_enemies_spawned == false then
 		objetivo10()
-		sound_action_music_on()
 		_TRIGGERM:set_active('Trigger_Espejo_Montado_MR', true)
 		_LOGICOBJECTSM:set_mirror_active('Trigger_Espejo_Montado_ME', true)
 		

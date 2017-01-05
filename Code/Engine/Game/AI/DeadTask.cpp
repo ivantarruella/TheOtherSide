@@ -31,7 +31,7 @@ void CDeadTask::doAction(float ElapsedTime)
 	m_Owner->ClearAllAnims();
 	if (bIsHeadShoot)
 		m_Owner->ExecuteAction(USE_ANIM, 0.f, 0.f);		// soldier hurt anim
-	m_Owner->ExecuteAction((bIsHeadShoot ? RECARGA_ARMA_ANIM : SHOOT_ANIM), 0.5f, 0.5f);
+	m_Owner->ExecuteAction((bIsHeadShoot ? RECARGA_ARMA_ANIM : SHOOT_ANIM), 0.f, 0.f);
 	m_Owner->ClearCycle(WAIT_ANIM, 0.f);
 	m_Owner->ChangeCharacterAnimation(HIT_ANIM, 0.f);
 		

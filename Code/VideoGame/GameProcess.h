@@ -45,7 +45,8 @@ public:
 		  m_fPlayerEnergy(0.0f), 
 		  m_fTimeHit(0.0f), 
 		  m_bReplay(false),
-		  m_bFinalEnemies(false)
+		  m_bFinalEnemies(false),
+		  m_bPlayingActionMusic(false)
 	{
 	}
 	~CGameProcess() {}
@@ -111,7 +112,7 @@ private:
 	std::vector<std::string> m_sMirrorPieces;
 	std::vector<std::string> m_sBloodText;
 
-	bool m_bReplay, m_bFinalEnemies;
+	bool m_bReplay, m_bFinalEnemies, m_bPlayingActionMusic;
 
 #ifdef _DEBUG	
 	CCamera * m_ProvisionalCamera;

@@ -109,8 +109,15 @@ void CGameProcess::UpdateGameActions()
 			m_bFinalEnemies = true;
 		}
 		
-		if (m_bFinalEnemies && CORE->GetEnemyManager()->GetNumSoldiers() == 0)
-			CORE->GetScriptManager()->RunCode("sound_action_music_off()");	// all dead
+		if (!m_bPlayingActionMusic && CORE->GetEnemyManager()->GetNumSoldiers() >= 4) {
+			CORE->GetScriptManager()->RunCode("sound_action_music_on()");	// too much enemies, play action music
+			m_bPlayingActionMusic = true;
+		}
+
+		if (m_bPlayingActionMusic && CORE->GetEnemyManager()->GetNumSoldiers() <= 2) {
+			CORE->GetScriptManager()->RunCode("sound_action_music_off()");	// few enemies, stop action music
+			m_bPlayingActionMusic = false;
+		}
 	}
 }
 

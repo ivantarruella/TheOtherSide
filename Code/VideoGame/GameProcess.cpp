@@ -109,7 +109,7 @@ void CGameProcess::UpdateGameActions()
 			m_bFinalEnemies = true;
 		}
 		
-		if (!m_bPlayingActionMusic && CORE->GetEnemyManager()->GetNumSoldiers() >= 4) {
+		if (!m_bPlayingActionMusic && CORE->GetEnemyManager()->GetNumSoldiers() >= 5) {
 			CORE->GetScriptManager()->RunCode("sound_action_music_on()");	// too much enemies, play action music
 			m_bPlayingActionMusic = true;
 		}

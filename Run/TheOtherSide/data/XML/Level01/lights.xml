@@ -49,7 +49,8 @@
 
 	<light name="Light03b_Omni_MR" type="omni" pos="25.978 2.25 0.589921" color="192.0 192.0 192.0" att_start_range="0.5" att_end_range="4.0" world="1"
 	render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
-	shadow_map_width="512" shadow_map_height="512" soft_shadow="false">
+	shadow_map_width="512" shadow_map_height="512" soft_shadow="false"
+	varible_intensity="true" tmin="0.1" offtime="3.0">
 		<dynamic renderable_objects_manager="solid"/>
 		<dynamic renderable_objects_manager="solid_MR"/>
 		<dynamic renderable_objects_manager="enemies_MR"/>

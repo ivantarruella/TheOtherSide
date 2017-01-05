@@ -37,8 +37,10 @@ void COmniLight::updateViewProjMat(CEffectManager *EM, D3DXVECTOR3 LookAt, D3DXV
 
 	D3DXVECTOR3 Eye(m_Position.x, m_Position.y, m_Position.z);
 	D3DXVECTOR3 lookAt(m_Position.x + LookAt.x, m_Position.y + LookAt.y, m_Position.z + LookAt.z);
-	D3DXMatrixLookAtLH(&l_ViewMatrix, &Eye, &lookAt, &Up);	
-	D3DXMatrixPerspectiveFovLH(&l_ProjectionMatrix, D3DX_PI /2.0f, 1.0f, 0.01f, m_EndRangeAttenuation); 
+	D3DXMatrixLookAtLH(&l_ViewMatrix, &Eye, &lookAt, &Up);
+	float FOV = (D3DX_PI /2.0f);	
+	FOV *= 0.989f;	// http://http.download.nvidia.com/developer/presentations/2005/SIGGRAPH/Truth_About_NVIDIA_Demos.pdf (p.137)
+	D3DXMatrixPerspectiveFovLH(&l_ProjectionMatrix, FOV, 1.0f, 0.01f, m_EndRangeAttenuation); 
 	m_ViewShadowMap= Mat44f(l_ViewMatrix);
 	m_ProjectionShadowMap= Mat44f(l_ProjectionMatrix);
 	EM->ActivateCamera(m_ViewShadowMap, m_ProjectionShadowMap, m_Position);

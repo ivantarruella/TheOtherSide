@@ -143,7 +143,20 @@ void CGameProcess::UpdateGUI(float ElapsedTime)
 
 	// mirilla
 	bool visible = m_Player->GetPlayerAimming() && m_Player->GetPlayerMunitionGUI();
-	CORE->GetGUIManager()->GetGUIElement("mirilla")->SetVisible(m_Player->isInRealWorld() && visible);
+	bool bSoldier = false;
+	if (m_Player->isInRealWorld() && visible) {
+		Vect3f l_OriginPosition = m_Camera->GetEye();
+		Vect3f l_Direction(m_Camera->GetLookAt() - m_Camera->GetEye());
+		l_Direction=l_Direction.Normalize();
+		SCollisionInfo lCollisionInfo;
+		CPhysicUserData * l_UserData=CORE->GetPhysicsManager()->RaycastClosestActor(l_OriginPosition,l_Direction ,5<<0, lCollisionInfo );
+		CSoldier* pSoldier = (CSoldier*)CORE->GetEnemyManager()->GetSoldier(l_UserData);
+		if (pSoldier)
+			bSoldier = true;
+	}
+			
+	CORE->GetGUIManager()->GetGUIElement("mirilla_soldado")->SetVisible(m_Player->isInRealWorld() && visible && bSoldier);
+	CORE->GetGUIManager()->GetGUIElement("mirilla")->SetVisible(m_Player->isInRealWorld() && visible && !bSoldier);
 	CORE->GetGUIManager()->GetGUIElement("mirilla_ME")->SetVisible(!m_Player->isInRealWorld() && visible);
 
 	// vida

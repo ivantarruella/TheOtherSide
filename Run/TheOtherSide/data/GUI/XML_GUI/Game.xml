@@ -21,10 +21,14 @@
   <Image name="mirilla" posx="48.00" posy="47.00" height="5.00" width="3.00" visible="false" active="true"
          default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
     <texture name="img1" name_texture="./Data/GUI/Textures/mirilla2.png"/>
-  </Image>  
+  </Image>
+  <Image name="mirilla_soldado" posx="48.00" posy="47.00" height="5.00" width="3.00" visible="false" active="true"
+         default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
+    <texture name="img1" name_texture="./Data/GUI/Textures/mirilla3.png"/>
+  </Image>   
   <Image name="mirilla_ME" posx="47.00" posy="47.00" height="5.00" width="3.00" visible="false" active="true"
          default="img1" OnLoadValue="" OnSaveValue="" flip="" backGround="false">
-    <texture name="img1" name_texture="./Data/GUI/Textures/mirilla.png"/>
+    <texture name="img1" name_texture="./Data/GUI/Textures/mirilla - copia.png"/>
   </Image>
   
   <!-- full screen blood effects -->

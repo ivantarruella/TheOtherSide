@@ -44,14 +44,14 @@
 		</PointEmitter>
 		<PointEmitter type="plane" name="monster_damage" gravity="false" life_time_min="0.5" life_time_max="1.0" emit_rate_min="10.0"
 			emit_rate_max="20.0" tex="data\Textures\smoke.tga" angle="2.0">
-			<color time="0.0" color1="0.5 0.5 0.5 0.00" color2="0.5 0.25 0.25 0.03"/>
+			<color time="0.0" color1="0.1 0.1 0.1 0.00" color2="0.5 0.25 0.25 0.03"/>
 			<direction time="0.0" dir1="-0.09 -0.01 -0.09" dir2="0.09 0.01 0.09"/>
 			<size time="0.0" mins="0.7" maxs="1.0"/>
 			<aceleration time="0.0" acel1="0 4 0" acel2="0 8 0"/>
 		</PointEmitter>	
 		<PointEmitter type="plane" name="soldier_headshoot" gravity="true" life_time_min="0.1" life_time_max="0.75" emit_rate_min="35.0"
 			emit_rate_max="75.0" tex="data\Textures\Particles\blood.png" angle="-20.0">
-			<color time="0.0" color1="1.0 1.0 1.0 0.05" color2="1.0 1.0 1.0 0.05"/>
+			<color time="0.0" color1="0.5 0.5 0.5 0.05" color2="0.75 0.5 0.5 0.05"/>
 			<direction time="0.0" dir1="-0.5 -0.5 -0.5" dir2="0.5 0.5 0.5"/>
 			<size time="0.0" mins="0.2" maxs="0.4"/>
 			<aceleration time="0.0" acel1="1 1 1" acel2="-1 2 -1"/>

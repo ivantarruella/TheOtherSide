@@ -35,11 +35,11 @@
 			<size time="0.0" mins="0.2" maxs="0.4"/>
 			<aceleration time="0.0" acel1="0 0 0" acel2="0 0 0"/>
 		</PointEmitter>
-		<PointEmitter type="plane" name="fog3" gravity="true" life_time_min="2.0" life_time_max="10.0" emit_rate_min="25.0"
-			emit_rate_max="50.0" tex="data\Textures\smoke.tga" angle="2.0">
-			<color time="0.0" color1="0.1 0.1 0.1 0.05" color2="0.1 0.1 0.1 0.03"/>
+		<PointEmitter type="plane" name="fog3" gravity="false" life_time_min="1.0" life_time_max="10.0" emit_rate_min="10.0"
+			emit_rate_max="20.0" tex="data\Textures\smoke.tga" angle="2.0">
+			<color time="0.0" color1="0.10 0.10 0.10 0.10" color2="0.10 0.10 0.10 0.10"/>
 			<direction time="0.0" dir1="-0.09 -0.01 -0.09" dir2="0.09 0.01 0.09"/>
-			<size time="0.0" mins="0.5" maxs="0.9"/>
+			<size time="0.0" mins="0.3" maxs="0.7"/>
 			<aceleration time="0.0" acel1="0 0 0" acel2="0 0 0"/>
 		</PointEmitter>
 		<PointEmitter type="plane" name="monster_damage" gravity="false" life_time_min="0.5" life_time_max="1.0" emit_rate_min="10.0"
@@ -77,8 +77,8 @@
 		<Instance name="fog03_MR" id="fog2" pos1="7.634 0.200 8.043" pos2="7.634 0.200 8.043" size="1.5" world="1"/>
 		<Instance name="fog04_MR" id="fog2" pos1="7.634 0.200 5.043" pos2="7.634 0.200 5.043" size="1.5" world="1"/>
 
-		<Instance name="fog00_MR" id="fog3" pos1="24.0216 2.5 -3.58411" pos2="24.0216 3.5 -3.58411" size="1.00" world="1"/>
-		<Instance name="fog00_ME" id="fog3" pos1="-24.0216 2.5 -3.58411" pos2="-24.0216 3.5 -3.58411" size="1.00" world="2"/>
+		<Instance name="fog00_MR" id="fog3" pos1="24.0216 2.408065 -3.808411" pos2="24.0216 2.408065 -3.808411" size="1.0" world="1"/>
+		<Instance name="fog00_ME" id="fog3" pos1="-24.0216 2.408065 -3.808411" pos2="-24.0216 2.658065 -3.808411" size="1.0" world="2"/>
 		
 		<Instance name="fluorescente01" id="core2" pos1="25.5709 2.95591 -3.45" pos2="25.5709 2.95591 -3.45" world="1" size="0.5"/>
 		

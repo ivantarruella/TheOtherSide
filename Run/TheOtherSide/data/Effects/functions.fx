@@ -356,7 +356,7 @@ float3 GetRadiosityNormalMap(float3 Nn, float3 FaceNormal, float3 Tn, float3 Bn,
     float3 l_DiffuseLight=dp.x*l_LightmapX+dp.y*l_LightmapY+dp.z*l_LightmapZ;
     l_DiffuseLight/=sum;
 	
-    return l_DiffuseLight;
+    return l_DiffuseLight * 0.75;
 }
 
 // CHANGE WORLD EFFECT

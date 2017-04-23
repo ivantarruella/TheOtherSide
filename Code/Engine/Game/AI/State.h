@@ -37,7 +37,7 @@ public:
 		: m_HearDistance(8.0f)
 		, m_VisionDistance(18.0f)
 		, m_VisionAngle(120.0f)
-		, m_WalkSpeed(0.035f)
+		, m_WalkSpeed(0.025f)
 		, m_Player(NULL)
 	{
 		m_Player=(CCharacter*)CORE->GetRenderableObjectsLayersManager()->GetResource("solid")->GetInstance("PLAYER");

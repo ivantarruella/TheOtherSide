@@ -21,6 +21,6 @@
 	<logic_object name="Trigger_Lasers_ME_Level01" logic_type="Lasers" />
 	<logic_object name="Trigger_Maquina_Vida_MR_Level01" logic_type="Life" static_mesh="recargavida02" layer="solid_MR" light="Light_Omni_Vida01_MR"  on_texture="data\Meshes\D_recargadevida_glow.dds" off_texture="data\Textures\D_recargadevida2.dds" particle_emitter="healer01_MR"/>
 	<logic_object name="Trigger_Maquina_Energia_MR_Level01" logic_type="Energy" static_mesh="recargaenergia" layer="solid_MR" light="Light_Omni_Arma01_MR"  on_texture="data\Meshes\D_recargaenergia_glow.dds" off_texture="data\Textures\D_recargaenergia_apagada.dds"/>
-	<logic_object name="SViglancias_Ventilador001_MR" logic_type="Fan" spin_vel="2" renderable_object="SViglancias_Ventilador001_MR" layer="solid_MR" />
-	<logic_object name="SViglancias_Ventilador001_ME" logic_type="Fan" spin_vel="2" renderable_object="SViglancias_Ventilador001_ME" layer="solid_ME" />
+	<logic_object name="SViglancias_Ventilador001_MR" logic_type="Fan" spin_vel="0.75" renderable_object="SViglancias_Ventilador001_MR" layer="solid_MR" />
+	<logic_object name="SViglancias_Ventilador001_ME" logic_type="Fan" spin_vel="0.75" renderable_object="SViglancias_Ventilador001_ME" layer="solid_ME" />
 </Logic_Objects>

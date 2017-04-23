@@ -7,7 +7,7 @@
 
 #define CAM_ZOOM_WALK			0.0f
 #define CAM_DIST				1.5f	// Distancia de la camara
-#define CAM_DIST_AIM			0.7f
+#define CAM_DIST_AIM			0.8f	// Distancia de la camara apuntando
 #define CAM_MIN_HEIGHT			0.0f
 #define CAM_HEIGHT				0.7f
 

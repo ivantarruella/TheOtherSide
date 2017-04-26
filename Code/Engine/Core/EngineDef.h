@@ -17,7 +17,7 @@ struct SInitParams
 
     bool fullscreen;
 	bool show_fps;
-	bool limit_fps;
+	bool vsync;
 	bool exclusiveModeinMouse;
 	int x;
     int y;

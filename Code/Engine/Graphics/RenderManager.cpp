@@ -54,14 +54,17 @@ bool CRenderManager::Init(HWND hWnd, const SInitParams& params)
 		{
 			d3dpp.Windowed          = TRUE;
 			//d3dpp.BackBufferFormat	= D3DFMT_UNKNOWN;
-			d3dpp.BackBufferFormat  = D3DFMT_A8R8G8B8;
+			d3dpp.BackBufferFormat  = D3DFMT_A8R8G8B8; 
 		}
 
 		d3dpp.SwapEffect				= D3DSWAPEFFECT_FLIP;
 		d3dpp.EnableAutoDepthStencil	= TRUE;
 		d3dpp.AutoDepthStencilFormat	= D3DFMT_D24S8;
 		d3dpp.Flags						= D3DPRESENTFLAG_DISCARD_DEPTHSTENCIL;
-		d3dpp.PresentationInterval		= D3DPRESENT_INTERVAL_IMMEDIATE;
+		if (params.vsync)
+			d3dpp.PresentationInterval		= D3DPRESENT_INTERVAL_ONE;
+		else
+			d3dpp.PresentationInterval		= D3DPRESENT_INTERVAL_IMMEDIATE;
 
 		// Create the D3DDevice
 		m_bIsOk = !FAILED(    m_pD3D->CreateDevice(    D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,

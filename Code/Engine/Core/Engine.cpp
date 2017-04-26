@@ -150,17 +150,17 @@ void CEngine::UpdateInputActions()
 
 void CEngine::Render()
 {
-	DWORD nFrameStartTime = GetTickCount();
+	//DWORD nFrameStartTime = GetTickCount();
 
 	//---Render the scene---
 	CRenderManager* renderManager = m_pCore->GetRenderManager();
 	m_pProcess->RenderScene(renderManager);
 
 	// FPS limit
-	if (m_InitParams.limit_fps)	{
-		while (GetTickCount()-nFrameStartTime < 1000/FPS_LIMIT) 
-			Sleep(0); 
-	}
+	//if (m_InitParams.limit_fps)	{
+	//	while (GetTickCount()-nFrameStartTime < 1000/FPS_LIMIT) 
+	//		Sleep(0); 
+	//}
 }
 
 bool CEngine::LoadConfig (const std::string& pathFile)
@@ -184,7 +184,7 @@ bool CEngine::LoadConfig (const std::string& pathFile)
 		{
 			m_InitParams.fullscreen	= l_ScreenNode.GetBoolProperty("fullscreen",false);
 			m_InitParams.show_fps	= l_ScreenNode.GetBoolProperty("show_fps",false);
-			m_InitParams.limit_fps	= l_ScreenNode.GetBoolProperty("limit_fps",true);
+			m_InitParams.vsync	= l_ScreenNode.GetBoolProperty("vsync",false);
 			m_InitParams.exclusiveModeinMouse	= l_ScreenNode.GetBoolProperty("exclusiveModeinMouse",false);
 			m_InitParams.x	= l_ScreenNode.GetIntProperty("x_ini",0);
 			m_InitParams.y	= l_ScreenNode.GetIntProperty("y_ini",0);

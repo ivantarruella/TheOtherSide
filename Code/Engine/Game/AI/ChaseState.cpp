@@ -158,7 +158,7 @@ void CChaseState::Update(float ElapsedTime)
 	{
 		Vect3f l_dir = (m_Path[0]->GetPos() - m_Owner->GetPosition()).Normalize();
 		m_Owner->SetYaw(atan2(-l_dir.x, l_dir.z));
-		//m_Owner->SetPosition(m_Owner->GetPosition() + m_Owner->GetFront( ) * ElapsedTime*1.30f);
+		m_Owner->SetPosition(m_Owner->GetPosition() + m_Owner->GetFront( ) * ElapsedTime*1.30f);
 		Vect3f l_new = m_Owner->GetPosition() +m_Owner->GetFront() * ElapsedTime * m_WalkSpeed;
 		Vect3f l_post = (m_Path[0]->GetPos() - l_new).Normalize();
 

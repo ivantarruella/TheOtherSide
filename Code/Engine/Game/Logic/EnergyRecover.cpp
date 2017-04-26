@@ -178,9 +178,10 @@ void CEnergyRecover::Trigger(const std::string& action, CPlayer* player)
 		}
 		else if (action=="OnTrigger")
 		{
-			D3DXVECTOR3 vp(-player->GetFront().x, -player->GetFront().y, -player->GetFront().z);
-			D3DXVECTOR3 n(-m_Mesh->GetFront().x, -m_Mesh->GetFront().y, -m_Mesh->GetFront().z);
-			if (D3DXVec3Dot(&n, &vp) >= 0.80){
+			//D3DXVECTOR3 vp(-player->GetFront().x, -player->GetFront().y, -player->GetFront().z);
+			//D3DXVECTOR3 n(-m_Mesh->GetFront().Normalize().x, -m_Mesh->GetFront().Normalize().y, -m_Mesh->GetFront().Normalize().z);
+			//float dot = D3DXVec3Dot(&n, &vp);
+			//if (dot >= 0.80f){
 				m_bStart = player->GetUseItem();
 				DisplayUse(true);
 				player->SetCanUseItem(true);
@@ -189,14 +190,14 @@ void CEnergyRecover::Trigger(const std::string& action, CPlayer* player)
 					m_Light->SetVarIntensity(false);
 					m_Light->SetVarTime(0.f);
 				}
-			}
+			/*}
 			else
 			{
 				m_bStart = player->GetUseItem();
 				DisplayUse(false);
 				player->SetCanUseItem(false);
 				player->SetUseItemAnim(RECARGA_ARMA_ANIM);
-			}
+			}*/
 		}
 	}
 	else 

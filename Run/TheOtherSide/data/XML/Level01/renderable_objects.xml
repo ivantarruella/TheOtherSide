@@ -9,7 +9,9 @@
 	<layer name="particles"/>
 
 	<animated_model_instance name="PLAYER" core="Player" layer="solid" pos="21.6771 0 -3.65642" yaw="-1.047" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="bounding_box" />
-
+	<!-- player situado en maquina energia
+	<animated_model_instance name="PLAYER" core="Player" layer="solid" pos="15.1418 0.0 22.0334" yaw="-1.047" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="bounding_box" />
+	-->
 	<mesh_instance name="Cool_Water001_MR" core="Cool_Water001_MR" layer="alpha_blend_objects_MR" pos="9.25 0.00 5.10" yaw="1.57" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
 	<mesh_instance name="Cool_Water001_ME" core="Cool_Water001_ME" layer="alpha_blend_objects_ME" pos="-9.25 1.00 5.10" yaw="-1.57" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="true" physics_type="triangle_mesh" />
 	<mesh_instance name="SVigilancia_ArchivadorRojo01" core="SVigilancia_ArchivadorRojo01" layer="solid_MR" pos="21.7522 2.07712 6.17487" yaw="0.0" pitch="0.0" roll="0.0" visible="true" cast_shadows="true" generate_physics="false" physics_type="bounding_box" />

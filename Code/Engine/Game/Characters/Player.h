@@ -28,6 +28,7 @@ public:
 	float GetPlayerSpeed() { return m_fSpeed; }
 	
 	bool GetPlayerAimming() { return m_bIsAiming; }
+	bool GetPlayerWasAimming() { return m_bWasAiming; }
 	bool GetPlayerRunning() { return m_bIsRunning; }
 	bool GetPlayerShoot() { return m_bShoot; }
 	bool GetPlayerLinterna() { return (m_bIsAiming && m_World.GetWorld()==CWorld::MIRROR_WORLD); }

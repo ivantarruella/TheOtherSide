@@ -85,7 +85,7 @@ void CEnergyRecover::Update(float ElapsedTime)
 	if (m_bStart && !m_player->GetWeapon().IsMunitionFull())
 	{
 		CORE->GetScriptManager()->RunCode("sound_carga_energia_on()");
-		//m_player->ChangeCharacterAnimation(RECARGA_ARMA_EST_ANIM, 0.3f);
+		m_player->ChangeCharacterAnimation(RECARGA_ARMA_EST_ANIM, 0.3f);
 		m_fTime += ElapsedTime;
 
 		if (m_fTime >= ENERGY_INC_TIME)
@@ -159,16 +159,16 @@ void CEnergyRecover::Trigger(const std::string& action, CPlayer* player)
 	{
 		if (action=="OnEnter")
 		{
-			player->SetCanUseItem(false);
-			//player->SetUseItemAnim(RECARGA_ARMA_ANIM);
-			DisplayUse(false);
+			player->SetCanUseItem(true);
+			player->SetUseItemAnim(RECARGA_ARMA_ANIM);
+			DisplayUse(true);
 		}
 		else if (action=="OnLeave")
 		{
 			m_bStart = false;
 			DisplayUse(m_bStart);
 			player->SetCanUseItem(false);
-			//player->SetUseItemAnim(USE_ANIM);
+			player->SetUseItemAnim(USE_ANIM);
 			if (m_Light != NULL){
 				m_Light->SetVarIntensity(false);
 				m_Light->SetVarTime(0.f);
@@ -178,13 +178,24 @@ void CEnergyRecover::Trigger(const std::string& action, CPlayer* player)
 		}
 		else if (action=="OnTrigger")
 		{
-			m_bStart = !player->GetPlayerAimming();//player->GetUseItem();
-			DisplayUse(false);
-			player->SetCanUseItem(false);
-			//player->SetUseItemAnim(RECARGA_ARMA_ANIM);
-			if (!m_bStart && m_Light != NULL) {
-				m_Light->SetVarIntensity(false);
-				m_Light->SetVarTime(0.f);
+			D3DXVECTOR3 vp(-player->GetFront().x, -player->GetFront().y, -player->GetFront().z);
+			D3DXVECTOR3 n(-m_Mesh->GetFront().x, -m_Mesh->GetFront().y, -m_Mesh->GetFront().z);
+			if (D3DXVec3Dot(&n, &vp) >= 0.80){
+				m_bStart = player->GetUseItem();
+				DisplayUse(true);
+				player->SetCanUseItem(true);
+				player->SetUseItemAnim(RECARGA_ARMA_ANIM);
+				if (!m_bStart && m_Light != NULL) {
+					m_Light->SetVarIntensity(false);
+					m_Light->SetVarTime(0.f);
+				}
+			}
+			else
+			{
+				m_bStart = player->GetUseItem();
+				DisplayUse(false);
+				player->SetCanUseItem(false);
+				player->SetUseItemAnim(RECARGA_ARMA_ANIM);
 			}
 		}
 	}
@@ -193,7 +204,7 @@ void CEnergyRecover::Trigger(const std::string& action, CPlayer* player)
 		m_bStart = false;
 		DisplayUse(m_bStart);
 		player->SetCanUseItem(false);
-		//player->SetUseItemAnim(USE_ANIM);
+		player->SetUseItemAnim(USE_ANIM);
 		if (m_Light != NULL){
 			m_Light->SetVarIntensity(false);
 			m_Light->SetVarTime(0.f);

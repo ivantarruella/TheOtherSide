@@ -93,7 +93,7 @@ TMultiRenderTargetPixel DeferredShadingNormalTexturedPS(TNORMAL_TEXTURE1_VERTEX_
 	float l_SpecularFactor=0;
 	float l_SpecularPower=g_SpecularPower;
 	
-	return calcTargetPixel(l_Albedo, l_Ambient, l_NormalMap, l_Depth, l_SpecularFactor, l_SpecularPower, l_GlowFactor);
+	return calcTargetPixelDark(l_Albedo, l_Ambient, l_NormalMap, l_Depth, l_SpecularFactor, l_SpecularPower, l_GlowFactor);
 }
 
 TMultiRenderTargetPixel DeferredShadingLightmapTexturedPS(TNORMAL_TEXTURE1_TEXTURE2_VERTEX_OUT IN)

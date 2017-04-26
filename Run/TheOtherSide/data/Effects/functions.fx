@@ -191,6 +191,21 @@ TMultiRenderTargetPixel calcTargetPixel(float3 Albedo, float3 Ambient, float3 No
 	return l_OUT;
 }
 
+TMultiRenderTargetPixel calcTargetPixelDark(float3 Albedo, float3 Ambient, float3 Normal, float4 Depth, float SpecularFactor, float SpecularPower, float GlowFactor)
+{
+	TMultiRenderTargetPixel l_OUT=(TMultiRenderTargetPixel) 0;
+	
+	l_OUT.RT0.xyz = Albedo;
+	l_OUT.RT0.a = GlowFactor;
+	l_OUT.RT1.xyz = Ambient*0.45;
+	l_OUT.RT1.a = SpecularPower/255;
+	l_OUT.RT2.xyz = Normal2Texture(Normal);
+	l_OUT.RT2.a = SpecularFactor;
+	l_OUT.RT3 = Depth;
+
+	return l_OUT;
+}
+
 float3 GetPositionFromZDepthViewInViewCoordinates(float ZDepthView, float2 UV)
 {
 	// Get the depth value for this pixel

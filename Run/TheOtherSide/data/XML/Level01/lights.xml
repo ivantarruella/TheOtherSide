@@ -91,7 +91,7 @@
 	<light name="Light12_Omni_MR" type="omni" pos="19.655 2.25 26.5" color="192.0 192.0 192.0" att_start_range="1.0" att_end_range="4.5" 
 	 world="1" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="R32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="false"
-	 varible_attenuation="true" time="0.02" inc="0.5" offtime="3.0"
+	 intermittent="true" tmin="0.1" tmax="0.9"
 	 light_mesh="SInicio_Fluerescente015" layer="solid_MR" texture_on="data\Meshes\D_BlancoverdosoBase.dds" texture_off="data\Meshes\D_BlancoverdosoBaseAlfaBlanco.dds"
 	 >
 		<dynamic renderable_objects_manager="solid"/>

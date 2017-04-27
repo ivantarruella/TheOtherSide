@@ -92,12 +92,15 @@ void CMoveTask::doAction(float ElapsedTime)
 		{
 			reachCover(m_ApropiateCover, ElapsedTime);
 			if(!m_bCoverReached)
+			{
+				//m_ApropiateCover = MostApropiateCover();		//TODO: probar!
 				return;
+			}
 		}
 		if(!m_bCovered)
 		{
 			Covered(m_ApropiateCover, ElapsedTime);
-			m_Time = CORE->GetRandom()->getRandFloat(3.0f, 6.0f);
+			m_Time = CORE->GetRandom()->getRandFloat(1.0f, 3.0f);
 			return;
 		}
 		m_Time -=ElapsedTime;
@@ -113,7 +116,7 @@ void CMoveTask::doAction(float ElapsedTime)
 			m_Owner->ChangeCharacterAnimation(WAIT_ANIM, 0.3f);
 			return;
 		}
-		m_TimeUncover = CORE->GetRandom()->getRandFloat(3.0f, 7.0f);
+		m_TimeUncover = CORE->GetRandom()->getRandFloat(2.0f, 4.0f);
 		m_bReady=true;
 	
 		return;

@@ -25,110 +25,72 @@
 
 #define MAX_LIFE_SOLDIER		2.5f
 
-
-CSoldier::CSoldier()
-	:m_Alarm(false), m_bFrozen(false), m_TimeDead(0.0f), m_Cover(-1)
-{
-
-
-}
-
 CSoldier::CSoldier(const Vect3f &pos, const std::string &CoreName, const std::string &Name):CCharacter(pos, CoreName, Name, SOLDIER_BBOX_SIZE,SOLDIER_BBOX_HEIGHT)
 {	
-	m_Cover = -1;
-	m_TimeDead = 0.0f;
-	m_Alarm = false;
-	m_bFrozen = false;
-	m_HeadShoot = false;
-	m_TaskManager = new CTaskManager();
-	CRootTask* l_Root = new CRootTask();
-	CIdleTask* l_Idle = new CIdleTask();
-	CPatrolTask* l_Patrol = new CPatrolTask();
-	CBattleTask* l_Battle = new CBattleTask();
-	CAimTask* l_Aim = new CAimTask();
-	CAlertTask* l_Alert = new CAlertTask();
-	CMoveTask* l_Move = new CMoveTask();
-	CShootTask* l_Shoot = new CShootTask();
-	CHurtTask* l_Hurt = new CHurtTask();
-	CDeadTask* l_Dead = new CDeadTask();
-	l_Root->AddSon(l_Hurt);
-	l_Root->AddSon(l_Dead);
-	l_Root->AddSon(l_Battle);
-	l_Root->AddSon(l_Patrol);
-	l_Root->AddSon(l_Idle);
-	l_Battle->AddSon(l_Alert);
-	l_Battle->AddSon(l_Aim);
-	l_Battle->AddSon(l_Move);
-	l_Battle->AddSon(l_Shoot);
-	l_Root->SetOwner(this);
-	l_Hurt->SetOwner(this);
-	l_Dead->SetOwner(this);
-	l_Idle->SetOwner(this);
-	l_Battle->SetOwner(this);
-	l_Aim->SetOwner(this);
-	l_Alert->SetOwner(this);
-	l_Move->SetOwner(this);
-	l_Shoot->SetOwner(this);
-	l_Patrol->SetOwner(this);
-	m_TaskManager->SetRoot(l_Root);
-
-	SetLife(MAX_LIFE_SOLDIER);
-	m_initPosition = GetPosition();
-	m_initYaw = GetYaw();
-	CreateCapsuleForBullets();
-	m_Player=(CPlayer*)CORE->GetRenderableObjectsLayersManager()->GetResource("solid")->GetInstance("PLAYER");
+	CreateSoldier();
 }
 
 CSoldier::CSoldier(const CXMLTreeNode& XmlData):CCharacter(XmlData, SOLDIER_BBOX_SIZE,SOLDIER_BBOX_HEIGHT)
 {	
-	m_Cover = -1;
-	m_TimeDead = 0.0f;
-	m_Alarm = false;
-	m_bFrozen = false;
-	m_HeadShoot = false;
-	m_TaskManager = new CTaskManager();
-	CRootTask* l_Root = new CRootTask();
-	CIdleTask* l_Idle = new CIdleTask();
-	CPatrolTask* l_Patrol = new CPatrolTask();
-	CBattleTask* l_Battle = new CBattleTask();
-	CAimTask* l_Aim = new CAimTask();
-	CAlertTask* l_Alert = new CAlertTask();
-	CMoveTask* l_Move = new CMoveTask();
-	CShootTask* l_Shoot = new CShootTask();
-	CHurtTask* l_Hurt = new CHurtTask();
-	CDeadTask* l_Dead = new CDeadTask();
-	l_Root->AddSon(l_Hurt);
-	l_Root->AddSon(l_Dead);
-	l_Root->AddSon(l_Battle);
-	l_Root->AddSon(l_Patrol);
-	l_Root->AddSon(l_Idle);
-	l_Battle->AddSon(l_Alert);
-	l_Battle->AddSon(l_Aim);
-	l_Battle->AddSon(l_Move);
-	l_Battle->AddSon(l_Shoot);
-	l_Root->SetOwner(this);
-	l_Hurt->SetOwner(this);
-	l_Dead->SetOwner(this);
-	l_Idle->SetOwner(this);
-	l_Battle->SetOwner(this);
-	l_Aim->SetOwner(this);
-	l_Alert->SetOwner(this);
-	l_Move->SetOwner(this);
-	l_Shoot->SetOwner(this);
-	l_Patrol->SetOwner(this);
-	m_TaskManager->SetRoot(l_Root);
-
-	SetLife(MAX_LIFE_SOLDIER);
-	m_initPosition = GetPosition();
-	m_initYaw = GetYaw();
-	CreateCapsuleForBullets();
-	m_Player=(CPlayer*)CORE->GetRenderableObjectsLayersManager()->GetResource("solid")->GetInstance("PLAYER");
+	CreateSoldier();
 }
 
 CSoldier::~CSoldier()
 {
 	CHECKED_DELETE(m_TaskManager);
 	CHECKED_DELETE(m_PhysicElement);
+}
+
+void CSoldier::CreateSoldier()
+{
+	m_TaskManager = new CTaskManager();
+	CRootTask* l_Root = new CRootTask();
+	CIdleTask* l_Idle = new CIdleTask();
+	//CPatrolTask* l_Patrol = new CPatrolTask();
+	CBattleTask* l_Battle = new CBattleTask();
+	CAimTask* l_Aim = new CAimTask();
+	CAlertTask* l_Alert = new CAlertTask();
+	CMoveTask* l_Move = new CMoveTask();
+	CShootTask* l_Shoot = new CShootTask();
+	CHurtTask* l_Hurt = new CHurtTask();
+	CDeadTask* l_Dead = new CDeadTask();
+	
+	l_Root->AddSon(l_Hurt);
+	l_Root->AddSon(l_Dead);
+	l_Root->AddSon(l_Battle);
+	//l_Root->AddSon(l_Patrol);
+	l_Root->AddSon(l_Idle);
+
+	l_Battle->AddSon(l_Alert);
+	l_Battle->AddSon(l_Aim);
+	l_Battle->AddSon(l_Move);
+	l_Battle->AddSon(l_Shoot);
+
+	l_Root->SetOwner(this);
+	l_Hurt->SetOwner(this);
+	l_Dead->SetOwner(this);
+	l_Idle->SetOwner(this);
+	l_Battle->SetOwner(this);
+	l_Aim->SetOwner(this);
+	l_Alert->SetOwner(this);
+	l_Move->SetOwner(this);
+	l_Shoot->SetOwner(this);
+	//l_Patrol->SetOwner(this);
+	
+	m_TaskManager->SetRoot(l_Root);
+
+	m_Cover = -1;
+	m_TimeDead = 0.0f;
+	m_Alarm = false;
+	m_bFrozen = false;
+	m_HeadShoot = false;
+	SetLife(MAX_LIFE_SOLDIER);
+	m_initPosition = GetPosition();
+	m_initYaw = GetYaw();
+
+	CreateCapsuleForBullets();
+
+	m_Player=(CPlayer*)CORE->GetRenderableObjectsLayersManager()->GetResource("solid")->GetInstance("PLAYER");
 }
 
 void CSoldier::Reload()

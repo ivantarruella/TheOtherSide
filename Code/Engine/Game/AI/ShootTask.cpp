@@ -38,11 +38,11 @@ void CShootTask::doAction(float ElapsedTime)
 	if(!isShooting)
 	{
 		m_Owner->ChangeCharacterAnimation(AIM_ANIM, 0.3f);
-		m_Time = m_Owner->GetAnimationDuration() * 0.25f;
-		m_TimeShoot = m_Owner->GetAnimationDuration() * 0.95f;
+		m_Time = m_Owner->GetAnimationDuration() * 0.40f;
+		m_TimeShoot = m_Owner->GetAnimationDuration() * 0.40f;
 		isShooting=true;
 	}
-	else{
+	else {
 		m_Time = m_Time - ElapsedTime;
 		m_TimeShoot = m_TimeShoot - ElapsedTime;
 		if(m_Time <= 0.0f && !m_shoot)
@@ -74,7 +74,7 @@ void CShootTask::doAction(float ElapsedTime)
 				action << "sound_disparo_soldado(" << vol << ")";
 				CORE->GetScriptManager()->RunCode(action.str());				
 				
-				CORE->GetBulletManager()->AddBullet(l_vGunPosition, l_dir, m_Player, BULLET_SPEED, 0.1f);
+				CORE->GetBulletManager()->AddBullet(l_vGunPosition, l_dir, m_Player, BULLET_SPEED, 0.085f);
 				isShooting=false;
 			}
 			m_shoot=true;

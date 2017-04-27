@@ -8,12 +8,12 @@ class CMonster :
 	public CCharacter
 {
 public:
-	CMonster();
 	CMonster(const Vect3f &pos, const std::string &CoreName);
 	CMonster(const Vect3f &pos, const std::string &CoreName, const std::string &Name);
 	CMonster(const CXMLTreeNode& XmlData);
 	~CMonster();
 	
+	void CreateMonster();
 	void Update(float ElapsedTime);
 	void SetStateMachine(CStateMachine* stateMachine){m_StateMachine = stateMachine;};
 	void SetPosition(const Vect3f &Position);

@@ -20,6 +20,7 @@ public:
 	CPlayer(CXMLTreeNode XMLData);
 	virtual ~CPlayer();
 
+	void InitPlayer();
 	void Update(float ElapsedTime);
 	void Load();
 	void Reload();

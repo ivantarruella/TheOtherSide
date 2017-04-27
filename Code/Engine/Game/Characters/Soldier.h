@@ -12,12 +12,11 @@ class CSoldier :
 	public CCharacter
 {
 public:
-	CSoldier();
 	CSoldier(const CXMLTreeNode& XmlData);
 	CSoldier(const Vect3f &pos, const std::string &CoreName, const std::string &Name);
 	~CSoldier();
 
-
+	void CreateSoldier();
 	void Update(float ElapsedTime);
 	void SetTaskManager(CTaskManager* taskManager){m_TaskManager = taskManager;};
 	void SetPosition(const Vect3f &Position);

@@ -56,9 +56,7 @@ CPlayer::CPlayer()
 	m_iNumMirrorPieces(0), m_bPlayerDying(false), m_bIsDead(false), m_fTime(0.0f), m_fUpdateCam(0.0f), m_tUseAnim(USE_ANIM), m_fHitTime(0.0f), m_bBlood(false), m_fStepTime(0.0f),
 	m_fShotTime(SHOOT_SOUND_TIME)
 {
-	SetLife(MAX_LIFE_PLAYER);
-	SetIniPos(GetPosition());
-	m_oWeapon = CWeapon();
+	InitPlayer();
 }
 
 CPlayer::CPlayer(CXMLTreeNode XMLData) : m_Camera(NULL), m_fDeltaPitch(0.f), m_fDeltaYaw(0.f), m_fSpeed(0.f),  
@@ -67,9 +65,7 @@ CPlayer::CPlayer(CXMLTreeNode XMLData) : m_Camera(NULL), m_fDeltaPitch(0.f), m_f
 	m_iNumMirrorPieces(0), m_bPlayerDying(false), m_bIsDead(false), m_fTime(0.0f), m_fUpdateCam(0.0f), m_tUseAnim(USE_ANIM), m_fHitTime(0.0f), m_bBlood(false), m_fStepTime(0.0f),
 	m_fShotTime(SHOOT_SOUND_TIME)
 {
-	SetLife(MAX_LIFE_PLAYER);
-	SetIniPos(GetPosition());
-	m_oWeapon = CWeapon();
+	InitPlayer();
 }
 
 CPlayer::~CPlayer()
@@ -79,6 +75,13 @@ CPlayer::~CPlayer()
 		CORE->GetPhysicsManager()->ReleasePhysicActor(GetPhysicActor());
 		CORE->GetPhysicsManager()->ReleasePhysicController(GetPhysicController());
 	}
+}
+
+void CPlayer::InitPlayer()
+{
+	SetLife(MAX_LIFE_PLAYER);
+	SetIniPos(GetPosition());
+	m_oWeapon = CWeapon();
 }
 
 void CPlayer::Update(float ElapsedTime)

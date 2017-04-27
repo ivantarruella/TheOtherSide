@@ -6,12 +6,6 @@
 
 #include "Base.h"
 
-CCharacter::CCharacter()
-{
-
-
-}
-
 CCharacter::CCharacter(const CXMLTreeNode& XmlData, float size,float height): 
 	m_PhysicController(NULL),CAnimatedInstanceModel(XmlData), m_Anim(WAIT_ANIM), m_Size(size),m_bHit(false), m_bDead(false),m_fHeight(height), m_fLife(1.0f)
 {
@@ -20,7 +14,6 @@ CCharacter::CCharacter(const CXMLTreeNode& XmlData, float size,float height):
 
 	Initialize(l_pCoreModel);
 	Init();
-
 }
 
 CCharacter::CCharacter(const Vect3f &pos, const std::string &CoreName, const std::string &Name, float size,float height): 
@@ -31,22 +24,18 @@ CCharacter::CCharacter(const Vect3f &pos, const std::string &CoreName, const std
 
 	Initialize(l_pCoreModel);
 	Init();
-
 }
 
 CCharacter::~CCharacter(void)
 {
 	if(GetCreatePhysics())
-	{
-		//CORE->GetPhysicsManager()->ReleasePhysicController(m_PhysicController);
 		CHECKED_DELETE(m_PhysicController);
-	}
 }
 
 
-void CCharacter::Reload(){
+void CCharacter::Reload()
+{
 	ClearAllAnims();
-
 }
 
 bool CCharacter::Init()

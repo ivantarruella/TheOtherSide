@@ -22,60 +22,25 @@
 #define MONSTER_BBOX_SIZE	0.30f
 #define MONSTER_BBOX_HEIGHT	0.70f
 
-CMonster::CMonster()
-{
-
-}
-
 CMonster::CMonster(const CXMLTreeNode& XmlData):
 	CCharacter(XmlData, MONSTER_BBOX_SIZE,MONSTER_BBOX_HEIGHT)
-{	
-	m_bFrozen = false;
-	m_TimeDead = 0.0f;	
-	
-	m_StateMachine = new CStateMachine();
-	//CPatrolState* l_Patrol = new CPatrolState();
-	CIdleState* l_Idle = new CIdleState();
-	CAttackState* l_Attack = new CAttackState();
-	CChaseState* l_Chase = new CChaseState();
-	CWanderState* l_Wander = new CWanderState();
-	CEscapeState* l_Escape = new CEscapeState();
-	//l_Patrol->Create();
-	l_Idle->Create();
-	l_Attack->Create();
-	l_Chase->Create();
-	l_Wander->Create();
-	l_Escape->Create();
-	//m_StateMachine->AddState(l_Patrol);
-	m_StateMachine->AddState(l_Idle);
-	m_StateMachine->AddState(l_Attack);
-	m_StateMachine->AddState(l_Chase);
-	m_StateMachine->AddState(l_Wander);
-	m_StateMachine->AddState(l_Escape);
-	m_StateMachine->SetInitState("IDLE");
-
-	/*Vect3f l_node0(2.4f, 0.0f, -5.7f);
-	Vect3f l_node1(2.4f, 0.0f, -13.10f);
-	Vect3f l_node2(8.74f, 0.0f, -13.10f);
-	Vect3f l_node3(8.74f, 0.0f, -5.7f);
-	l_Patrol->addPatrolPoint(8);
-	l_Patrol->addPatrolPoint(9);
-	l_Patrol->addPatrolPoint(10);*/
-
-	//l_Patrol->SetOwner(this);
-	l_Idle->SetOwner(this);
-	l_Attack->SetOwner(this);
-	l_Chase->SetOwner(this);
-	l_Wander->SetOwner(this);
-	l_Escape->SetOwner(this);
-	m_initPosition = GetPosition();
-	m_initYaw = GetYaw();
-	m_Player=(CPlayer*)CORE->GetRenderableObjectsLayersManager()->GetResource("solid")->GetInstance("PLAYER");
+{
+	CreateMonster();
 }
 
 CMonster::CMonster(const Vect3f &pos, const std::string &CoreName, const std::string &Name):
 	CCharacter(pos, CoreName, Name, MONSTER_BBOX_SIZE, MONSTER_BBOX_HEIGHT)
 {	
+	CreateMonster();
+}
+
+CMonster::~CMonster()
+{
+	CHECKED_DELETE(m_StateMachine);
+}
+
+void CMonster::CreateMonster()
+{
 	m_bFrozen = false;	
 	m_TimeDead = 0.0f;
 	
@@ -109,11 +74,6 @@ CMonster::CMonster(const Vect3f &pos, const std::string &CoreName, const std::st
 	m_initPosition = GetPosition();
 	m_initYaw = GetYaw();
 	m_Player=(CPlayer*)CORE->GetRenderableObjectsLayersManager()->GetResource("solid")->GetInstance("PLAYER");
-}
-
-CMonster::~CMonster()
-{
-	CHECKED_DELETE(m_StateMachine);
 }
 
 void CMonster::Reload()

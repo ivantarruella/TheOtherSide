@@ -46,7 +46,7 @@ class CCharacter :
 	public CAnimatedInstanceModel
 {
 public:
-	CCharacter(void);
+	CCharacter() {};
 	CCharacter(const CXMLTreeNode& XmlData, float size,float height);
 	CCharacter(const Vect3f &pos, const std::string &CoreName, const std::string &Name, float size,float height);
 	virtual ~CCharacter(void);

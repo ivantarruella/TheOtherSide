@@ -23,9 +23,10 @@
 using namespace luabind;
 
 #define MOUSE_SPEED				0.010f		// velocidad actualización ratón por defecto inicial 
+#define MOUSE_SPEED_AIM			0.005f		// velocidad actualización ratón apuntando por defecto inicial 
+
 #define GAMEPAD_SPEED			0.00033f	// velocidad actualización gamepad
 #define GAMEPAD_SPEED_AIM		0.00022f	// velocidad actualización gamepad apuntando
-
 
 #define PLAYER_SPEED_WALK		0.030f		// velocidad movimiento personaje andando
 #define PLAYER_SPEED_WALK_AIM	0.030f		// velocidad movimiento personaje andando y apuntando
@@ -196,6 +197,11 @@ void CPlayer::UpdateCamera(float ElapsedTime)
 		return;
 
 	// Update mouse camera
+	if (!m_bIsAiming) 
+		m_fMouseSpeed = MOUSE_SPEED;
+	else
+		m_fMouseSpeed = MOUSE_SPEED_AIM;
+
 	if (m_fDeltaYaw)
 	{
 		float l_fYaw = m_Camera->GetPlayerRoll() - (m_fDeltaYaw*m_fMouseSpeed);
@@ -319,8 +325,6 @@ void CPlayer::UpdatePlayerPosition(float ElapsedTime)
 	if  (!m_oWeapon.WeaponCollision() || 
 		(m_bWasAiming && m_PlayerMovement!=WALK_FORWARD && m_PlayerMovement!=WALK_FORWARD_LEFT && m_PlayerMovement!=WALK_FORWARD_RIGHT)	)
 		SetPosition(l_vDirController*GetPlayerSpeed(),ElapsedTime);
-
-
 }
 
 
@@ -384,8 +388,6 @@ void CPlayer::UpdatePlayerOrientation()
 			break;
 		}
 	}
-
-
 }
 
 
@@ -452,8 +454,8 @@ void CPlayer::UpdatePlayerMoveAnim(float ElapsedTime)
 	case WALK_BACKWARDS_LEFT:
 	case WALK_BACKWARDS_RIGHT:
 		
-		float t = m_bIsRunning ? PLAYER_SPEED_WALK : PLAYER_SPEED_RUN;
-		if (m_fStepTime >= t*10.f)
+		float t = m_bIsRunning ? 0.33f : 0.66f;
+		if (m_fStepTime >= t)
 		{
 			CORE->GetScriptManager()->RunCode(isInRealWorld() ? "sound_andar_MR()" : "sound_andar_ME()");
 			m_fStepTime = 0.f;
@@ -501,12 +503,10 @@ void CPlayer::UpdatePlayerShootAnim(float ElapsedTime)
 		}
 
 		// Shoot anim (sólo en mundo real y con munición)
-		/*
 		if (m_bShoot && !m_oWeapon.IsMunitionEmpty() && isInRealWorld())
 			BlendCycle(SHOOT_ANIM, ANIMS_DELAY);
 		else
 			ClearCycle(SHOOT_ANIM, ANIMS_DELAY);
-		*/
 	}
 	else
 	{

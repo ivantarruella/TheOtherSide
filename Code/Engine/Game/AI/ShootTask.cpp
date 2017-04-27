@@ -34,9 +34,6 @@ bool CShootTask::checkCondition(float ElapsedTime)
 
 void CShootTask::doAction(float ElapsedTime)
 {
-	//if(!isNotBlockedEyeLine())		//TODO:probar!
-	//	return;
-
 	if(!isShooting)
 	{
 		m_Owner->ChangeCharacterAnimation(AIM_ANIM, 0.3f);

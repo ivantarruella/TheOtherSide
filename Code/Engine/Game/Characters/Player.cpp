@@ -23,7 +23,7 @@
 using namespace luabind;
 
 #define MOUSE_SPEED				0.010f		// velocidad actualización ratón por defecto inicial 
-#define MOUSE_SPEED_AIM			0.005f		// velocidad actualización ratón apuntando por defecto inicial 
+#define MOUSE_SPEED_AIM			0.008f		// velocidad actualización ratón apuntando por defecto inicial 
 
 #define GAMEPAD_SPEED			0.00033f	// velocidad actualización gamepad
 #define GAMEPAD_SPEED_AIM		0.00022f	// velocidad actualización gamepad apuntando
@@ -44,7 +44,7 @@ using namespace luabind;
 #define CAM_PITCH_UP			(FLOAT_PI_VALUE/9.0f)
 
 #define PLAYER_HIT_TIME			0.2f
-#define SHOOT_SOUND_TIME		0.2f
+#define SHOOT_SOUND_TIME		0.25f	// = POWERGUN
 
 #define PLAYER_BBOX_HEIGHT		0.65f
 #define PLAYER_BBOX_SIZE		0.25f
@@ -506,10 +506,12 @@ void CPlayer::UpdatePlayerShootAnim(float ElapsedTime)
 		}
 
 		// Shoot anim (sólo en mundo real y con munición)
+		/*
 		if (m_bShoot && !m_oWeapon.IsMunitionEmpty() && isInRealWorld())
 			BlendCycle(SHOOT_ANIM, ANIMS_DELAY);
 		else
 			ClearCycle(SHOOT_ANIM, ANIMS_DELAY);
+		*/
 	}
 	else
 	{

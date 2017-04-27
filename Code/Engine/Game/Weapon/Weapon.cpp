@@ -18,7 +18,7 @@
 
 #define	LANTERN_MAXPOWERTIME	60.0f	//tiempo de potencia de maxima luz (s)
 
-#define POWERGUN				1.0f			//velocidad de tiro del arma (balas x seg)
+#define POWERGUN				4.0f			//velocidad de tiro del arma (balas x seg)
 #define MAXBULLETS				90.0f			//numero maximo de balas
 
 #define DAMAGE					0.5f			//vida que quita cada impacto

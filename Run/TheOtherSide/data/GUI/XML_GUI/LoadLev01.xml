@@ -5,6 +5,7 @@
 						  _LOGICOBJECTSM:set_mirror_active('Trigger_SVigilado_Espejo_MR', true)
 						  _EFFECTM:set_mirror_dark_coef(0.4)
 						  _GUI:active_windows('Game.xml')
+						  level1_activar_enemigo()
 						  "
 		>
 		 

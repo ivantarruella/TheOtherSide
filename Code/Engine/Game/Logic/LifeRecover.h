@@ -33,6 +33,7 @@ private:
 	float m_fTime;
 	bool m_bStart;
 	float m_fMaxLifeRecover;
+	float m_EmitterMaxRate;
 };
 
 #endif

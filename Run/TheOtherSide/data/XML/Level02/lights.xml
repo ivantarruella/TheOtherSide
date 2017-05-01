@@ -10,13 +10,13 @@
 	 att_start_range="1.0" att_end_range="6.0" dir="-0.0264862 0.0 -0.999649"
 	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="RG32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="true"
-	 angle="50.0" fall_off="80.0">
+	 angle="40.0" fall_off="70.0">
 		<dynamic renderable_objects_manager="solid_ME"/>
 		<dynamic renderable_objects_manager="enemies_ME"/>
 		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	</light> 
 
-	<light name="LASER" type="spot" pos="7.36404 2.58032 -13.5044" color="65.0 255.0 19.0" att_start_range="4.0" att_end_range="6.0" dir="0.00513604 0.00172818 -0.999985" world="2" angle="25.0" fall_off="40.0"/>
+	<light name="LASER" type="spot" pos="7.36404 2.58032 -13.5044" color="65.0 255.0 19.0" att_start_range="5.5" att_end_range="6.0" dir="0.00513604 0.00172818 -0.999985" world="2" angle="15.0" fall_off="30.0"/>
 
 	<!-- REAL WORLD -->
 	<light name="llum_sol" type="spot" pos="16.2895 30.5467 -17.032" color="255.0 255.0 255.0" att_start_range="30.0" att_end_range="100.0" dir="0.111022 -0.900534 0.420371"

@@ -1,5 +1,5 @@
 <Billboards>
-	<Billboard name="bLaserBeam" color="1.0 0.0 0.0 0.0" height="3.0" width="0.1" tex="data\\Textures\\Particles\\laser_beam.png" />
+	<Billboard name="bLaserBeam" color="1.0 0.0 0.0 0.0" height="4.0" width="0.25" tex="data\\Textures\\Particles\\laser_beam.png" />
 	<Billboard name="bLaserHalo" color="1.0 1.0 1.0 1.0" height="0.5" width="0.5" tex="data\\Textures\\Particles\\laser_halo.png" />
 	<Billboard name="bReboteDisparo" color="1.0 1.0 1.0 1.0" height="0.5" width="0.5" tex="data\\Textures\\Particles\\agujero.png" />
 	<Billboard name="bReboteDisparo2" color="1.0 1.0 1.0 1.0" height="0.0" width="0.0" tex="data\\Textures\\Particles\\agujero.png" />

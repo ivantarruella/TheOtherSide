@@ -15,14 +15,14 @@
 #define LIGHT_VAR_INTENSITY		0.1f
 
 CLifeRecover::CLifeRecover()
-	: CLogicObject(), m_fTime(0.0f), m_bStart(false), m_player(NULL), m_fMaxLifeRecover(0.0f), m_OnTexture(NULL), m_OffTexture(NULL), m_Mesh(NULL), m_Light(NULL)
+	: CLogicObject(), m_fTime(0.0f), m_bStart(false), m_player(NULL), m_fMaxLifeRecover(0.0f), m_EmitterMaxRate(0.0f), m_OnTexture(NULL), m_OffTexture(NULL), m_Mesh(NULL), m_Light(NULL)
 {
 	m_Type = LIFE_RECOVER;
 	m_fMaxLifeRecover = MAX_LIFE_RECOVER_VALUE;
 }
 
 CLifeRecover::CLifeRecover(CXMLTreeNode &atts)
-	: CLogicObject(), m_fTime(0.0f), m_bStart(false), m_player(NULL), m_fMaxLifeRecover(0.0f), m_OnTexture(NULL), m_OffTexture(NULL), m_Mesh(NULL), m_Light(NULL)
+	: CLogicObject(), m_fTime(0.0f), m_bStart(false), m_player(NULL), m_fMaxLifeRecover(0.0f), m_EmitterMaxRate(0.0f), m_OnTexture(NULL), m_OffTexture(NULL), m_Mesh(NULL), m_Light(NULL)
 {
 	m_Type = LIFE_RECOVER;
 	m_fMaxLifeRecover = MAX_LIFE_RECOVER_VALUE;
@@ -90,6 +90,7 @@ void CLifeRecover::Update(float ElapsedTime)
 				if (m_Light != NULL){
 					m_Light->SetVarIntensity(m_player->GetLife()<(m_player->GetMaxPlayerLife()));
 					m_Light->SetVarTime(LIGHT_VAR_INTENSITY);
+					m_Emitter->SetMaxRate(m_EmitterMaxRate*10.0f);
 				}
 				m_fTime = 0.0f;
 			}
@@ -110,12 +111,16 @@ void CLifeRecover::Update(float ElapsedTime)
 					m_Light->SetActive(false);
 				}
 
-				if (m_Emitter != NULL)
+				if (m_Emitter != NULL) {
 					m_Emitter->SetEnabled(false);
+				}
 			}
 		}
-		else
+		else {
 			CORE->GetScriptManager()->RunCode("sound_carga_vida_off()");
+			if (m_Emitter  != NULL)
+				m_Emitter->SetMaxRate(m_EmitterMaxRate);
+		}
 	}
 }
 
@@ -127,6 +132,7 @@ void CLifeRecover::Trigger(const std::string& action, CPlayer* player)
 		{
 			m_player = player;
 			m_bStart = true;
+			m_EmitterMaxRate=m_Emitter->GetMaxRate();
 		}
 		else if (action=="OnLeave")
 		{
@@ -135,6 +141,9 @@ void CLifeRecover::Trigger(const std::string& action, CPlayer* player)
 				m_Light->SetVarIntensity(false);
 				m_Light->SetVarTime(0.f);
 			}
+			if (m_Emitter  != NULL)
+				m_Emitter->SetMaxRate(m_EmitterMaxRate);
+
 			CORE->GetScriptManager()->RunCode("sound_carga_vida_off()");
 		}
 		else if (action=="OnTrigger")

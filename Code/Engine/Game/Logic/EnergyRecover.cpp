@@ -9,7 +9,7 @@
 #include "Weapon.h"
 #include "Base.h"
 
-#define ENERGY_INC_TIME		0.05f	// incrementa energia cada x seg.
+#define ENERGY_INC_TIME		0.02f	// incrementa energia cada x seg.
 #define ENERGY_INC_VALUE	(3.0f)	// cuanto incrementa de energia
 
 #define MAX_ENERGY_RECOVER_VALUE	150.0f

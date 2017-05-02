@@ -353,6 +353,7 @@ void CEnemyManager::UnfreezeAll()
 	{
 		l_it->second->Unfreeze();
 	}
+
 	std::map<std::string, CMonster*>::iterator l_it1 = m_Monsters.begin();
 	for(; l_it1!=m_Monsters.end(); l_it1++)
 	{

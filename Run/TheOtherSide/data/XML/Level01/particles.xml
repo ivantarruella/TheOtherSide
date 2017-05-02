@@ -35,6 +35,13 @@
 			<size time="0.0" mins="0.2" maxs="0.4"/>
 			<aceleration time="0.0" acel1="0 0 0" acel2="0 0 0"/>
 		</PointEmitter>
+		<PointEmitter type="torus" name="healing" gravity="false" life_time_min="7.0" life_time_max="8.0" emit_rate_min="20.0"
+			emit_rate_max="60.0" tex="data\Textures\Electric sparkle.png" angle="2.0">
+			<color time="0.0" color1="0.01 0.8 0.01 1" color2="0.01 0.8 0.01 1"/>
+			<direction time="0.0" dir1="-0.01 0.2 -0.01" dir2="0.01 0.6 0.01"/>
+			<size time="0.0" mins="0.2" maxs="0.4"/>
+			<aceleration time="0.0" acel1="0 1 0" acel2="0 1 0"/>
+		</PointEmitter>		
 		<PointEmitter type="plane" name="fog3" gravity="false" life_time_min="1.0" life_time_max="10.0" emit_rate_min="10.0"
 			emit_rate_max="20.0" tex="data\Textures\smoke.tga" angle="2.0">
 			<color time="0.0" color1="0.10 0.10 0.10 0.10" color2="0.10 0.10 0.10 0.10"/>
@@ -83,6 +90,7 @@
 		<Instance name="fluorescente01" id="core2" pos1="25.5709 2.95591 -3.45" pos2="25.5709 2.95591 -3.45" world="1" size="0.5"/>
 		
 		<Instance name="healer01_MR" id="healer" pos1="11.954 0.200 21.677" pos2="11.954 0.200 21.677" size="0.7" world="1"/>
+		<Instance name="healing01_MR" id="healing" pos1="11.954 0.200 21.677" pos2="11.954 0.200 21.677" size="0.7" world="1"/>
 	</Instances>
 </ParticleManager>
 

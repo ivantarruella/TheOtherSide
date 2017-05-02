@@ -7,7 +7,7 @@
 #include "Scripting\ScriptManager.h"
 #include "Base.h"
 
-#define LIFE_INC_TIME	0.05f	// incrementa vida cada x seg.
+#define LIFE_INC_TIME	0.2f	// incrementa vida cada x seg.
 #define LIFE_INC_VALUE	(m_player->GetMaxPlayerLife()/100.0f)	// cuanto incrementa de vida
 
 #define MAX_LIFE_RECOVER_VALUE	(m_player->GetMaxPlayerLife()*0.75f)
@@ -15,14 +15,14 @@
 #define LIGHT_VAR_INTENSITY		0.1f
 
 CLifeRecover::CLifeRecover()
-	: CLogicObject(), m_fTime(0.0f), m_bStart(false), m_player(NULL), m_fMaxLifeRecover(0.0f), m_EmitterMaxRate(0.0f), m_OnTexture(NULL), m_OffTexture(NULL), m_Mesh(NULL), m_Light(NULL)
+	: CLogicObject(), m_fTime(0.0f), m_bStart(false), m_player(NULL), m_fMaxLifeRecover(0.0f), m_Emitter(NULL), m_Emitter2(NULL), m_OnTexture(NULL), m_OffTexture(NULL), m_Mesh(NULL), m_Light(NULL)
 {
 	m_Type = LIFE_RECOVER;
 	m_fMaxLifeRecover = MAX_LIFE_RECOVER_VALUE;
 }
 
 CLifeRecover::CLifeRecover(CXMLTreeNode &atts)
-	: CLogicObject(), m_fTime(0.0f), m_bStart(false), m_player(NULL), m_fMaxLifeRecover(0.0f), m_EmitterMaxRate(0.0f), m_OnTexture(NULL), m_OffTexture(NULL), m_Mesh(NULL), m_Light(NULL)
+	: CLogicObject(), m_fTime(0.0f), m_bStart(false), m_player(NULL), m_fMaxLifeRecover(0.0f), m_Emitter(NULL), m_Emitter2(NULL), m_OnTexture(NULL), m_OffTexture(NULL), m_Mesh(NULL), m_Light(NULL)
 {
 	m_Type = LIFE_RECOVER;
 	m_fMaxLifeRecover = MAX_LIFE_RECOVER_VALUE;
@@ -43,10 +43,12 @@ CLifeRecover::CLifeRecover(CXMLTreeNode &atts)
 	std::string l_TextureNameON = atts.GetPszProperty("on_texture", "");
 	std::string l_TextureNameOFF = atts.GetPszProperty("off_texture", "");
 	std::string l_ParticleEmitter = atts.GetPszProperty("particle_emitter", "");
+	std::string l_ParticleEmitter2 = atts.GetPszProperty("particle_emitter2", "");
 
 	m_OnTexture = (CTexture*) CORE->GetTextureManager()->GetTexture(l_TextureNameON);
 	m_OffTexture = (CTexture*) CORE->GetTextureManager()->GetTexture(l_TextureNameOFF);
 	m_Emitter = (CParticleEmitter*) CORE->GetParticleManager()->GetParticleEmitter(l_ParticleEmitter);
+	m_Emitter2 = (CParticleEmitter*) CORE->GetParticleManager()->GetParticleEmitter(l_ParticleEmitter2);
 
 	if (!m_OnTexture || !m_OffTexture)
 	{
@@ -65,6 +67,9 @@ CLifeRecover::CLifeRecover(CXMLTreeNode &atts)
 			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
 		}
 	}
+
+	if (m_Emitter2 != NULL)		// by default, disabled, enabled only when healing player
+		m_Emitter2->SetEnabled(false);
 }
 
 CLifeRecover::~CLifeRecover()
@@ -80,6 +85,10 @@ void CLifeRecover::Update(float ElapsedTime)
 	{
 		if (m_player->GetLife()<(m_player->GetMaxPlayerLife()))
 		{
+			if (m_Emitter2 != NULL)	
+				m_Emitter2->SetEnabled(true);
+
+			// healing player
 			CORE->GetScriptManager()->RunCode("sound_carga_vida_on()");
 			m_fTime += ElapsedTime;
 
@@ -87,14 +96,18 @@ void CLifeRecover::Update(float ElapsedTime)
 			{
 				m_player->PartiallyRecoverLife(LIFE_INC_VALUE);
 				m_fMaxLifeRecover -= LIFE_INC_VALUE;
-				if (m_Light != NULL){
+				if (m_Light != NULL)
+				{
 					m_Light->SetVarIntensity(m_player->GetLife()<(m_player->GetMaxPlayerLife()));
 					m_Light->SetVarTime(LIGHT_VAR_INTENSITY);
-					m_Emitter->SetMaxRate(m_EmitterMaxRate*10.0f);
 				}
+				if (m_Emitter != NULL)	
+					m_Emitter->SetEnabled(false);				
+
 				m_fTime = 0.0f;
 			}
 
+			// healer empty, disable it
 			if (m_fMaxLifeRecover <= 0.0f)
 			{
 				SetEnabled(false);
@@ -107,19 +120,23 @@ void CLifeRecover::Update(float ElapsedTime)
 				{
 					m_Light->SetVarIntensity(false);
 					m_Light->SetVarTime(0.f);
-					//m_Light->SetEnabled(false);
 					m_Light->SetActive(false);
 				}
 
-				if (m_Emitter != NULL) {
+				if (m_Emitter != NULL) 
 					m_Emitter->SetEnabled(false);
-				}
+				if (m_Emitter2 != NULL)	
+					m_Emitter2->SetEnabled(false);				
 			}
 		}
-		else {
+		else 
+		{
+			// player life at 100%
 			CORE->GetScriptManager()->RunCode("sound_carga_vida_off()");
-			if (m_Emitter  != NULL)
-				m_Emitter->SetMaxRate(m_EmitterMaxRate);
+			if (m_fMaxLifeRecover > 0.0f && m_Emitter != NULL)
+				m_Emitter->SetEnabled(true);
+			if (m_Emitter2 != NULL)	
+				m_Emitter2->SetEnabled(false);
 		}
 	}
 }
@@ -132,17 +149,19 @@ void CLifeRecover::Trigger(const std::string& action, CPlayer* player)
 		{
 			m_player = player;
 			m_bStart = true;
-			m_EmitterMaxRate=m_Emitter->GetMaxRate();
 		}
 		else if (action=="OnLeave")
 		{
 			m_bStart = false;
-			if (m_Light != NULL){
+			if (m_Light != NULL)
+			{
 				m_Light->SetVarIntensity(false);
 				m_Light->SetVarTime(0.f);
 			}
-			if (m_Emitter  != NULL)
-				m_Emitter->SetMaxRate(m_EmitterMaxRate);
+			if (m_fMaxLifeRecover > 0.0f && m_Emitter != NULL)
+				m_Emitter->SetEnabled(true);
+			if (m_Emitter2 != NULL)	
+				m_Emitter2->SetEnabled(false);
 
 			CORE->GetScriptManager()->RunCode("sound_carga_vida_off()");
 		}
@@ -155,10 +174,10 @@ void CLifeRecover::Trigger(const std::string& action, CPlayer* player)
 	else 
 	{
 		m_bStart = false;
-		if (m_Light != NULL){
+		if (m_Light != NULL)
+		{
 			m_Light->SetVarIntensity(false);
 			m_Light->SetVarTime(0.f);
-			//m_Light->SetEnabled(false);
 			m_Light->SetActive(false);
 		}
 	}
@@ -172,13 +191,15 @@ void CLifeRecover::Restart()
 	if (m_Mesh != NULL && m_OnTexture != NULL)
 		m_Mesh->GetStaticMesh()->SetTexture(m_OnTexture);
 
-	if (m_Light != NULL){
+	if (m_Light != NULL)
+	{
 		m_Light->SetVarIntensity(false);
 		m_Light->SetVarTime(0.f);
-		//m_Light->SetEnabled(true);
 		m_Light->SetActive(true);
 	}
 
 	if (m_Emitter != NULL)
 		m_Emitter->SetEnabled(true);
+	if (m_Emitter2 != NULL)	
+		m_Emitter2->SetEnabled(false);
 }

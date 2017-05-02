@@ -74,6 +74,7 @@ void CBullet::ChangeBillboard(const std::string& _BillboardName)
 	if(m_bBulletMoving && !m_bIsCollided)
 	{
 		CBillboard::UpdateAxisBillboard(m_vDirection);
+
 		if(m_pShotLight)
 			m_pShotLight->SetEndRangeAttenuation(2.f);
 	}
@@ -203,7 +204,6 @@ void CBullet::RayEffect(float _DeltaTime)
 			SetWidth(GetWidth()/2.f);
 		}
 		CBillboard::UpdateAxisBillboard(m_vDirection);
-
 
 		//collision with another object different from the last collision check
 		if(l_pOldCollisionObjUserData != m_pCollidedObjectUserData )

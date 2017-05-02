@@ -52,6 +52,7 @@ void CCore::Release()
 	CHECKED_DELETE(m_pConsole);
 	CHECKED_DELETE(m_pLogRender);
 #endif
+	CHECKED_DELETE(m_pLogicObjectsManager);
 	CHECKED_DELETE(m_pNodeManager);
 	CHECKED_DELETE(m_pCoverManager);
 	CHECKED_DELETE(m_pEnemyManager);
@@ -66,7 +67,6 @@ void CCore::Release()
 	CHECKED_DELETE(m_pAnimatedModelsManager);
 	CHECKED_DELETE(m_pLightManager);
 	CHECKED_DELETE(m_pEffectManager);
-	CHECKED_DELETE(m_pLogicObjectsManager);
 	CHECKED_DELETE(m_pRenderableObjectsLayersManager);
 	CHECKED_DELETE(m_pSceneRendererCommandManager);
 	CHECKED_DELETE(m_pRenderableObjectsTechniqueManager);

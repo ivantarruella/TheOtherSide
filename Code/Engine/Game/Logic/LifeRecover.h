@@ -28,12 +28,11 @@ private:
 	CTexture *m_OnTexture, *m_OffTexture;
 	CInstanceMesh *m_Mesh;
 	CLight* m_Light;
-	CParticleEmitter* m_Emitter;
+	CParticleEmitter *m_Emitter, *m_Emitter2;
 
 	float m_fTime;
 	bool m_bStart;
 	float m_fMaxLifeRecover;
-	float m_EmitterMaxRate;
 };
 
 #endif

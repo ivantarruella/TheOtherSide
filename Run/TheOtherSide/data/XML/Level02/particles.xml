@@ -28,6 +28,13 @@
 			<size time="0.0" mins="0.2" maxs="0.4"/>
 			<aceleration time="0.0" acel1="0 0 0" acel2="0 0 0"/>
 		</PointEmitter>
+		<PointEmitter type="torus" name="healing" gravity="false" life_time_min="7.0" life_time_max="8.0" emit_rate_min="20.0"
+			emit_rate_max="60.0" tex="data\Textures\Electric sparkle.png" angle="2.0">
+			<color time="0.0" color1="0.01 0.8 0.01 1" color2="0.01 0.8 0.01 1"/>
+			<direction time="0.0" dir1="-0.01 0.2 -0.01" dir2="0.01 0.6 0.01"/>
+			<size time="0.0" mins="0.2" maxs="0.4"/>
+			<aceleration time="0.0" acel1="0 1 0" acel2="0 1 0"/>
+		</PointEmitter>			
 		<PointEmitter type="plane" name="sun" gravity="false" life_time_min="7.0" life_time_max="10.0" emit_rate_min="100.0"
 			emit_rate_max="300.0" tex="data\Textures\smoke.tga" angle="2.0">
 			<color time="0.0" color1="0.20 0.20 0.10 0.10" color2="0.10 0.10 0.10 0.03"/>
@@ -73,11 +80,18 @@
 	</ParticleEmitters>
 	<Instances>
 		<Instance name="healer01_MR" id="healer" pos1="24.193 0.200 -26.187" pos2="24.193 0.200 -26.187" size="0.7" world="1"/>
+		<Instance name="healing01_MR" id="healing" pos1="24.193 0.200 -26.187" pos2="24.193 0.200 -26.187" size="0.7" world="1"/>
 		<Instance name="healer02_MR" id="healer" pos1="24.193 3.400 -26.187" pos2="24.193 3.400 -26.187" size="0.7" world="1"/>
+		<Instance name="healing02_MR" id="healing" pos1="24.193 3.400 -26.187" pos2="24.193 3.400 -26.187" size="0.7" world="1"/>
 		<Instance name="healer03_MR" id="healer" pos1="35.148 0.200 11.386" pos2="35.148 0.200 11.386" size="0.7" world="1"/>
+		<Instance name="healing03_MR" id="healing" pos1="35.148 0.200 11.386" pos2="35.148 0.200 11.386" size="0.7" world="1"/>
 		<Instance name="healer01_ME" id="healer" pos1="-24.268 0.200 -26.234" pos2="-24.268 0.200 -26.234" size="0.7" world="2"/>
+		<Instance name="healing01_ME" id="healing" pos1="-24.268 0.200 -26.234" pos2="-24.268 0.200 -26.234" size="0.7" world="2"/>
 		<Instance name="healer02_ME" id="healer" pos1="-24.268 3.400 -26.234" pos2="-24.268 3.400 -26.234" size="0.7" world="2"/>
+		<Instance name="healing02_ME" id="healing" pos1="-24.268 3.400 -26.234" pos2="-24.268 3.400 -26.234" size="0.7" world="2"/>
 		<Instance name="healer03_ME" id="healer" pos1="-31.625 0.200 11.33" pos2="-31.625 0.200 11.33" size="0.7" world="2"/>
+		<Instance name="healing03_ME" id="healing" pos1="-31.625 0.200 11.33" pos2="-31.625 0.200 11.33" size="0.7" world="2"/>
+		
 		<Instance name="fog01_MR" id="fog2" pos1="39.387 0.200 -15.641" pos2="39.387 0.200 -15.641" size="1.5" world="1"/>
 		<Instance name="fog02_MR" id="fog2" pos1="42.387 0.200 -15.641" pos2="42.387 0.200 -15.641" size="1.5" world="1"/>
 		<Instance name="fog03_MR" id="fog2" pos1="46.969 0.200 -3.599" pos2="46.969 0.200 -3.599" size="1.5" world="1"/>

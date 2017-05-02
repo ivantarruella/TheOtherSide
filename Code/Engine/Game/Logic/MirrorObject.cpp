@@ -33,7 +33,7 @@ CMirrorObject::CMirrorObject()
 	: CLogicObject(), m_MirrorMesh(NULL), m_Layer(""), m_bRotated(false), m_SpawnPointName(""), m_UseItemFile(""), m_bMirrorActive(false),
 	m_fUseTime(0.f), m_fAngleRot(0.f), m_fCurrAngle(0.f), m_bLinked(false), m_bStart(false), m_bRotating(false), m_bAllDisabled(false), m_bUseActive(false), 
 	m_MirrorTex(NULL), m_bChangeWorld(false), m_player(NULL), m_targetMirror(""), m_rotatedMirror(""), m_fAnimTime(0.0f), m_bMirrorON(true), m_bEnteredTrigger(false),
-	m_bCanChangeWorld(true)//, m_MirrorCam(NULL)
+	m_bCanChangeWorld(true)
 {
 	m_Type = MIRROR;
 	SetEnabled(false);
@@ -43,7 +43,7 @@ CMirrorObject::CMirrorObject(CXMLTreeNode &atts)
 	: CLogicObject(atts), m_MirrorMesh(NULL), m_Layer(""), m_bRotated(false), m_SpawnPointName(""), m_UseItemFile(""), m_bMirrorActive(false),
 	m_fUseTime(0.f), m_fAngleRot(0.f), m_fCurrAngle(0.f), m_bLinked(false), m_bStart(false), m_bRotating(false), m_bAllDisabled(false), m_bUseActive(false), 
 	m_MirrorTex(NULL), m_bChangeWorld(false), m_player(NULL), m_targetMirror(""), m_rotatedMirror(""), m_fAnimTime(0.0f), m_bMirrorON(true), m_bEnteredTrigger(false),
-	m_bCanChangeWorld(true)//, m_MirrorCam(NULL)
+	m_bCanChangeWorld(true)
 {
 	m_Type = MIRROR;
 	SetEnabled(false);
@@ -84,8 +84,6 @@ CMirrorObject::CMirrorObject(CXMLTreeNode &atts)
 		uint32 w,h;
 		CORE->GetRenderManager()->GetWidthAndHeight(w,h);	
 		m_MirrorTex->Create(l_MirrorName,512,512,1,CTexture::RENDERTARGET,CTexture::DEFAULT,l_FormatType);
-
-		//m_MirrorCam = new CFreeCamera(NEAR_CLIPPING, FAR_CLIPPING,55.0f * FLOAT_PI_VALUE/180.0f, (float)w/(float)h;, l_center);
 	}
 }
 
@@ -106,8 +104,6 @@ void CMirrorObject::Update(float ElapsedTime)
 	UpdateMirrorEnabled();						// Activación/desactivación espejos
 	UpdateMirrorRotation(ElapsedTime);			// Rotación espejos
 	UpdateMirrorChangeWorld(ElapsedTime);		// Cambios de mundo
-
-	//m_MirrorCam->Update(ElapsedTime);
 }
 
 void CMirrorObject::Restart()

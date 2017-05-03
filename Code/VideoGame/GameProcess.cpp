@@ -116,6 +116,11 @@ void CGameProcess::UpdateGameActions()
 
 		if (m_bPlayingActionMusic && CORE->GetEnemyManager()->GetNumSoldiers() <= 2) {
 			CORE->GetScriptManager()->RunCode("sound_action_music_off()");	// few enemies, stop action music
+			if (m_Player->isInRealWorld())
+				CORE->GetScriptManager()->RunCode("sound_MR()");
+			else
+				CORE->GetScriptManager()->RunCode("sound_ME()");
+
 			m_bPlayingActionMusic = false;
 		}
 	}

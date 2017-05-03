@@ -121,6 +121,20 @@ end
 
 -- Musica action
 function sound_action_music_on()
+	if source_MR == -1 then
+		-- nada que hacer aqui
+	else
+		_SOUNDM:pause_source(source_MR)
+		_SOUNDM:delete_source(source_MR)
+		source_MR = -1
+	end
+	if source_ME == -1 then
+		-- nada que hacer aqui
+	else
+		_SOUNDM:pause_source(source_ME)
+		_SOUNDM:delete_source(source_MR)
+		source_ME = -1
+	end	
 	if source_action_music == -1 then
 		source_action_music = _SOUNDM:create_source()
 		_SOUNDM:play_source_2D(source_action_music, 'action_music', true)

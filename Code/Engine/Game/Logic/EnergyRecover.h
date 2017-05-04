@@ -35,6 +35,7 @@ private:
 	bool m_bStart;
 	CPlayer* m_player;
 	float m_fMaxEnergyRecover;
+	int m_orientation;
 };
 
 #endif

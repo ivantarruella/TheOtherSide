@@ -64,6 +64,10 @@ function replay_game()
 	
 end
 
+function god()
+	_GAMEPROCESS:god_mode()
+end
+
 
 -- Boton transformación cristal => espejo nivel 02
 

@@ -365,6 +365,14 @@ void CGameProcess::ChangePlayerAnim(int anim, float delay)
 	m_Player->ChangeCharacterAnimation((tAnimationStates)anim, delay);
 }
 
+void CGameProcess::SetGodMode()
+{
+	if (m_Player==NULL)
+		return;
+	
+	m_Player->SetLife(10000000.0f);
+}
+
 bool CGameProcess::UseItem()
 {
 	return m_Player && m_Player->GetUseItem();
@@ -472,6 +480,7 @@ void CGameProcess::RegisterLUA()
 			.def("reload",&CGameProcess::Reload)
 			
 			// player
+			.def("god_mode",&CGameProcess::SetGodMode)
 			.def("get_player",&CGameProcess::GetPlayer)
 			.def("change_player_anim",&CGameProcess::ChangePlayerAnim)
 			.def("use_item",&CGameProcess::UseItem)

@@ -18,7 +18,7 @@
 
 CEnergyRecover::CEnergyRecover()
 	: CLogicObject(), m_fTime(0.0f), m_bStart(false), m_player(NULL), m_fMaxEnergyRecover(0.0f), m_bUseActive(false), m_UseItemFile(""),
-	m_OnTexture(NULL), m_OffTexture(NULL), m_Mesh(NULL), m_Light(NULL)
+	m_OnTexture(NULL), m_OffTexture(NULL), m_Mesh(NULL), m_Light(NULL), m_orientation(0)
 {
 	m_Type = ENERGY_RECOVER;
 	m_fMaxEnergyRecover = MAX_ENERGY_RECOVER_VALUE;
@@ -27,7 +27,7 @@ CEnergyRecover::CEnergyRecover()
 
 CEnergyRecover::CEnergyRecover(CXMLTreeNode &atts)
 	: CLogicObject(), m_fTime(0.0f), m_bStart(false), m_player(NULL), m_fMaxEnergyRecover(0.0f), m_bUseActive(false), m_UseItemFile(""),
-	m_OnTexture(NULL), m_OffTexture(NULL), m_Mesh(NULL), m_Light(NULL)
+	m_OnTexture(NULL), m_OffTexture(NULL), m_Mesh(NULL), m_Light(NULL), m_orientation(0)
 {
 	m_Type = ENERGY_RECOVER;
 	m_fMaxEnergyRecover = MAX_ENERGY_RECOVER_VALUE;
@@ -35,6 +35,7 @@ CEnergyRecover::CEnergyRecover(CXMLTreeNode &atts)
 
 	std::string l_MeshName = atts.GetPszProperty("static_mesh", "");
 	std::string l_layer = atts.GetPszProperty("layer", "");
+	m_orientation = atts.GetIntProperty("orientation", 0);
 
 	if (l_layer != "" && l_MeshName != "")
 	{
@@ -178,10 +179,19 @@ void CEnergyRecover::Trigger(const std::string& action, CPlayer* player)
 		}
 		else if (action=="OnTrigger")
 		{
-			//D3DXVECTOR3 vp(-player->GetFront().x, -player->GetFront().y, -player->GetFront().z);
-			//D3DXVECTOR3 n(-m_Mesh->GetFront().Normalize().x, -m_Mesh->GetFront().Normalize().y, -m_Mesh->GetFront().Normalize().z);
-			//float dot = D3DXVec3Dot(&n, &vp);
-			//if (dot >= 0.80f){
+			D3DXVECTOR3 vp(-player->GetFront().x, -player->GetFront().y, -player->GetFront().z);
+			D3DXVECTOR3 n(-m_Mesh->GetFront().Normalize().x, -m_Mesh->GetFront().Normalize().y, -m_Mesh->GetFront().Normalize().z);
+			float dot = D3DXVec3Dot(&n, &vp);
+			bool bOriented = false;
+			if (m_orientation == 0)
+				bOriented = (dot >= 0.80f);
+			else if (m_orientation == 1)
+				bOriented = (dot <= 0.05f && dot >= -0.40f);		
+			else if (m_orientation == 2)
+				bOriented = (dot <= 0.40f && dot >= -0.16f);			
+			else if (m_orientation == 3)
+				bOriented = (dot <= 1.00f && dot >= 0.90f);			
+			if (bOriented){
 				m_bStart = player->GetUseItem();
 				DisplayUse(true);
 				player->SetCanUseItem(true);
@@ -190,14 +200,14 @@ void CEnergyRecover::Trigger(const std::string& action, CPlayer* player)
 					m_Light->SetVarIntensity(false);
 					m_Light->SetVarTime(0.f);
 				}
-			/*}
+			}
 			else
 			{
 				m_bStart = player->GetUseItem();
 				DisplayUse(false);
 				player->SetCanUseItem(false);
 				player->SetUseItemAnim(RECARGA_ARMA_ANIM);
-			}*/
+			}
 		}
 	}
 	else 

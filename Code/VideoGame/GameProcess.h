@@ -67,6 +67,7 @@ public:
 	// Player
 	void SetPlayer();
 	CPlayer* GetPlayer() { return m_Player; }
+	void SetGodMode();
 	void ChangePlayerAnim(int anim, float delay);
 	bool UseItem();
 	void SetPlayerCanUse(bool use);

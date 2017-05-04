@@ -263,7 +263,7 @@
 		<onLeave lua="_GAMEPROCESS:mirror_piece_trigger('OnLeave','Trigger_Trozo_Espejo_02_MR')" />
 		<onTrigger lua="_GAMEPROCESS:mirror_piece_trigger('OnTrigger','Trigger_Trozo_Espejo_02_MR')" />
 	</trigger>
-	<trigger name="Trigger_Trozo_Espejo_01_MR" pos="13.2944 0.579073 1.98875" size="0.120131 0.579073 0.254067" mask="" >
+	<trigger name="Trigger_Trozo_Espejo_01_MR" pos="38.57 0.579073 1.98875" size="0.120131 0.579073 0.254067" mask="" >
 		<onEnter lua="_GAMEPROCESS:mirror_piece_trigger('OnEnter','Trigger_Trozo_Espejo_01_MR')" />
 		<onLeave lua="_GAMEPROCESS:mirror_piece_trigger('OnLeave','Trigger_Trozo_Espejo_01_MR')" />
 		<onTrigger lua="_GAMEPROCESS:mirror_piece_trigger('OnTrigger','Trigger_Trozo_Espejo_01_MR')" />

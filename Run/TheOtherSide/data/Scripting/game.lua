@@ -68,6 +68,9 @@ function god()
 	_GAMEPROCESS:god_mode()
 end
 
+function reload_weapon()
+	_GAMEPROCESS:recharge_player_weapon()
+end
 
 -- Boton transformación cristal => espejo nivel 02
 

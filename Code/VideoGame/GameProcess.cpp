@@ -322,6 +322,12 @@ void CGameProcess::ReloadPlayerWeapon()
 		m_Player->GetWeapon().ReloadWeapon();
 }
 
+void CGameProcess::RechargePlayerWeapon()
+{
+	if (m_Player != NULL)
+		m_Player->GetWeapon().RechargeWeapon();
+}
+
 void CGameProcess::SetMouseSensitivity(float sensitivity)
 {
 	if (m_Player == NULL) 
@@ -490,6 +496,7 @@ void CGameProcess::RegisterLUA()
 
 			// setup
 			.def("reload_player_weapon",&CGameProcess::ReloadPlayerWeapon)
+			.def("recharge_player_weapon",&CGameProcess::RechargePlayerWeapon)
 			.def("get_mouse_sensitivity",&CGameProcess::GetMouseSensitivity)
 			.def("set_mouse_sensitivity",&CGameProcess::SetMouseSensitivity)
 			.def("set_gamma_factor",&CGameProcess::SetGammaFactor)

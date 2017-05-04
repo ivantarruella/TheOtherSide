@@ -62,6 +62,7 @@ public:
 	void Load();
 	void Reload();
 	void ReloadPlayerWeapon();
+	void RechargePlayerWeapon();
 	void RegisterLUA();
 
 	// Player

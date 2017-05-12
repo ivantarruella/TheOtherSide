@@ -87,16 +87,14 @@ void CPlayer::InitPlayer()
 void CPlayer::Update(float ElapsedTime)
 {
 	m_Camera = CORE->GetCamera();
-	if (m_Camera == NULL)
+	if (m_Camera == NULL || m_Camera->GetTypeCamera()==TC_FPS)
 		return;
 	if (!CORE->GetLevelManager()->IsOk())
 		return;
-	if (m_Camera->GetTypeCamera()==TC_FPS)
-		return;
 	if (CORE->GetLogicObjectsManager()->GetTutorialActive())
 	{
-		ChangeCharacterAnimation(WAIT_ANIM, 1.f);
-		CCharacter::Update(ElapsedTime);
+		ChangeCharacterAnimation(WAIT_ANIM, ANIMS_DELAY);
+		CCharacter::Update(ElapsedTime/1000.f);
 		return;
 	}
 

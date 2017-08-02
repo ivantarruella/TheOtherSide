@@ -41,9 +41,9 @@ class CScriptManager;
 
 
 enum ECollisionGroup {
-	ECG_ESCENARI,
-	ECG_ENEMICS,
-	ECG_PERSONATGE,
+	ECG_ESCENARI,		// 0
+	ECG_ENEMICS,		// 1
+	ECG_MOBILIARI,		// 2
 	ECG_ARMA,
 	ECG_MALGLOBAL,
 	ECG_COBERTURES,
@@ -143,7 +143,7 @@ public:
 	//----Update
 	void								Update											(float elapsedTime);
 	//--- Add/Release Actors
-	bool								AddPhysicActor							(CPhysicActor* actor);
+	bool								AddPhysicActor							(CPhysicActor* actor, float mass = 0.0f);
 	bool								ReleasePhysicActor					(CPhysicActor* actor);
 	void								ReleaseActorCapsule				(CPhysicActor* actor);
 

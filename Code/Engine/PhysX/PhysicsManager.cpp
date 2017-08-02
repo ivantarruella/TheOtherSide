@@ -374,7 +374,7 @@ void CPhysicsManager::Update (float elapsedTime)
 	m_pScene->flushStream();
 }
 
-bool CPhysicsManager::AddPhysicActor (CPhysicActor* actor)
+bool CPhysicsManager::AddPhysicActor (CPhysicActor* actor, float mass)
 {
 	assert(actor != NULL);
 	assert( m_pScene != NULL );
@@ -388,6 +388,8 @@ bool CPhysicsManager::AddPhysicActor (CPhysicActor* actor)
 	if (nxActor!=NULL)
 	{
 		nxActor->userData = actor->GetUserData();
+		if (mass > 0.0f)
+			nxActor->setMass(mass);
 		actor->CreateActor(nxActor);
 		isOk = true;
 	}
@@ -732,7 +734,7 @@ int GetCollisionGroup(const std::string & _szGroup)
 	}
 	else if(_szGroup == "personatge")
 	{
-		return ECG_PERSONATGE;
+		return ECG_MOBILIARI;
 	}
 	else if(_szGroup == "enemic")
 	{

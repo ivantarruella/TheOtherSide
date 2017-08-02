@@ -67,7 +67,7 @@ public:
 	void		SetPhysicData(std::string & name,std::string& physics_type)		{m_PhysicElement=new CPhysicElement(name,physics_type);}
 	void		SetPhysicElement	(CPhysicElement* PhysicElement) { m_PhysicElement=PhysicElement;}
 	
-	bool		CreateMeshPhysics(const std::vector<Vect3f>& vertices, const std::vector<uint32>& faces);
+	bool		CreateMeshPhysics(const std::vector<Vect3f>& vertices, const std::vector<uint32>& faces, uint32 group, float mass = 0.0f);
 	bool		CreatePhysics(Vect3f& vSize=(Vect3f)NULL, float radius=0.0f, float height=0.0f, uint32 CollisionGroup=0);
 	
 	Vect3f		xzFromAngle( float radians );

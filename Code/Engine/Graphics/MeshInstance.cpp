@@ -31,7 +31,9 @@ CInstanceMesh::CInstanceMesh(const CXMLTreeNode &XmlData)
 	CObject3D::m_Scale = Vect3f (scale_x, scale_y, scale_z); 
 	CObject3D::m_CreatePhysics = XmlData.GetBoolProperty("generate_physics",false);
 	CObject3D::m_PhysicElement=NULL;
-		
+	unsigned int collision_group=XmlData.GetIntProperty("colision",0);	// 0 = ECG_ESCENARI by default
+	float mass = XmlData.GetFloatProperty("mass", 0.0f);
+
 	m_StaticMesh = CORE->GetStaticMeshManager()->GetResource(l_Core);
 
 	if (m_StaticMesh != NULL)
@@ -42,7 +44,7 @@ CInstanceMesh::CInstanceMesh(const CXMLTreeNode &XmlData)
 			m_PhysicElement= new CPhysicElement(l_Core,l_Type);
 			
 			if(l_Type=="triangle_mesh")
-				CreateMeshPhysics(m_StaticMesh->getVB(),m_StaticMesh->getIB());
+				CreateMeshPhysics(m_StaticMesh->getVB(), m_StaticMesh->getIB(), collision_group, mass);
 			else {
 				Vect3f size = m_StaticMesh->getStaticMeshMaxPoint() - m_StaticMesh->getStaticMeshMinPoint();
 				float rad = m_StaticMesh->getStaticMeshBSRadius();

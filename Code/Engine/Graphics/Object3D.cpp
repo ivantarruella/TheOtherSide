@@ -96,7 +96,7 @@ Vect3f CObject3D::xzFromAngle( float radians )
 	return l_aux;
 }
 
-bool CObject3D::CreateMeshPhysics(const std::vector<Vect3f>& vertices, const std::vector<uint32>& faces){
+bool CObject3D::CreateMeshPhysics(const std::vector<Vect3f>& vertices, const std::vector<uint32>& faces, uint32 group, float mass){
 	if (!m_CreatePhysics) 
 		return false;
 
@@ -114,9 +114,9 @@ bool CObject3D::CreateMeshPhysics(const std::vector<Vect3f>& vertices, const std
 
 	CORE->GetPhysicsManager()->GetCookingMesh()->CreatePhysicMesh(vertices,faces,l_UserData->GetName());
 	NxTriangleMesh* l_TriangleMesh= CORE->GetPhysicsManager()->GetCookingMesh()->GetPhysicMesh(l_UserData->GetName());
-	l_Actor->AddMeshShape(l_TriangleMesh,m_Position,v3fZERO,0,ECG_ESCENARI);
-		
-	return CORE->GetPhysicsManager()->AddPhysicActor(l_Actor);
+	l_Actor->AddMeshShape(l_TriangleMesh,m_Position,v3fZERO,0,group);
+
+	return CORE->GetPhysicsManager()->AddPhysicActor(l_Actor, mass);
 }
 
 

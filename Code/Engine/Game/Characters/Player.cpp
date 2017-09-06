@@ -29,10 +29,12 @@ using namespace luabind;
 #define GAMEPAD_SPEED_AIM		0.00022f	// velocidad actualización gamepad apuntando
 
 #define PLAYER_SPEED_WALK		0.030f		// velocidad movimiento personaje andando
+#define PLAYER_SPEED_WALK_BCK	0.015f		// velocidad movimiento personaje andando atrás
 #define PLAYER_SPEED_WALK_AIM	0.030f		// velocidad movimiento personaje andando y apuntando
+#define PLAYER_SPEED_WALK_AIM_BCK	0.015f		// velocidad movimiento personaje andando hacia atrás y apuntando
 #define PLAYER_SPEED_RUN		0.075f		// velocidad movimiento personaje corriendo
 
-#define PLAYER_UPDATE_CAM_TIME	0.001f		// velocidad update camara al apuntar
+#define PLAYER_UPDATE_CAM_TIME	0.01f		// velocidad update camara al apuntar
 #define CAM_ZOOM_AIM_STEP		0.27f
 
 #define ANIMS_DELAY				0.3f			// Blending delay entre animaciones
@@ -54,7 +56,7 @@ CPlayer::CPlayer()
 	m_PlayerMovement(IDDLE), m_lastAnim(WAIT_ANIM), m_bIsAiming(false), m_bWasAiming(false), m_bIsRunning(false), m_bShoot(false), m_bUseAnim(false), m_bCanUse(false), m_fUseAnimTime(0.0f),
 	m_bUsePressed(false), m_fZoom(CAM_ZOOM_WALK), m_fDistance(CAM_DIST), m_fDistanceFromCenter(PLAYER_DISTANCE_FROM_CENTER), m_bUseItem(false), CCharacter(), m_vPosIni(Vect3f(0.0f, 0.0f, 0.0f)), m_fMouseSpeed(MOUSE_SPEED),
 	m_iNumMirrorPieces(0), m_bPlayerDying(false), m_bIsDead(false), m_fTime(0.0f), m_fUpdateCam(0.0f), m_tUseAnim(USE_ANIM), m_fHitTime(0.0f), m_bBlood(false), m_fStepTime(0.0f),
-	m_fShotTime(SHOOT_SOUND_TIME)
+	m_fShotTime(SHOOT_SOUND_TIME), mf_Yaw(0.0f)
 {
 	InitPlayer();
 }
@@ -63,7 +65,7 @@ CPlayer::CPlayer(CXMLTreeNode XMLData) : m_Camera(NULL), m_fDeltaPitch(0.f), m_f
 	m_PlayerMovement(IDDLE), m_lastAnim(WAIT_ANIM), m_bIsAiming(false), m_bWasAiming(false), m_bIsRunning(false), m_bShoot(false), m_bUseAnim(false), m_bCanUse(false), m_fUseAnimTime(0.0f),
 	m_bUsePressed(false), m_fZoom(CAM_ZOOM_WALK), m_fDistance(CAM_DIST), m_fDistanceFromCenter(PLAYER_DISTANCE_FROM_CENTER), m_bUseItem(false), CCharacter(XMLData, PLAYER_BBOX_SIZE,PLAYER_BBOX_HEIGHT), m_vPosIni(Vect3f(0.0f, 0.0f, 0.0f)), m_fMouseSpeed(MOUSE_SPEED),
 	m_iNumMirrorPieces(0), m_bPlayerDying(false), m_bIsDead(false), m_fTime(0.0f), m_fUpdateCam(0.0f), m_tUseAnim(USE_ANIM), m_fHitTime(0.0f), m_bBlood(false), m_fStepTime(0.0f),
-	m_fShotTime(SHOOT_SOUND_TIME)
+	m_fShotTime(SHOOT_SOUND_TIME), mf_Yaw(0.0f)
 {
 	InitPlayer();
 }
@@ -185,7 +187,8 @@ void CPlayer::UpdateInputActions()
 
 	// Shoot, run & use buttons (keyboard & gamepad)
 	m_bShoot = actionToInput->DoAction(DOACTION_PLAYERSHOOT) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERSHOOT_PAD));
-	m_bIsRunning = (actionToInput->DoAction(DOACTION_PLAYERRUN) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERRUN_PAD))) && !m_bIsAiming; 
+	m_bIsRunning = (actionToInput->DoAction(DOACTION_PLAYERRUN) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERRUN_PAD))) && !m_bIsAiming 
+		&& (m_PlayerMovement == WALK_FORWARD || m_PlayerMovement == WALK_FORWARD_LEFT || m_PlayerMovement == WALK_FORWARD_RIGHT); 
 	m_bUsePressed = actionToInput->DoAction(DOACTION_PLAYERUSEITEM) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERUSEITEM_PAD));
 
 }
@@ -248,10 +251,23 @@ void CPlayer::UpdateCamera(float ElapsedTime)
 
 void CPlayer::UpdatePlayerSpeed()
 {
+	if (m_PlayerMovement == IDDLE)
+		return;
+
 	if (m_bIsRunning)
 		SetPlayerSpeed(PLAYER_SPEED_RUN);
-	else
-		SetPlayerSpeed(m_bIsAiming ? PLAYER_SPEED_WALK_AIM : PLAYER_SPEED_WALK);
+	else if (m_bIsAiming) {
+		if (m_PlayerMovement == WALK_BACKWARDS || m_PlayerMovement == WALK_BACKWARDS_LEFT || m_PlayerMovement == WALK_BACKWARDS_RIGHT)
+			SetPlayerSpeed(PLAYER_SPEED_WALK_AIM_BCK);
+		else
+			SetPlayerSpeed(PLAYER_SPEED_WALK_AIM);
+	}
+	else {
+		if (m_PlayerMovement == WALK_BACKWARDS || m_PlayerMovement == WALK_BACKWARDS_LEFT || m_PlayerMovement == WALK_BACKWARDS_RIGHT)
+			SetPlayerSpeed(PLAYER_SPEED_WALK_BCK);
+		else
+			SetPlayerSpeed(PLAYER_SPEED_WALK);
+	}
 }
 
 void CPlayer::UpdatePlayerPosition(float ElapsedTime)
@@ -332,7 +348,7 @@ void CPlayer::UpdatePlayerPosition(float ElapsedTime)
 //En el character modificar les funcions perq afecten tmb al controller
 void CPlayer::UpdatePlayerOrientation()
 {
-	if (m_bPlayerDying || m_bIsDead)
+	if (m_bPlayerDying || m_bIsDead || m_bUsePressed)
 		return;
 
 	float l_fYaw = m_Camera->GetPlayerYaw();
@@ -345,46 +361,35 @@ void CPlayer::UpdatePlayerOrientation()
 		switch (m_PlayerMovement) 
 		{
 		case IDDLE:
+			SetYaw(-FLOAT_PI_VALUE/2+l_fYaw);
+			if (l_fYaw != mf_Yaw && m_PlayerMovement == IDDLE && !m_bIsAiming) {
+				ChangeCharacterAnimation(m_bIsRunning ? RUN_ANIM : WALK_ANIM, ANIMS_DELAY);
+				mf_Yaw = l_fYaw;
+			}			
 			break;
 
 		case WALK_FORWARD:
-			SetYaw(-FLOAT_PI_VALUE/2+l_fYaw);
-
-			break;
-
 		case WALK_BACKWARDS:
-			SetYaw(+FLOAT_PI_VALUE/2+l_fYaw);
-
+			SetYaw(-FLOAT_PI_VALUE/2+l_fYaw);
 			break;
 
 		case WALK_LEFT:
 			SetYaw(l_fYaw);
-
 			break;
 
 		case WALK_RIGHT:
 			SetYaw(FLOAT_PI_VALUE+l_fYaw);
-
 			break;
 
 		case WALK_FORWARD_LEFT:
+		case WALK_BACKWARDS_RIGHT:	
 			SetYaw(-FLOAT_PI_VALUE/4+l_fYaw);
 
 			break;
 
 		case WALK_FORWARD_RIGHT:
-			SetYaw(5*(FLOAT_PI_VALUE/4)+l_fYaw);
-
-			break;
-
 		case WALK_BACKWARDS_LEFT:
-			SetYaw(FLOAT_PI_VALUE/4+l_fYaw);
-
-			break;
-
-		case WALK_BACKWARDS_RIGHT:
-			SetYaw(3*(FLOAT_PI_VALUE/4)+l_fYaw);
-			
+			SetYaw(5*(FLOAT_PI_VALUE/4)+l_fYaw);
 
 			break;
 		}

@@ -9,7 +9,7 @@
 #include "Base.h"				
 
 
-#define APPLICATION_NAME	"ThE oThEr SiDe v1.04"
+#define APPLICATION_NAME	"ThE oThEr SiDe v1.05 beta"
 
 
 //-----------------------------------------------------------------------------

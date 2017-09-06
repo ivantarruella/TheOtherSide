@@ -48,7 +48,7 @@ bool CCharacter::Init()
 		if(GetPhysicUserData())
 		{
 			float l_StepOffset=0.5f;			//Offset-> altura maxima para subir escalones = 0.5f
-			uint32 l_CollisionGroupsMask=(1<<0|1<<2);	// Mascara, sols col·lisiona amb ECG_ESCENARI (grup 0) i ECG_MOBILIARI (grup 2)
+			uint32 l_CollisionGroupsMask=(1<<ECG_ESCENARI|1<<ECG_MOBILIARI);	// Mascara, sols col·lisiona amb ECG_ESCENARI (grup 0) i ECG_MOBILIARI (grup 2)
 			m_fSkinWidth=0.15f;
 
 			// Character Controller

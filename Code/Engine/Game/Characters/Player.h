@@ -119,6 +119,7 @@ private:
 	tAnimationStates m_tUseAnim;
 	float m_fHitTime, m_fStepTime, m_fShotTime;
 	bool m_bBlood;
+	float mf_Yaw;
 };
 
 #endif	// __CLASS_PLAYER_H__

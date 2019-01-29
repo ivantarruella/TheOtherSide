@@ -150,17 +150,17 @@ void CEngine::UpdateInputActions()
 
 void CEngine::Render()
 {
-	//DWORD nFrameStartTime = GetTickCount();
+	DWORD nFrameStartTime = GetTickCount();
 
 	//---Render the scene---
 	CRenderManager* renderManager = m_pCore->GetRenderManager();
 	m_pProcess->RenderScene(renderManager);
 
 	// FPS limit
-	//if (m_InitParams.limit_fps)	{
-	//	while (GetTickCount()-nFrameStartTime < 1000/FPS_LIMIT) 
-	//		Sleep(0); 
-	//}
+	if (m_InitParams.max_fps > 0)	{
+		while (GetTickCount()-nFrameStartTime < 1000/m_InitParams.max_fps) 
+			Sleep(0); 
+	}
 }
 
 bool CEngine::LoadConfig (const std::string& pathFile)
@@ -190,6 +190,7 @@ bool CEngine::LoadConfig (const std::string& pathFile)
 			m_InitParams.y	= l_ScreenNode.GetIntProperty("y_ini",0);
 			m_InitParams.w	= l_ScreenNode.GetIntProperty("nWidth",640);
 			m_InitParams.h	= l_ScreenNode.GetIntProperty("nHeight",480);
+			m_InitParams.max_fps = l_ScreenNode.GetIntProperty("max_fps",0);
 			m_InitParams.shadows_type = l_ScreenNode.GetPszProperty("shadows_type", "PREDEFINED");
 		}
 

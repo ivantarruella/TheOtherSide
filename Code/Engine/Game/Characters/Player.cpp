@@ -28,21 +28,21 @@ using namespace luabind;
 #define GAMEPAD_SPEED			0.00033f	// velocidad actualización gamepad
 #define GAMEPAD_SPEED_AIM		0.00022f	// velocidad actualización gamepad apuntando
 
-#define PLAYER_SPEED_WALK		0.030f		// velocidad movimiento personaje andando
-#define PLAYER_SPEED_WALK_BCK	0.015f		// velocidad movimiento personaje andando atrás
-#define PLAYER_SPEED_WALK_AIM	0.030f		// velocidad movimiento personaje andando y apuntando
-#define PLAYER_SPEED_WALK_AIM_BCK	0.015f		// velocidad movimiento personaje andando hacia atrás y apuntando
-#define PLAYER_SPEED_RUN		0.075f		// velocidad movimiento personaje corriendo
+#define PLAYER_SPEED_WALK		0.0275f		// velocidad movimiento personaje andando
+#define PLAYER_SPEED_WALK_BCK	0.025f		// velocidad movimiento personaje andando atrás
+#define PLAYER_SPEED_WALK_AIM	0.0275f		// velocidad movimiento personaje andando y apuntando
+#define PLAYER_SPEED_WALK_AIM_BCK	0.025f	// velocidad movimiento personaje andando hacia atrás y apuntando
+#define PLAYER_SPEED_RUN		0.055f		// velocidad movimiento personaje corriendo
 
 #define PLAYER_UPDATE_CAM_TIME	0.01f		// velocidad update camara al apuntar
-#define CAM_ZOOM_AIM_STEP		0.27f
+#define CAM_ZOOM_AIM_STEP		0.05f
 
 #define ANIMS_DELAY				0.3f			// Blending delay entre animaciones
 
 #define MAX_LIFE_PLAYER			2.50f		// Vida inicial
 #define LIFE_THRESHOLD			0.02f		
 
-#define CAM_PITCH_DOWN			(FLOAT_PI_VALUE/7.0f)
+#define CAM_PITCH_DOWN			(FLOAT_PI_VALUE/9.0f)
 #define CAM_PITCH_UP			(FLOAT_PI_VALUE/9.0f)
 
 #define PLAYER_HIT_TIME			0.2f
@@ -187,8 +187,11 @@ void CPlayer::UpdateInputActions()
 
 	// Shoot, run & use buttons (keyboard & gamepad)
 	m_bShoot = actionToInput->DoAction(DOACTION_PLAYERSHOOT) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERSHOOT_PAD));
-	m_bIsRunning = (actionToInput->DoAction(DOACTION_PLAYERRUN) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERRUN_PAD))) && !m_bIsAiming 
-		&& (m_PlayerMovement == WALK_FORWARD || m_PlayerMovement == WALK_FORWARD_LEFT || m_PlayerMovement == WALK_FORWARD_RIGHT); 
+	if (!m_bIsRunning && !m_bIsAiming)
+	{
+		m_bIsRunning = (actionToInput->DoAction(DOACTION_PLAYERRUN) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERRUN_PAD))) && !m_bIsAiming 
+			&& (m_PlayerMovement == WALK_FORWARD || m_PlayerMovement == WALK_FORWARD_LEFT || m_PlayerMovement == WALK_FORWARD_RIGHT); 
+	}
 	m_bUsePressed = actionToInput->DoAction(DOACTION_PLAYERUSEITEM) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERUSEITEM_PAD));
 
 }
@@ -229,7 +232,7 @@ void CPlayer::UpdateCamera(float ElapsedTime)
 			if (m_fDistance > (float)CAM_DIST_AIM)
 				m_fDistance -= (float)CAM_ZOOM_AIM_STEP;
 			if (m_fDistanceFromCenter < (float)CAM_DIST_AIM) 
-				m_fDistanceFromCenter += (float)CAM_ZOOM_AIM_STEP/3.0f;
+				m_fDistanceFromCenter += (float)CAM_ZOOM_AIM_STEP;
 			((CThirdPersonCamera*)m_Camera)->SetFrontDistance(m_fDistance);
 			((CThirdPersonCamera*)m_Camera)->SetDistanceFromCenter(m_fDistanceFromCenter);
 		}
@@ -238,7 +241,7 @@ void CPlayer::UpdateCamera(float ElapsedTime)
 			if (m_fDistance < (float)CAM_DIST)
 				m_fDistance += (float)CAM_ZOOM_AIM_STEP;
 			if (m_fDistanceFromCenter > (float)PLAYER_DISTANCE_FROM_CENTER) 
-				m_fDistanceFromCenter -= (float)CAM_ZOOM_AIM_STEP/3.0f;
+				m_fDistanceFromCenter -= (float)CAM_ZOOM_AIM_STEP;
 			((CThirdPersonCamera*)m_Camera)->SetFrontDistance(m_fDistance);
 			((CThirdPersonCamera*)m_Camera)->SetDistanceFromCenter(m_fDistanceFromCenter);
 		}
@@ -291,6 +294,7 @@ void CPlayer::UpdatePlayerPosition(float ElapsedTime)
 
 	switch (m_PlayerMovement) {
 	case IDDLE:
+		m_bIsRunning = false;
 		break;
 
 	case WALK_FORWARD:
@@ -361,11 +365,12 @@ void CPlayer::UpdatePlayerOrientation()
 		switch (m_PlayerMovement) 
 		{
 		case IDDLE:
+			/* Move player while moving camera:
 			SetYaw(-FLOAT_PI_VALUE/2+l_fYaw);
 			if (l_fYaw != mf_Yaw && m_PlayerMovement == IDDLE && !m_bIsAiming) {
 				ChangeCharacterAnimation(m_bIsRunning ? RUN_ANIM : WALK_ANIM, ANIMS_DELAY);
 				mf_Yaw = l_fYaw;
-			}			
+			}*/			
 			break;
 
 		case WALK_FORWARD:
@@ -483,15 +488,10 @@ void CPlayer::UpdatePlayerShootAnim(float ElapsedTime)
 		ChangeCharacterAnimation((m_PlayerMovement == IDDLE ? AIM_ANIM : WALK_AIM_ANIM), ANIMS_DELAY);
 
 		// Aim down
-		if (l_pitch < 0.0f)
+		if (l_pitch <= 0.0f)
 		{
 			ClearCycle((m_PlayerMovement == IDDLE ? AIM_UP_ANIM : WALK_AIM_UP_ANIM), 0.f);
-			float weight = 0.f;
-			if (l_pitch <= -CAM_PITCH_DOWN)
-				weight = 1.f + CAM_PITCH_DOWN;
-			else
-				weight = -l_pitch * (2.5f - l_pitch);
-
+			float weight = -l_pitch * (2.5f - l_pitch);
 			BlendCycle(AIM_DOWN_ANIM, 0.f, weight);	
 		}
 		
@@ -499,22 +499,9 @@ void CPlayer::UpdatePlayerShootAnim(float ElapsedTime)
 		if (l_pitch > 0.0f)
 		{
 			ClearCycle((m_PlayerMovement == IDDLE ? AIM_DOWN_ANIM : WALK_AIM_DOWN_ANIM), 0.f);
-			float weight = 0.f;
-			if (l_pitch >= CAM_PITCH_UP)
-				weight = 1.15f;
-			else
-				weight = l_pitch * (2.75f + l_pitch);
-
+			float weight = l_pitch * (2.75f + l_pitch);
 			BlendCycle(AIM_UP_ANIM, 0.f, weight);	
 		}
-
-		// Shoot anim (sólo en mundo real y con munición)
-		/*
-		if (m_bShoot && !m_oWeapon.IsMunitionEmpty() && isInRealWorld())
-			BlendCycle(SHOOT_ANIM, ANIMS_DELAY);
-		else
-			ClearCycle(SHOOT_ANIM, ANIMS_DELAY);
-		*/
 	}
 	else
 	{

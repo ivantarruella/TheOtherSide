@@ -3,7 +3,8 @@
 	<Sound path="data\Sounds\GUI\gui_next.wav" soundId="gui_over"/> 
 	
 	<Sound path="data\Sounds\Musicas\Illness_Institute_-_The_Lab.wav" soundId="musica_ME"/>
-	<Sound path="data\Sounds\Musicas\34662__erh__nine-lies-the-heart-ed-4.wav" soundId="musica_MR"/>
+	<Sound path="data\Sounds\Musicas\432666__eflexmusic__suspenseful-orchestral-ambiance-soundtrack-loop.wav" soundId="musica_MR"/>
+	
 	<Sound path="data\Sounds\Musicas\intro.wav" soundId="intro"/>
 	<Sound path="data\Sounds\Musicas\action_music.wav" soundId="action_music"/>
 	

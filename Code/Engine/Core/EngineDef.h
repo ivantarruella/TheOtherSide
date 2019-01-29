@@ -8,7 +8,7 @@
 struct SInitParams 
 {
 	SInitParams()
-		: fullscreen(false), show_fps(false), exclusiveModeinMouse(false), x(0), y(0), w(0), h(0), 
+		: fullscreen(false), show_fps(false), exclusiveModeinMouse(false), x(0), y(0), w(0), h(0), max_fps(0),
 		  fonts_path(""), language_def(""), actions_path(""), gui_path(""), lua_path(""), sounds_path(""),
 		  animatedmodels_path(""), effects_path(""), ROT_path(""), scenerenderercommands_path(""),
 		  shadows_type("")
@@ -23,6 +23,7 @@ struct SInitParams
     int y;
     int w;
     int h;
+	unsigned int max_fps;
 	std::string fonts_path;
 	std::string language_def;
 	std::map<std::string, std::string> language_desc;

@@ -76,7 +76,14 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCm
 	CGameProcess l_proc;
 	
 	// Leemos XML de configuración para el Engine
-	l_Engine->LoadConfig("data/XML/settings.xml");
+	std::string cfg_file;
+#if defined( _DEBUG )
+	cfg_file = "data/XML/settings_dbg.xml";
+#else
+	cfg_file = "data/XML/settings.xml";
+#endif
+	
+	l_Engine->LoadConfig(cfg_file);
 
 	// Register the window class
 	WNDCLASSEX wc = {	sizeof(WNDCLASSEX), CS_CLASSDC, MsgProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, APPLICATION_NAME, NULL };

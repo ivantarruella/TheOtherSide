@@ -23,7 +23,7 @@
 using namespace luabind;
 
 #define MOUSE_SPEED				0.010f		// velocidad actualización ratón por defecto inicial 
-#define MOUSE_SPEED_AIM			0.008f		// velocidad actualización ratón apuntando por defecto inicial 
+#define MOUSE_SPEED_AIM			0.006f		// velocidad actualización ratón apuntando por defecto inicial 
 
 #define GAMEPAD_SPEED			0.00033f	// velocidad actualización gamepad
 #define GAMEPAD_SPEED_AIM		0.00022f	// velocidad actualización gamepad apuntando
@@ -166,6 +166,7 @@ void CPlayer::UpdateInputActions()
 		m_PlayerMovement = WALK_BACKWARDS_RIGHT;
 
 	// Aim button (keyboard & gamepad)
+	/*
 	if (CORE->GetActionToInput()->DoAction(DOACTION_PLAYERAIM) || (bGamePad&&CORE->GetActionToInput()->DoAction(DOACTION_PLAYERAIM_PAD))) 
 	{
 		if(!m_bWasAiming && !m_oWeapon.AimingWeaponCollision())
@@ -173,6 +174,11 @@ void CPlayer::UpdateInputActions()
 	
 		if(m_bWasAiming)
 			m_bWasAiming = false;
+	}
+	else
+	{
+		m_bIsAiming = false;
+		m_bWasAiming = false;
 	}
 
 	if(m_bIsAiming && m_oWeapon.AimingWeaponCollision()) {
@@ -184,6 +190,18 @@ void CPlayer::UpdateInputActions()
 		m_bIsAiming = true;	
 		m_bWasAiming = false;
 	}
+	*/
+	m_bWasAiming = false;
+	if ((CORE->GetActionToInput()->DoAction(DOACTION_PLAYERAIM) || (bGamePad&&CORE->GetActionToInput()->DoAction(DOACTION_PLAYERAIM_PAD))) && !m_oWeapon.AimingWeaponCollision())
+	{
+		m_bIsAiming = true;
+		m_bIsRunning = false;
+	}
+	else
+	{
+		m_bIsAiming = false;
+	}
+	
 
 	// Shoot, run & use buttons (keyboard & gamepad)
 	m_bShoot = actionToInput->DoAction(DOACTION_PLAYERSHOOT) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERSHOOT_PAD));
@@ -302,6 +320,7 @@ void CPlayer::UpdatePlayerPosition(float ElapsedTime)
 		break;
 
 	case WALK_BACKWARDS:
+		m_bIsRunning = false;
 		l_vDirController=-l_vUpDown;
 		break;
 
@@ -331,13 +350,13 @@ void CPlayer::UpdatePlayerPosition(float ElapsedTime)
 
 	case WALK_BACKWARDS_LEFT:
 		l_fYaw -= 0.01f;
-
+		m_bIsRunning = false;
 		l_vDirController=-l_vDir1;
 		break;
 
 	case WALK_BACKWARDS_RIGHT:
 		l_fYaw += 0.01f;
-
+		m_bIsRunning = false;
 		l_vDirController=-l_vDir2;
 		break;
 	}
@@ -578,7 +597,7 @@ void CPlayer::UpdatePlayerWeapon(float ElapsedTime)
 	}
 	else
 	{
-		if (!isInRealWorld() && m_bIsAiming && !m_bShoot)
+		if (!isInRealWorld() && !m_bShoot)
 			CORE->GetScriptManager()->RunCode("sound_laser_off()");
 
 		m_fShotTime = SHOOT_SOUND_TIME;

@@ -25,10 +25,14 @@ bool CShootTask::checkCondition(float ElapsedTime)
 		return true;
 	//TODO Está a tiro
 	m_Time=0.0f;
-	isShooting=false;
 	m_shoot=false;
-	//m_Owner->ChangeCharacterAnimation(WAIT_ANIM, 0.3f);
-	//m_Owner->ClearCycle(AIM_ANIM, 0.3f);
+	if (isShooting)
+	{
+		m_Owner->ChangeCharacterAnimation(WAIT_ANIM, 0.3f);
+		m_Owner->ClearCycle(AIM_ANIM, 0.3f);
+		isShooting=false;
+	}
+
 	return false;
 }
 
@@ -73,7 +77,7 @@ void CShootTask::doAction(float ElapsedTime)
 				action << "sound_disparo_soldado(" << vol << ")";
 				CORE->GetScriptManager()->RunCode(action.str());				
 				
-				CORE->GetBulletManager()->AddBullet(l_vGunPosition, l_dir, m_Player, BULLET_SPEED, 0.085f);
+				CORE->GetBulletManager()->AddBullet(l_vGunPosition, l_dir, m_Player, BULLET_SPEED/4, 0.075f);
 				isShooting=false;
 			}
 			m_shoot=true;

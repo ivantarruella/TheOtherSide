@@ -11,6 +11,7 @@
 
 #include "Math/MathUtils.h"
 #include <vector>
+#include <string>
 class CPhysicASELoader
 {
 public:

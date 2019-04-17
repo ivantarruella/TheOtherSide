@@ -3,6 +3,7 @@
 #define INC_STATEMACHINE_H_
 
 #include <map>
+#include <string>
 
 class CState;
 class CPlayer;

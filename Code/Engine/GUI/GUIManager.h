@@ -27,7 +27,7 @@ class CScriptManager;
 //--------------------------
 
 //----------Declaracion de nuevos tipos------------------------------------
-typedef enum EtypeTransitionEffect {
+enum EtypeTransitionEffect {
   TE_SHADOW = 0,
   TE_FADE_TO_BLACK,
   TE_SHADOW_OFF

@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 class CRenderManager;
-typedef enum ETypeCamera {TC_FPS = 0, TC_THPS};
+enum ETypeCamera {TC_FPS = 0, TC_THPS};
 class CCamera
 {
 

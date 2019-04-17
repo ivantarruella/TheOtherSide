@@ -24,7 +24,7 @@ class CCheckButton: public CGuiElement
 {
 
 private:
-	typedef enum ECheckButtonState { CBS_ON, CBS_OFF };
+	enum ECheckButtonState { CBS_ON, CBS_OFF };
 
 public:
 	CCheckButton(	uint32 windowsHeight, uint32 windowsWidth, float height_precent, float witdh_percent,

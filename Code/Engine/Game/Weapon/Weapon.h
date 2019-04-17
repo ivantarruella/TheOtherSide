@@ -24,7 +24,6 @@ public:
 	~CWeapon(void);
 	void Init();
 	void ReloadWeapon();
-	void SetLanternLight (CSpotLight* Light);
 	void SetDamage(float Damage)
 	{
 		m_fDamage = Damage;
@@ -101,7 +100,7 @@ private:
 
 	CPlayer * m_oPlayer;
 	//Llum llanterna
-	CSpotLight *m_LanternLight,*m_Laser;
+	CSpotLight *m_LanternLight, * m_LanternLight2, *m_Laser;
 	Vect3f		m_vLightPosition;
 
 	Vect3f m_vWeaponBonePosition;

@@ -32,8 +32,8 @@ struct SCREEN_COLOR_VERTEX
 };
 
 
-typedef enum ETypeAlignment { CENTER, UPPER_LEFT, UPPER_RIGHT, LOWER_LEFT, LOWER_RIGHT };
-typedef enum ETypeFlip
+enum ETypeAlignment { CENTER, UPPER_LEFT, UPPER_RIGHT, LOWER_LEFT, LOWER_RIGHT };
+enum ETypeFlip
 {
     NONE_FLIP,
     FLIP_X,

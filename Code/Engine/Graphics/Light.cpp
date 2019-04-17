@@ -71,7 +71,7 @@ void CLight::Update(float ElapsedTime)
 			m_fTime = 0.f;
 		}
 	}
-	else if (m_bVarIntensity && m_Name != "LASER" && m_Name != "LINTERNA")		// variamos intensidad de luz
+	else if (m_bVarIntensity && m_Name != "LASER" && m_Name != "LINTERNA" && m_Name != "LINTERNA2")		// variamos intensidad de luz
 	{
 		m_fVarTime += ElapsedTime;
 

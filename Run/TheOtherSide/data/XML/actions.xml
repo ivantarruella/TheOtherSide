@@ -224,11 +224,11 @@
   </action>
 
   <action name="PlayerShootPad">
-    <input deviceType="IDV_GAMEPAD1" EventType="EVENT_DOWN"      Code="PAD_BUTTON_LEFT_SHOULDER"/>
+    <input deviceType="IDV_GAMEPAD1" EventType="EVENT_DOWN"      Code="PAD_BUTTON_RIGHT_SHOULDER"/>
   </action>
 
   <action name="PlayerAimPad">
-    <input deviceType="IDV_GAMEPAD1" EventType="EVENT_DOWN_UP"      Code="PAD_BUTTON_RIGHT_SHOULDER"/>
+    <input deviceType="IDV_GAMEPAD1" EventType="EVENT_DOWN"      Code="PAD_BUTTON_LEFT_SHOULDER"/>
   </action>
   
   <!--.......VIEWER CAMERA CONTROL: GAMEPAD.......................

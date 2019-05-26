@@ -5,6 +5,7 @@
 #include "Vector3.h"
 #include "Node.h"
 #include <vector>
+#include <string>
 
 class CXMLTreeNode;
 

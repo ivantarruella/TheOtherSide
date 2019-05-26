@@ -18,7 +18,7 @@ bool CAimTask::checkCondition(float ElapsedTime)
 		m_Player=(CCharacter*)CORE->GetRenderableObjectsLayersManager()->GetResource("solid")->GetInstance("PLAYER");
 	}
 
-	float l_dist = m_Player->GetPosition().SqDistance(m_Owner->GetPosition());
+	//float l_dist = m_Player->GetPosition().SqDistance(m_Owner->GetPosition());
 
 	if(isFaced() || !isNotBlockedEyeLine() /*|| l_dist < 10.0f*/)
 		return false;

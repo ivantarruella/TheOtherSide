@@ -115,7 +115,7 @@ inline T Rad2Deg( T rad )
 //////////////////////////////////////////////////////////////////////////
 void CanonizeAngle (float& fAngle)
 {
-  fAngle = fmod (fAngle, e2PIf);
+  fAngle = static_cast<float>(fmod (fAngle, e2PIf));
 
   if (fAngle >  ePIf) fAngle -= e2PIf;
   if (fAngle < -ePIf) fAngle += e2PIf;

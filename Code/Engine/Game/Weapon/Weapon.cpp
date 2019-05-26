@@ -34,7 +34,7 @@
 
 class CThirdPersonCamera;
 
-CWeapon::CWeapon():m_LanternLight(NULL),m_vForward (NULL),m_oPlayer(NULL),m_vLightPosition(NULL),m_Laser(NULL),m_fShotTimer(0.0f),m_vWeaponBonePosition(NULL)
+CWeapon::CWeapon():m_LanternLight(NULL), m_LanternLight2(NULL),m_vForward (NULL),m_oPlayer(NULL),m_vLightPosition(NULL),m_Laser(NULL),m_fShotTimer(0.0f),m_vWeaponBonePosition(NULL)
 {
 	Init();	
 
@@ -71,13 +71,9 @@ bool CWeapon::IsAiming()
 void CWeapon::ReloadWeapon()
 {
 	m_LanternLight = (CSpotLight*)CORE->GetLightManager()->GetResource("LINTERNA");
+	m_LanternLight2 = (CSpotLight*)CORE->GetLightManager()->GetResource("LINTERNA2");
 	m_Laser = (CSpotLight*)CORE->GetLightManager()->GetResource("LASER");
 
-}
-
-void CWeapon::SetLanternLight (CSpotLight* Light)
-{
-	m_LanternLight = Light;
 }
 
 void CWeapon::Light(float dt)
@@ -87,12 +83,14 @@ void CWeapon::Light(float dt)
 		if(m_fLanternTimer <= 0.f )
 		{
 			m_LanternLight->SetVisible(false);
+			m_LanternLight2->SetVisible(false);
 			m_Laser->SetVisible(false);
 		}
 		else
 		if(IsLanternAttackMode() && m_Laser != NULL) 
 		{
 			m_LanternLight->SetVisible(false);
+			m_LanternLight2->SetVisible(false);
 			m_Laser->SetVisible(true);
 
 			m_fLanternTimer -= 2.f*dt;
@@ -104,6 +102,7 @@ void CWeapon::Light(float dt)
 		else if(m_LanternLight != NULL){
 			bool bAiming = IsAiming();
 			m_LanternLight->SetVisible(bAiming);
+			m_LanternLight2->SetVisible(bAiming);
 			m_Laser->SetVisible(false);
 
 			if (bAiming) {
@@ -189,6 +188,8 @@ void CWeapon::SetForwardDirection()
 
 	if(m_LanternLight!=NULL)
 		m_LanternLight->SetDirection(m_vForward);
+	if (m_LanternLight2 != NULL)
+		m_LanternLight2->SetDirection(m_vForward);
 	if(m_Laser!=NULL)
 		m_Laser->SetDirection(m_vForward);
 }
@@ -200,6 +201,8 @@ void CWeapon::Update(float dt, CPlayer* player)
 
 	if(m_LanternLight==NULL)
 		m_LanternLight = (CSpotLight*)CORE->GetLightManager()->GetResource("LINTERNA");
+	if (m_LanternLight2 == NULL)
+		m_LanternLight2 = (CSpotLight*)CORE->GetLightManager()->GetResource("LINTERNA2");
 	if(m_Laser==NULL)
 		m_Laser = (CSpotLight*)CORE->GetLightManager()->GetResource("LASER");
 
@@ -216,6 +219,8 @@ void CWeapon::Update(float dt, CPlayer* player)
 		{
 			if (m_LanternLight!=NULL)
 				m_LanternLight->SetVisible(false);
+			if (m_LanternLight2 != NULL)
+				m_LanternLight2->SetVisible(false);
 			if (m_Laser!=NULL)
 				m_Laser->SetVisible(false);
 			if(m_oPlayer->GetPlayerAimming())
@@ -280,6 +285,8 @@ void CWeapon::SetLightPosition()
 
 		if(m_LanternLight!=NULL)
 			m_LanternLight->SetPosition(m_vLightPosition);
+		if (m_LanternLight2 != NULL)
+			m_LanternLight2->SetPosition(m_vLightPosition);
 		if(m_Laser!=NULL)
 			m_Laser->SetPosition(m_vLightPosition);
 	}

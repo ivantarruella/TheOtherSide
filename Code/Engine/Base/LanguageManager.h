@@ -12,6 +12,7 @@
 #include "Math/Color.h"
 #include <vector>
 #include <map>
+#include <string>
 
 struct SLiteral
 {

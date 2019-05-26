@@ -16,6 +16,7 @@
 
 #include <vector>
 #include <map>
+#include <string>
 
 //---Forward Declarations--
 class CRenderManager;

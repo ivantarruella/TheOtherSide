@@ -25,7 +25,7 @@ class CButton: public CGuiElement
 
 private:
 	
-	typedef enum EButtonState { BS_NORMAL, BS_OVER, BS_CLICKED };
+	enum EButtonState { BS_NORMAL, BS_OVER, BS_CLICKED };
 
 public:
 

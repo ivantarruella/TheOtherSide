@@ -2,6 +2,7 @@
 #include "include\PhysicASELoader.h"
 #include "Math/Vector3.h"
 #include <stdio.h>
+#include <string>
 //#include "Base.h"
 
 //#include "MemLeaks.h"

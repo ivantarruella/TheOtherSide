@@ -60,7 +60,7 @@ public:
 
 
 	void Reload();
-	bool Init();
+	bool Init(const std::string& _coreName);
 
 	virtual void Update(float ElapsedTime);
 
@@ -79,12 +79,12 @@ public:
 	float GetHeight() { return m_fHeight;}
 	int GetAnim(){return m_Anim;};
 
-	void ClearAllAnims();
-
 protected:
 
 	float m_fHeight;
 	float m_fSkinWidth;
+
+	Vect3f m_fInstancePos;
 
 private:
 	CPhysicController* m_PhysicController;

@@ -13,7 +13,7 @@
 
 //#include "Utils/MemLeaks.h"
 
-// TODO: descomentar y probar para colision de objetos
+/* TODO: descomentar y probar para colision de objetos
 class CPhysicsControllerHitReport : public NxUserControllerHitReport
 {
 	public:
@@ -45,7 +45,7 @@ class CPhysicsControllerHitReport : public NxUserControllerHitReport
 	}
 	
 };
-
+*/
 
 CPhysicController::CPhysicController(float radius, float height, float slope, float skinwidth, float stepOffset,
 																		 uint32 collisionGroups, CPhysicUserData* userData, const Vect3f& pos, float gravity)
@@ -66,8 +66,8 @@ CPhysicController::CPhysicController(float radius, float height, float slope, fl
 
 	//---- Crear un nuevo NxController----
 	m_pPhXControllerDesc = new NxCapsuleControllerDesc();
-  CPhysicsControllerHitReport* l_Report  = NULL;//new CPhysicsControllerHitReport();
-  m_Report = l_Report;
+  //CPhysicsControllerHitReport* l_Report  = CPhysicsControllerHitReport();
+  //m_Report = l_Report;
 
 	m_pPhXControllerDesc->position.x	    = pos.x;
 	m_pPhXControllerDesc->position.y	    = pos.y;
@@ -78,7 +78,7 @@ CPhysicController::CPhysicController(float radius, float height, float slope, fl
 	m_pPhXControllerDesc->skinWidth		    = m_fSkinWidth_Capsule;
 	m_pPhXControllerDesc->stepOffset	    = m_fStepOffset_Capsule;
 	m_pPhXControllerDesc->upDirection	    = NX_Y;
-  m_pPhXControllerDesc->callback        = l_Report;
+	m_pPhXControllerDesc->callback = NULL;// l_Report;
   m_pPhXControllerDesc->interactionFlag = NXIF_INTERACTION_USE_FILTER;
 }
 
@@ -151,23 +151,7 @@ void CPhysicController::Move (const Vect3f& direction, float elapsedTime)
 	NxVec3 d(direction.x, direction.y+(m_fGravity*elapsedTime), direction.z);
 	NxF32 sharpness = 1.0f;
 	NxU32 collisionFlags = 0;
-	float heightDelta = m_Jump.GetHeight(elapsedTime);
-	if( heightDelta != 0.f )
-	{
-		d.y+=heightDelta;
-		d.x *= 0.3f;
-		d.z *= 0.3f;
-	}
-
 	m_pPhXController->move(d, m_uCollisionGroups, 0.000001f, collisionFlags, sharpness);
-	if(	(collisionFlags & NXCC_COLLISION_DOWN) || (collisionFlags & NXCC_COLLISION_UP) )
-	{
-		m_Jump.StopJump();
-	}
-	NxExtendedVec3 tmp = m_pPhXController->getPosition();
-	CObject3D::m_Position.x = (float)tmp.x;
-	CObject3D::m_Position.y = (float)tmp.y;
-	CObject3D::m_Position.z = (float)tmp.z;
 }
 
 void CPhysicController::SetCollision (bool flag)

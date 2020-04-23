@@ -1,3 +1,4 @@
+#include <time.h>
 #include "LevelManager.h"
 #include "xml/XMLTreeNode.h"
 #include "StaticMeshManager.h"
@@ -155,6 +156,9 @@ void CLevelManager::LoadPaths (const std::string& pathFile)
 
 bool CLevelManager::InitLevel () 
 {
+	time_t start_load;
+	time (&start_load);
+
 	LoadPaths(m_LevelPaths.m_sXMLPath);
 
 	std::string xml_file = m_LevelPaths.m_sXMLPath + "/";
@@ -203,6 +207,9 @@ bool CLevelManager::InitLevel ()
 	}
 	if (!bInitOk && l_ManagerError=="")
 		l_ManagerError = "StaticMeshManager";
+	
+	time_t end_meshes_load;
+	time (&end_meshes_load);
 
 	// Inicializamos RenderableObjectsLayersManager
 	bInitOk = (m_LevelPaths.m_sRenderableObjectsPath!="");	
@@ -213,6 +220,9 @@ bool CLevelManager::InitLevel ()
 	}
 	if (!bInitOk && l_ManagerError=="")
 		l_ManagerError = "RenderableObjectsLayersManager";
+
+	time_t end_instances_load;
+	time (&end_instances_load);
 
 	//Inicializamos BulletManager
 	bInitOk = l_BulletManager->Init();
@@ -298,6 +308,18 @@ bool CLevelManager::InitLevel ()
         LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
         throw CException(__FILE__, __LINE__, msg_error);
 	}
+
+	time_t end_load;
+	time (&end_load);	
+	double total_dif = difftime (end_load,start_load);
+
+	std::ostringstream oss, oss2,oss3;
+	oss << "CLevelManager::InitLevel-> Tiempo de carga del nivel: " <<  difftime (end_load,start_load);
+	LOGGER->AddNewLog(ELL_INFORMATION, oss.str().c_str());
+	oss2 << "CLevelManager::InitLevel-> Tiempo de carga static meshes: " <<  difftime (end_meshes_load, start_load);
+	LOGGER->AddNewLog(ELL_INFORMATION, oss2.str().c_str());
+    oss3 << "CLevelManager::InitLevel-> Tiempo de carga instance meshes: " <<  difftime (end_instances_load, end_meshes_load);
+	LOGGER->AddNewLog(ELL_INFORMATION, oss3.str().c_str());
 
 	return bInitOk;
 }

@@ -14,7 +14,7 @@ bool CSoundManager::Init()
 	{
 		LOGGER->AddNewLog(ELL_ERROR,"CSoundManager::Error al iniciar el sonido");
 		Release();
-        throw CException(__FILE__, __LINE__, "CSoundManager::Error al iniciar el sonido");
+        //throw CException(__FILE__, __LINE__, "CSoundManager::Error al iniciar el sonido");
 	}
 	else{
 		LOGGER->AddNewLog(ELL_INFORMATION,"CSoundManager::Sonido iniciado correctamente");
@@ -88,7 +88,7 @@ void CSoundManager::Update(float deltaTime)
 bool CSoundManager::LoadSounds(const std::string& xmlSoundsFile)
 {
 	_clear();
-	m_bIsOk=true;
+	
 	//ponemos un clear al principio, por si nos interesa hacer un reload
 	CXMLTreeNode parser;
 	if (!parser.LoadFile(xmlSoundsFile.c_str()))
@@ -148,7 +148,7 @@ bool CSoundManager::LoadSounds(const std::string& xmlSoundsFile)
 		}
 	}
 
-	return m_bIsOk;
+	return true;
 }
 
 void CSoundManager::Reset()
@@ -180,7 +180,8 @@ void CSoundManager::Stop()
 
 void CSoundManager::SetGain(float gain)
 {
-	alListenerf(AL_GAIN,gain);
+	if (m_bIsOk)
+		alListenerf(AL_GAIN,gain);
 }
 
 float CSoundManager::GetGain()

@@ -67,7 +67,7 @@ CPhysicController::CPhysicController(float radius, float height, float slope, fl
 	//---- Crear un nuevo NxController----
 	m_pPhXControllerDesc = new NxCapsuleControllerDesc();
   //CPhysicsControllerHitReport* l_Report  = CPhysicsControllerHitReport();
-  //m_Report = l_Report;
+   m_Report = NULL;//l_Report;
 
 	m_pPhXControllerDesc->position.x	    = pos.x;
 	m_pPhXControllerDesc->position.y	    = pos.y;

@@ -1,3 +1,4 @@
+#include <fstream>
 #include "Texture.h"
 #include "IndexedVertexs.h"
 #include "TextureManager.h"
@@ -219,6 +220,600 @@ bool CStaticMesh::Load (const std::string &FileName)
 	return false;
 }
 
+void CStaticMesh::readFileCpp(const char* filename, std::vector<unsigned char>& fileData)
+{
+    // open the file:
+    std::streampos fileSize;
+    std::ifstream file(filename, std::ios::in|std::ios::binary|std::ios::ate);
+
+    // get its size:
+    file.seekg(0, std::ios::end);
+    fileSize = file.tellg();
+    file.seekg(0, std::ios::beg);
+
+    // read the data:
+	fileData.resize((unsigned int)fileSize);
+    file.read((char*) &fileData[0], fileSize);
+
+	file.close();
+}
+
+void CStaticMesh::readFileC(const char* filename, unsigned char **buffer)
+{
+	FILE *l_File = NULL;
+	fopen_s(&l_File, filename,"rb");
+	
+	fseek(l_File, 0, SEEK_END);
+	size_t fileSize = ::ftell(l_File);
+	rewind(l_File);
+	
+	*buffer = (unsigned char *)malloc(fileSize * sizeof(unsigned char));
+	fread(*buffer,fileSize,1,l_File);
+
+	fclose(l_File);
+}
+
+bool CStaticMesh::LoadFast (const std::string &FileName)
+{
+	int idx = 0;
+	m_FileName=FileName;
+	
+	//std::vector<unsigned char> buffer;
+	//readFileCpp(m_FileName.c_str(), buffer);
+	unsigned char *buffer=NULL;
+	readFileC(m_FileName.c_str(), &buffer);
+	
+	union Convert
+	{
+		unsigned char byte[4];
+		float real;
+	};
+
+	// Leemos el header del fichero
+	unsigned char lo, hi; 
+	memcpy(&lo, &buffer[idx], sizeof(unsigned char));
+	memcpy(&hi, &buffer[++idx], sizeof(unsigned char));
+	uint16 l_FileHeader = (hi << 8) + lo;
+	if(l_FileHeader != STATIC_MESH_FILE_HEADER)
+	{
+		return false;
+	}
+
+	// Leemos número de RenderableVertexs que contiene el fichero
+	memcpy(&lo, &buffer[++idx], sizeof(unsigned char));
+	memcpy(&hi, &buffer[++idx], sizeof(unsigned char));
+	uint16 l_NumRenderableVertexs = (hi << 8) + lo;
+
+	m_Textures.resize(l_NumRenderableVertexs);
+	uint16 l_OffsetVtxPhysic=0;
+
+	for(size_t RV=0;RV<l_NumRenderableVertexs;++RV)
+	{
+		// Leemos tipo de vertices que contiene el fichero
+		memcpy(&lo, &buffer[++idx], sizeof(unsigned char));
+		memcpy(&hi, &buffer[++idx], sizeof(unsigned char));
+		uint16 l_VertexType = (hi << 8) + lo;
+
+		// Leemos materiales 
+		int l_NumMaterials=-1;
+			
+		if (l_VertexType==TNORMAL_COLORED_VERTEX::GetVertexType())
+			l_NumMaterials=0;	// solo geometria, normal i difuso (sin materiales)
+		else if (l_VertexType==TNORMAL_TEXTURE1_VERTEX::GetVertexType())
+			l_NumMaterials=1;
+		else if (l_VertexType==TNORMAL_TEXTURE1_TEXTURE2_VERTEX::GetVertexType())
+			l_NumMaterials=2;
+		else if (l_VertexType==TNORMAL_TANGENT_BINORMAL_TEXTURED_VERTEX::GetVertexType() )
+			l_NumMaterials=2;
+		else if (l_VertexType==TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_VERTEX::GetVertexType() )
+			l_NumMaterials=3;
+		else if (l_VertexType==TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_RNM_SPECULAR_VERTEX::GetVertexType() )
+			l_NumMaterials=6;	
+
+		if (l_NumMaterials >= 0)
+		{
+			for (int i=0;i<l_NumMaterials;++i)
+			{
+				// Leemos longitud del nombre del material
+				memcpy(&lo, &buffer[++idx], sizeof(unsigned char));
+				memcpy(&hi, &buffer[++idx], sizeof(unsigned char));
+				uint16 l_TextureNameSize = (hi << 8) + lo;
+
+				// Leemos nombre del material
+				std::string l_TextureName;
+				l_TextureName.resize(l_TextureNameSize+1);
+				for (int i = 0; i < l_TextureNameSize; ++i)	
+					memcpy(&l_TextureName[i], &buffer[++idx], sizeof(unsigned char));
+				++idx; // bypass '/0'
+				if (l_TextureName != "")
+				{
+					// Cargamos material
+					CTexture *l_Texture=CORE->GetTextureManager()->GetTexture(l_TextureName);
+					m_Textures[RV].push_back(l_Texture);
+				}
+				else
+				{
+					std::string msg_error = "CStaticMesh::Load-> Falta textura en " + FileName + " !\n";
+					LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+				}
+			}
+
+			CRenderableVertexs* l_RV=NULL;
+
+			// Leemos número de vertices que contiene el fichero
+			memcpy(&lo, &buffer[++idx], sizeof(unsigned char));
+			memcpy(&hi, &buffer[++idx], sizeof(unsigned char));
+			uint16 l_NumVertexs = (hi << 8) + lo;
+
+			// Cargamos datos de los vertices
+			void *l_Vtxs=NULL;
+			size_t l_SizeOfVertexType=0;
+			if (l_VertexType==TNORMAL_TEXTURE1_VERTEX::GetVertexType())
+				l_SizeOfVertexType = sizeof(TNORMAL_TEXTURE1_VERTEX);
+			else if (l_VertexType==TNORMAL_COLORED_VERTEX::GetVertexType())
+				l_SizeOfVertexType = sizeof(TNORMAL_COLORED_VERTEX);			
+			else if (l_VertexType==TNORMAL_TEXTURE1_TEXTURE2_VERTEX::GetVertexType())
+				l_SizeOfVertexType = sizeof(TNORMAL_TEXTURE1_TEXTURE2_VERTEX);
+			else if (l_VertexType==TNORMAL_TANGENT_BINORMAL_TEXTURED_VERTEX::GetVertexType())
+				l_SizeOfVertexType = sizeof(TNORMAL_TANGENT_BINORMAL_TEXTURED_VERTEX);
+			else if (l_VertexType==TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_VERTEX::GetVertexType())
+				l_SizeOfVertexType = sizeof(TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_VERTEX);
+			else if (l_VertexType==TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_RNM_SPECULAR_VERTEX::GetVertexType())
+				l_SizeOfVertexType = sizeof(TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_RNM_SPECULAR_VERTEX);
+
+			if (l_SizeOfVertexType!=0)
+			{
+				std::vector<float> v;
+				for (int i = 0; i<l_NumVertexs; ++i) {
+					Convert vect_x, vect_y, vect_z;
+					memcpy(&vect_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&vect_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&vect_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&vect_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+					
+					memcpy(&vect_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&vect_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&vect_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&vect_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+					memcpy(&vect_z.byte[0], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&vect_z.byte[1], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&vect_z.byte[2], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&vect_z.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+					Vect3f vect(vect_x.real, vect_y.real, vect_z.real);
+
+					// normal
+					Convert n_x, n_y, n_z;
+					memcpy(&n_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&n_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&n_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&n_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+					
+					memcpy(&n_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&n_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&n_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&n_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+					memcpy(&n_z.byte[0], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&n_z.byte[1], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&n_z.byte[2], &buffer[++idx], sizeof(unsigned char));
+					memcpy(&n_z.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+					Vect3f normal(n_x.real, n_y.real, n_z.real);
+					
+					if (l_VertexType==TNORMAL_COLORED_VERTEX::GetVertexType()) {
+						// color
+						Convert color;
+						memcpy(&color.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&color.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&color.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&color.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						// final copy
+						v.push_back(vect.x);v.push_back(vect.y);v.push_back(vect.z);
+						v.push_back(normal.x);v.push_back(normal.y);v.push_back(normal.z);
+						v.push_back(color.real);
+					
+					} else if (l_VertexType==TNORMAL_TEXTURE1_VERTEX::GetVertexType()) {
+						// texture 1
+						Convert tuv_x, tuv_y;
+						memcpy(&tuv_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+					
+						memcpy(&tuv_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						Vect2f tuv(tuv_x.real, tuv_y.real);
+
+						// final copy
+						v.push_back(vect.x);v.push_back(vect.y);v.push_back(vect.z);
+						v.push_back(normal.x);v.push_back(normal.y);v.push_back(normal.z);
+						v.push_back(tuv.x); v.push_back(tuv.y);
+					} else if (l_VertexType==TNORMAL_TEXTURE1_TEXTURE2_VERTEX::GetVertexType()) {
+						// texture 1
+						Convert tuv_x, tuv_y;
+						memcpy(&tuv_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+					
+						memcpy(&tuv_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						Vect2f tuv(tuv_x.real, tuv_y.real);
+
+						// texture 2
+						Convert tuv2_x, tuv2_y;
+						memcpy(&tuv2_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv2_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv2_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv2_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+					
+						memcpy(&tuv2_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv2_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv2_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv2_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						Vect2f tuv2(tuv2_x.real, tuv2_y.real);
+
+						// final copy
+						v.push_back(vect.x);v.push_back(vect.y);v.push_back(vect.z);
+						v.push_back(normal.x);v.push_back(normal.y);v.push_back(normal.z);
+						v.push_back(tuv.x); v.push_back(tuv.y);
+						v.push_back(tuv2.x); v.push_back(tuv2.y);
+					} else if (l_VertexType==TNORMAL_TANGENT_BINORMAL_TEXTURED_VERTEX::GetVertexType()) {
+						Convert n_w;
+						memcpy(&n_w.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&n_w.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&n_w.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&n_w.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						Vect4f normalw(normal, n_w.real);
+
+						// tangent
+						Convert t_x, t_y, t_z, t_w;
+						memcpy(&t_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+					
+						memcpy(&t_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						memcpy(&t_z.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_z.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_z.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_z.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						memcpy(&t_w.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_w.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_w.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_w.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						Vect4f tangent(t_x.real, t_y.real, t_z.real, t_w.real);
+
+						// binormal
+						Convert bn_x, bn_y, bn_z, bn_w;
+						memcpy(&bn_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+					
+						memcpy(&bn_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						memcpy(&bn_z.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_z.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_z.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_z.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						memcpy(&bn_w.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_w.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_w.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_w.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						Vect4f binormal(bn_x.real, bn_y.real, bn_z.real, bn_w.real);
+
+						// texture 1
+						Convert tuv_x, tuv_y;
+						memcpy(&tuv_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+					
+						memcpy(&tuv_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						Vect2f tuv(tuv_x.real, tuv_y.real);
+
+						// final copy
+						v.push_back(vect.x);v.push_back(vect.y);v.push_back(vect.z);
+						v.push_back(normalw.x);v.push_back(normalw.y);v.push_back(normalw.z);v.push_back(normalw.w);
+						v.push_back(tangent.x);v.push_back(tangent.y);v.push_back(tangent.z);v.push_back(tangent.w);
+						v.push_back(binormal.x);v.push_back(binormal.y);v.push_back(binormal.z);v.push_back(binormal.w);
+						v.push_back(tuv.x); v.push_back(tuv.y);
+
+					} else if (l_VertexType==TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_VERTEX::GetVertexType()  || l_VertexType==TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_RNM_SPECULAR_VERTEX::GetVertexType()) {
+						Convert n_w;
+						memcpy(&n_w.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&n_w.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&n_w.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&n_w.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						Vect4f normalw(normal, n_w.real);
+
+						// tangent
+						Convert t_x, t_y, t_z, t_w;
+						memcpy(&t_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+					
+						memcpy(&t_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						memcpy(&t_z.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_z.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_z.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_z.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						memcpy(&t_w.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_w.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_w.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&t_w.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						Vect4f tangent(t_x.real, t_y.real, t_z.real, t_w.real);
+
+						// binormal
+						Convert bn_x, bn_y, bn_z, bn_w;
+						memcpy(&bn_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+					
+						memcpy(&bn_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						memcpy(&bn_z.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_z.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_z.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_z.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						memcpy(&bn_w.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_w.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_w.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&bn_w.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						Vect4f binormal(bn_x.real, bn_y.real, bn_z.real, bn_w.real);
+
+						// texture 1
+						Convert tuv_x, tuv_y;
+						memcpy(&tuv_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+					
+						memcpy(&tuv_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						Vect2f tuv(tuv_x.real, tuv_y.real);
+
+						// texture 2
+						Convert tuv2_x, tuv2_y;
+						memcpy(&tuv2_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv2_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv2_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv2_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+					
+						memcpy(&tuv2_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv2_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv2_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+						memcpy(&tuv2_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+						Vect2f tuv2(tuv2_x.real, tuv2_y.real);
+
+						// final copy
+						v.push_back(vect.x);v.push_back(vect.y);v.push_back(vect.z);
+						v.push_back(normalw.x);v.push_back(normalw.y);v.push_back(normalw.z);v.push_back(normalw.w);
+						v.push_back(tangent.x);v.push_back(tangent.y);v.push_back(tangent.z);v.push_back(tangent.w);
+						v.push_back(binormal.x);v.push_back(binormal.y);v.push_back(binormal.z);v.push_back(binormal.w);
+						v.push_back(tuv.x); v.push_back(tuv.y);
+						v.push_back(tuv2.x); v.push_back(tuv2.y);
+					}
+				}
+
+				int s1 = l_SizeOfVertexType * l_NumVertexs;
+				int s2 = v.size() * sizeof(float);
+				if (s1 != s2)
+					throw("vertex size error");
+
+				l_Vtxs = malloc(l_NumVertexs * l_SizeOfVertexType);
+				if (l_NumVertexs > 0)
+					memcpy(l_Vtxs, &v[0], l_NumVertexs * l_SizeOfVertexType);
+			}
+				
+			unsigned char *l_VtxAddress=(unsigned char *)l_Vtxs;
+			for(int i =0;i<l_NumVertexs;i++)
+			{
+				Vect3f *l_VtxPointer=(Vect3f *)l_VtxAddress;
+				Vect3f l_Vtx=*l_VtxPointer;
+				m_VB.push_back(l_Vtx);
+				l_VtxAddress+=l_SizeOfVertexType;
+			}
+			
+			// Leemos número de indices que contiene el fichero
+			void* l_Idxs=NULL;
+			memcpy(&lo, &buffer[++idx], sizeof(unsigned char));
+			memcpy(&hi, &buffer[++idx], sizeof(unsigned char));
+			uint16 l_NumIndexs = (hi << 8) + lo;
+
+			// Cargamos datos de los indices
+			l_Idxs = malloc(l_NumIndexs * sizeof(uint16));
+			std::vector<uint16> v_idx;
+			for (int i = 0; i<l_NumIndexs; ++i) {
+				memcpy(&lo, &buffer[++idx], sizeof(unsigned char));
+				memcpy(&hi, &buffer[++idx], sizeof(unsigned char));
+				v_idx.push_back((hi << 8) + lo);
+			}
+			if (l_NumIndexs > 0)
+				memcpy((unsigned short *)l_Idxs, &v_idx[0], l_NumIndexs * sizeof(uint16));
+
+			uint16* l_Indexs=(uint16*)(l_Idxs);
+
+			//Vector para physx
+			for(int i =0;i<l_NumIndexs;i++)
+			{
+				uint32 l_Idx=l_Indexs[i]+l_OffsetVtxPhysic;
+				m_IB.push_back(l_Idx);
+			}
+			l_OffsetVtxPhysic=l_OffsetVtxPhysic+l_NumVertexs;
+			m_NumFaces=l_NumIndexs/3;
+			m_NumVertexs=l_NumIndexs;
+
+			// Creamos el objeto de la clase RenderableVertex y lo metemos en el array m_RVs
+			if(l_VertexType==TNORMAL_TEXTURE1_VERTEX::GetVertexType())
+				l_RV = new CIndexedVertexs<TNORMAL_TEXTURE1_VERTEX>(CORE->GetRenderManager(), l_Vtxs, l_Idxs, l_NumVertexs, l_NumIndexs);
+			else if (l_VertexType==TNORMAL_COLORED_VERTEX::GetVertexType())
+				l_RV = new CIndexedVertexs<TNORMAL_COLORED_VERTEX>(CORE->GetRenderManager(), l_Vtxs, l_Idxs, l_NumVertexs, l_NumIndexs);
+			else if(l_VertexType==TNORMAL_TEXTURE1_TEXTURE2_VERTEX::GetVertexType())
+				l_RV = new CIndexedVertexs<TNORMAL_TEXTURE1_TEXTURE2_VERTEX>(CORE->GetRenderManager(), l_Vtxs, l_Idxs, l_NumVertexs, l_NumIndexs);
+			else if(l_VertexType==TNORMAL_TANGENT_BINORMAL_TEXTURED_VERTEX::GetVertexType())
+			{
+				CalcTangentsAndBinormals(l_Vtxs, (unsigned short *)l_Idxs, l_NumVertexs, l_NumIndexs,sizeof(TNORMAL_TANGENT_BINORMAL_TEXTURED_VERTEX), 0, 12, 28, 44, 60);		
+				l_RV = new CIndexedVertexs<TNORMAL_TANGENT_BINORMAL_TEXTURED_VERTEX>(CORE->GetRenderManager(), l_Vtxs, l_Idxs, l_NumVertexs, l_NumIndexs);
+			}
+			else if(l_VertexType==TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_VERTEX::GetVertexType())
+			{
+				CalcTangentsAndBinormals(l_Vtxs, (unsigned short *)l_Idxs, l_NumVertexs, l_NumIndexs,sizeof(TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_VERTEX), 0, 12, 28, 44, 60);		
+				l_RV = new CIndexedVertexs<TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_VERTEX>(CORE->GetRenderManager(), l_Vtxs, l_Idxs, l_NumVertexs, l_NumIndexs);
+			}
+			else if(l_VertexType==TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_RNM_SPECULAR_VERTEX::GetVertexType())
+			{
+				CalcTangentsAndBinormals(l_Vtxs, (unsigned short *)l_Idxs, l_NumVertexs, l_NumIndexs,sizeof(TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_RNM_SPECULAR_VERTEX), 0, 12, 28, 44, 60);		
+				l_RV = new CIndexedVertexs<TNORMAL_TANGENT_BINORMAL_TEXTURE1_TEXTURE2_RNM_SPECULAR_VERTEX>(CORE->GetRenderManager(), l_Vtxs, l_Idxs, l_NumVertexs, l_NumIndexs);
+			}
+
+			// Añadimos el nuevo renderable object al vector de renderable objects y cargamos technique por defecto segun tipo de vertice
+			if (l_RV != NULL)
+			{
+				m_RVs.push_back(l_RV);
+				m_VertexTypes.push_back(l_VertexType);
+				m_RenderableObjectTechniqueName.push_back(CORE->GetEffectManager()->GetTechniqueEffectNameByVertexDefault(l_VertexType));		
+			}
+
+			if (l_Vtxs!=NULL)
+				free(l_Vtxs);
+			if (l_Idxs!=NULL)	
+				free(l_Idxs);
+		}
+		else
+		{
+			std::string msg_error = "CStaticMesh::Load-> Tipo de vertice desconocido en " + FileName + " !\n";
+			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		}
+	}
+
+	GetRenderableObjectTechnique();
+
+	// Leemos vertice minimo del mesh
+	Convert vect_min_x, vect_min_y, vect_min_z;
+	memcpy(&vect_min_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&vect_min_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&vect_min_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&vect_min_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+	memcpy(&vect_min_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&vect_min_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&vect_min_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&vect_min_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+	memcpy(&vect_min_z.byte[0], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&vect_min_z.byte[1], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&vect_min_z.byte[2], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&vect_min_z.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+	m_vminPoint = Vect3f(vect_min_x.real, vect_min_y.real, vect_min_z.real);
+
+	// Leemos vertices maximo del mesh
+	Convert max_point_x, max_point_y, max_point_z;
+	memcpy(&max_point_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&max_point_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&max_point_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&max_point_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+	memcpy(&max_point_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&max_point_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&max_point_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&max_point_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+	memcpy(&max_point_z.byte[0], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&max_point_z.byte[1], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&max_point_z.byte[2], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&max_point_z.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+	m_vmaxPoint = Vect3f(max_point_x.real, max_point_y.real, max_point_z.real);
+
+	// Leemos vertice centro del mesh
+	Convert center_x, center_y, center_z;
+	memcpy(&center_x.byte[0], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&center_x.byte[1], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&center_x.byte[2], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&center_x.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+	memcpy(&center_y.byte[0], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&center_y.byte[1], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&center_y.byte[2], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&center_y.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+	memcpy(&center_z.byte[0], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&center_z.byte[1], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&center_z.byte[2], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&center_z.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+	m_vcenter = Vect3f(center_x.real, center_y.real, center_z.real);
+
+	// Leemos radio de la esfera contenedora del mesh
+	Convert rad;
+	memcpy(&rad.byte[0], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&rad.byte[1], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&rad.byte[2], &buffer[++idx], sizeof(unsigned char));
+	memcpy(&rad.byte[3], &buffer[++idx], sizeof(unsigned char));
+
+	m_fradius = rad.real;
+
+	// Leemos el footer del fichero
+	memcpy(&lo, &buffer[++idx], sizeof(unsigned char));
+	memcpy(&hi, &buffer[++idx], sizeof(unsigned char));
+	uint16 l_FileFooter = (hi << 8) + lo;
+
+	delete buffer;
+	if(l_FileFooter!=STATIC_MESH_FILE_FOOTER)
+	{
+		return false;
+	}
+
+	return true;		
+}
+
 bool CStaticMesh::ReLoad ()
 {
 	if (m_FileName != "")
@@ -378,7 +973,6 @@ void CalcTangentsAndBinormals(void *VtxsData, unsigned short *IdxsData, size_t V
 	D3DXVECTOR3 *tan2 = tan1 + VtxCount;
 	ZeroMemory(tan1, VtxCount * sizeof(D3DXVECTOR3) * 2);
 	unsigned char *l_VtxAddress=(unsigned char *)VtxsData;
-
 
 	for(size_t b=0;b<IdxCount;b+=3)
 	{

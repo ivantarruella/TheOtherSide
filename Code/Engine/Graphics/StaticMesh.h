@@ -49,6 +49,11 @@ public:
 	}
 
 	bool Load (const std::string &FileName);
+	
+	void readFileCpp(const char* filename, std::vector<unsigned char>& fileData);
+	void readFileC(const char* filename, unsigned char **buffer);
+	bool LoadFast (const std::string &FileName);
+
 	bool ReLoad ();
 	void Render (CRenderManager *RM, const Vect3f& position, const CFrustum* Frustum, bool forwardRender) const;
 	void RenderShadow (CRenderManager *RM, const Vect3f& position, const CFrustum* Frustum, CLight* Light) const;

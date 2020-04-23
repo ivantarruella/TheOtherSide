@@ -55,7 +55,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)\Code\Engine\Graphics;$(SolutionDir)\Code\Engine\Base;$(DXSDK_DIR)\Include;$(SolutionDir)\Code\Engine\Base\Math\;$(SolutionDir)\Code\Engine\3dParty\libxml2-2.7.2.win32\include;$(SolutionDir)\Code\Engine\3dParty\iconv-1.9.2.win32\include;$(SolutionDir)\Code\Engine\Input;$(SolutionDir)\Code\Engine\Core;$(SolutionDir)\Code\Engine\3dParty\lua-5.2.0\src\;$(SolutionDir)\Code\Engine\3dParty\luabind-0.9.1\;$(SolutionDir)\Code\Engine\3dParty\boost_1_48_0\</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -76,8 +76,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)\Code\Engine\Graphics;$(SolutionDir)\Code\Engine\Base;$(DXSDK_DIR)\Include;$(SolutionDir)\Code\Engine\Base\Math\;$(SolutionDir)\Code\Engine\3dParty\libxml2-2.7.2.win32\include;$(SolutionDir)\Code\Engine\3dParty\iconv-1.9.2.win32\include;$(SolutionDir)\Code\Engine\Input;$(SolutionDir)\Code\Engine\Core;$(SolutionDir)\Code\Engine\3dParty\lua-5.2.0\src\;$(SolutionDir)\Code\Engine\3dParty\luabind-0.9.1\;$(SolutionDir)\Code\Engine\3dParty\boost_1_48_0\</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <MultiProcessorCompilation>
-      </MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <UseUnicodeForAssemblerListing>
       </UseUnicodeForAssemblerListing>
     </ClCompile>

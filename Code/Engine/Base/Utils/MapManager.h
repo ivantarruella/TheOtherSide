@@ -51,13 +51,13 @@ public:
 
 	virtual bool AddResource(const std::string &Name, T *Resource)
 	{
-		TMapResource::const_iterator it =m_Resources.find(Name);
-		if (it == m_Resources.end())
+		//TMapResource::const_iterator it =m_Resources.find(Name);
+		//if (it == m_Resources.end())
 		{
 			m_Resources[Name] =  Resource;
 			return true;
 		}
-		return false;
+		//return false;
 	}
 
 	void Destroy()

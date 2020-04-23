@@ -82,7 +82,7 @@ void CRenderableObjectsManager:: AddMeshInstance(const CXMLTreeNode& XmlData)
 	std::string l_CoreName=XmlData.GetPszProperty("core","");
 	if (l_InstanceName!="" && l_CoreName!="")
 	{
-		if (GetResource(l_InstanceName) == NULL)
+		if (1/*GetResource(l_InstanceName) == NULL*/)
 		{
 			CStaticMesh *l_StaticMesh = CORE->GetStaticMeshManager()->GetResource(l_CoreName);
 			if (l_StaticMesh == NULL)

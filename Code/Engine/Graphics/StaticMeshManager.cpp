@@ -41,13 +41,12 @@ bool CStaticMeshManager::Load (const std::string &FileName)
 				std::string l_name = l_StaticMeshesNode(i).GetPszProperty("name","");
 				std::string l_filename = l_StaticMeshesNode(i).GetPszProperty("filename","");
 
-				if (GetResource(l_name) == NULL)
+				if (1/*GetResource(l_name) == NULL*/)
 				{
 					CStaticMesh* l_StaticMesh;
 					l_StaticMesh = new CStaticMesh();
 					if (l_StaticMesh->Load(l_filename))
 					{
-					
 						AddResource(l_name, l_StaticMesh);
 					}
 					else

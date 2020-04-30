@@ -72,7 +72,6 @@ bool CStaticMeshManager::Load (const std::string &FileName)
 
 bool CStaticMeshManager::LoadFolder (const std::string &FolderName)
 {
-	//std::vector<std::string> names;
     std::string search_path = FolderName + "/*.*";
     WIN32_FIND_DATA fd; 
     HANDLE hFind = ::FindFirstFile(search_path.c_str(), &fd); 
@@ -83,18 +82,24 @@ bool CStaticMeshManager::LoadFolder (const std::string &FolderName)
 		do { 
             if(! (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ) {
                 std::string l_name = fd.cFileName;
-				std::string l_filename = FolderName + "\\" + l_name;
-				CStaticMesh* l_StaticMesh;
-				l_StaticMesh = new CStaticMesh();
-				if (l_StaticMesh->Load(l_filename))
+				std::string l_ext = ".m3d";
+				std::string::size_type i = l_name.find(l_ext);
+
+				if (i != std::string::npos) 
 				{
-					std::string s = ".m3d";
-					std::string::size_type i = l_name.find(s);
+					l_name.erase(i, l_ext.length());
 
-					if (i != std::string::npos)
-					   l_name.erase(i, s.length());
+					CStaticMesh* l_StaticMesh;
+					l_StaticMesh = new CStaticMesh();
 
-					AddResource(l_name, l_StaticMesh);
+					if (l_StaticMesh->Load(FolderName + "\\" + l_name + l_ext))
+					{
+						AddResource(l_name, l_StaticMesh);
+					}
+					else
+					{
+						CHECKED_DELETE(l_StaticMesh);
+					}
 				}
             }
         }while(::FindNextFile(hFind, &fd)); 

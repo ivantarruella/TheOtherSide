@@ -83,14 +83,16 @@ void CWeapon::Light(float dt)
 		if(m_fLanternTimer <= 0.f )
 		{
 			m_LanternLight->SetVisible(false);
-			m_LanternLight2->SetVisible(false);
+			if (m_LanternLight2)
+				m_LanternLight2->SetVisible(false);
 			m_Laser->SetVisible(false);
 		}
 		else
 		if(IsLanternAttackMode() && m_Laser != NULL) 
 		{
 			m_LanternLight->SetVisible(false);
-			m_LanternLight2->SetVisible(false);
+			if (m_LanternLight2)
+				m_LanternLight2->SetVisible(false);
 			m_Laser->SetVisible(true);
 
 			m_fLanternTimer -= 2.f*dt;
@@ -102,7 +104,8 @@ void CWeapon::Light(float dt)
 		else if(m_LanternLight != NULL){
 			bool bAiming = IsAiming();
 			m_LanternLight->SetVisible(bAiming);
-			m_LanternLight2->SetVisible(bAiming);
+			if (m_LanternLight2)
+				m_LanternLight2->SetVisible(bAiming);
 			m_Laser->SetVisible(false);
 
 			if (bAiming) {

@@ -1,3 +1,5 @@
+#include <time.h>
+#include <sstream> 
 #include "StaticMeshManager.h"
 #include "xml/XMLTreeNode.h"
 #include "Logger.h"
@@ -66,6 +68,49 @@ bool CStaticMeshManager::Load (const std::string &FileName)
 		}
 	}
 	return true;
+}
+
+bool CStaticMeshManager::LoadFolder (const std::string &FolderName)
+{
+	//std::vector<std::string> names;
+    std::string search_path = FolderName + "/*.*";
+    WIN32_FIND_DATA fd; 
+    HANDLE hFind = ::FindFirstFile(search_path.c_str(), &fd); 
+    if(hFind != INVALID_HANDLE_VALUE) { 
+		time_t start_load, end_load;
+		time (&start_load);
+
+		do { 
+            if(! (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ) {
+                std::string l_name = fd.cFileName;
+				std::string l_filename = FolderName + "\\" + l_name;
+				CStaticMesh* l_StaticMesh;
+				l_StaticMesh = new CStaticMesh();
+				if (l_StaticMesh->Load(l_filename))
+				{
+					std::string s = ".m3d";
+					std::string::size_type i = l_name.find(s);
+
+					if (i != std::string::npos)
+					   l_name.erase(i, s.length());
+
+					AddResource(l_name, l_StaticMesh);
+				}
+            }
+        }while(::FindNextFile(hFind, &fd)); 
+        ::FindClose(hFind); 
+
+		time (&end_load);	
+
+		std::ostringstream oss;
+		double dif = difftime (end_load,start_load);
+		oss << "CStaticMeshManager::LoadFolder-> Tiempo de carga de los meshes: " <<  dif;
+		LOGGER->AddNewLog(ELL_INFORMATION, oss.str().c_str());
+
+		return true;
+    } 
+
+	return false;
 }
 
 bool CStaticMeshManager::Reload ()

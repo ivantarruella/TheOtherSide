@@ -14,6 +14,7 @@ public:
 	CStaticMeshManager();
 	~ CStaticMeshManager ();
 	bool Load(const std::string &FileName);
+	bool LoadFolder (const std::string &FolderName);
 	bool Reload();
 
 	void SetMeshTexture(const std::string& mesh, const std::string texture, int stage);

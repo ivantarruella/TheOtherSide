@@ -21,6 +21,8 @@ bool CBulletManager::Init()
 {
 	m_iCounter = 0;
 	m_vShotLightsVector.clear();
+
+	m_pBillboard = CORE->GetBillboardManager()->GetBillboardCore("bLaserHalo");
 	return true;
 }
 
@@ -74,8 +76,8 @@ void CBulletManager::Update(float _ElapsedTime)
 
 void CBulletManager::AddBullet(Vect3f &_Position, Vect3f &_Direction, CCharacter* player, float _Speed, float _Damage)
 {
-	CBillboard *l_pBillboard = CORE->GetBillboardManager()->GetBillboardCore("bLaserHalo");
-	CBullet * l_pBullet = new CBullet (*l_pBillboard);
+	//CBillboard *l_pBillboard = CORE->GetBillboardManager()->GetBillboardCore("bLaserHalo");
+	CBullet * l_pBullet = new CBullet (*m_pBillboard);
 
 	std::string l_sBulletName = GetBulletName();
 

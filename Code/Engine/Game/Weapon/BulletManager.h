@@ -15,7 +15,7 @@ class CSoldier;
 class CBulletManager: public CVectorMapManager<CBullet>
 {
 public:
-	CBulletManager(void):m_vShotLightsVector(NULL),m_iCounter(0){m_particles.clear();}
+	CBulletManager(void):m_vShotLightsVector(NULL),m_iCounter(0),m_pBillboard(NULL){m_particles.clear();}
 	~CBulletManager(void);
 	void Update(float);
 	void AddBullet(Vect3f &_Position, Vect3f &_Direction, CCharacter* player, float _Speed=BULLET_SPEED, float _Damage = BULLET_DAMAGE);
@@ -33,6 +33,8 @@ private:
 	std::vector<COmniLight *> m_vShotLightsVector;
 
 	tdParticlesMap m_particles;
+
+	CBillboard* m_pBillboard;
 };
 
 #endif

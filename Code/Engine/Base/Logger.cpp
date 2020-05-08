@@ -6,7 +6,7 @@
 CLogger::CLogger()
 : m_uLinesCount(1)
 , m_uCapacity(CAPACITY)
-, m_eLogLevel(ELL_INFORMATION)
+, m_eLogLevel(ELOG_LEVEL::ELL_INFORMATION)
 , m_bErrors(false)
 , m_bWarnings(false)
 , m_sPathFile("./Logs")
@@ -30,9 +30,9 @@ void CLogger::AddNewLog( ELOG_LEVEL ll, const char* format, ... )
 		newLog.m_sLogText		= buffer;
 		newLog.m_eLogLevel	= ll;
 
-		if( ll == ELL_WARNING)
+		if( ll == ELOG_LEVEL::ELL_WARNING)
 			m_bWarnings = true;
-		if( ll == ELL_ERROR)
+		if( ll == ELOG_LEVEL::ELL_ERROR)
 			m_bErrors = true;
 
 		newLog.m_uLogLine = m_uLinesCount;
@@ -82,17 +82,17 @@ bool CLogger::SaveLogsInFile	()
 			report += "\t";
 			switch(new_log.m_eLogLevel)
 			{
-				case ELL_INFORMATION:
+				case ELOG_LEVEL::ELL_INFORMATION:
 					{
 						report += "[INFORMATION]";
 					}
 					break;
-				case ELL_WARNING:
+				case ELOG_LEVEL::ELL_WARNING:
 					{
 						report += "[  WARNING  ]";
 					}
 					break;
-				case ELL_ERROR:
+				case ELOG_LEVEL::ELL_ERROR:
 					{
 						report += "[___ERROR___]";
 					}
@@ -109,7 +109,7 @@ bool CLogger::SaveLogsInFile	()
 	} 
 	if (isOk)
 	{
-		AddNewLog(ELL_INFORMATION,"El log ha sido guardado correctamente en un fichero fisico");
+		AddNewLog(ELOG_LEVEL::ELL_INFORMATION,"El log ha sido guardado correctamente en un fichero fisico");
 	}
 	return isOk;
 }

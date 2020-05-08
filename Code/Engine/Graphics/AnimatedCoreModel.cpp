@@ -41,7 +41,7 @@ void CAnimatedCoreModel::Load(const std::string &Path)
 	if (!parser.LoadFile((Path+"\\actor.xml").c_str()))
 	{
 		std::string msg_error = "CAnimatedCoreModel::Load->Error al intentar leer el archivo: " + Path;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 	m_Path = Path;
@@ -100,7 +100,7 @@ bool CAnimatedCoreModel::LoadMesh(const std::string &MeshFileName)
 {
 	if(m_CalCoreModel->loadCoreMesh(m_Path+MeshFileName) == -1)
 	{
-		LOGGER->AddNewLog(ELL_WARNING, "CAnimatedCoreModel::LoadMesh()-> Error: \"%s\"", CalError::getLastErrorText().c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, "CAnimatedCoreModel::LoadMesh()-> Error: \"%s\"", CalError::getLastErrorText().c_str());
 		return false;
 	}
 	return true;
@@ -110,7 +110,7 @@ bool CAnimatedCoreModel::LoadSkeleton()
 {
 	if(!m_CalCoreModel->loadCoreSkeleton(m_Path+m_SkeletonFilename))
 	{
-		LOGGER->AddNewLog(ELL_WARNING, "CAnimatedCoreModel::LoadSkeleton()-> Error: \"%s\"", CalError::getLastErrorText().c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, "CAnimatedCoreModel::LoadSkeleton()-> Error: \"%s\"", CalError::getLastErrorText().c_str());
 		return false;
 	}
 
@@ -121,7 +121,7 @@ bool CAnimatedCoreModel::LoadAnimation(const std::string &Name, const std::strin
 {
 	if(m_CalCoreModel->loadCoreAnimation(m_Path+Filename, Name) == -1)
 	{
-		LOGGER->AddNewLog(ELL_WARNING, "CAnimatedCoreModel::LoadAnimation()-> Error: \"%s\"", CalError::getLastErrorText().c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, "CAnimatedCoreModel::LoadAnimation()-> Error: \"%s\"", CalError::getLastErrorText().c_str());
 		return false;
 	}
 
@@ -218,7 +218,7 @@ void CAnimatedCoreModel::CalcAnimatedCoreModelBB()
 			else
 			{
 				std::string msg_error = "CAnimatedCoreModel::CalcAnimatedCoreModelBB->SubMesh no encontrada para " + l_Mesh->getName() + "!\n";
-				LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 			}
 		}
 	}

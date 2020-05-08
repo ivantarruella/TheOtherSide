@@ -47,7 +47,7 @@ void CInputDevice::Release( void )
 		m_pDevice->Release();
 		m_pDevice = NULL;
 	}
-	LOGGER->AddNewLog(ELL_INFORMATION, "InputDevice::nput device offline (ok)");
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "InputDevice::nput device offline (ok)");
 } 
 
 /**
@@ -76,19 +76,19 @@ HRESULT CInputDevice::CrankUp(REFGUID rguid, LPCDIDATAFORMAT pdf, bool exclusive
 
 	// 1. Step: create device
 	if ( FAILED(m_pDI->CreateDevice(rguid, &m_pDevice, NULL))) {
-		LOGGER->AddNewLog(ELL_ERROR, "InputDevice: CreateDevice failed");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "InputDevice: CreateDevice failed");
 		return S_FALSE; 
 	} 
 
 	// set the correct device data format
 	if ( FAILED(m_pDevice->SetDataFormat(pdf))) {
-		LOGGER->AddNewLog(ELL_ERROR, "InputDevice: SetDataFormat failed");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "InputDevice: SetDataFormat failed");
 		return S_FALSE; 
 	}
 
 	// set the cooperation level with windows
 	if ( FAILED(m_pDevice->SetCooperativeLevel(m_hWnd, dwFlags))) {
-		LOGGER->AddNewLog(ELL_ERROR, "InputDevice: SetCoopLevel failed");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "InputDevice: SetCoopLevel failed");
 		return S_FALSE; 
 	}
 

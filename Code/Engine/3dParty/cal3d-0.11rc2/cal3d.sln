@@ -1,16 +1,18 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cal3d", "src\cal3d\cal3d.vcxproj", "{AB555F53-3C1C-BDF2-9EA4-A39968269B32}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cal3d", "src\cal3d\cal3d.vcxproj", "{4AEB707F-D438-CEE8-9F03-1978AB4B187F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cal3D_Cally", "examples\cally\cally.vcxproj", "{F4271DF1-43FE-3AC6-34F0-EAD610CB520B}"
 	ProjectSection(ProjectDependencies) = postProject
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32} = {AB555F53-3C1C-BDF2-9EA4-A39968269B32}
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F} = {4AEB707F-D438-CEE8-9F03-1978AB4B187F}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cal3d_miniviewer_d3d", "examples\miniviewer_d3d\cal3d_miniviewer_d3d.vcxproj", "{9356710D-0A7C-794D-8649-66907C6FEFB9}"
 	ProjectSection(ProjectDependencies) = postProject
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32} = {AB555F53-3C1C-BDF2-9EA4-A39968269B32}
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F} = {4AEB707F-D438-CEE8-9F03-1978AB4B187F}
 	EndProjectSection
 EndProject
 Global
@@ -23,18 +25,18 @@ Global
 		Template|Win32 = Template|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32}.Debug Max 5|Win32.ActiveCfg = Debug|Win32
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32}.Debug Max 5|Win32.Build.0 = Debug|Win32
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32}.Debug Max 6|Win32.ActiveCfg = Debug|Win32
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32}.Debug Max 6|Win32.Build.0 = Debug|Win32
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32}.Debug|Win32.ActiveCfg = Debug|Win32
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32}.Debug|Win32.Build.0 = Debug|Win32
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32}.Release Max 6|Win32.ActiveCfg = Release|Win32
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32}.Release Max 6|Win32.Build.0 = Release|Win32
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32}.Release|Win32.ActiveCfg = Release|Win32
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32}.Release|Win32.Build.0 = Release|Win32
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32}.Template|Win32.ActiveCfg = Release|Win32
-		{AB555F53-3C1C-BDF2-9EA4-A39968269B32}.Template|Win32.Build.0 = Release|Win32
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F}.Debug Max 5|Win32.ActiveCfg = Debug|Win32
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F}.Debug Max 5|Win32.Build.0 = Debug|Win32
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F}.Debug Max 6|Win32.ActiveCfg = Debug|Win32
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F}.Debug Max 6|Win32.Build.0 = Debug|Win32
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F}.Debug|Win32.Build.0 = Debug|Win32
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F}.Release Max 6|Win32.ActiveCfg = Release|Win32
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F}.Release Max 6|Win32.Build.0 = Release|Win32
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F}.Release|Win32.ActiveCfg = Release|Win32
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F}.Release|Win32.Build.0 = Release|Win32
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F}.Template|Win32.ActiveCfg = Release|Win32
+		{4AEB707F-D438-CEE8-9F03-1978AB4B187F}.Template|Win32.Build.0 = Release|Win32
 		{F4271DF1-43FE-3AC6-34F0-EAD610CB520B}.Debug Max 5|Win32.ActiveCfg = Debug|Win32
 		{F4271DF1-43FE-3AC6-34F0-EAD610CB520B}.Debug Max 5|Win32.Build.0 = Debug|Win32
 		{F4271DF1-43FE-3AC6-34F0-EAD610CB520B}.Debug Max 6|Win32.ActiveCfg = Debug|Win32
@@ -62,5 +64,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C845B74-04A8-4C93-AAC1-1BE92F7DFE44}
 	EndGlobalSection
 EndGlobal

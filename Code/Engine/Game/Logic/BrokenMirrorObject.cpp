@@ -36,7 +36,7 @@ CBrokenMirrorObject::CBrokenMirrorObject(CXMLTreeNode &atts)
 	if (l_Layer=="" || l_BrokenMirrorName=="" || m_sFinalMirrorTrigger=="" || m_BrokenMirrorMesh==NULL || m_sLink=="")
 	{
 		std::string msg_error = "CBrokenMirrorObject::CBrokenMirrorObject->No se encuentra renderable object " + l_BrokenMirrorName + " del espejo roto!";
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 	}
 }
 

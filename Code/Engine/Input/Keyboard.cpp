@@ -10,7 +10,7 @@
 //----------------------------------------------------------------------------
 void CKeyboard::Done ()
 {
-	LOGGER->AddNewLog(ELL_INFORMATION, "Keyboard:: releasing keyboard"); 
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "Keyboard:: releasing keyboard");
 
 	if (IsOk())
 	{
@@ -30,7 +30,7 @@ bool CKeyboard::Init(LPDIRECTINPUT8 pDI, HWND hWnd)
 
 	if (bIsOk)
 	{
-		LOGGER->AddNewLog(ELL_INFORMATION, "Keyboard:: crancking up keyboard");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "Keyboard:: crancking up keyboard");
 		bIsOk = !FAILED(CrankUp(GUID_SysKeyboard, &c_dfDIKeyboard));
 
 		if (bIsOk)
@@ -41,7 +41,7 @@ bool CKeyboard::Init(LPDIRECTINPUT8 pDI, HWND hWnd)
 
 			// acquire the device to make it work
 			m_pDevice->Acquire();
-			LOGGER->AddNewLog(ELL_INFORMATION, "Keyboard:: keyboard online");
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "Keyboard:: keyboard online");
 		}
 	}
 
@@ -64,7 +64,7 @@ HRESULT CKeyboard::Update(void)
 	// try to get the data from the keyboard
 	if (FAILED(GetData(IDV_KEYBOARD, &m_Keys[0], NULL))) 
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "Keyboard:: GetData(Keyboard) failed");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "Keyboard:: GetData(Keyboard) failed");
 		return E_FAIL;
 	}
 	return S_OK;

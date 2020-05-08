@@ -45,7 +45,7 @@ bool CLerpAnimator1D::Update (float deltaTime, float &value)
 		break;
 	case FUNC_DECREMENT:
 		{
-			mu = sqrt(mu);
+			mu = (float)sqrt(mu);
 		}
 		break;
 	}

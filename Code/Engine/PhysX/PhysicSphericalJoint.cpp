@@ -30,7 +30,7 @@ void CPhysicSphericalJoint::SetInfo	(const Vect3f& anchor, CPhysicActor* actorA,
 {
 	if (actorA==NULL)
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "PhysicSphericalJoint:: El primer actor pasado como argumento no puede ser null");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "PhysicSphericalJoint:: El primer actor pasado como argumento no puede ser null");
 		return;
 	}
 
@@ -58,7 +58,7 @@ void CPhysicSphericalJoint::SetInfoComplete	(const Vect3f& anchor, const Vect3f&
 {
 	if (actorA==NULL)
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "PhysicSphericalJoint:: El primer actor pasado como argumento no puede ser null");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "PhysicSphericalJoint:: El primer actor pasado como argumento no puede ser null");
 		return;
 	}
 
@@ -120,7 +120,7 @@ void CPhysicSphericalJoint::SetInfoRagdoll	(SSphericalLimitInfo _sInfo, CPhysicA
 {
   if (actorA==NULL)
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "PhysicSphericalJoint:: El primer actor pasado como argumento no puede ser null");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "PhysicSphericalJoint:: El primer actor pasado como argumento no puede ser null");
 		return;
 	}
 

@@ -81,7 +81,7 @@ CAnimatedInstanceModel * CAnimatedModelsManager::CreateInstance(const CXMLTreeNo
 		else
 		{
 			std::string msg_error = "CAnimatedModelsManager::Load->No se encuentra el modelo animado: " + l_Name;
-			LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 		}
 	}
 
@@ -112,7 +112,7 @@ CAnimatedInstanceModel * CAnimatedModelsManager::CreateInstance(const std::strin
 		else
 		{
 			std::string msg_error = "CAnimatedModelsManager::Load->No se encuentra el modelo animado: " + l_Name;
-			LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 		}
 	}
 
@@ -125,7 +125,7 @@ bool CAnimatedModelsManager::Load(const std::string& FileName)
 	if (!parser.LoadFile(FileName.c_str()))
 	{
 		std::string msg_error = "CAnimatedModelsManager::Load->Error al intentar leer el archivo: " + FileName;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 	m_FileName=FileName;

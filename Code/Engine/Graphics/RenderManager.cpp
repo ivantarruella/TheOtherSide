@@ -67,9 +67,13 @@ bool CRenderManager::Init(HWND hWnd, const SInitParams& params)
 			d3dpp.PresentationInterval		= D3DPRESENT_INTERVAL_IMMEDIATE;
 
 		// Create the D3DDevice
+#if MULTITHREADED_LOAD		
 		m_bIsOk = !FAILED(    m_pD3D->CreateDevice(    D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
-			D3DCREATE_HARDWARE_VERTEXPROCESSING, &d3dpp, &m_pD3DDevice ) );
-
+			D3DCREATE_HARDWARE_VERTEXPROCESSING | D3DCREATE_MULTITHREADED, &d3dpp, &m_pD3DDevice ) );
+#else
+		m_bIsOk = !FAILED(m_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
+			D3DCREATE_HARDWARE_VERTEXPROCESSING, &d3dpp, &m_pD3DDevice));
+#endif
 
 		if (!m_bIsOk)
 		{
@@ -78,12 +82,12 @@ bool CRenderManager::Init(HWND hWnd, const SInitParams& params)
 
 			if (m_bIsOk)
 			{
-				LOGGER->AddNewLog(ELL_INFORMATION, "RenderManager:: D3DCREATE_SOFTWARE_VERTEXPROCESSING");
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "RenderManager:: D3DCREATE_SOFTWARE_VERTEXPROCESSING");
 			}
 		}
 		else
 		{
-			LOGGER->AddNewLog(ELL_INFORMATION, "RenderManager:: D3DCREATE_HARDWARE_VERTEXPROCESSING");
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "RenderManager:: D3DCREATE_HARDWARE_VERTEXPROCESSING");
 		}
 
 		if (m_bIsOk)
@@ -119,7 +123,7 @@ bool CRenderManager::Init(HWND hWnd, const SInitParams& params)
 			{
 				GetWindowRect(hWnd);
 			}
-			LOGGER->AddNewLog(ELL_INFORMATION, "RenderManager:: La resolucion de pantalla es (%dx%d)",m_uWidth,m_uHeight);
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "RenderManager:: La resolucion de pantalla es (%dx%d)",m_uWidth,m_uHeight);
 
 		}
 	}
@@ -127,7 +131,7 @@ bool CRenderManager::Init(HWND hWnd, const SInitParams& params)
 	if (!m_bIsOk)
 	{
 		std::string msg_error = "Rendermanager::Init-> Error al inicializar Direct3D";
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		Release();
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
@@ -376,7 +380,7 @@ void CRenderManager::DrawCircle(float Radius, float coordY, CColor Color, uint16
 {
 	for(int i=0; i<num; i++)
 	{
-		DrawLine(Vect3f( Radius*(cos(i*e2PIf/num)), coordY, Radius*(sin(i*e2PIf/num))), Vect3f( Radius*(cos((i+1)*e2PIf/num)), coordY, Radius*(sin((i+1)*e2PIf/num))), Color);
+		DrawLine(Vect3f((float)(Radius*(cos(i*e2PIf/num))), (float)coordY, (float)(Radius*(sin(i*e2PIf/num)))), Vect3f((float)(Radius*(cos((i+1)*e2PIf/num))), (float)coordY, (float)(Radius*(sin((i+1)*e2PIf/num)))), Color);
 	}
 }
 
@@ -385,11 +389,11 @@ void CRenderManager::DrawElipse(float a, float b, float coordY, CColor Color, ui
 	for(int i=0; i<=num;++i)
 	{
 		float O_0 = 2*ePIf*((float)i/(float)num);
-		float d_0 = sqrt( ((cos(O_0)*cos(O_0))/(a*a)) + ((sin(O_0)*sin(O_0))/(b*b)));
+		float d_0 = (float)sqrt( ((cos(O_0)*cos(O_0))/(a*a)) + ((sin(O_0)*sin(O_0))/(b*b)));
 		float O_1 = 2*ePIf*((float)(i+1)/(float)num);
-		float d_1 = sqrt( ((cos(O_1)*cos(O_1))/(a*a)) + ((sin(O_1)*sin(O_1))/(b*b)));
+		float d_1 = (float)sqrt( ((cos(O_1)*cos(O_1))/(a*a)) + ((sin(O_1)*sin(O_1))/(b*b)));
 
-		DrawLine(Vect3f(cos(O_0) / d_0, coordY, sin(O_0) / d_0), Vect3f(cos(O_1) / d_1, coordY, sin(O_1) / d_1), Color);
+		DrawLine(Vect3f((float)cos(O_0) / (float)d_0, (float)coordY, (float)sin(O_0) / d_0), Vect3f((float)cos(O_1) / (float)d_1, (float)coordY, (float)sin(O_1) / (float)d_1), Color);
 	}
 }
 
@@ -397,17 +401,17 @@ void CRenderManager::DrawSphere(float radius, uint32 edges, CColor color )
 {
 	for(int t=0;t<static_cast<int>(edges);++t)
 	{
-		float l_radiusRing=radius*sin(mathUtils::Deg2Rad<float>(180.0f*((float)t))/((float)edges));
+		float l_radiusRing= (float)(radius*sin(mathUtils::Deg2Rad<float>(180.0f*((float)t))/((float)edges)));
 		for(int b=0;b<static_cast<int>(edges);++b)
 		{   	    
-			Vect3f l_PosA(l_radiusRing*cos(mathUtils::Deg2Rad<float>((float)(360.0f*(float)b)/((float)edges))),radius*cos(mathUtils::Deg2Rad<float>(180.0f*((float)t))/((float)edges)),l_radiusRing*sin(mathUtils::Deg2Rad<float>((float)(360.0f*(float)b)/((float)edges))));
-			Vect3f l_PosB(l_radiusRing*cos(mathUtils::Deg2Rad<float>((float)(360.0f*(float)(b+1))/((float)edges))),radius*cos(mathUtils::Deg2Rad<float>(180.0f*((float)t))/((float)edges)),l_radiusRing*sin(mathUtils::Deg2Rad<float>((float)(360.0f*(float)(b+1))/((float)edges))));
+			Vect3f l_PosA((float)(l_radiusRing*cos(mathUtils::Deg2Rad<float>((float)(360.0f*(float)b)/((float)edges)))), (float)(radius*cos(mathUtils::Deg2Rad<float>(180.0f*((float)t))/((float)edges))), (float)(l_radiusRing*sin(mathUtils::Deg2Rad<float>((float)(360.0f*(float)b)/((float)edges)))));
+			Vect3f l_PosB((float)(l_radiusRing*cos(mathUtils::Deg2Rad<float>((float)(360.0f*(float)(b+1))/((float)edges)))), (float)(radius*cos(mathUtils::Deg2Rad<float>(180.0f*((float)t))/((float)edges))),(float)(l_radiusRing*sin(mathUtils::Deg2Rad<float>((float)(360.0f*(float)(b+1))/((float)edges)))));
 			DrawLine(l_PosA,l_PosB,color);
 
-			float l_radiusNextRing=radius*sin(mathUtils::Deg2Rad<float>(180.0f*((float)(t+1)))/((float)edges));
+			float l_radiusNextRing= (float)(radius*sin(mathUtils::Deg2Rad<float>(180.0f*((float)(t+1)))/((float)edges)));
 
-			Vect3f l_PosC(l_radiusRing*cos(mathUtils::Deg2Rad<float>((float)(360.0f*(float)b)/((float)edges))),radius*cos(mathUtils::Deg2Rad<float>(180.0f*((float)t))/((float)edges)),l_radiusRing*sin(mathUtils::Deg2Rad<float>((float)(360.0f*(float)b)/((float)edges))));
-			Vect3f l_PosD(l_radiusNextRing*cos(mathUtils::Deg2Rad<float>((float)(360.0f*(float)b)/((float)edges))),radius*cos(mathUtils::Deg2Rad<float>(180.0f*((float)(t+1)))/((float)edges)),l_radiusNextRing*sin(mathUtils::Deg2Rad<float>((float)(360.0f*(float)b)/((float)edges))));
+			Vect3f l_PosC((float)(l_radiusRing*cos(mathUtils::Deg2Rad<float>((float)(360.0f*(float)b)/((float)edges)))), (float)(radius*cos(mathUtils::Deg2Rad<float>(180.0f*((float)t))/((float)edges))), (float)(l_radiusRing*sin(mathUtils::Deg2Rad<float>((float)(360.0f*(float)b)/((float)edges)))));
+			Vect3f l_PosD((float)(l_radiusNextRing*cos(mathUtils::Deg2Rad<float>((float)(360.0f*(float)b)/((float)edges)))), (float)(radius*cos(mathUtils::Deg2Rad<float>(180.0f*((float)(t+1)))/((float)edges))), (float)(l_radiusNextRing*sin(mathUtils::Deg2Rad<float>((float)(360.0f*(float)b)/((float)edges)))));
 			DrawLine(l_PosC,l_PosD,color);
 		}
 	}
@@ -424,7 +428,7 @@ void CRenderManager::DrawCone (float radius , float h, CColor color , uint16 num
 	}
 	num=2*num;
 	for(int i=0; i<=num;++i){
-		Vect3f ExtremoInf(radius*cos(mathUtils::Deg2Rad<float>((float)(360.0f)*(float)i/((float)num))),0.0,radius*sin(mathUtils::Deg2Rad<float>((float)(360.0f)*(float)i/((float)num))));
+		Vect3f ExtremoInf((float)(radius*cos(mathUtils::Deg2Rad<float>((float)(360.0f)*(float)i/((float)num)))), (float)0.0f, (float)(radius*sin(mathUtils::Deg2Rad<float>((float)(360.0f)*(float)i/((float)num)))));
 		DrawLine(ExtremoSup,ExtremoInf,color);
 	}
 }
@@ -440,7 +444,7 @@ void CRenderManager::DrawConeInv (float radius , float h, CColor color , uint16 
 	}
 	num=2*num;
 	for(int i=0; i<=num;++i){
-		Vect3f ExtremoInf(radius*cos(mathUtils::Deg2Rad<float>((float)(360.0f)*(float)i/((float)num))),h,radius*sin(mathUtils::Deg2Rad<float>((float)(360.0f)*(float)i/((float)num))));
+		Vect3f ExtremoInf((float)(radius*cos(mathUtils::Deg2Rad<float>((float)(360.0f)*(float)i/((float)num)))), (float)h, (float)(radius*sin(mathUtils::Deg2Rad<float>((float)(360.0f)*(float)i/((float)num)))));
 		DrawLine(Vertice,ExtremoInf,color);
 	}
 }
@@ -453,7 +457,7 @@ void CRenderManager::DrawCilinder (float radius , float h, CColor color , uint16
 
 	num=2*num;
 	for(int i=0; i<=num;++i){
-		Vect3f ExtremoSup(radius*cos(mathUtils::Deg2Rad<float>((float)(360.0f)*(float)i/((float)num))),h,radius*sin(mathUtils::Deg2Rad<float>((float)(360.0f)*(float)i/((float)num))));
+		Vect3f ExtremoSup((float)(radius*cos(mathUtils::Deg2Rad<float>((float)(360.0f)*(float)i/((float)num)))), (float)h, (float)(radius*sin(mathUtils::Deg2Rad<float>((float)(360.0f)*(float)i/((float)num)))));
 		Vect3f ExtremoInf(ExtremoSup[0],0.0,ExtremoSup[2]);
 		DrawLine(ExtremoInf,ExtremoSup,color);
 	}
@@ -547,7 +551,7 @@ void CRenderManager::CalculateAlignment (uint32 w, uint32 h, ETypeAlignment alig
 		break;
 	default:
 		{
-			LOGGER->AddNewLog(ELL_ERROR, "RenderManager:: Se está intentado renderizar un quad2d con una alineacion desconocida");
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "RenderManager:: Se está intentado renderizar un quad2d con una alineacion desconocida");
 		}
 		break;
 	}	
@@ -670,7 +674,7 @@ void CRenderManager::DrawQuad2D (const Vect2i& pos, uint32 w, uint32 h, ETypeAli
    	break;
    default:
    	{
-       	LOGGER->AddNewLog(ELL_ERROR, "RenderManager:: Se está intentado renderizar un quad2d con un flip desconocido");
+       	LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "RenderManager:: Se está intentado renderizar un quad2d con un flip desconocido");
    	}
   	 
    }

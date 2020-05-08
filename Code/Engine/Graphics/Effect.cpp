@@ -97,7 +97,7 @@ bool CEffect::LoadEffect()
 	if (l_ErrorBuffer)
 	{
 		std::string msg_info = "Error creating effect '" + m_FileName+"': "+std::string((char *)l_ErrorBuffer->GetBufferPointer());
-		LOGGER->AddNewLog(ELL_ERROR, msg_info.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_info.c_str());
 		CHECKED_RELEASE(l_ErrorBuffer);
 		return false;
 	}	
@@ -313,7 +313,7 @@ void CEffect::GetParameterBySemantic(const std::string &SemanticName, D3DXHANDLE
 		if (l_Handle==NULL)
 		{
 			std::string msg_info = "Parameter by semantic " + SemanticName + " wasn't found on effect " + m_FileName;
-			LOGGER->AddNewLog(ELL_WARNING, msg_info.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_info.c_str());
 		}
 	}
 }

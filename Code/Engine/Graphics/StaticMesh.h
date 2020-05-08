@@ -49,12 +49,8 @@ public:
 	}
 
 	bool Load (const std::string &FileName);
-	
-	void readFileCpp(const char* filename, std::vector<unsigned char>& fileData);
-	void readFileC(const char* filename, unsigned char **buffer);
-	bool LoadFast (const std::string &FileName);
-
 	bool ReLoad ();
+
 	void Render (CRenderManager *RM, const Vect3f& position, const CFrustum* Frustum, bool forwardRender) const;
 	void RenderShadow (CRenderManager *RM, const Vect3f& position, const CFrustum* Frustum, CLight* Light) const;
 	
@@ -77,7 +73,6 @@ private:
 };
 
 void CalcTangentsAndBinormals(void *VtxsData, unsigned short *IdxsData, size_t VtxCount,size_t IdxCount, size_t VertexStride, size_t GeometryStride, size_t NormalStride,size_t TangentStride, size_t BiNormalStride, size_t TextureCoordsStride);
-void VertexCacheOptimisation( void *_VData, uint16 *_IData, size_t _iVCount, size_t _iICount, size_t _iVStride);
 
 
 #endif

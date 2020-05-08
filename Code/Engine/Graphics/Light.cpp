@@ -470,7 +470,7 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode, const std::string& shadows_
 				if(error)
 				{
 					std::string msg_error = "CLight::SetParameters()-> Imposible crear textura DynamicShadowMap ";
-					LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 				}
 
 				if (m_SoftShadow)
@@ -480,7 +480,7 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode, const std::string& shadows_
 					if(error)
 					{
 						std::string msg_error = "CLight::SetParameters()-> Imposible crear textura DynamicShadowMapBlurH_"+m_Name;
-						LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+						LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 					}
 
 					m_DynamicShadowMapBlurV=new CTexture();
@@ -488,7 +488,7 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode, const std::string& shadows_
 					if(error)
 					{
 						std::string msg_error = "CLight::SetParameters()-> Imposible crear textura DynamicShadowMapBlurV_"+m_Name;
-						LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+						LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 					}
 				}
 			}
@@ -509,25 +509,25 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode, const std::string& shadows_
 				if(!m_CubeTextNear->Create("CubeMapTextureMax_"+m_Name,l_Size,1,CCubeTexture::RENDERTARGET,CCubeTexture::DEFAULT,formatType))
 				{
 					std::string msg_error = "CLight::SetParameters()-> Imposible crear textura CubeMap ";
-					LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 				}
 				// omnidirectional shadow map medium quality
 				if(!m_CubeTextMedium->Create("CubeMapTextureMed_"+m_Name,l_Size/2,1,CCubeTexture::RENDERTARGET,CCubeTexture::DEFAULT,formatType))
 				{
 					std::string msg_error = "CLight::SetParameters()-> Imposible crear textura CubeMap ";
-					LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 				}
 				// omnidirectional shadow map minimum quality
 				if(!m_CubeTextFar->Create("CubeMapTextureMin_"+m_Name,l_Size/4,1,CCubeTexture::RENDERTARGET,CCubeTexture::DEFAULT,formatType))
 				{
 					std::string msg_error = "CLight::SetParameters()-> Imposible crear textura CubeMap ";
-					LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 				}
 				// omnidirectional shadow map lowest quality
 				if(!m_CubeTextVeryFar->Create("CubeMapTextureLowest_"+m_Name,l_Size/8,1,CCubeTexture::RENDERTARGET,CCubeTexture::DEFAULT,formatType))
 				{
 					std::string msg_error = "CLight::SetParameters()-> Imposible crear textura CubeMap ";
-					LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 				}
 			}
 		}
@@ -553,7 +553,7 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode, const std::string& shadows_
 			if(error)
 			{
 				std::string msg_error = "CLight::SetParameters()-> Imposible crear textura StaticShadowMap ";
-				LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 			}
 		}
 
@@ -565,7 +565,7 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode, const std::string& shadows_
 			if(!itsOK)
 			{
 				std::string msg_error = "CLight::SetParameters()-> Imposible cargar ShadowMaskTexture: "+l_ShadowTextureMaskFileName;
-				LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 			}
 		}
 
@@ -593,13 +593,13 @@ void CLight::SetParameters(CXMLTreeNode &LightsNode, const std::string& shadows_
 					else
 					{
 						std::string msg_error = "CLight::SetParameters()-> No se puede encontrar RenderableObjectsManager para la capa " + l_Layer;
-						LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+						LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 					}
 				}
 				else
 				{
 					std::string msg_error = "CLight::SetParameters()-> RenderableObjectsLayersManager no cargado!";
-					LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 				}
 			}
 		}

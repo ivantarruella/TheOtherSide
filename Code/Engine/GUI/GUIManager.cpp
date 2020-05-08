@@ -61,7 +61,7 @@ void CGUIManager::Done ()
 //----------------------------------------------------------------------------
 void CGUIManager::Release () 
 {
-	LOGGER->AddNewLog(ELL_INFORMATION, "GUIManager:: shutting down GUI");
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "GUIManager:: shutting down GUI");
 
 	std::map<std::string, CGUIWindow*>::iterator it;
 	std::map<std::string, CGUIWindow*>::iterator itEnd(m_WindowsMap.end());
@@ -75,7 +75,7 @@ void CGUIManager::Release ()
 	CHECKED_DELETE(m_TextBox);
 	CHECKED_DELETE(m_PointerMouse);
 
-	LOGGER->AddNewLog(ELL_INFORMATION, "GUIManager:: offline (ok)");
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "GUIManager:: offline (ok)");
 }
 
 //----------------------------------------------------------------------------
@@ -86,13 +86,13 @@ bool CGUIManager::Init (const std::string& initGuiXML)
 	
 	m_bIsOk = false;
 
-	LOGGER->AddNewLog(ELL_INFORMATION, "CGUIManager:: calling initialization");
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "CGUIManager:: calling initialization");
 
 	CXMLTreeNode parser;
 	if (!parser.LoadFile(initGuiXML.c_str()))
 	{
 		std::string msg_error = "CGUIManager::Init-> Error al leer el archivo de configuracion GUI: " + initGuiXML;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 	else
@@ -113,7 +113,7 @@ bool CGUIManager::Init (const std::string& initGuiXML)
 		else
 		{
 			std::string msg_error = "CGUIManager::Init-> Error al intentar leer el tag <GuiFiles> del archivo de configuracion GUI: " + initGuiXML;
-			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 			throw CException(__FILE__, __LINE__, msg_error);
 		}
 
@@ -159,7 +159,7 @@ bool CGUIManager::Init (const std::string& initGuiXML)
 			else
 			{
 				std::string msg_error = "CGUIManager::Init-> Error al intentar leer el tag <TextBox> del archivo de configuracion GUI: " + initGuiXML;
-				LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 				throw CException(__FILE__, __LINE__, msg_error);
 			}
 
@@ -184,7 +184,7 @@ bool CGUIManager::Init (const std::string& initGuiXML)
 			else
 			{
 				std::string msg_error = "CGUIManager::Init-> Error al intentar leer el tag <PointerMouse> del archivo de configuracion GUI: " + initGuiXML;
-				LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 				throw CException(__FILE__, __LINE__, msg_error);
 			}
 
@@ -200,7 +200,7 @@ bool CGUIManager::Init (const std::string& initGuiXML)
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_INFORMATION, "CSoundManager:: online (ok)");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "CSoundManager:: online (ok)");
 	}
 
 	return m_bIsOk;
@@ -231,7 +231,7 @@ void CGUIManager::Render (CRenderManager *renderManager, CFontManager* fm)
 			{
 				if (!m_bRenderError)
 				{
-					LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: Se ha intentado pintar la windows %s no registrada ", m_sCurrentWindows.c_str());
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: Se ha intentado pintar la windows %s no registrada ", m_sCurrentWindows.c_str());
 					m_bRenderError = true;
 				}
 			}
@@ -300,7 +300,7 @@ void CGUIManager::Update (float elapsedTime)
 			{
 				if (!m_bUpdateError)
 				{
-					LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: Se ha intentado updatear la windows %s no registrada ", m_sCurrentWindows.c_str());
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: Se ha intentado updatear la windows %s no registrada ", m_sCurrentWindows.c_str());
 					m_bUpdateError = true;
 				}
 			}
@@ -314,7 +314,7 @@ void CGUIManager::RenderTransitionEffect(CRenderManager *renderManager)
 	{
 		switch (m_sTransitionEffect.m_eType)
 		{
-			case TE_SHADOW:
+			case EtypeTransitionEffect::TE_SHADOW:
 			{
 				//Dibujamos un quad2d en toda la pantalla:
 				//	- Durante la primera mitad de tiempo irá de totalmente transparente a totalmente opaco negro
@@ -337,7 +337,7 @@ void CGUIManager::RenderTransitionEffect(CRenderManager *renderManager)
 			}
 			break;
 		
-			case TE_FADE_TO_BLACK:
+			case EtypeTransitionEffect::TE_FADE_TO_BLACK:
 			{
 				//Dibujamos un quad2d en toda la pantalla:
 				//	- Irá de totalmente transparente a totalmente opaco negro
@@ -358,7 +358,7 @@ void CGUIManager::RenderTransitionEffect(CRenderManager *renderManager)
 			}
 			break;
 		
-			case TE_SHADOW_OFF:
+			case EtypeTransitionEffect::TE_SHADOW_OFF:
 			{
 				//Dibujamos un quad2d en toda la pantalla:
 				//	- Irá de totalmente opaco negro a totalmente transparente 
@@ -377,7 +377,7 @@ void CGUIManager::RenderTransitionEffect(CRenderManager *renderManager)
 		
 			default:
 			{
-				LOGGER->AddNewLog(ELL_ERROR,"CGUIManager::RenderTransitionEffect-> No se reconoce el efecto a realizar!");
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR,"CGUIManager::RenderTransitionEffect-> No se reconoce el efecto a realizar!");
 			}
 		}
 	}
@@ -391,7 +391,7 @@ bool CGUIManager::UpdateTransitionEffect (float elapsedTime)
     
     switch (m_sTransitionEffect.m_eType)
     {
-      case TE_SHADOW:
+      case EtypeTransitionEffect::TE_SHADOW:
 			{
         if (!m_sTransitionEffect.m_bActiveWindows && m_sTransitionEffect.m_fTimeCounter > m_sTransitionEffect.m_fTransitionTime*0.5f)
 		    {
@@ -408,7 +408,7 @@ bool CGUIManager::UpdateTransitionEffect (float elapsedTime)
       }
       break;
 
-      case TE_FADE_TO_BLACK:
+      case EtypeTransitionEffect::TE_FADE_TO_BLACK:
 			{
         if (m_sTransitionEffect.m_fTimeCounter >= m_sTransitionEffect.m_fTransitionTime)
 		    {
@@ -420,7 +420,7 @@ bool CGUIManager::UpdateTransitionEffect (float elapsedTime)
       }
       break;
 
-      case TE_SHADOW_OFF:
+      case EtypeTransitionEffect::TE_SHADOW_OFF:
 			{
         if (!m_sTransitionEffect.m_bActiveWindows)
         {
@@ -476,12 +476,12 @@ void CGUIManager::ActiveWindows( const std::string& inNameWindow )
 		}
 		else
 		{
-			LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: Al intentar cambiar de windows, la actual-->%s no se ha encontrado registrada", m_sCurrentWindows.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: Al intentar cambiar de windows, la actual-->%s no se ha encontrado registrada", m_sCurrentWindows.c_str());
 		}
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: Al intentar cambiar a la windows-->%s esta no se ha encontrado registrada", inNameWindow.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: Al intentar cambiar a la windows-->%s esta no se ha encontrado registrada", inNameWindow.c_str());
 	}
 }
 
@@ -497,7 +497,7 @@ void CGUIManager::PushWindows (const std::string& inNameWindow )
   }
   else
   {
-    LOGGER->AddNewLog(ELL_ERROR, "CGUIManager::PushWindows Al intentar cambiar a la windows-->%s etsa no se ha encontrado registrada", inNameWindow.c_str());
+    LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager::PushWindows Al intentar cambiar a la windows-->%s etsa no se ha encontrado registrada", inNameWindow.c_str());
   }
 }
 
@@ -505,7 +505,7 @@ void CGUIManager::PopWindows ()
 {
   if (m_PrevWindows.size() == 0)
   {
-    LOGGER->AddNewLog(ELL_ERROR, "CGUIManager::PopWindows -> El vector de PrevWindows esta vacío!");
+    LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager::PopWindows -> El vector de PrevWindows esta vacío!");
   }
   else
   {
@@ -534,7 +534,7 @@ void CGUIManager::SetScreenResolution(const Vect2i& resolution)
 bool CGUIManager::LoadGuiFiles (const std::string& pathGUI_XML)
 {
 	m_bLoadedGuiFiles = false;
-	LOGGER->AddNewLog(ELL_INFORMATION, "GUIManager:: Empezando a leer los .xml del directorio->%s",pathGUI_XML.c_str());
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "GUIManager:: Empezando a leer los .xml del directorio->%s",pathGUI_XML.c_str());
 	//Read xml files:
 	std::map<std::string, CGUIWindow*>::iterator it(m_WindowsMap.begin());
 	std::map<std::string, CGUIWindow*>::iterator itEnd(m_WindowsMap.end());
@@ -559,7 +559,7 @@ bool CGUIManager::LoadGuiFiles (const std::string& pathGUI_XML)
 	// we check the existence of the XmlGui directory
 	if ( hFind == INVALID_HANDLE_VALUE ) 
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: Error al intentar leer los .xml del directorio %s", pathGUI_XML.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: Error al intentar leer los .xml del directorio %s", pathGUI_XML.c_str());
 		return false;
 	}
 	else 
@@ -648,7 +648,7 @@ void CGUIManager::SetActiveGuiElement (const std::string& inNameGuiElement, bool
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetActiveGuiElement", inNameGuiElement.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetActiveGuiElement", inNameGuiElement.c_str());
 	}
 }
 
@@ -662,7 +662,7 @@ bool CGUIManager::GetVisibleGuiElement (const std::string& inNameGuiElement)
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetVisibleGuiElement", inNameGuiElement.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetVisibleGuiElement", inNameGuiElement.c_str());
 	}
   return false;
 }
@@ -677,7 +677,7 @@ void CGUIManager::SetVisibleGuiElement (const std::string& inNameGuiElement, boo
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetVisibleGuiElement", inNameGuiElement.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetVisibleGuiElement", inNameGuiElement.c_str());
 	}
 }
 
@@ -694,7 +694,7 @@ bool CGUIManager::GetProgressBarValue (const std::string& inNameGuiElement, floa
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetProgressBarValue", inNameGuiElement.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetProgressBarValue", inNameGuiElement.c_str());
 	}
 
 	return false;
@@ -712,7 +712,7 @@ bool CGUIManager::SetProgressBarValue (const std::string& inNameGuiElement, floa
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetProgressBarValue", inNameGuiElement.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetProgressBarValue", inNameGuiElement.c_str());
 	}
 	return false;
 }
@@ -728,7 +728,7 @@ std::string CGUIManager::GetButtonCheckInRadioBox (const std::string& inNameRadi
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetButtonCheckInRadioBox", inNameRadioBox.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetButtonCheckInRadioBox", inNameRadioBox.c_str());
 	}
 
 	return "";
@@ -745,7 +745,7 @@ void CGUIManager::SetButtonCheckInRadioBox(  const std::string& inNameRadioBox, 
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetButtonCheckInRadioBox", inNameRadioBox.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetButtonCheckInRadioBox", inNameRadioBox.c_str());
 	}
 }
 
@@ -760,7 +760,7 @@ void CGUIManager::SetStateCheckButton ( const std::string& inCheckButtonName, bo
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetStateCheckButton", inCheckButtonName.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetStateCheckButton", inCheckButtonName.c_str());
 	}
 }
 
@@ -776,7 +776,7 @@ bool CGUIManager::GetStateCheckButton( const std::string& inCheckButtonName )
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetStateCheckButton", inCheckButtonName.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetStateCheckButton", inCheckButtonName.c_str());
 	}
 	return false;
 }
@@ -792,7 +792,7 @@ void CGUIManager::SetEditableTextBox( const std::string& inEditableText, const s
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetEditableTextBox", inEditableText.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetEditableTextBox", inEditableText.c_str());
 	}
 }
 
@@ -807,7 +807,7 @@ std::string CGUIManager::GetEditableTextBox( const std::string& inEditableText )
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetEditableTextBox", inEditableText.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetEditableTextBox", inEditableText.c_str());
 	}
 	return "";
 }
@@ -823,7 +823,7 @@ void CGUIManager::SetImage( const std::string& inImageName, const std::string& a
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetImage", inImageName.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetImage", inImageName.c_str());
 	}
 }
 
@@ -839,7 +839,7 @@ std::string CGUIManager::GetImage( const std::string& inImageName )
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetImage", inImageName.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetImage", inImageName.c_str());
 	}
 	return "";
 }
@@ -855,7 +855,7 @@ void CGUIManager::PlayImage	(const std::string& inImageName, float timePerImage,
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetImage", inImageName.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetImage", inImageName.c_str());
 	}
 }
 
@@ -870,7 +870,7 @@ void CGUIManager::SetAlphaImage(const std::string& inImageName, float _Alpha)
 	}
 	else
 	{
-    LOGGER->AddNewLog(ELL_ERROR, "CGUIManager::GetGUIElement: No se ha encontrado el guiElement %s", inImageName.c_str());
+    LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager::GetGUIElement: No se ha encontrado el guiElement %s", inImageName.c_str());
 	}
 }
 
@@ -885,7 +885,7 @@ void CGUIManager::FadeOutImage(const std::string& inImageName, float startTime, 
 	}
 	else
 	{
-    LOGGER->AddNewLog(ELL_ERROR, "CGUIManager::GetGUIElement: No se ha encontrado el guiElement %s", inImageName.c_str());
+    LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager::GetGUIElement: No se ha encontrado el guiElement %s", inImageName.c_str());
 	}
 }
 
@@ -900,7 +900,7 @@ void CGUIManager::SetStateSlider( const std::string& inSliderName, float amount 
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetStateSlider", inSliderName.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetStateSlider", inSliderName.c_str());
 	}
 }
 
@@ -917,7 +917,7 @@ float CGUIManager::GetStateSlider( const std::string& inSliderName )
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetStateSlider", inSliderName.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion GetStateSlider", inSliderName.c_str());
 	}
 	return 0.f;
 }
@@ -934,7 +934,7 @@ void CGUIManager::SetLiteralInStaticText( const std::string& inStaticText, const
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetVariableText", inStaticText.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion SetVariableText", inStaticText.c_str());
 	}
 }
 
@@ -951,7 +951,7 @@ bool CGUIManager::NextBlockInRadioBox(  const std::string& inNameRadioBox )
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion NextBlockInRadioBox", inNameRadioBox.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion NextBlockInRadioBox", inNameRadioBox.c_str());
 	}
 	return false;
 }
@@ -968,7 +968,7 @@ bool CGUIManager::PrevBlockInRadioBox(  const std::string& inNameRadioBox )
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion PrevBlockInRadioBox", inNameRadioBox.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager:: No se ha encontrado el guiElement %s al ejecutar la funcion PrevBlockInRadioBox", inNameRadioBox.c_str());
 	}
 	return false;
 }
@@ -986,7 +986,7 @@ CGuiElement* CGUIManager::GetGUIElement(const std::string& inNameGuiElement)
 	}
 	else
 	{
-    LOGGER->AddNewLog(ELL_ERROR, "CGUIManager::GetGUIElement: No se ha encontrado el guiElement %s", inNameGuiElement.c_str());
+    LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIManager::GetGUIElement: No se ha encontrado el guiElement %s", inNameGuiElement.c_str());
 	}
 	return NULL;
 }

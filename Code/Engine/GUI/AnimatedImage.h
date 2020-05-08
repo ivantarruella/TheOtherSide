@@ -52,7 +52,7 @@ public:
 	bool													IsQuadrant							() const {return m_bIsQuadrant;}
 	void													SetQuadrant							(bool flag) {m_bIsQuadrant = flag;}
 	void													SetBackGround						(bool flag) {m_bIsBackGround=flag;}
-  int16                         NumFrames               () { return m_VecTextures.size(); }
+  int16                         NumFrames               () { return (int16)m_VecTextures.size(); }
   void                          GoToFrame               (int16 frame) { m_sCurrentFrame = frame; }
   void                          GotoAndStop             (int16 frame);
   void                          FadeOut                 (float startTime, float fadePerSecond);

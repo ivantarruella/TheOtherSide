@@ -44,7 +44,7 @@ CEnergyRecover::CEnergyRecover(CXMLTreeNode &atts)
 	else
 	{
 		std::string msg_error = "CEnergyRecover::CEnergyRecover->No se encuentra renderable object " + l_MeshName + " de la maquina de recarga de energia!";
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 	}
 
 	std::string l_TextureNameON = atts.GetPszProperty("on_texture", "");
@@ -56,7 +56,7 @@ CEnergyRecover::CEnergyRecover(CXMLTreeNode &atts)
 	if (!m_OnTexture || !m_OffTexture)
 	{
 		std::string msg_error = "CEnergyRecover::CEnergyRecover->No se encuentra textura de la maquina de recarga de energia!";
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 	}
 
 	std::string l_LightName = atts.GetPszProperty("light", "");
@@ -67,7 +67,7 @@ CEnergyRecover::CEnergyRecover(CXMLTreeNode &atts)
 		if (m_Light == NULL)
 		{
 			std::string msg_error = "CEnergyRecover::CEnergyRecover->No se encuentra la luz " + l_LightName + " de la maquina de recarga de energia!";
-			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		}
 		else
 			m_Light->SetEndRangeAttenuation(m_Light->GetEndRangeAttenuation()*7.5f);

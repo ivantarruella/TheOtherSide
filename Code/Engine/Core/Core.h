@@ -4,6 +4,8 @@
 #pragma once
 
 #include <Windows.h>
+#include <thread>
+
 #include "Singleton.h"
 #include "EngineDef.h"
 #include "Timer.h"
@@ -50,11 +52,13 @@ public:
 		m_bShowFPS(false),
 		m_fFPS(0.0f),
 		m_fTime(0.0f),
+		m_loading_thread(NULL),
 		m_pTimer(NULL),
 		m_pProcess(NULL),
 		m_pCamera(NULL),
 #ifdef _DEBUG		
 		m_pConsole(NULL),
+		m_pLogRender(NULL),
 		m_pRenderManager(NULL), 
 #endif
 		m_pFontManager(NULL), 
@@ -132,6 +136,8 @@ public:
 	
 	float GetElapsedTime() { return m_pTimer->GetElapsedTime(); }
 
+	std::thread* GetLoadingThread() { return m_loading_thread; }
+
 private:
 	void Release();
 	void UpdateFPS(float elapsedTime, bool show_fps);
@@ -141,7 +147,9 @@ private:
 	bool			m_bShowFPS;
 	float			m_fFPS;
 	float			m_fTime;
-	
+
+	std::thread*	m_loading_thread;
+
 	CTimer*			m_pTimer;
 	CProcess*		m_pProcess;	
 	CCamera*		m_pCamera;
@@ -177,6 +185,5 @@ private:
 	CEnemyManager* m_pEnemyManager;
 	CBulletManager* m_pBulletManager;
 };
-
 
 #endif

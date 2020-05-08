@@ -283,7 +283,7 @@ void CGameProcess::Load()
 		m_Player->Load();
 
 	m_Camera = GetCamera();
-	if (CORE->GetLevelManager()->GetLevelName()=="Level01-Tutorial")
+	if (CORE->GetLevelManager()->GetLevelName() == "Level01-Tutorial")
 		m_Camera->GetObject3D()->SetPosition(CAMERA_INI_POS);
 	if (CORE->GetLevelManager()->GetLevelName()=="Level02 - Aqueronte Corp.")
 		m_Camera->GetObject3D()->SetRoll(D3DX_PI/2.0f);

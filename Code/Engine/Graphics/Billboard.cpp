@@ -118,9 +118,9 @@ void CBillboard::UpdateImpactBillboard()
 		return;
 
 	float l_Yaw = l_Camera->GetPlayerYaw();
-	Vect3f l_Right = Vect3f(sin(l_Yaw),0.0,cos(l_Yaw));
+	Vect3f l_Right = Vect3f((float)sin(l_Yaw),0.0f,(float)cos(l_Yaw));
 	l_Right.Normalize();
-	Vect3f l_Up = Vect3f(sin(l_Yaw-FLOAT_PI_VALUE/2.f),0.0,cos(l_Yaw-FLOAT_PI_VALUE/2.f));
+	Vect3f l_Up = Vect3f((float)sin(l_Yaw-FLOAT_PI_VALUE/2.f), (float)0.0f, (float)cos(l_Yaw-FLOAT_PI_VALUE/2.f));
 	l_Up.Normalize();
 
 	if (GetPos().y <GROUND_HEIGHT) 

@@ -30,14 +30,14 @@ void CInputManager::Done ()
 //----------------------------------------------------------------------------
 void CInputManager::Release () 
 {
-	LOGGER->AddNewLog(ELL_INFORMATION, "InputManager:: shutting down DirectInput");
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "InputManager:: shutting down DirectInput");
 
 	CHECKED_DELETE(m_pKB);
 	CHECKED_DELETE(m_pMouse);
 	CHECKED_DELETE(m_pGamePad);
 	CHECKED_RELEASE(m_pDI);
 
-	LOGGER->AddNewLog(ELL_INFORMATION, "InputManager:: offline (ok)");
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "InputManager:: offline (ok)");
 }
 
 
@@ -51,7 +51,7 @@ bool CInputManager::Init (HWND hWnd, const Vect2i& screenRes, bool exclusiveMode
 	HRESULT hr;
 	m_hWndMain = hWnd;
 
-	LOGGER->AddNewLog(ELL_INFORMATION, "InputManager:: calling initialization");
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "InputManager:: calling initialization");
 
 
 	// create main DirectInput object
@@ -76,11 +76,11 @@ bool CInputManager::Init (HWND hWnd, const Vect2i& screenRes, bool exclusiveMode
 				m_pGamePad->Update();
 				if (m_pGamePad->IsConnected() )
 				{
-					LOGGER->AddNewLog(ELL_INFORMATION, "InputManager:: GamePad is connected");
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "InputManager:: GamePad is connected");
 				}
 				else
 				{
-					LOGGER->AddNewLog(ELL_INFORMATION, "InputManager:: GamePad is not connected");
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "InputManager:: GamePad is not connected");
 				}
 			}
 

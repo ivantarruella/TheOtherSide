@@ -28,7 +28,7 @@ CMirrorPieceObject::CMirrorPieceObject(CXMLTreeNode &atts)
 	else
 	{
 		std::string msg_error = "CMirrorPieceObject::CMirrorPieceObject->No se encuentra renderable object " + l_MeshName + " del trozo de espejo!";
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 	}
 }
 

@@ -1,7 +1,5 @@
 #pragma once
 #ifndef __CLASS_INDEXEDVERTEXS_H__
-#define __CLASS_INDEXEDVERTEXS_H__
-
 #include "VertexType.h"
 #include "RenderManager.h"
 #include "RenderableVertexs.h"
@@ -58,7 +56,7 @@ public:
 	
 	virtual bool Render(CRenderManager *RM, CEffectTechnique *EffectTechnique) const
 	{
-		return Render(RM, EffectTechnique, 0, 0, (UINT)m_VertexCount, 0, (UINT) m_IndexCount/3);
+		return Render(RM, EffectTechnique, 0, 0, (uint16)m_VertexCount, 0, (uint16) m_IndexCount/3);
 	}
 	
 	virtual bool Render(CRenderManager *RM, CEffectTechnique *EffectTechnique, int BaseVertexIndex, uint16 MinVertexIndex, uint16 NumVertices, uint16 startIndex, uint16 FaceCount) const

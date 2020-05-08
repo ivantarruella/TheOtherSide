@@ -27,14 +27,14 @@ class CScriptManager;
 //--------------------------
 
 //----------Declaracion de nuevos tipos------------------------------------
-enum EtypeTransitionEffect {
+enum class EtypeTransitionEffect {
   TE_SHADOW = 0,
   TE_FADE_TO_BLACK,
   TE_SHADOW_OFF
 };
 struct TransitionEffect
 {
-	TransitionEffect::TransitionEffect(): m_bDoEffect(false), m_fTransitionTime(0.f), m_eType(TE_SHADOW), m_sWindowsName(""), m_fTimeCounter(0.f), m_bActiveWindows(false){}
+	TransitionEffect::TransitionEffect(): m_bDoEffect(false), m_fTransitionTime(0.f), m_eType(EtypeTransitionEffect::TE_SHADOW), m_sWindowsName(""), m_fTimeCounter(0.f), m_bActiveWindows(false){}
 	bool											m_bDoEffect;
 	float											m_fTransitionTime;
 	float											m_fTimeCounter;

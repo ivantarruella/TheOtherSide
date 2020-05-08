@@ -35,7 +35,7 @@ bool CActionToInput::LoadXML(const std::string& pathFile)
 	if (!parser.LoadFile(pathFile.c_str()))
 	{
 		std::string msg_error = "CActionToInput::LoadConfig->Error al intentar leer el archivo de Input: " + pathFile;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 	m_sXMLFile = pathFile;

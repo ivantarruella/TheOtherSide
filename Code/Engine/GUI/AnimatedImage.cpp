@@ -115,7 +115,7 @@ void CAnimatedImage::Update (CInputManager* intputManager, float elapsedTime)
           m_sCurrentFrame--;
           if (m_sCurrentFrame < 0)
           {
-            m_sCurrentFrame = m_VecTextures.size() - 1;
+            m_sCurrentFrame = (int16)(m_VecTextures.size() - 1);
           
             if (!m_bLoop)
 			      {

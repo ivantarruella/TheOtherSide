@@ -96,7 +96,7 @@ void CBulletManager::AddParticles(CSoldier* _pSoldier, Vect3f &_Position, bool b
 {
 	// damage particles
 	m_particles[_Name] = std::pair<CSoldier*, std::pair<float, float> >(_pSoldier, std::pair<float, float>(_Position.y, bIsHeadShoot ? REMOVE_HEADSHOT_TIME : REMOVE_DAMAGE_TIME));
-	CORE->GetParticleManager()->AddParticleEmitterInstance(bIsHeadShoot ? "soldier_headshoot" : "soldier_damage", _Name, _Position, _Position, size, world); 
+	CORE->GetParticleManager()->AddParticleEmitterInstance(bIsHeadShoot ? "soldier_damage" : "soldier_damage", _Name, _Position, _Position, size, world); 
 	CParticleEmitter* l_Particles = CORE->GetParticleManager()->GetParticleEmitter(_Name);
 	if (l_Particles!=NULL) {
 		l_Particles->SetEnabled(true);

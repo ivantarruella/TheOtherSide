@@ -51,7 +51,7 @@ bool CPhysicsManager::Init ()
 	m_bIsOk = (m_pMyAllocator != NULL);
 	if (m_bIsOk)
 	{
-		LOGGER->AddNewLog(ELL_INFORMATION, "PhysicsManager:: Inicializando la libreria PhysX");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "PhysicsManager:: Inicializando la libreria PhysX");
 		// Initialize PhysicsSDK
 		NxPhysicsSDKDesc desc;
 		NxSDKCreateError errorCode = NXCE_NO_ERROR;
@@ -70,9 +70,9 @@ bool CPhysicsManager::Init ()
 		m_bIsOk = (m_pPhysicsSDK != NULL);
 		if (m_bIsOk)
 		{
-			LOGGER->AddNewLog(ELL_INFORMATION, "PhysicsManager:: Creado el PhysXSDK");
-			LOGGER->AddNewLog(ELL_INFORMATION, "PhysicsManager:: -------PhsX Settings---");
-			LOGGER->AddNewLog(ELL_INFORMATION, "PhysicsManager:: El valor del SkinWidth es: %f", 
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "PhysicsManager:: Creado el PhysXSDK");
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "PhysicsManager:: -------PhsX Settings---");
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "PhysicsManager:: El valor del SkinWidth es: %f",
 				m_InitParams.m_fSkinWidth);
 
 
@@ -86,7 +86,7 @@ bool CPhysicsManager::Init ()
 			m_pPhysicsSDK->setParameter(NX_CONTINUOUS_CD, 1);
 
 			// Create a scene
-			LOGGER->AddNewLog(ELL_INFORMATION, "PhysicsManager:: El valor de la gravedad es: %f",
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "PhysicsManager:: El valor de la gravedad es: %f",
 				m_InitParams.m_fGravity);
 			NxSceneDesc sceneDesc;
 			//TODO por XML sceneDesc.gravity = NxVec3(0.0f, m_InitParams.m_fGravity, 0.0f);
@@ -96,14 +96,14 @@ bool CPhysicsManager::Init ()
 			m_bIsOk = (m_pScene != NULL);
 			if (m_bIsOk)
 			{
-				LOGGER->AddNewLog(ELL_INFORMATION, "PhysicsManager:: Solo hay un material, con los siguientes params");
-				LOGGER->AddNewLog(ELL_INFORMATION, "PhysicsManager:: DefaultMaterial->Restitution %f:",
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "PhysicsManager:: Solo hay un material, con los siguientes params");
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "PhysicsManager:: DefaultMaterial->Restitution %f:",
 					m_InitParams.m_Restitution_DefMat);
-				LOGGER->AddNewLog(ELL_INFORMATION, "PhysicsManager:: DefaultMaterial->StaticFriction %f:",
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "PhysicsManager:: DefaultMaterial->StaticFriction %f:",
 					m_InitParams.m_StaticFriction_DefMat);
-				LOGGER->AddNewLog(ELL_INFORMATION, "PhysicsManager:: DefaultMaterial->DynamicFriction %f:",
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "PhysicsManager:: DefaultMaterial->DynamicFriction %f:",
 					m_InitParams.m_DynamicFriction_DefMat);
-				LOGGER->AddNewLog(ELL_INFORMATION, "PhysicsManager:: ----END PhsX Settings---");
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "PhysicsManager:: ----END PhsX Settings---");
 				// Set default material
 				NxMaterial* defaultMaterial = m_pScene->getMaterialFromIndex(0);
 				defaultMaterial->setRestitution(m_InitParams.m_Restitution_DefMat);
@@ -119,12 +119,12 @@ bool CPhysicsManager::Init ()
 				m_bIsOk = (m_pControllerManager != NULL);
 				if (m_bIsOk)
 				{
-				LOGGER->AddNewLog(ELL_INFORMATION, "PhysicsManager:: Creado el controlador de caracteres");
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "PhysicsManager:: Creado el controlador de caracteres");
 				m_pCookingMesh = new CPhysicCookingMesh();
 				assert(m_pCookingMesh);
 				m_bIsOk = m_pCookingMesh->Init(m_pPhysicsSDK, m_pMyAllocator);
 				if (m_bIsOk) {
-				LOGGER->AddNewLog(ELL_INFORMATION, "PhysicsManager:: Creado el CookingMesh");
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "PhysicsManager:: Creado el CookingMesh");
 				}
 
 				} //m_bIsOk m_pControllerManager?*/
@@ -138,7 +138,7 @@ bool CPhysicsManager::Init ()
 	if (!m_bIsOk)
 	{
 		std::string msg_error = "PhysicsManager::Init-> Error en la inicializacion de PhysX";
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		Release();
 		throw CException(__FILE__, __LINE__, msg_error);
 	}

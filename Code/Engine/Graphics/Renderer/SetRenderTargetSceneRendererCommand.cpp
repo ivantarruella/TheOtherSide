@@ -20,7 +20,7 @@ CSetRenderTargetSceneRendererCommand::CSetRenderTargetSceneRendererCommand(CXMLT
 		if(m_ViewportStencil && !l_TextureWidhtAsFrameBuffer)
 		{
 			std::string msg_error = "CSetRenderTargetSceneRendererCommand::FormatType->Error, viewport stencil true y texture width false: "+l_Name;
-			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 			throw CException(__FILE__, __LINE__, msg_error);
 		}
 		std::string l_FormatType = atts(j).GetPszProperty("format_type", "");

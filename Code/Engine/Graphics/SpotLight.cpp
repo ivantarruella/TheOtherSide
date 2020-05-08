@@ -139,7 +139,7 @@ void CSpotLight::RenderDebug(CRenderManager *RM)
 		//RM->DrawConeInv(radi,m_EndRangeAttenuation,m_Color,8);
 
 		//RM->DrawConeInv(radi,m_Direction.Length(),m_Color,10);
-		float radi= m_EndRangeAttenuation*tan(mathUtils::Deg2Rad<float>((float)m_FallOff/2));
+		float radi= (float)(m_EndRangeAttenuation*tan(mathUtils::Deg2Rad<float>((float)m_FallOff/2)));
 		RM->DrawConeInv(radi,m_EndRangeAttenuation,m_Color,8);
 	}
 }

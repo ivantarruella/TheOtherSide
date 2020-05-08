@@ -42,7 +42,7 @@ bool CLogicObjectsManager::Load (const std::string &FileName)
 	if (!parser.LoadFile(FileName.c_str()))
 	{
 		std::string msg_error = "CLogicObjectsManager::Load->Error al intentar leer el archivo: " + FileName;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 	m_FileName = FileName;
@@ -113,12 +113,12 @@ bool CLogicObjectsManager::Load (const std::string &FileName)
 					AddResource(l_name, l_LogicObject);
 
 					std::string msg_info = "CLogicObjectsManager::Load()-> Logic object " + l_name + " tipo " + l_type + " cargado ok!\n";
-					LOGGER->AddNewLog(ELL_INFORMATION, msg_info.c_str());
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, msg_info.c_str());
 				}
 				else
 				{
 					std::string msg_info = "CLogicObjectsManager::Load()-> Tipo de logica " + l_type + " desconocida en objeto " + l_name + "!\n";
-					LOGGER->AddNewLog(ELL_INFORMATION, msg_info.c_str());
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, msg_info.c_str());
 				}
 			}
 		}

@@ -31,6 +31,8 @@ private:
 	SLevelPaths m_LevelPaths;
 	bool		m_bIsOk;
 	bool		m_bChanging;
+	bool		m_bLoadingThreadJoined;
+	bool	    m_reload_escene;
 	std::string m_shadowsType;
 };
 

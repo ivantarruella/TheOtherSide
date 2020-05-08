@@ -27,7 +27,7 @@ CFanObject::CFanObject(CXMLTreeNode &atts)
 		if (m_FanMesh1==NULL)
 		{
 			std::string msg_error = "CFanObject::CFanObject->No se encuentra renderable object " + l_Renderable_Object + " del ventilador!";
-			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		}
 	}	
 }

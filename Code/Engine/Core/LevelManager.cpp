@@ -25,7 +25,7 @@
 
 
 CLevelManager::CLevelManager(const std::string& shadows_type)
-	: m_bIsOk(false), m_bChanging(false), m_shadowsType(shadows_type)
+	: m_bIsOk(false), m_bChanging(false), m_bLoadingThreadJoined(false), m_shadowsType(shadows_type)
 {
 }
 
@@ -63,7 +63,7 @@ void CLevelManager::LoadPaths (const std::string& pathFile)
 	if (!parser.LoadFile(init_file.c_str()))
 	{
 		std::string msg_error = "CLevelManager::LoadLevel->Error al intentar leer el archivo de inicialización del nivel " + init_file;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 	m_LevelPaths.m_sXMLPath = pathFile;
@@ -156,8 +156,8 @@ void CLevelManager::LoadPaths (const std::string& pathFile)
 
 bool CLevelManager::InitLevel () 
 {
-	time_t start_load;
-	time (&start_load);
+	time_t start_load, end_load;
+	time(&start_load);
 
 	LoadPaths(m_LevelPaths.m_sXMLPath);
 
@@ -168,7 +168,6 @@ bool CLevelManager::InitLevel ()
 	// Get Managers
 	CStaticMeshManager* l_StaticMeshManager = CORE->GetStaticMeshManager();
 	CRenderableObjectsLayersManager* l_RenderableObjectsLayersManager = CORE->GetRenderableObjectsLayersManager();
-	//CPhysicsManager* l_PhysicsManager = CORE->GetPhysicsManager();
 	CBulletManager* l_BulletManager = CORE->GetBulletManager();
 	CLightManager* l_LightManager = CORE->GetLightManager();
 	CBillboardManager* l_BillboardManager = CORE->GetBillboardManager();
@@ -179,9 +178,9 @@ bool CLevelManager::InitLevel ()
 	CCoverManager* l_CoverManager = CORE->GetCoverManager();
 
 	// Destroy all
-	l_StaticMeshManager->Destroy();
+	if (!l_StaticMeshManager->GetMeshPreLoad())
+		l_StaticMeshManager->Destroy();
 	l_RenderableObjectsLayersManager->Destroy();
-	//l_PhysicsManager->Done();
 	l_TriggerManager->Destroy();
 	l_BulletManager->Destroy();
 	l_LightManager->Destroy();
@@ -191,26 +190,73 @@ bool CLevelManager::InitLevel ()
 	l_LogicObjectsManager->Destroy();
 	l_CoverManager->Release();
 
-	// Inicializamos PhysicManager
+	//Inicializamos ParticleManager
+	bInitOk = (m_LevelPaths.m_sParticlesPath != "");
 	if (bInitOk)
 	{
-		//bInitOk = l_PhysicsManager->Init();
-		if (!bInitOk && l_ManagerError=="")
-			l_ManagerError = "PhysicManager";
+		l_ParticleManager->Load(xml_file + m_LevelPaths.m_sParticlesPath);
+	}
+	if (!bInitOk && l_ManagerError == "")
+		l_ManagerError = "ParticleManager";
+
+	//Inicializamos BillboardManager
+	bInitOk = (m_LevelPaths.m_sBillboardPath != "");
+	if (bInitOk)
+	{
+		l_BillboardManager->Load(xml_file + m_LevelPaths.m_sBillboardPath);
+	}
+	if (!bInitOk && l_ManagerError == "")
+		l_ManagerError = "BillboardManager";
+
+	//Inicializamos TriggerManager
+	bInitOk = (m_LevelPaths.m_sTriggersPath != "");
+	if (bInitOk)
+	{
+		l_TriggerManager->Init();
+		l_TriggerManager->Load(xml_file + m_LevelPaths.m_sTriggersPath);
+	}
+	if (!bInitOk && l_ManagerError == "")
+		l_ManagerError = "TriggerManager";
+
+	// Inicializamos NodeManager
+	bInitOk = (m_LevelPaths.m_sNodesPath != "");
+	if (bInitOk)
+	{
+		l_NodeManager->Load(xml_file + m_LevelPaths.m_sNodesPath);
+	}
+	if (!bInitOk && l_ManagerError == "")
+		l_ManagerError = "NodeManager";
+
+	//Inicializamos BulletManager
+	bInitOk = l_BulletManager->Init();
+	if (!bInitOk && l_ManagerError == "")
+		l_ManagerError = "BulletManager";
+
+	// Inicializamos CoverManager
+	bInitOk = (m_LevelPaths.m_sCoversPath != "");
+	if (bInitOk)
+	{
+		l_CoverManager->Load(xml_file + m_LevelPaths.m_sCoversPath);
+	}
+	if (!bInitOk && l_ManagerError == "")
+		l_ManagerError = "CoverManager";
+
+	// Wait for loading thread to finish loading of all game meshes
+	if (CORE->GetLoadingThread() && !m_bLoadingThreadJoined)
+	{
+		CORE->GetLoadingThread()->join();
+		m_bLoadingThreadJoined = true;
 	}
 
 	// Inicializamos StaticMeshManager 
 	bInitOk = (m_LevelPaths.m_sStaticMeshesPath!="");
 	if (bInitOk)
 	{
-		bInitOk = l_StaticMeshManager->Load(xml_file+m_LevelPaths.m_sStaticMeshesPath);		
+		bInitOk = (l_StaticMeshManager->GetMeshPreLoad() ? true : l_StaticMeshManager->Load(xml_file+m_LevelPaths.m_sStaticMeshesPath));
 	}
 	if (!bInitOk && l_ManagerError=="")
 		l_ManagerError = "StaticMeshManager";
 	
-	time_t end_meshes_load;
-	time (&end_meshes_load);
-
 	// Inicializamos RenderableObjectsLayersManager
 	bInitOk = (m_LevelPaths.m_sRenderableObjectsPath!="");	
 	if (bInitOk)
@@ -221,14 +267,6 @@ bool CLevelManager::InitLevel ()
 	if (!bInitOk && l_ManagerError=="")
 		l_ManagerError = "RenderableObjectsLayersManager";
 
-	time_t end_instances_load;
-	time (&end_instances_load);
-
-	//Inicializamos BulletManager
-	bInitOk = l_BulletManager->Init();
-	if (!bInitOk && l_ManagerError=="")
-		l_ManagerError = "BulletManager";
-
 	// Inicializamos LightManager
 	bInitOk = (m_LevelPaths.m_sLightsPath!="");
 	if (bInitOk)
@@ -237,43 +275,6 @@ bool CLevelManager::InitLevel ()
 	}
 	if (!bInitOk && l_ManagerError=="")
 		l_ManagerError = "LightManager";
-
-	//Inicializamos BillboardManager
-	bInitOk = (m_LevelPaths.m_sBillboardPath!="");
-	if (bInitOk)
-	{
-		l_BillboardManager->Load(xml_file+m_LevelPaths.m_sBillboardPath);
-	}
-	if (!bInitOk && l_ManagerError=="")
-		l_ManagerError = "BillboardManager";
-
-	//Inicializamos ParticleManager
-	bInitOk = (m_LevelPaths.m_sParticlesPath!="");
-	if (bInitOk)
-	{
-		l_ParticleManager->Load(xml_file+m_LevelPaths.m_sParticlesPath);
-	}
-	if (!bInitOk && l_ManagerError=="")
-		l_ManagerError = "ParticleManager";
-
-	//Inicializamos TriggerManager
-	bInitOk = (m_LevelPaths.m_sTriggersPath!="");
-	if (bInitOk)
-	{
-		l_TriggerManager->Init();
-		l_TriggerManager->Load(xml_file+m_LevelPaths.m_sTriggersPath);
-	}
-	if (!bInitOk && l_ManagerError=="")
-		l_ManagerError = "TriggerManager";
-
-	// Inicializamos NodeManager
-	bInitOk = (m_LevelPaths.m_sNodesPath!="");
-	if (bInitOk)
-	{
-		l_NodeManager->Load(xml_file+m_LevelPaths.m_sNodesPath);
-	}
-	if (!bInitOk && l_ManagerError=="")
-		l_ManagerError = "NodeManager";
 
 	// Inicializamos LogicObjectsManager
 	bInitOk = (m_LevelPaths.m_sLogicObjectsPath!="");
@@ -284,42 +285,24 @@ bool CLevelManager::InitLevel ()
 	if (!bInitOk && l_ManagerError=="")
 		l_ManagerError = "LogicObjectsManager";
 
-	// Inicializamos CoverManager
-	bInitOk = (m_LevelPaths.m_sCoversPath!="");
-	if (bInitOk)
-	{
-		l_CoverManager->Load(xml_file+m_LevelPaths.m_sCoversPath);
-	}
-	if (!bInitOk && l_ManagerError=="")
-		l_ManagerError = "CoverManager";
-
 	// Recargamos SceneRendererCommandManager
 	CORE->GetSceneRendererCommandManager()->Reload();
 
 	// Comprobamos que todos los managers han sido inicializados correctamente y si no lanzamos una excepción.
 	if (bInitOk)
     {
-        std::string msg_Ok = "CLevelManager::InitLevel-> Datos de todos los managers cargados ok!" ;
-        LOGGER->AddNewLog(ELL_INFORMATION, msg_Ok.c_str());
+		std::ostringstream oss;
+		time(&end_load);
+		double dif = difftime(end_load, start_load);
+		oss << "CLevelManager::InitLevel->Datos de todos los managers cargados ok!Tiempo total : " << dif;
+        LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, oss.str().c_str());
     }
     else if (l_ManagerError!="")
     {
 		std::string msg_error = "CLevelManager::InitLevel-> Nivel " + m_LevelPaths.m_sLevelName + " cargado satisfactoriamente!\n";
-        LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+        LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
         throw CException(__FILE__, __LINE__, msg_error);
 	}
-
-	time_t end_load;
-	time (&end_load);	
-	double total_dif = difftime (end_load,start_load);
-
-	std::ostringstream oss, oss2,oss3;
-	oss << "CLevelManager::InitLevel-> Tiempo de carga del nivel: " <<  difftime (end_load,start_load);
-	LOGGER->AddNewLog(ELL_INFORMATION, oss.str().c_str());
-	oss2 << "CLevelManager::InitLevel-> Tiempo de carga static meshes: " <<  difftime (end_meshes_load, start_load);
-	LOGGER->AddNewLog(ELL_INFORMATION, oss2.str().c_str());
-    oss3 << "CLevelManager::InitLevel-> Tiempo de carga instance meshes: " <<  difftime (end_instances_load, end_meshes_load);
-	LOGGER->AddNewLog(ELL_INFORMATION, oss3.str().c_str());
 
 	return bInitOk;
 }

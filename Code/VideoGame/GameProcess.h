@@ -19,7 +19,7 @@ class CWeapon;
 
 #define CAMERA_ZNEAR			0.01f
 #define CAMERA_ZFAR				55.0f
-#define CAMERA_FOV				(65.0f * FLOAT_PI_VALUE/180.0f)
+#define CAMERA_FOV				(70.0f * FLOAT_PI_VALUE/180.0f)
 
 #define GUI_LIVE_WIDTH			24.0f
 #define GUI_ENERGY_WIDTH		24.0f
@@ -30,7 +30,7 @@ class CWeapon;
 #define MOUSE_SENSITIVITY_MIN	0.001f
 #define MOUSE_SENSITIVITY_MAX	0.02f
 
-#define CAMERA_INI_POS			(Vect3f(23.f, 0.7f, -3.f))
+#define CAMERA_INI_POS			(Vect3f(22.f, 0.7f, -3.f))
 
 
 class CGameProcess :	public CProcess

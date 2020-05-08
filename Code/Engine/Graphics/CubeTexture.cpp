@@ -85,7 +85,7 @@ CCubeTexture::TFormatType CCubeTexture::GetFormatTypeFromString(const std::strin
 	{
 		//Info("Format Type '%s' not recognized", FormatType.c_str());
 		std::string msg_error = "CTexture::FormatType->Error, tipo de formato no reconocido: " + FormatType;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		return CCubeTexture::A8R8G8B8;
 		//throw CException(__FILE__, __LINE__, msg_error);
 	}

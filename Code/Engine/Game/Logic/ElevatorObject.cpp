@@ -42,7 +42,7 @@ CElevatorObject::CElevatorObject(CXMLTreeNode &atts)
 		if (!m_AnimatedPhysicModel)
 		{
 			std::string msg_error = "CElevatorObject::CElevatorObject->No se encuentra animated model " + l_AnimatedModelName1 + " del ascensor!";
-			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		}
 		else
 		{
@@ -55,7 +55,7 @@ CElevatorObject::CElevatorObject(CXMLTreeNode &atts)
 		if (!m_DoorPhysicMesh)
 		{
 			std::string msg_error = "CElevatorObject::CElevatorObject->No se encuentra la puerta fisica del ascensor!";
-			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		}
 		else
 			m_vDoorIniPos = m_DoorPhysicMesh->GetPosition();
@@ -69,7 +69,7 @@ CElevatorObject::CElevatorObject(CXMLTreeNode &atts)
 		else if (l_AnimatedModelName1 == "")
 			msg_error = "CElevatorObject::CElevatorObject->No se encuentra animated model " + l_AnimatedModelName1 + " del ascensor!";
 
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 	}
 
 	m_sOtherElevator = atts.GetPszProperty("link","");

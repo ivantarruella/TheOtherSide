@@ -45,7 +45,7 @@ void CParticleManager::Load(const std::string &FileName)
 	if (!parser.LoadFile(FileName.c_str()))
 	{
 		std::string msg_error = "CParticleManager::Load->Error al intentar leer el archivo: " + FileName;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 

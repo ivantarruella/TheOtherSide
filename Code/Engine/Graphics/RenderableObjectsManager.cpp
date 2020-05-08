@@ -88,7 +88,7 @@ void CRenderableObjectsManager:: AddMeshInstance(const CXMLTreeNode& XmlData)
 			if (l_StaticMesh == NULL)
 			{
 				std::string msg_error = "CRenderableObjectsManager::AddMeshInstance()-> Imposible encontrar core mesh " + l_CoreName + " para instancia " + l_InstanceName;
-				LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 			}
 			else
 			{
@@ -96,13 +96,13 @@ void CRenderableObjectsManager:: AddMeshInstance(const CXMLTreeNode& XmlData)
 				CInstanceMesh* l_pInstanceMesh = new CInstanceMesh(XmlData);
 				AddResource(l_InstanceName, l_pInstanceMesh);
 				std::string msg_error = "CRenderableObjectsManager::AddMeshInstance()-> Instancia  " + l_InstanceName + " de core " + l_CoreName + " cargada Ok";
-				LOGGER->AddNewLog(ELL_INFORMATION, msg_error.c_str());
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, msg_error.c_str());
 			}
 		}
 		else
 		{
 			std::string msg_error = "CRenderableObjectsManager::AddMeshInstance()-> Instance mesh " + l_InstanceName + " repetida! IMPORTANTE: CAMBIAR SU NOMBRE!\n";
-			LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 		}
 	}
 }
@@ -119,13 +119,13 @@ void CRenderableObjectsManager:: AddAnimatedModelInstance(const std::string &Cor
 		if(l_pInstanceModel==NULL)
 		{
 			std::string msg_error = "CRenderableObjectsManager::AddAnimatedModelInstance()-> Imposible encontrar animated model core " + l_ModelCoreName + " para animated model instance " + l_ModelInstanceName;
-			LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 		}
 		else
 		{
 			AddResource(l_ModelInstanceName, l_pInstanceModel);
 			std::string msg_error = "CAnimatedModelsManager::CreateInstance()-> Instancia  " + l_ModelInstanceName + " de animated core model " + l_ModelCoreName + " cargada Ok";
-			LOGGER->AddNewLog(ELL_INFORMATION, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, msg_error.c_str());
 		}
 		
 	}
@@ -144,13 +144,13 @@ void CRenderableObjectsManager:: AddAnimatedModelInstance(const CXMLTreeNode& Xm
 		if(l_pInstanceModel==NULL)
 		{
 			std::string msg_error = "CRenderableObjectsManager::AddAnimatedModelInstance()-> Imposible encontrar animated model core " + l_ModelCoreName + " para animated model instance " + l_ModelInstanceName;
-			LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 		}
 		else
 		{
 			AddResource(l_ModelInstanceName, l_pInstanceModel);
 			std::string msg_error = "CAnimatedModelsManager::CreateInstance()-> Instancia  " + l_ModelInstanceName + " de animated core model " + l_ModelCoreName + " cargada Ok";
-			LOGGER->AddNewLog(ELL_INFORMATION, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, msg_error.c_str());
 		}
 		
 	}
@@ -212,7 +212,7 @@ void CRenderableObjectsManager::Load(const std::string &FileName)
 	if (!parser.LoadFile(FileName.c_str()))
 	{
 		std::string msg_error = "CRenderableObjectsManager::Load->Error al intentar leer el archivo: " + FileName;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 

@@ -6,8 +6,8 @@
 #include "include\PhysicsManager.h"
 
 #define CAM_ZOOM_WALK			0.0f
-#define CAM_DIST				2.25f	// Distancia de la camara
-#define CAM_DIST_AIM			0.5f	// Distancia de la camara apuntando
+#define CAM_DIST				1.5f	// Distancia de la camara
+#define CAM_DIST_AIM			0.6f	// Distancia de la camara apuntando
 #define CAM_MIN_HEIGHT			0.0f
 #define CAM_HEIGHT				0.7f
 
@@ -35,7 +35,7 @@ public:
 	void	  SetHeight(float Height) {m_fHeight = Height;};
 	float	  GetFrontDistance() const	{return m_fDistance;}
 	float	  GetDistanceFromCenter() const	{return m_fDistanceFromCenter;}
-	float	  GetDistance() 	{return m_fDistance/cos(-GetPlayerPitch());}
+	float	  GetDistance() 	{return m_fDistance/(float)cos(-GetPlayerPitch());}
 	void	  SetFrontDistance(float Distance) {m_fDistance = Distance;};
 	void	  SetDistanceFromCenter(float Distance) {m_fDistanceFromCenter = Distance;};
 	Vect3f   GetCollisionPoint ();

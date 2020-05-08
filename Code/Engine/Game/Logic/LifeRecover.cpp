@@ -37,7 +37,7 @@ CLifeRecover::CLifeRecover(CXMLTreeNode &atts)
 	else
 	{
 		std::string msg_error = "CLifeRecover::CLifeRecover->No se encuentra renderable object " + l_MeshName + " de la maquina de recarga de vida!";
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 	}
 
 	std::string l_TextureNameON = atts.GetPszProperty("on_texture", "");
@@ -53,7 +53,7 @@ CLifeRecover::CLifeRecover(CXMLTreeNode &atts)
 	if (!m_OnTexture || !m_OffTexture)
 	{
 		std::string msg_error = "CLifeRecover::CLifeRecover->No se encuentra textura de la maquina de recarga de vida!";
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 	}
 
 	std::string l_LightName = atts.GetPszProperty("light", "");
@@ -64,7 +64,7 @@ CLifeRecover::CLifeRecover(CXMLTreeNode &atts)
 		if (m_Light == NULL)
 		{
 			std::string msg_error = "CLifeRecover::CLifeRecover->No se encuentra la luz " + l_LightName + " de la maquina de recarga de vida!";
-			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		}
 	}
 

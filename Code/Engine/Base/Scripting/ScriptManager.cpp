@@ -55,7 +55,7 @@ int Alert(lua_State * State)
 		lua_pop(State, 1); 
 	}
 	l_Text += '\n';
-	LOGGER->AddNewLog(ELL_ERROR, l_Text.c_str());
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, l_Text.c_str());
 
 	return true;
 }
@@ -97,7 +97,7 @@ void CScriptManager::RunCode(const std::string &Code) const
 	if(luaL_dostring(m_LS,Code.c_str()))
 	{
 		const char *l_Str=lua_tostring(m_LS, -1);
-		LOGGER->AddNewLog(ELL_ERROR, l_Str);
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, l_Str);
 	}
 }
 
@@ -107,12 +107,12 @@ void CScriptManager::RunFile(const std::string &FileName) const
 	if(luaL_dofile(m_LS, FileName.c_str()))
 	{
 		const char *l_Str=lua_tostring(m_LS, -1);
-		LOGGER->AddNewLog(ELL_ERROR, l_Str);
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, l_Str);
 	}else
 	{
 
 		std::string msg_info = "CScriptManager::Load->Cargado el archivo de Scripting: " + FileName;
-		LOGGER->AddNewLog(ELL_INFORMATION, msg_info.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, msg_info.c_str());
 	}
 }
 
@@ -122,7 +122,7 @@ void CScriptManager::Load(const std::string &XMLFile){
 	if (!parser.LoadFile(XMLFile.c_str()))
 	{
 		std::string msg_error = "CScriptManager::Load->Error al intentar leer el archivo de Scripting: " + XMLFile;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 
@@ -153,7 +153,7 @@ void LogText(const std::string &Text )
 {
 
 	//CLogger* logger=GetLogger();
-	LOGGER->AddNewLog(ELL_INFORMATION,Text.c_str());
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION,Text.c_str());
 }
 
 CLogger* GetLogger()

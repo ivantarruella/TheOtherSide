@@ -14,10 +14,15 @@ public:
 	CStaticMeshManager();
 	~ CStaticMeshManager ();
 	bool Load(const std::string &FileName);
-	bool LoadFolder (const std::string &FolderName);
 	bool Reload();
 
+	void LoadFolder(const std::string& FolderName);
+
 	void SetMeshTexture(const std::string& mesh, const std::string texture, int stage);
+	bool GetMeshPreLoad() { return bMeshesPreLoaded; }
+
+private:
+	bool bMeshesPreLoaded;
 };
 
 #endif

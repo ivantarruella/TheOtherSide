@@ -167,7 +167,7 @@ bool CEngine::LoadConfig (const std::string& pathFile)
 	if (!parser.LoadFile(pathFile.c_str()))
 	{
 		std::string msg_error = "CEngine::LoadConfig->Error al intentar leer el archivo de configuracion del Engine: " + pathFile;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 	m_sPathFile = pathFile;
@@ -280,7 +280,7 @@ bool CEngine::ReLoadDefaultLanguage()
 	if (!parser.LoadFile(m_sPathFile.c_str()))
 	{
 		std::string msg_error = "CEngine::LoadConfig->Error al intentar leer el archivo de configuracion del Engine: " + m_sPathFile;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 

@@ -40,7 +40,7 @@ CDoorObject::CDoorObject(CXMLTreeNode &atts)
 		if (mesh==NULL)
 		{
 			std::string msg_error = "CDoorObject::CDoorObject->No se encuentra renderable object " + l_Renderable_Object + " de la puerta!";
-			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		}
 		else 
 		{
@@ -66,7 +66,7 @@ CDoorObject::CDoorObject(CXMLTreeNode &atts)
 		if (mesh==NULL)
 		{
 			std::string msg_error = "CDoorObject::CDoorObject->No se encuentra renderable object " + l_Renderable_Object + " de la puerta!";
-			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		}
 		else 
 		{

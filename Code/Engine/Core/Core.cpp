@@ -1,5 +1,8 @@
 #include <Windows.h>
 #include <stdio.h>
+#include <future>
+#include <iostream>
+
 #include "Core.h"
 #include "Process.h"
 #include "RenderManager.h"
@@ -52,6 +55,8 @@ void CCore::Release()
 	CHECKED_DELETE(m_pConsole);
 	CHECKED_DELETE(m_pLogRender);
 #endif
+	CHECKED_DELETE(m_loading_thread);
+
 	CHECKED_DELETE(m_pLogicObjectsManager);
 	CHECKED_DELETE(m_pNodeManager);
 	CHECKED_DELETE(m_pCoverManager);
@@ -90,7 +95,6 @@ bool CCore::Init(HWND hWnd, CProcess* Process, const SInitParams& params)
 	m_pConsole = new CConsole();
 	m_pLogRender = new CLogRender();
 #endif
-
 	m_pTimer = new CTimer(30);
 	m_pRenderManager = new CRenderManager();
 	m_pInputManager = new CInputManager();
@@ -139,6 +143,29 @@ bool CCore::Init(HWND hWnd, CProcess* Process, const SInitParams& params)
 		if (!m_bIsOk)
 			l_ManagerError = "RenderManager";
 	}
+
+	// Inicializamos EffectManager
+	m_bIsOk = (params.effects_path != "");
+	if (m_bIsOk)
+	{
+		m_pEffectManager->Load(params.effects_path);
+	}
+	if (!m_bIsOk && l_ManagerError == "")
+		l_ManagerError = "EffectManager";
+
+	// Inicializamos CRenderableObjectTechniqueManager
+	m_bIsOk = (params.ROT_path != "");
+	if (m_bIsOk)
+	{
+		m_pRenderableObjectsTechniqueManager->Load(params.ROT_path);
+	}
+	if (!m_bIsOk && l_ManagerError == "")
+		l_ManagerError = "RenderableObjectTechniqueManager";
+
+#if MULTITHREADED_LOAD
+	// Mesh preload thread
+	m_loading_thread = new std::thread(&CStaticMeshManager::LoadFolder, m_pStaticMeshManager, "data\\Meshes");
+#endif
 
 	// Inicializamos GUIManager
 	if (m_bIsOk) 
@@ -210,33 +237,6 @@ bool CCore::Init(HWND hWnd, CProcess* Process, const SInitParams& params)
 			m_pScriptManager->Load(params.lua_path);
 	}
 
-	// Inicializamos EffectManager
-	m_bIsOk = (params.effects_path!="");
-	if (m_bIsOk)
-	{
-		m_pEffectManager->Load(params.effects_path);
-	}
-	if (!m_bIsOk && l_ManagerError=="")
-		l_ManagerError = "EffectManager";
-
-	// Inicializamos CRenderableObjectTechniqueManager
-	m_bIsOk = (params.ROT_path!="");
-	if (m_bIsOk)
-	{
-		m_pRenderableObjectsTechniqueManager->Load(params.ROT_path);
-	}
-	if (!m_bIsOk && l_ManagerError=="")
-		l_ManagerError = "RenderableObjectTechniqueManager";
-
-	// Inicializamos AnimatedModelsManager
-	m_bIsOk = (params.animatedmodels_path!="");
-	if (m_bIsOk)
-	{
-		m_bIsOk = m_pAnimatedModelsManager->Load(params.animatedmodels_path);
-	}
-	if (!m_bIsOk && l_ManagerError=="")
-		l_ManagerError = "AnimatedModelsManager";
-
 	// Inicializamos PhysicManager
 	if (m_bIsOk)
 	{
@@ -244,6 +244,15 @@ bool CCore::Init(HWND hWnd, CProcess* Process, const SInitParams& params)
 		if (!m_bIsOk && l_ManagerError=="")
 			l_ManagerError = "PhysicManager";
 	}	
+
+	// Inicializamos AnimatedModelsManager
+	m_bIsOk = (params.animatedmodels_path != "");
+	if (m_bIsOk)
+	{
+		m_bIsOk = m_pAnimatedModelsManager->Load(params.animatedmodels_path);
+	}
+	if (!m_bIsOk && l_ManagerError == "")
+		l_ManagerError = "AnimatedModelsManager";
 
 	// Inicializamos SceneRendererCommandManager
 	if (m_bIsOk)
@@ -254,14 +263,14 @@ bool CCore::Init(HWND hWnd, CProcess* Process, const SInitParams& params)
 	// Comprobamos que todos los managers han sido inicializados correctamente y si no lanzamos una excepción.
 	if (m_bIsOk)
     {
-        std::string msg_Ok = "CCore::Init-> Todos los managers inicializados correctamente" ;
-        LOGGER->AddNewLog(ELL_INFORMATION, msg_Ok.c_str());
+		std::string msg_Ok = "CCore::Init-> Todos los managers inicializados correctamente" ;
+        LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, msg_Ok.c_str());
     }
     else
     {
 		Release();
 		std::string msg_error = "CCore::Init-> Error al inicializar " + l_ManagerError + " !\n";
-        LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+        LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
         throw CException(__FILE__, __LINE__, msg_error);
 	}
 

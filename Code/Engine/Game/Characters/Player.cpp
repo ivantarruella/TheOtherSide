@@ -209,9 +209,9 @@ void CPlayer::UpdateInputActions()
 	{
 		m_bIsRunning = (actionToInput->DoAction(DOACTION_PLAYERRUN) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERRUN_PAD))) && !m_bIsAiming 
 			&& (m_PlayerMovement == WALK_FORWARD || m_PlayerMovement == WALK_FORWARD_LEFT || m_PlayerMovement == WALK_FORWARD_RIGHT); 
-	}
-	m_bUsePressed = actionToInput->DoAction(DOACTION_PLAYERUSEITEM) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERUSEITEM_PAD));
 
+		m_bUsePressed = actionToInput->DoAction(DOACTION_PLAYERUSEITEM) || (bGamePad && actionToInput->DoAction(DOACTION_PLAYERUSEITEM_PAD));
+	}
 }
 
 void CPlayer::UpdateCamera(float ElapsedTime)
@@ -504,7 +504,7 @@ void CPlayer::UpdatePlayerShootAnim(float ElapsedTime)
 	if (m_bIsAiming)
 	{
 		float l_pitch = m_Camera->GetPlayerPitch();
-		ChangeCharacterAnimation((m_PlayerMovement == IDDLE ? AIM_ANIM : WALK_AIM_ANIM), ANIMS_DELAY);
+		ChangeCharacterAnimation((m_PlayerMovement == IDDLE ? AIM_ANIM : WALK_AIM_ANIM), CAM_ZOOM_AIM_STEP);
 
 		// Aim down
 		if (l_pitch <= 0.0f)

@@ -20,7 +20,7 @@
 //-----Definicion de nuevos tipos-----------------------
 #define CAPACITY 2000	// 500
 
-enum ELOG_LEVEL
+enum class ELOG_LEVEL
 {
 	//! Nothing is printed out to the log
 	ELL_NONE = 0,

@@ -30,7 +30,7 @@ void CPhysicFixedJoint::SetInfo	(CPhysicActor* actorA,  CPhysicActor* actorB)
 {
 	if (actorA==NULL)
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CPhysicFixedJoint:: El primer actor pasado como argumento no puede ser null");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CPhysicFixedJoint:: El primer actor pasado como argumento no puede ser null");
 		return;
 	} 
 

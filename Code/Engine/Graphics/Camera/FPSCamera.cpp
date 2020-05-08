@@ -28,9 +28,9 @@ Vect3f CFPSCamera::GetLookAt () const
 	Vect3f pos	= m_pObject3D->GetPosition();
 
 	//Pasamos de coordenadas esfericas a coordenadas cartesianas
-	Vect3f vEyePt(	cos(yaw) * cos(pitch), 
-		sin(pitch),
-		sin(yaw) * cos(pitch) );
+	Vect3f vEyePt((float)(cos(yaw) * cos(pitch)),
+		(float)(sin(pitch)),
+		(float)(sin(yaw) * cos(pitch) ));
 
 	return (pos + vEyePt); 
 }
@@ -51,9 +51,9 @@ Vect3f CFPSCamera::GetVecUp () const
 	float yaw		= m_pObject3D->GetYaw();
 	float pitch	= m_pObject3D->GetPitch();
 
-	Vect3f vUpVec(	-cos(yaw) * sin(pitch), 
-		cos(pitch), 
-		-sin(yaw) * sin(pitch) );
+	Vect3f vUpVec((float)(-cos(yaw) * sin(pitch)),
+		(float)cos(pitch),
+		(float)(-sin(yaw) * sin(pitch) ));
 
 	return vUpVec;
 }

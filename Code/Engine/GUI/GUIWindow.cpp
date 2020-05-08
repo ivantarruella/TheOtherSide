@@ -45,7 +45,7 @@ bool CGUIWindow::AddGuiElement( CGuiElement * inGuiElement )
 		CGuiElement* guiElement = *it;
 		if (guiElement == inGuiElement)
 		{
-			LOGGER->AddNewLog(ELL_ERROR, "Windows:: El GuiElement %s ya se ha introducido en la windows %s", inGuiElement->GetName().c_str(),m_sWindowsName.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "Windows:: El GuiElement %s ya se ha introducido en la windows %s", inGuiElement->GetName().c_str(),m_sWindowsName.c_str());
 			return false;
 		}
 		it++;
@@ -71,7 +71,7 @@ bool CGUIWindow::ReleaseGuiElement( const std::string & name )
 		it++;
 	}
 
-	LOGGER->AddNewLog(ELL_WARNING, "Windows:: Se ha intentado eliminar el GuiElement %s pero no existe en la windows %s", name.c_str(),m_sWindowsName.c_str());
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, "Windows:: Se ha intentado eliminar el GuiElement %s pero no existe en la windows %s", name.c_str(),m_sWindowsName.c_str());
 	return false;
 }
 
@@ -157,7 +157,7 @@ void CGUIWindow::RegisterElements( std::map<std::string,CGuiElement*>& elements 
 		//Antes de insertarlo en el mapa debemos comprobar que no este registrado ya un GuiElement con el mismo identificado(mismo string):
 		if (elements.find(element->GetName()) != elements.end())
 		{
-			LOGGER->AddNewLog(ELL_ERROR, "CGUIWindow:: El GuiElement %s ya se ha registrado en el GuiManager", element->GetName().c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIWindow:: El GuiElement %s ya se ha registrado en el GuiManager", element->GetName().c_str());
 		}
 		else
 		{
@@ -226,13 +226,13 @@ void CGUIWindow::IsKeyDown( CInputManager* intputManager )
 bool CGUIWindow::LoadXML( const std::string &xmlGuiFile, const Vect2i& screenResolution)
 {
 	//Read the xml gui file
-	LOGGER->AddNewLog(ELL_INFORMATION, "CGUIWindow:: Iniciando el parseo del fichero %s", xmlGuiFile.c_str());
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "CGUIWindow:: Iniciando el parseo del fichero %s", xmlGuiFile.c_str());
 	bool isOK = false;
 
 	CXMLTreeNode newFile;
 	if (!newFile.LoadFile(xmlGuiFile.c_str()))
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "CGUIWindow:: No se ha podido leer correctamente el fichero ->%s", xmlGuiFile.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CGUIWindow:: No se ha podido leer correctamente el fichero ->%s", xmlGuiFile.c_str());
 		isOK = false;
 	}
 	else
@@ -331,7 +331,7 @@ bool CGUIWindow::LoadXML( const std::string &xmlGuiFile, const Vect2i& screenRes
 				else
 				{
 					//Warning
-					LOGGER->AddNewLog(ELL_WARNING, "GUIWindow:: No se reconoce el tag %s del fichero %s", tagName.c_str(), xmlGuiFile.c_str());
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, "GUIWindow:: No se reconoce el tag %s del fichero %s", tagName.c_str(), xmlGuiFile.c_str());
 				}
 
 			}
@@ -339,7 +339,7 @@ bool CGUIWindow::LoadXML( const std::string &xmlGuiFile, const Vect2i& screenRes
 		}
 		else
 		{
-			LOGGER->AddNewLog(ELL_ERROR, "GUIWindow:: No se ha podido leer el tag Windows del fichero ->%s", xmlGuiFile.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "GUIWindow:: No se ha podido leer el tag Windows del fichero ->%s", xmlGuiFile.c_str());
 			isOK = false;
 		}
 
@@ -348,12 +348,12 @@ bool CGUIWindow::LoadXML( const std::string &xmlGuiFile, const Vect2i& screenRes
 
 	if (!isOK)
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "GUIWindow:: No se ha podido leer correctamente el fichero -->%s", xmlGuiFile.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "GUIWindow:: No se ha podido leer correctamente el fichero -->%s", xmlGuiFile.c_str());
 		isOK =  false;
 	}
 	else
 	{
-		LOGGER->AddNewLog(ELL_INFORMATION, "GUIWindow:: Finalizado correctamente el parseo el fichero %s", xmlGuiFile.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "GUIWindow:: Finalizado correctamente el parseo el fichero %s", xmlGuiFile.c_str());
 
 	}
 

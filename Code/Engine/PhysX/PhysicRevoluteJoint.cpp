@@ -29,7 +29,7 @@ void CPhysicRevoluteJoint::SetInfo	(const Vect3f& axis, const Vect3f& anchor, CP
 {
 	if (actorA==NULL)
 	{
-		LOGGER->AddNewLog(ELL_ERROR, "PhysicRevoluteJoint:: El primer actor pasado como argumento no puede ser null");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "PhysicRevoluteJoint:: El primer actor pasado como argumento no puede ser null");
 		return;
 	}
 

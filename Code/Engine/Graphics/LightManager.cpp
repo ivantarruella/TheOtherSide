@@ -24,7 +24,7 @@ void CLightManager::Load(const std::string &FileName, const std::string & shadow
 	if (!parser.LoadFile(FileName.c_str()))
 	{
 		std::string msg_error = "CLightManager::Load->Error al intentar leer el archivo: " + FileName;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 
@@ -79,12 +79,12 @@ void CLightManager::Load(const std::string &FileName, const std::string & shadow
 						// Añadimos resource al mapa de luces
 						AddResource(l_Name, l_Light);
 						std::string msg_info = "CLightManager::Load()-> Luz " + l_Light->GetName() + " de tipo " + l_Type + " añadida al manager de luces";
-						LOGGER->AddNewLog(ELL_INFORMATION, msg_info.c_str());
+						LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, msg_info.c_str());
 					}
 					else
 					{
 						std::string msg_error = "CLightManager::Load()-> Imposible crear tipo de luz " + l_Type;
-						LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+						LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 					}
 				}
 			}

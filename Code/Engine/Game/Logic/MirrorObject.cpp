@@ -57,7 +57,7 @@ CMirrorObject::CMirrorObject(CXMLTreeNode &atts)
 	if (m_MirrorMesh==NULL) 
 	{
 		std::string msg_error = "CMirrorObject::CMirrorObject->No se encuentra renderable object " + l_Renderable_Object + " del espejo!";
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 	}
 	else
 	{
@@ -269,7 +269,7 @@ void CMirrorObject::Use(CPlayer* player, const std::string& targetMirror,  const
 		msg_error = "CPlayer::ChangeWorld->Espejo " + rotatedMirror + " no encontrado !\n";
 
 	if (msg_error!="")
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 
 	CSpawnPointObject* l_SpawnPoint=NULL;
 	std::string l_SpawnPointName="";
@@ -285,7 +285,7 @@ void CMirrorObject::Use(CPlayer* player, const std::string& targetMirror,  const
 		if (!l_SpawnPoint)
 		{
 			std::string msg_error = "CPlayer::ChangeWorld->Punto de spawn espejo " + l_SpawnPointName + " no existe!\n";
-			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		}
 		else	
 		{
@@ -302,7 +302,7 @@ void CMirrorObject::Use(CPlayer* player, const std::string& targetMirror,  const
 		if (!l_SpawnPoint)
 		{
 			std::string msg_error = "CPlayer::ChangeWorld->Punto de spawn espejo rotado " + l_SpawnPointName + " no existe!\n";
-			LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		}
 		else	
 		{
@@ -325,7 +325,7 @@ void CMirrorObject::Rotate(const std::string& targetMirrorName)
 			if (l_targetMirror == NULL)
 			{
 				std::string msg_error = "CPlayer::ChangeWorld->Link con espejo " + targetMirrorName + " no encontrado!\n";
-				LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 			}
 			else
 			{

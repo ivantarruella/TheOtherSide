@@ -68,7 +68,7 @@ void CButton::Render	(CRenderManager *renderManager, CFontManager* fm)
 			}
 			break;
 		default:
-			LOGGER->AddNewLog(ELL_ERROR,"CButton::Render Tipo de estado desconocido en el boton %s",CGuiElement::m_sName.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR,"CButton::Render Tipo de estado desconocido en el boton %s",CGuiElement::m_sName.c_str());
 			break;
 		}
 

@@ -7,17 +7,17 @@ using namespace std;
 
 bool CSoundManager::Init()
 {
-	LOGGER->AddNewLog(ELL_INFORMATION,"CSoundManager::Intentamos iniciar el sonido");
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION,"CSoundManager::Intentamos iniciar el sonido");
 	m_bIsOk = _initAL();
 
 	if(!m_bIsOk)
 	{
-		LOGGER->AddNewLog(ELL_ERROR,"CSoundManager::Error al iniciar el sonido");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR,"CSoundManager::Error al iniciar el sonido");
 		Release();
         //throw CException(__FILE__, __LINE__, "CSoundManager::Error al iniciar el sonido");
 	}
 	else{
-		LOGGER->AddNewLog(ELL_INFORMATION,"CSoundManager::Sonido iniciado correctamente");
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION,"CSoundManager::Sonido iniciado correctamente");
 	}
 	return true;
 }
@@ -95,7 +95,7 @@ bool CSoundManager::LoadSounds(const std::string& xmlSoundsFile)
 	{
 		m_bIsOk=false;
 		std::string msg_error = "CSoundManager::Load->Error al intentar leer el archivo: " + xmlSoundsFile;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 
@@ -140,7 +140,7 @@ bool CSoundManager::LoadSounds(const std::string& xmlSoundsFile)
 					}else{
 
 						std::string msg_error = "CSoundManager::Load->Error al intentar cargar el sonido: " + l_Path;
-						LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+						LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 
 					}
 				}
@@ -202,7 +202,7 @@ bool CSoundManager::PlayAction2D(const std::string& action, float volume)
 		if (it==m_Buffers.end())
 		{
 			std::string error = "Action " + action + " no encontrada!\n";
-			LOGGER->AddNewLog(ELL_ERROR, "CSoundManager::PlayAction2D : %s", error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager::PlayAction2D : %s", error.c_str());
 			return false;
 		}
 
@@ -212,7 +212,7 @@ bool CSoundManager::PlayAction2D(const std::string& action, float volume)
 		if (index == -1)
 		{
 			std::string error = "ERROR: No se puede obtener un nuevo source!\n";
-			LOGGER->AddNewLog(ELL_ERROR, "CSoundManager::PlayAction2D : %s", error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager::PlayAction2D : %s", error.c_str());
 			return false;
 		}
 
@@ -238,7 +238,7 @@ bool CSoundManager::PlayAction3D(const std::string& action, const Vect3f& positi
 		if (it==m_Buffers.end())
 		{
 			std::string error = "Action " + action + " no encontrada!\n";
-			LOGGER->AddNewLog(ELL_ERROR, "CSoundManager::PlayAction3D : %s", error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager::PlayAction3D : %s", error.c_str());
 			return false;
 		}
 
@@ -248,7 +248,7 @@ bool CSoundManager::PlayAction3D(const std::string& action, const Vect3f& positi
 		if (index == -1)
 		{
 			std::string error = "ERROR: No se puede obtener un nuevo source!\n";
-			LOGGER->AddNewLog(ELL_ERROR, "CSoundManager::PlayAction3D : %s", error.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager::PlayAction3D : %s", error.c_str());
 			return false;
 		}
 
@@ -302,7 +302,7 @@ bool CSoundManager::PlaySource2D(uint32 source, const std::string& action, bool 
 			if(m_Buffers.find(action) == m_Buffers.end())
 			{
 				std::string description = "Action " + action + " not found";
-				LOGGER->AddNewLog(ELL_ERROR, "CSoundManager::PlaySource2D %s", description.c_str());
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager::PlaySource2D %s", description.c_str());
 				return false;
 			}
 
@@ -321,7 +321,7 @@ bool CSoundManager::PlaySource2D(uint32 source, const std::string& action, bool 
 	}
 	else{
 		std::string descrìption ="Can't play source. Invalid source " + source;
-		LOGGER->AddNewLog(ELL_ERROR, "CSoundManager:: %s", descrìption.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager:: %s", descrìption.c_str());
 	}
 
 	return false;
@@ -347,7 +347,7 @@ bool CSoundManager::PlaySource3D(uint32 source, const std::string& action, bool 
 			if(m_Buffers.find(action) == m_Buffers.end())
 			{
 				std::string description = "Action " + action + " not found";
-				LOGGER->AddNewLog(ELL_ERROR, "CSoundManager::PlaySource3D %s", description.c_str());
+				LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager::PlaySource3D %s", description.c_str());
 				return false;
 			}
 
@@ -361,7 +361,7 @@ bool CSoundManager::PlaySource3D(uint32 source, const std::string& action, bool 
 	}
 	else{
 		std::string descrìption ="Can't play source. Invalid source " + source;
-		LOGGER->AddNewLog(ELL_ERROR, "CSoundManager:: %s", descrìption.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager:: %s", descrìption.c_str());
 	}
 
 	return false;
@@ -494,14 +494,14 @@ bool CSoundManager::FadeInSource(uint32 source, float totalTime, float finalGain
 		else
 		{
 			std::string description = "Ya se esta realizando un FadeIn/Out con el source" + source;
-			LOGGER->AddNewLog(ELL_ERROR, "CSoundManager:: %s", description.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager:: %s", description.c_str());
 			isOK =  false;
 		}
 	}
 	else
 	{
 		std::string description = "Can't do FadeIn with source. Invalid source " + source;
-		LOGGER->AddNewLog(ELL_ERROR, "CSoundManager:: %s", description.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager:: %s", description.c_str());
 		isOK =  false;
 	}
 	return isOK;
@@ -525,14 +525,14 @@ bool CSoundManager::FadeOutSource(uint32 source, float totalTime, ETypeFunction 
 		else
 		{
 			std::string description = "Ya se esta realizando un FadeIn/Out con el source" + source;
-			LOGGER->AddNewLog(ELL_ERROR, "CSoundManager:: %s", description.c_str());
+			LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager:: %s", description.c_str());
 			isOK =  false;
 		}
 	}
 	else
 	{
 		std::string description = "Can't do FadeOut with source. Invalid source " + source;
-		LOGGER->AddNewLog(ELL_ERROR, "CSoundManager:: %s", description.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager:: %s", description.c_str());
 		isOK =  false;
 	}
 	return isOK;
@@ -639,7 +639,7 @@ bool CSoundManager::_initAL()
 	if ((error=alcGetError(pDevice)) != ALC_NO_ERROR)
 	{
 		std::string description = "Can't create openAL context (" + _getALErrorString(error) + ")";
-		LOGGER->AddNewLog(ELL_ERROR, "CSoundManager:: %s", description.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager:: %s", description.c_str());
 		return false;
 	}
 	return true;
@@ -685,7 +685,7 @@ bool CSoundManager::_loadSound(const std::string& file, tIdBuffer& buffer)
 	{    
 		alDeleteBuffers(1,&buffer);
 		std::string description = "Error: Can't create openAL Buffer (" + _getALErrorString(error)  + ")";
-		LOGGER->AddNewLog(ELL_ERROR, "CSoundManager:: %s", description.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager:: %s", description.c_str());
 		return false;    
 	}
 
@@ -694,7 +694,7 @@ bool CSoundManager::_loadSound(const std::string& file, tIdBuffer& buffer)
 	{
 		alDeleteBuffers(1,&buffer);
 		std::string description = "Error: Can't open file " + file;
-		LOGGER->AddNewLog(ELL_ERROR, "CSoundManager:: %s", description.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager:: %s", description.c_str());
 		return false;
 	}
 	else
@@ -708,7 +708,7 @@ bool CSoundManager::_loadSound(const std::string& file, tIdBuffer& buffer)
 	{        
 		alDeleteBuffers(1,&buffer);
 		std::string description = "Error: Can't load sound file " + file + " (" + _getALErrorString(error)  + ")";
-		LOGGER->AddNewLog(ELL_ERROR, "CSoundManager:: %s", description.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager:: %s", description.c_str());
 		return false;
 	}        
 	return true;
@@ -764,7 +764,7 @@ int  CSoundManager::_getSource(bool reserved)
 	if ((error=alGetError())!=AL_NO_ERROR)
 	{
 		std::string description = "Can't create source (" + _getALErrorString(error) + ")";
-		LOGGER->AddNewLog(ELL_ERROR, "CSoundManager:: %s", description.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "CSoundManager:: %s", description.c_str());
 		i=-1;
 	}
 	else

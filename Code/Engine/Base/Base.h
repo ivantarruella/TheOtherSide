@@ -21,4 +21,7 @@
 
 #define CORE CCore::GetSingletonPtr()
 
+//------------------------------
+#define MULTITHREADED_LOAD  1
+
 #endif //_BASE_H

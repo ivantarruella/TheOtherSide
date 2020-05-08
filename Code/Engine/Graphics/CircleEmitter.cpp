@@ -48,8 +48,8 @@ void CCircleEmitter::GenerateParticlePosition(CParticle * particle)
 Vect3f CCircleEmitter::xzFromAngle( float radians ) 
 {
 	Vect3f l_aux;
-	l_aux.x = sin( radians );
+	l_aux.x = (float)sin( radians );
 	l_aux.y = float( 0.0f );
-	l_aux.z = -cos( radians );
+	l_aux.z = (float)-cos( radians );
 	return l_aux;
 }

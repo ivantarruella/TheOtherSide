@@ -134,7 +134,7 @@ void CLogRender::Render (CRenderManager* renderManager, CFontManager* fm, CColor
 				for(uint8 i = 0; i < partitions_aux; i++)
 				{
 					SLog log_aux = log;
-					if (log.m_eLogLevel == ELL_ERROR)
+					if (log.m_eLogLevel == ELOG_LEVEL::ELL_ERROR)
 					{
 						int jorls = 0;
 					}
@@ -406,25 +406,25 @@ void CLogRender::RenderLines (	CRenderManager* renderManager, CFontManager* fm, 
 		CColor color = colWHITE;
 		switch(log.m_eLogLevel)
 		{
-		case ELL_ERROR:		
+		case ELOG_LEVEL::ELL_ERROR:
 			{
 				color = colRED; //red
 				level = "ERROR";
 			}
 			break;					
-		case ELL_INFORMATION:
+		case ELOG_LEVEL::ELL_INFORMATION:
 			{
 				color = colWHITE; //white
 				level = "INFORMATION";
 			}
 			break;
-		case ELL_WARNING:
+		case ELOG_LEVEL::ELL_WARNING:
 			{
 				color = colGREEN; //green
 				level = "WARNING";
 			}
 			break;
-		case ELL_NONE :
+		case ELOG_LEVEL::ELL_NONE :
 			{
 				color = colWHITE; //black
 				level = "";

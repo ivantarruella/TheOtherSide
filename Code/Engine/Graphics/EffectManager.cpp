@@ -137,7 +137,7 @@ void CEffectManager::Load(const std::string &FileName)
 	if (!parser.LoadFile(FileName.c_str()))
 	{
 		std::string msg_error = "CEffectManager::Load->Error al intentar leer el archivo: " + FileName;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 
@@ -169,7 +169,7 @@ void CEffectManager::Load(const std::string &FileName)
 						// El efecto ya estaba, lo recargamos
 						l_pEffect->Reload();
 						std::string msg_info = "CEffectManager::Reload()-> Effect " + l_Name  + " recargado";
-						LOGGER->AddNewLog(ELL_INFORMATION, msg_info.c_str());
+						LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, msg_info.c_str());
 					}
 					else
 					{
@@ -183,14 +183,14 @@ void CEffectManager::Load(const std::string &FileName)
 							{
 								m_Effects.AddResource(l_Name,l_pEffect);
 								std::string msg_info = "CEffectManager::Load()-> Effect " + l_Name  + " añadido al manager de effects";
-								LOGGER->AddNewLog(ELL_INFORMATION, msg_info.c_str());
+								LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, msg_info.c_str());
 							}
 						}
 						
 						if (!bOk || !l_pEffect)
 						{
 							std::string msg_info = "CEffectManager::Load()-> Imposible cargar efecto " + l_Name;
-							LOGGER->AddNewLog(ELL_WARNING, msg_info.c_str());
+							LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_info.c_str());
 						}
 					}
 				} 
@@ -202,7 +202,7 @@ void CEffectManager::Load(const std::string &FileName)
 						// La technique ya estaba cargada, la refrescamos
 						l_pEffectTechnique->Refresh();
 						std::string msg_info = "CEffectManager::Reload()-> Technique " + l_Name  + " recargada";
-						LOGGER->AddNewLog(ELL_INFORMATION, msg_info.c_str());
+						LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, msg_info.c_str());
 					}
 					else
 					{
@@ -211,13 +211,13 @@ void CEffectManager::Load(const std::string &FileName)
 						if (l_pEffectTechnique!=NULL)
 						{
 							std::string msg_info = "CEffectManager::Load()-> Technique " + l_Name  + " añadida al manager de effects";
-							LOGGER->AddNewLog(ELL_INFORMATION, msg_info.c_str());
+							LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, msg_info.c_str());
 							AddResource(l_Name,l_pEffectTechnique);
 						}
 						else
 						{
 							std::string msg_error = "CEffectManager::Load()-> Imposible crear technique " + l_Name;
-							LOGGER->AddNewLog(ELL_WARNING, msg_error.c_str());
+							LOGGER->AddNewLog(ELOG_LEVEL::ELL_WARNING, msg_error.c_str());
 						}
 					}
 				}

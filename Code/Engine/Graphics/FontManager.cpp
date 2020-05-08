@@ -22,7 +22,7 @@ void CFontManager::Done ()
 
 bool CFontManager::Init(CRenderManager* rm)
 {
-	LOGGER->AddNewLog(ELL_INFORMATION, "CFontManager:: Inicializando FontManager");
+	LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "CFontManager:: Inicializando FontManager");
 	m_pD3DDevice = rm->GetDevice();
 	m_bIsOk = (m_pD3DDevice!=NULL);
 	if (m_bIsOk)
@@ -70,7 +70,7 @@ bool CFontManager::LoadTTFs (const std::string& pathFile)
 	if (!parser.LoadFile(pathFile.c_str()))
 	{
 		std::string msg_error = "CRenderManager::LoadFonts->Error al intentar leer el archivo de configuracion: " + pathFile;
-		LOGGER->AddNewLog(ELL_ERROR, msg_error.c_str());
+		LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
 		throw CException(__FILE__, __LINE__, msg_error);
 	}
 	m_sPathFile = pathFile;
@@ -112,11 +112,11 @@ bool CFontManager::LoadTTFs (const std::string& pathFile)
 				{
 					m_vTTFsFiles.push_back(file);
 					m_TTFs[fontId] = CreateFont(size, bold, italica, name, _default);
-					LOGGER->AddNewLog(ELL_INFORMATION, "LoadFonts:: Add font %s (file:%s,size:%d,bold:%d,italica:%d,default:%d),",fontId.c_str(), file.c_str(), size, bold, italica, _default); 
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_INFORMATION, "LoadFonts:: Add font %s (file:%s,size:%d,bold:%d,italica:%d,default:%d),",fontId.c_str(), file.c_str(), size, bold, italica, _default);
 				}
 				else
 				{
-					LOGGER->AddNewLog(ELL_ERROR, "LoadFonts:: no se ha podido añadir el ttf file: %s", file.c_str()); 
+					LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, "LoadFonts:: no se ha podido añadir el ttf file: %s", file.c_str());
 					//CORE->SetAssetError(ASSET_ERROR_TTF);
 				}
 			}			

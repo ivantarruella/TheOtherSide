@@ -25,7 +25,7 @@
 
 
 CLevelManager::CLevelManager(const std::string& shadows_type)
-	: m_bIsOk(false), m_bChanging(false), m_shadowsType(shadows_type)
+	: m_bIsOk(false), m_bChanging(false), m_bLevelLoaded(false), m_shadowsType(shadows_type)
 {
 }
 
@@ -167,6 +167,7 @@ void CLevelManager::LoadPaths (const std::string& pathFile)
 
 bool CLevelManager::InitLevel () 
 {
+	m_bLevelLoaded = false;
 	time_t start_load, end_load;
 	time(&start_load);
 
@@ -317,6 +318,8 @@ bool CLevelManager::InitLevel ()
         LOGGER->AddNewLog(ELOG_LEVEL::ELL_ERROR, msg_error.c_str());
         throw CException(__FILE__, __LINE__, msg_error);
 	}
+
+	m_bLevelLoaded = bInitOk;
 
 	return bInitOk;
 }

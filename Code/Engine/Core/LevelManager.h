@@ -22,6 +22,7 @@ public:
 	void ReloadLevel (const std::string& pathFile);
 
 	bool IsOk() { return m_bIsOk;}
+	bool IsLevelLoaded() { return m_bLevelLoaded;  }
 
 	const std::string& GetLevelName();
 
@@ -33,7 +34,7 @@ private:
 	SLevelPaths m_LevelPaths;
 	bool		m_bIsOk;
 	bool		m_bChanging;
-	bool	    m_reload_escene;
+	bool	    m_bLevelLoaded;
 	std::string m_shadowsType;
 	
 	std::vector<std::future<void>>	m_preloading_meshes;

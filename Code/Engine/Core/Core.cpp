@@ -304,11 +304,11 @@ void CCore::Update(bool show_fps)
 		m_pTimer->Update();
 		SetCamera(m_pProcess->GetCamera());
 	}
-	/*else
+	else
 	{
 		if (CORE->GetLevelManager()->IsLevelLoaded())
 			m_pTimer->Update();
-	}*/
+	}
 
 	m_pSoundManager->Update(elapsedTime);
 	UpdateFPS(elapsedTime, show_fps);

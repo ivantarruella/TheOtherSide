@@ -37,6 +37,7 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Exception.h" />
+    <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="LanguageManager.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="LogRender.h" />
@@ -82,6 +83,7 @@
     <ProjectGuid>{778CD7B8-1D41-4B8C-8B18-95D812205185}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Base</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -125,6 +127,8 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)\Code\Engine\Game\Weapon;$(SolutionDir)\Code\Engine\PhysX;%(AdditionalIncludeDirectories);C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Foundation\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\NxCharacter\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Physics\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\PhysXLoader\include;C:\Program Files (x86)\NVIDIA Corporation\NVIDIA PhysX SDK\v2.8.1\SDKs\Cooking\include;$(SolutionDir)\Code\Engine\$(ProjectName)\;$(DXSDK_DIR)\Include;$(SolutionDir)\Code\Engine\3dParty\libxml2-2.7.2.win32\include;$(SolutionDir)\Code\Engine\3dParty\iconv-1.9.2.win32\include;$(SolutionDir)\Code\Engine\Base\;$(SolutionDir)\Code\Engine\Core\;$(SolutionDir)\Code\Engine\Graphics\;$(SolutionDir)\Code\Engine\Input\;$(SolutionDir)\Code\Engine\3dParty\lua-5.2.0\src\;$(SolutionDir)\Code\Engine\3dParty\luabind-0.9.1\;$(SolutionDir)\Code\Engine\3dParty\boost_1_48_0\;$(SolutionDir)\Code\Engine\GUI;$(SolutionDir)\Code\Engine\Base\Math\;$(SolutionDir)\Code\Engine\Sound\;$(SolutionDir)\Code\Engine\3dParty\openAL\include;$(SolutionDir)\Code\Engine\3dParty\cal3d-0.11rc2\src;$(SolutionDir)\Code\Engine\PhysX\include;$(SolutionDir)\Code\Engine\Game\AI;$(SolutionDir)\Code\Engine\Game\Characters;$(SolutionDir)\Code\Engine\Game\Logic</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>Default</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

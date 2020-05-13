@@ -1,7 +1,7 @@
 #include "RenderMirrorsSceneRendererCommand.h"
 #include "RenderManager.h"
 #include "LogicObjectsManager.h"
-#include "Process.h"
+#include "CProcess.h"
 #include "Base.h"
 
 CRenderMirrorsSceneRendererCommand::CRenderMirrorsSceneRendererCommand(CXMLTreeNode &atts)

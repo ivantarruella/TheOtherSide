@@ -101,7 +101,7 @@ void CBillboard::UpdateAxisBillboard(Vect3f Forward)
 	if (l_Camera==NULL)
 		return;
 	
-	Vect3f  l_Right= Forward.operator*(l_Camera->GetEye() - GetPos());
+	Vect3f  l_Right= Forward^(l_Camera->GetDirection());
 	l_Right.Normalize();
 
 	Vect3f  l_Perpendicular= Forward;

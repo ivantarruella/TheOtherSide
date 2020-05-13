@@ -6,12 +6,12 @@
 
 #include "Utils/Types.h"
 #include "Core.h"
+
 #include <assert.h>
 
 #if defined( _DEBUG ) && !defined(__DONT_INCLUDE_MEM_LEAKS__)
 	#include "MemLeaks.h"
 #endif
-
 
 //--- BASIC INCLUDES ---------
 #define CHECKED_DELETE(x)		if(x) delete x; x=0;

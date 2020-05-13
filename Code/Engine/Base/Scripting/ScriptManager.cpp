@@ -1,5 +1,5 @@
 #define __DONT_INCLUDE_MEM_LEAKS__
-#include "Process.h"
+#include "CProcess.h"
 #include "Scripting\ScriptManager.h"
 #include "luabind\luabind.hpp"
 #include "Logger.h"

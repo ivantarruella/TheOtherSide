@@ -71,7 +71,7 @@ bool CStaticMeshManager::Load (const std::string &FileName)
 	return true;
 }
 
-void CStaticMeshManager::LoadFolder (const std::string &FolderName)
+void CStaticMeshManager::LoadFolder (const std::string &FolderName, char from, char to)
 {
 	bMeshesPreLoaded = true;
 	std::string search_path = FolderName + "/*.*";
@@ -81,23 +81,26 @@ void CStaticMeshManager::LoadFolder (const std::string &FolderName)
 		do { 
             if(! (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ) {
 				std::string l_name = fd.cFileName;
-				std::string l_ext = ".m3d";
-				std::string::size_type i = l_name.find(l_ext);
-
-				if (i != std::string::npos)
+				if (l_name[0] >= from && l_name[0] <= to)
 				{
-					l_name.erase(i, l_ext.length());
+					std::string l_ext = ".m3d";
+					std::string::size_type i = l_name.find(l_ext);
 
-					CStaticMesh* l_StaticMesh;
-					l_StaticMesh = new CStaticMesh();
+					if (i != std::string::npos)
+					{
+						l_name.erase(i, l_ext.length());
 
-					if (l_StaticMesh->Load(FolderName + "\\" + l_name + l_ext))
-					{
-						AddResource(l_name, l_StaticMesh);
-					}
-					else
-					{
-						CHECKED_DELETE(l_StaticMesh);
+						CStaticMesh* l_StaticMesh;
+						l_StaticMesh = new CStaticMesh();
+
+						if (l_StaticMesh->Load(FolderName + "\\" + l_name + l_ext))
+						{
+							AddResource(l_name, l_StaticMesh);
+						}
+						else
+						{
+							CHECKED_DELETE(l_StaticMesh);
+						}
 					}
 				}
             }

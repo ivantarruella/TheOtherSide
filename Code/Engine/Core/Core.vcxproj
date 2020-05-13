@@ -21,7 +21,7 @@
     <ClInclude Include="EngineDef.h" />
     <ClInclude Include="LevelDef.h" />
     <ClInclude Include="LevelManager.h" />
-    <ClInclude Include="Process.h" />
+    <ClInclude Include="CProcess.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C00C25B3-84F7-4D68-9483-A3CA5EB39662}</ProjectGuid>

@@ -1,7 +1,7 @@
 #include "BlurHShadowMapsSceneRendererCommand.h"
 #include "RenderManager.h"
 #include "LightManager.h"
-#include "Process.h"
+#include "CProcess.h"
 #include "Base.h"
 
 CBlurHShadowMapsSceneRendererCommand::CBlurHShadowMapsSceneRendererCommand(CXMLTreeNode &atts)

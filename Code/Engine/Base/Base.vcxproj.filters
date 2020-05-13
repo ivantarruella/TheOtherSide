@@ -141,6 +141,9 @@
     <ClInclude Include="Trigger.h">
       <Filter>Scripting</Filter>
     </ClInclude>
+    <ClInclude Include="ThreadPool.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Math\MathUtils.inl">

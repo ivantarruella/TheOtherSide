@@ -1,7 +1,7 @@
 #include "RenderSceneSceneRendererCommand.h"
 #include "RenderableObjectsLayersManager.h"
 #include "RenderManager.h"
-#include "Process.h"
+#include "CProcess.h"
 #include "Base.h"
 
 CRenderSceneSceneRendererCommand::CRenderSceneSceneRendererCommand(CXMLTreeNode &atts)

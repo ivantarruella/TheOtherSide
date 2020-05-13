@@ -3,7 +3,7 @@
 #include "ParticleManager.h"
 #include "Weapon\BulletManager.h"
 #include "Math\Matrix44.h"
-#include "Process.h"
+#include "CProcess.h"
 #include "Base.h"
 
 CRenderParticlesSceneRendererCommand::CRenderParticlesSceneRendererCommand(CXMLTreeNode &atts)

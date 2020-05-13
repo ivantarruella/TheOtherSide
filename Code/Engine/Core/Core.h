@@ -4,8 +4,7 @@
 #pragma once
 
 #include <Windows.h>
-#include <thread>
-
+#include "ThreadPool.h"
 #include "Singleton.h"
 #include "EngineDef.h"
 #include "Timer.h"
@@ -52,7 +51,7 @@ public:
 		m_bShowFPS(false),
 		m_fFPS(0.0f),
 		m_fTime(0.0f),
-		m_loading_thread(NULL),
+		m_pThreadPool(NULL),
 		m_pTimer(NULL),
 		m_pProcess(NULL),
 		m_pCamera(NULL),
@@ -136,7 +135,7 @@ public:
 	
 	float GetElapsedTime() { return m_pTimer->GetElapsedTime(); }
 
-	std::thread* GetLoadingThread() { return m_loading_thread; }
+	ThreadPool* GetThreadPool() { return m_pThreadPool; }
 
 private:
 	void Release();
@@ -148,7 +147,7 @@ private:
 	float			m_fFPS;
 	float			m_fTime;
 
-	std::thread*	m_loading_thread;
+	ThreadPool*		m_pThreadPool;
 
 	CTimer*			m_pTimer;
 	CProcess*		m_pProcess;	

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "Engine.h"
-#include "Process.h"
+#include "CProcess.h"
 #include "Core.h"
 #include "RenderManager.h"
 #include "FontManager.h"

@@ -17,7 +17,7 @@
 #include "CoverManager.h"
 #include "LogicObjectsManager.h"
 #include "include\PhysicsManager.h"
-#include "Process.h"
+#include "CProcess.h"
 #include "Logger.h"
 #include "Exception.h"
 #include "BulletManager.h"
@@ -25,13 +25,24 @@
 
 
 CLevelManager::CLevelManager(const std::string& shadows_type)
-	: m_bIsOk(false), m_bChanging(false), m_bLoadingThreadJoined(false), m_shadowsType(shadows_type)
+	: m_bIsOk(false), m_bChanging(false), m_shadowsType(shadows_type)
 {
 }
 
 
 CLevelManager::~CLevelManager()
 {
+}
+
+void CLevelManager::Initialize()
+{
+#if MULTITHREADED_LOAD
+	// Mesh preload thread
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'a', 'm'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'n', 'z'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'A', 'M'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'N', 'Z'));
+#endif
 }
 
 bool CLevelManager::Update()
@@ -241,12 +252,15 @@ bool CLevelManager::InitLevel ()
 	if (!bInitOk && l_ManagerError == "")
 		l_ManagerError = "CoverManager";
 
+#if MULTITHREADED_LOAD
 	// Wait for loading thread to finish loading of all game meshes
-	if (CORE->GetLoadingThread() && !m_bLoadingThreadJoined)
+	if (m_preloading_meshes.size())
 	{
-		CORE->GetLoadingThread()->join();
-		m_bLoadingThreadJoined = true;
+		for (size_t i = 0; i < m_preloading_meshes.size(); ++i)
+			if (m_preloading_meshes.at(i).valid())
+				m_preloading_meshes.at(i).get();
 	}
+#endif
 
 	// Inicializamos StaticMeshManager 
 	bInitOk = (m_LevelPaths.m_sStaticMeshesPath!="");

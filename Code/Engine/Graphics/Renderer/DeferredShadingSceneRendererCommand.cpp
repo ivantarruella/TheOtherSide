@@ -9,7 +9,7 @@
 #include "SpotLight.h"
 #include "Camera\Camera.h"
 #include "Color.h"
-#include "Process.h"
+#include "CProcess.h"
 #include "Base.h"
 
 CDeferredShadingSceneRendererCommand::CDeferredShadingSceneRendererCommand(CXMLTreeNode &atts)

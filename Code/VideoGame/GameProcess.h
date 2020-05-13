@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "Process.h"
+#include "CProcess.h"
 #include "Matrix44.h"
 
 #include <vector>

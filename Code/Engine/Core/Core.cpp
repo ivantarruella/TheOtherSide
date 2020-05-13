@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "Core.h"
-#include "Process.h"
+#include "CProcess.h"
 #include "RenderManager.h"
 #include "FontManager.h"
 #include "LanguageManager.h"
@@ -55,8 +55,9 @@ void CCore::Release()
 	CHECKED_DELETE(m_pConsole);
 	CHECKED_DELETE(m_pLogRender);
 #endif
-	CHECKED_DELETE(m_loading_thread);
-
+#if MULTITHREADED_LOAD	
+	CHECKED_DELETE(m_pThreadPool);
+#endif
 	CHECKED_DELETE(m_pLogicObjectsManager);
 	CHECKED_DELETE(m_pNodeManager);
 	CHECKED_DELETE(m_pCoverManager);
@@ -94,6 +95,9 @@ bool CCore::Init(HWND hWnd, CProcess* Process, const SInitParams& params)
 #ifdef _DEBUG
 	m_pConsole = new CConsole();
 	m_pLogRender = new CLogRender();
+#endif
+#if MULTITHREADED_LOAD	
+	m_pThreadPool = new ThreadPool(4);
 #endif
 	m_pTimer = new CTimer(30);
 	m_pRenderManager = new CRenderManager();
@@ -162,13 +166,10 @@ bool CCore::Init(HWND hWnd, CProcess* Process, const SInitParams& params)
 	if (!m_bIsOk && l_ManagerError == "")
 		l_ManagerError = "RenderableObjectTechniqueManager";
 
-#if MULTITHREADED_LOAD
-	// Mesh preload thread
-	m_loading_thread = new std::thread(&CStaticMeshManager::LoadFolder, m_pStaticMeshManager, "data\\Meshes");
-#endif
-
+	m_pLevelManager->Initialize();
+	
 	// Inicializamos GUIManager
-	if (m_bIsOk) 
+	if (m_bIsOk)
 	{
 		uint32 w,h;
 		m_pRenderManager->GetWidthAndHeight(w,h);
@@ -279,32 +280,29 @@ bool CCore::Init(HWND hWnd, CProcess* Process, const SInitParams& params)
 
 void CCore::Update(bool show_fps)
 {
-	m_pTimer->Update();
-
 	float elapsedTime = GetElapsedTime();
-	
-	m_pPhysicsManager->WaitForSimulation();
 
 	m_pInputManager->Update();
 
-	if (!m_pLevelManager->Update())
+	m_pPhysicsManager->WaitForSimulation();
+
+#ifdef _DEBUG
+	bool l_Update = !m_pLevelManager->Update() && m_pProcess->GetStartGame() && m_pLevelManager->IsOk() && !m_pLogRender->GetVisible() && !m_pConsole->IsActive();
+#else
+	bool l_Update = !m_pLevelManager->Update() && m_pProcess->GetStartGame() && m_pLevelManager->IsOk();
+#endif
+
+	if (l_Update)
 	{
-	#ifdef _DEBUG
-		bool l_Update = m_pProcess->GetStartGame() && m_pLevelManager->IsOk() && !m_pLogRender->GetVisible() && !m_pConsole->IsActive();
-	#else
-		bool l_Update = m_pProcess->GetStartGame() && m_pLevelManager->IsOk();
-	#endif
-		if (l_Update)
-		{
-			m_pEnemyManager->Update(elapsedTime);
-			m_pLogicObjectsManager->Update(elapsedTime);
-			m_pLightManager->Update(elapsedTime);
-			m_pParticleManager->Update(elapsedTime);
-			m_pBulletManager->Update(elapsedTime);
-			m_pRenderableObjectsLayersManager->Update(elapsedTime);
-			m_pPhysicsManager->Update(elapsedTime);
-			SetCamera(m_pProcess->GetCamera());
-		}
+		m_pEnemyManager->Update(elapsedTime);
+		m_pLogicObjectsManager->Update(elapsedTime);
+		m_pLightManager->Update(elapsedTime);
+		m_pParticleManager->Update(elapsedTime);
+		m_pBulletManager->Update(elapsedTime);
+		m_pRenderableObjectsLayersManager->Update(elapsedTime);
+		m_pPhysicsManager->Update(elapsedTime);
+		m_pTimer->Update();
+		SetCamera(m_pProcess->GetCamera());
 	}
 
 	m_pSoundManager->Update(elapsedTime);

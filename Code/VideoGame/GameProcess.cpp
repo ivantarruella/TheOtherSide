@@ -22,8 +22,8 @@
 #include "EnergyRecover.h"
 #include "MirrorPieceObject.h"
 #include "BrokenMirrorObject.h"
+#include "StaticMeshManager.h"
 #include "Base.h"
-
 #include <algorithm>
 using namespace luabind;
 
@@ -280,13 +280,14 @@ void CGameProcess::Load()
 
 	m_Player=(CPlayer*)CORE->GetRenderableObjectsLayersManager()->GetResource("solid")->GetInstance("PLAYER");
 	if (m_Player !=NULL)
-		m_Player->Load();
-
-	m_Camera = GetCamera();
-	if (CORE->GetLevelManager()->GetLevelName() == "Level01-Tutorial")
-		m_Camera->GetObject3D()->SetPosition(CAMERA_INI_POS);
-	if (CORE->GetLevelManager()->GetLevelName()=="Level02 - Aqueronte Corp.")
-		m_Camera->GetObject3D()->SetRoll(D3DX_PI/2.0f);
+	{	m_Player->Load();
+	
+		m_Camera = GetCamera();
+		if (CORE->GetLevelManager()->GetLevelName() == "Level01-Tutorial")
+			m_Camera->GetObject3D()->SetPosition(CAMERA_INI_POS);
+		if (CORE->GetLevelManager()->GetLevelName() == "Level02 - Aqueronte Corp.")
+			m_Camera->GetObject3D()->SetRoll(D3DX_PI / 2.0f);
+	}
 
 	// Proceso cargado ok
 	SetIsOk(true);

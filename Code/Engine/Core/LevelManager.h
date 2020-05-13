@@ -5,6 +5,7 @@
 
 #include "LevelDef.h"
 #include <string>
+#include <future>
 
 #define	INIT_FILE	"init.xml"
 
@@ -15,6 +16,7 @@ public:
 	CLevelManager(const std::string& shadows_type);
 	~CLevelManager();
 
+	void Initialize();
 	bool Update();
 	void LoadLevel (const std::string& pathFile);
 	void ReloadLevel (const std::string& pathFile);
@@ -31,9 +33,10 @@ private:
 	SLevelPaths m_LevelPaths;
 	bool		m_bIsOk;
 	bool		m_bChanging;
-	bool		m_bLoadingThreadJoined;
 	bool	    m_reload_escene;
 	std::string m_shadowsType;
+	
+	std::vector<std::future<void>>	m_preloading_meshes;
 };
 
 #endif

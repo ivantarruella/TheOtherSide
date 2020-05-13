@@ -10,7 +10,6 @@
   <ItemGroup>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Core.h" />
-    <ClInclude Include="Process.h" />
     <ClInclude Include="EngineDef.h" />
     <ClInclude Include="LevelManager.h">
       <Filter>LevelManager</Filter>
@@ -18,6 +17,7 @@
     <ClInclude Include="LevelDef.h">
       <Filter>LevelManager</Filter>
     </ClInclude>
+    <ClInclude Include="CProcess.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="LevelManager">

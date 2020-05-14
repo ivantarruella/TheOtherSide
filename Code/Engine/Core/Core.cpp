@@ -97,7 +97,7 @@ bool CCore::Init(HWND hWnd, CProcess* Process, const SInitParams& params)
 	m_pLogRender = new CLogRender();
 #endif
 #if MULTITHREADED_LOAD	
-	m_pThreadPool = new ThreadPool(4);
+	m_pThreadPool = new ThreadPool(std::thread::hardware_concurrency());
 #endif
 	m_pTimer = new CTimer(30);
 	m_pRenderManager = new CRenderManager();
@@ -294,13 +294,15 @@ void CCore::Update(bool show_fps)
 
 	if (l_Update)
 	{
-		m_pEnemyManager->Update(elapsedTime);
+		auto enemies = m_pThreadPool->enqueue(&CEnemyManager::Update, m_pEnemyManager, elapsedTime);
 		m_pLogicObjectsManager->Update(elapsedTime);
 		m_pLightManager->Update(elapsedTime);
 		m_pParticleManager->Update(elapsedTime);
 		m_pBulletManager->Update(elapsedTime);
 		m_pRenderableObjectsLayersManager->Update(elapsedTime);
+		enemies.get();
 		m_pPhysicsManager->Update(elapsedTime);
+		
 		m_pTimer->Update();
 		SetCamera(m_pProcess->GetCamera());
 	}

@@ -100,7 +100,7 @@ private:
 
 	CPlayer * m_oPlayer;
 	//Llum llanterna
-	CSpotLight *m_LanternLight, * m_LanternLight2, *m_Laser;
+	CSpotLight *m_LanternLight, *m_Laser;
 	Vect3f		m_vLightPosition;
 
 	Vect3f m_vWeaponBonePosition;

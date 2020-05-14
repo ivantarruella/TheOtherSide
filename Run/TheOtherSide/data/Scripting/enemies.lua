@@ -38,8 +38,8 @@ end
 
 function level1_activar_enemigo()
 	if level1_enemies01_spawned == false then
-		local position_MR = Vect3f(7.68321,0.00,4.29533)
-		local position_ME = Vect3f(-7.68321,0.00,4.29533)
+		local position_MR = Vect3f(6.38321,0.00,8.29533)
+		local position_ME = Vect3f(-6.38321,0.00,8.29533)
 		_ENEMYM:create_enemy('Soldier001', position_MR, 'Monster001', position_ME)
 	
 		level1_enemies01_spawned = true

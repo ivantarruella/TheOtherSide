@@ -38,14 +38,14 @@ void CLevelManager::Initialize()
 {
 #if MULTITHREADED_LOAD
 	// Mesh preload thread
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'H', 'M'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'A', 'G'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'N', 'S'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'T', 'Z'));
 	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'a', 'g'));
 	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'h', 'm'));
 	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'n', 's'));
 	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 't', 'z'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'A', 'G'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'H', 'M'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'N', 'S'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'T', 'Z'));
 #endif
 }
 
@@ -259,12 +259,9 @@ bool CLevelManager::InitLevel ()
 
 #if MULTITHREADED_LOAD
 	// Wait for loading thread to finish loading of all game meshes
-	if (m_preloading_meshes.size())
-	{
-		for (size_t i = 0; i < m_preloading_meshes.size(); ++i)
-			if (m_preloading_meshes.at(i).valid())
-				m_preloading_meshes.at(i).get();
-	}
+	for (auto& i : m_preloading_meshes)
+		if (i.valid())
+			i.get();
 #endif
 
 	// Inicializamos StaticMeshManager 

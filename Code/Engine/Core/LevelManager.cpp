@@ -38,14 +38,14 @@ void CLevelManager::Initialize()
 {
 #if MULTITHREADED_LOAD
 	// Mesh preload thread
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'H', 'M'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'A', 'G'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'N', 'S'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'T', 'Z'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'a', 'g'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'h', 'm'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'n', 's'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 't', 'z'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'A', 'H'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'I', 'L'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'M', 'O'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'P', 'T'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'U', 'Z'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'a', 'i'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'j', 'q'));
+	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'r', 'z'));
 #endif
 }
 

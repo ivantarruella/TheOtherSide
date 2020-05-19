@@ -1,5 +1,6 @@
 #include "TextureManager.h"
-
+#include "StaticMeshManager.h"
+#include "Base.h"
 
 CTextureManager::CTextureManager()
 {
@@ -21,7 +22,12 @@ void CTextureManager::Reload ()
 
 CTexture * CTextureManager::GetTexture(const std::string &Filename)
 {
-	CTexture * l_pTex = GetResource(Filename);
+#if MULTITHREADED_LOAD			
+	std::lock_guard<std::mutex> lk(CORE->GetStaticMeshManager()->GetMutex());
+	// don't allow acces from multiple threads in this code:
+#endif				
+
+	CTexture* l_pTex = GetResource(Filename);
 	if(l_pTex == NULL)
 	{
 		l_pTex = new CTexture;

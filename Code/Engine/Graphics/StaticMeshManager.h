@@ -2,6 +2,7 @@
 #define __CLASS_STATICMESHMANAGER_H__
 #pragma once
 
+#include <mutex>
 #include "StaticMesh.h"
 #include "Utils/MapManager.h"
 
@@ -21,8 +22,11 @@ public:
 	void SetMeshTexture(const std::string& mesh, const std::string texture, int stage);
 	bool GetMeshPreLoad() { return bMeshesPreLoaded; }
 
+	std::mutex& GetMutex() { return m_mutex; }
+
 private:
 	bool bMeshesPreLoaded;
+	std::mutex m_mutex;
 };
 
 #endif

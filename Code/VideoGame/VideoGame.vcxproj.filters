@@ -6,5 +6,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameProcess.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TheOtherSide.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="E:\Descargas\TheOtherSide.ico" />
   </ItemGroup>
 </Project>

@@ -16,6 +16,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameProcess.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TheOtherSide.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="E:\Descargas\TheOtherSide.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{03B7C3E5-CA0E-48E3-8B79-AE79E3E264A0}</ProjectGuid>

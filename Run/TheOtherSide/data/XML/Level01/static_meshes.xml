@@ -1,4 +1,5 @@
 <Static_Meshes>
+	<static_mesh name="arma" filename="data\Meshes\arma.m3d"/>
 	<static_mesh name="SVigilancia_ArchivadorRojo01" filename="data\Meshes\SVigilancia_ArchivadorRojo01.m3d"/>
 	<static_mesh name="SVigilancia_ArchivadorNegro01" filename="data\Meshes\SVigilancia_ArchivadorNegro01.m3d"/>
 	<static_mesh name="SVigilancia_ArchivadorMarron01" filename="data\Meshes\SVigilancia_ArchivadorMarron01.m3d"/>

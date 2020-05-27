@@ -133,7 +133,7 @@
 		<onTrigger lua="_GAMEPROCESS:mirror_trigger('OnTrigger', 'Trigger_Espejo_Final_MR', '', '')" />
 	</trigger>
 	<trigger name="Trigger_Hall_PC" pos="43.5887 0.925344 -8.50892" size="0.667046 0.925344 0.441543" mask="" >
-		<onEnter lua="_GAMEPROCESS:door_trigger('OnEnter','Trigger_Hall_PC')" />
+		<onEnter lua="_GAMEPROCESS:door_trigger('OnEnter','Trigger_Hall_PC')"/>
 		<onLeave lua="_GAMEPROCESS:door_trigger('OnLeave','Trigger_Hall_PC')" />
 		<onTrigger lua="_GAMEPROCESS:door_trigger('OnTrigger','Trigger_Hall_PC')" />
 	</trigger>
@@ -170,7 +170,8 @@
 	</trigger>
 	<trigger name="Trigger_OptEspejos_01_MR" pos="46.9565 0.901238 -18.7791" size="1.16774 0.966626 0.113352" mask="" >
 		<onEnter lua="espejo_inicial_MR_level02_ON()" />
-		<onLeave lua="opt_luces01_level2()" />
+		<onLeave lua="opt_luces01_level2()
+					  level2_enemigo0_hall_piso1()" />
 		<onTrigger lua="objetivo8()" />
 	</trigger>
 	<trigger name="Trigger_OptEspejos_02_MR" pos="16.0405 0.861962 -14.6951" size="0.516424 0.873994 0.632948" mask="" >
@@ -416,7 +417,7 @@
 		<onTrigger lua="objetivos_OFF()" />
 	</trigger>
 	<trigger name="Trigger_Sonido_WAUDH" pos="-37.319 0.868603 -8.19182" size="0.147587 0.88746 1.11054" mask="" >
-		<onEnter lua="" />
+		<onEnter lua="level2_enemigo00_hall_piso1()" />
 		<onLeave lua="" />
 		<onTrigger lua="sound_what_are_you_doing_here()" />
 	</trigger>

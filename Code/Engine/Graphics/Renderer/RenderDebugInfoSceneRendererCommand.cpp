@@ -1,5 +1,7 @@
 #include "RenderDebugInfoSceneRendererCommand.h"
 #include "RenderManager.h"
+#include "NodeManager.h"
+#include "CoverManager.h"
 #include "Matrix44.h"
 #include "CProcess.h"
 #include "Console.h"

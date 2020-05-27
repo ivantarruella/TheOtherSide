@@ -1,7 +1,9 @@
 #include "CoverManager.h"
+#include "RenderManager.h"
 #include "XML\XMLTreeNode.h"
 #include "Exception.h"
-
+#include "Matrix44.h"
+#include "Color.h"
 #include "Base.h"
 
 CCoverManager::CCoverManager()
@@ -85,4 +87,26 @@ int CCoverManager::NearestExt(const Vect3f &vector)
 		}
 	}
 	return n;
+}
+
+void CCoverManager::RenderDebug()
+{
+	CColor col(1.0f,0.5f,0.5f);
+	for (size_t i = 0; i < m_Covers.size(); ++i)
+	{
+		Mat44f mat;
+		mat.SetIdentity();
+		mat.Translate(m_Covers[i]);
+		CORE->GetRenderManager()->SetTransform(mat);
+		CORE->GetRenderManager()->DrawSphere(0.1f, 8, col);
+	}
+	CColor col2(0.5f, 1.0f, 0.5f);
+	for (size_t i = 0; i < m_ExtCovers.size(); ++i)
+	{
+		Mat44f mat;
+		mat.SetIdentity();
+		mat.Translate(m_ExtCovers[i]);
+		CORE->GetRenderManager()->SetTransform(mat);
+		CORE->GetRenderManager()->DrawSphere(0.1f, 8, col2);
+	}
 }

@@ -9,8 +9,8 @@
 #include "Weapon.h"
 #include "Base.h"
 
-#define ENERGY_INC_TIME		0.05f	// incrementa energia cada x seg.
-#define ENERGY_INC_VALUE	(3.0f)	// cuanto incrementa de energia
+#define ENERGY_INC_TIME		0.01f	// incrementa energia cada x seg.
+#define ENERGY_INC_VALUE	(5.0f)	// cuanto incrementa de energia
 
 #define MAX_ENERGY_RECOVER_VALUE	150.0f
 
@@ -80,6 +80,9 @@ CEnergyRecover::~CEnergyRecover()
 
 void CEnergyRecover::Update(float ElapsedTime)
 {
+	if (m_Mesh && m_Mesh->GetVisible())
+		m_Mesh->SetYaw(m_Mesh->GetYaw() + 0.05f);
+
 	if (m_player == NULL)
 		return;
 
@@ -91,7 +94,7 @@ void CEnergyRecover::Update(float ElapsedTime)
 
 		if (m_fTime >= ENERGY_INC_TIME)
 		{
-			m_player->GetWeapon().PartiallyRechargeWeapon();
+			m_player->GetWeapon().RechargeWeapon();
 			m_fMaxEnergyRecover -= ENERGY_INC_VALUE;
 			if (m_Light != NULL){
 				m_Light->SetVarIntensity(!m_player->GetWeapon().IsMunitionFull());
@@ -100,13 +103,14 @@ void CEnergyRecover::Update(float ElapsedTime)
 			m_fTime = 0.0f;
 		}
 
-		if (m_fMaxEnergyRecover <= 0.0f)
+		//if (m_fMaxEnergyRecover <= 0.0f)
 		{
 			SetEnabled(false);
 			CORE->GetScriptManager()->RunCode("sound_carga_energia_off()");
 
 			if (m_Mesh != NULL && m_OffTexture != NULL)
-				m_Mesh->GetStaticMesh()->SetTexture(m_OffTexture);
+				//m_Mesh->GetStaticMesh()->SetTexture(m_OffTexture);
+				m_Mesh->SetVisible(false);
 
 			if (m_Light != NULL){
 				m_Light->SetVarIntensity(false);
@@ -160,24 +164,56 @@ void CEnergyRecover::Trigger(const std::string& action, CPlayer* player)
 	{
 		if (action=="OnEnter")
 		{
+			m_bStart = true;
+			DisplayUse(false);
+			player->SetCanUseItem(false);
+			//player->SetUseItemAnim(RECARGA_ARMA_ANIM);
+		}
+	}
+	else 
+	{
+		m_bStart = false;
+		DisplayUse(m_bStart);
+		player->SetCanUseItem(false);
+		player->SetUseItemAnim(USE_ANIM);
+		if (m_Light != NULL){
+			m_Light->SetVarIntensity(false);
+			m_Light->SetVarTime(0.f);
+		}
+		CORE->GetScriptManager()->RunCode("sound_carga_energia_off()");
+		m_player = NULL;
+	}
+}
+/*
+void CEnergyRecover::Trigger(const std::string& action, CPlayer* player)
+{
+	m_player = player;
+
+	if (m_player == NULL)
+		return;
+
+	if (GetEnabled() && !m_player->GetWeapon().IsMunitionFull())
+	{
+		if (action == "OnEnter")
+		{
 			player->SetCanUseItem(true);
 			player->SetUseItemAnim(RECARGA_ARMA_ANIM);
 			DisplayUse(true);
 		}
-		else if (action=="OnLeave")
+		else if (action == "OnLeave")
 		{
 			m_bStart = false;
 			DisplayUse(m_bStart);
 			player->SetCanUseItem(false);
 			player->SetUseItemAnim(USE_ANIM);
-			if (m_Light != NULL){
+			if (m_Light != NULL) {
 				m_Light->SetVarIntensity(false);
 				m_Light->SetVarTime(0.f);
 			}
 			CORE->GetScriptManager()->RunCode("sound_carga_energia_off()");
 			m_player = NULL;
 		}
-		else if (action=="OnTrigger")
+		else if (action == "OnTrigger")
 		{
 			D3DXVECTOR3 vp(-player->GetFront().x, -player->GetFront().y, -player->GetFront().z);
 			D3DXVECTOR3 n(-m_Mesh->GetFront().Normalize().x, -m_Mesh->GetFront().Normalize().y, -m_Mesh->GetFront().Normalize().z);
@@ -186,12 +222,12 @@ void CEnergyRecover::Trigger(const std::string& action, CPlayer* player)
 			if (m_orientation == 0)
 				bOriented = (dot >= 0.80f);
 			else if (m_orientation == 1)
-				bOriented = (dot <= 0.05f && dot >= -0.40f);		
+				bOriented = (dot <= 0.05f && dot >= -0.40f);
 			else if (m_orientation == 2)
-				bOriented = (dot <= 0.40f && dot >= -0.16f);			
+				bOriented = (dot <= 0.40f && dot >= -0.16f);
 			else if (m_orientation == 3)
-				bOriented = (dot <= 1.00f && dot >= 0.90f);			
-			if (bOriented){
+				bOriented = (dot <= 1.00f && dot >= 0.90f);
+			if (bOriented) {
 				m_bStart = player->GetUseItem();
 				DisplayUse(true);
 				player->SetCanUseItem(true);
@@ -210,13 +246,13 @@ void CEnergyRecover::Trigger(const std::string& action, CPlayer* player)
 			}
 		}
 	}
-	else 
+	else
 	{
 		m_bStart = false;
 		DisplayUse(m_bStart);
 		player->SetCanUseItem(false);
 		player->SetUseItemAnim(USE_ANIM);
-		if (m_Light != NULL){
+		if (m_Light != NULL) {
 			m_Light->SetVarIntensity(false);
 			m_Light->SetVarTime(0.f);
 		}
@@ -224,7 +260,7 @@ void CEnergyRecover::Trigger(const std::string& action, CPlayer* player)
 		m_player = NULL;
 	}
 }
-
+*/
 void CEnergyRecover::Restart()
 {
 	m_fMaxEnergyRecover = MAX_ENERGY_RECOVER_VALUE;

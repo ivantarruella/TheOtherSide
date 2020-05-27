@@ -4,6 +4,8 @@
 
 level1_enemies01_spawned = false
 
+level2_floor1_enemy00_spawned = false
+level2_floor1_enemy000_spawned = false
 level2_floor1_enemy01_spawned = false
 level2_floor1_enemy02_spawned = false
 level2_floor1_enemy03_spawned = false
@@ -22,6 +24,8 @@ end
 
 function level2_restart_enemies()
 
+	level2_floor1_enemy00_spawned = false
+	level2_floor1_enemy000_spawned = false
 	level2_floor1_enemy01_spawned = false
 	level2_floor1_enemy02_spawned = false
 	level2_floor1_enemy03_spawned = false
@@ -41,19 +45,43 @@ function level1_activar_enemigo()
 		local position_MR = Vect3f(6.38321,0.00,8.29533)
 		local position_ME = Vect3f(-6.38321,0.00,8.29533)
 		_ENEMYM:create_enemy('Soldier001', position_MR, 'Monster001', position_ME)
-	
+		
 		level1_enemies01_spawned = true
 	end
 end
 
 -- LEVEL 02
-
+function level2_enemigo0_hall_piso1()
+	if level2_floor1_enemy00_spawned == false then
+		--enemic 0, entrada hall, pis1
+		local position_MR = Vect3f(34.0863, 0.00, -6.51555)
+		local position_ME = Vect3f(-34.0863, 0.00, -6.51555)
+		_ENEMYM:create_enemy('Soldier001a', position_MR, 'Monster001a', position_ME)
+		
+		level2_floor1_enemy00_spawned = true
+	end
+end
+function level2_enemigo00_hall_piso1()
+	if level2_floor1_enemy000_spawned == false then
+		--enemic 0, entrada hall, pis1
+		local position_MR = Vect3f(46.988, 0.0, -13.539)
+		local position_ME = Vect3f(-46.988, 0.0, -13.539)
+		_ENEMYM:create_enemy('Soldier001b', position_MR, 'Monster001b', position_ME)
+		
+		level2_floor1_enemy000_spawned = true
+	end
+end
 function level2_enemigo1_hall_piso1()
 	if level2_floor1_enemy01_spawned == false then
 		--enemic 1, entrada hall, pis1
 		local position_MR = Vect3f(39.16,0.00,7.15)
 		local position_ME = Vect3f(-39.16,0.00,7.15)
 		_ENEMYM:create_enemy('Soldier001', position_MR, 'Monster001', position_ME)
+		
+		position_MR = Vect3f(34.0863, 0.00, -6.51555)
+		position_ME = Vect3f(-34.0863, 0.00, -6.51555)
+		_ENEMYM:create_enemy('Soldier001a', position_MR, 'Monster001a', position_ME)
+		
 		level2_floor1_enemy01_spawned = true
 	end
 end

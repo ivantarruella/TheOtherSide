@@ -64,6 +64,7 @@
     <ClCompile Include="Renderer\RenderableObjectTechnique.cpp" />
     <ClCompile Include="Renderer\RenderableObjectTechniquesSceneRendererCommand.cpp" />
     <ClCompile Include="Renderer\RenderDebugCameraSceneRendererCommand.cpp" />
+    <ClCompile Include="Renderer\RenderDebugIASceneRendererCommand.cpp" />
     <ClCompile Include="Renderer\RenderDebugInfoSceneRendererCommand.cpp" />
     <ClCompile Include="Renderer\RenderDebugLightsSceneSceneRendererCommand.cpp" />
     <ClCompile Include="Renderer\RenderDebugPhysXSceneRendererCommand.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Renderer\RenderableObjectTechnique.h" />
     <ClInclude Include="Renderer\RenderableObjectTechniquesSceneRendererCommand.h" />
     <ClInclude Include="Renderer\RenderDebugCameraSceneRendererCommand.h" />
+    <ClInclude Include="Renderer\RenderDebugIASceneRendererCommand.h" />
     <ClInclude Include="Renderer\RenderDebugInfoSceneRendererCommand.h" />
     <ClInclude Include="Renderer\RenderDebugLightsSceneSceneRendererCommand.h" />
     <ClInclude Include="Renderer\RenderDebugPhysXSceneRendererCommand.h" />
@@ -164,6 +166,7 @@
     <ClInclude Include="Renderer\UnsetRenderTargetSceneRendererCommand.h" />
     <ClInclude Include="Renderer\UnsetScissorRectSceneRendererCommand.h" />
     <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SphereEmitter.h" />
     <ClInclude Include="SpotLight.h" />
     <ClInclude Include="StaticMesh.h" />
@@ -172,6 +175,9 @@
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TorusEmitter.h" />
     <ClInclude Include="VertexType.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Graphics.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0EEF67CD-7282-4AE6-A48E-0108906DAE0E}</ProjectGuid>

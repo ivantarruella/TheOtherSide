@@ -24,6 +24,8 @@ public:
 	Vect3f GetExt(int i){return m_ExtCovers[i];};
 
 	int GetNumCovers(){return m_Covers.size();};
+
+	void RenderDebug();
 		
 private:
 	

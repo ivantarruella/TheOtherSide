@@ -26,6 +26,7 @@
 #include "RenderDebugPhysXSceneRendererCommand.h"
 #include "RenderDebugCameraSceneRendererCommand.h"
 #include "RenderDebugInfoSceneRendererCommand.h"
+#include "RenderDebugIASceneRendererCommand.h"
 #include "PresentSceneRendererCommand.h"
 #include "SetupMatricesSceneRendererCommand.h"
 #include "DeferredShadingSceneRendererCommand.h"
@@ -195,6 +196,10 @@ void CSceneRendererCommandManager::Load(const std::string &FileName)
 				else if (l_CommandName=="render_debug_physX")
 				{
 					l_RendererSceneCommand = new CRenderDebugPhysXSceneRendererCommand(l_SceneRendererCommandManagerNode(i));
+				}
+				else if (l_CommandName == "render_debug_IA")
+				{
+					l_RendererSceneCommand = new CRenderDebugIASceneRendererCommand(l_SceneRendererCommandManagerNode(i));
 				}
 
 				if (l_RendererSceneCommand!=NULL)

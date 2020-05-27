@@ -37,6 +37,8 @@ public:
 
 	int GetNumNodes(){return m_Nodes.size();};
 	int GetNumNodesSoldier(){return m_NodesSoldier.size();};
+
+	void RenderDebug();
 		
 private:
 	

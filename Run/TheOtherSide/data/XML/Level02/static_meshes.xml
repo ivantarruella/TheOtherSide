@@ -1,4 +1,5 @@
 <Static_Meshes>
+	<static_mesh name="arma" filename="data\Meshes\arma.m3d"/>
 	<static_mesh name="Pasillos_Centroventana02_ME" filename="data\Meshes\Pasillos_Centroventana02_ME.m3d"/>
 	<static_mesh name="Pasillos_Giro01_ME" filename="data\Meshes\Pasillos_Giro01_ME.m3d"/>
 	<static_mesh name="Pasillos_LuzEmergencia01_ME" filename="data\Meshes\Pasillos_LuzEmergencia01_ME.m3d"/>

@@ -1,7 +1,9 @@
 #include "NodeManager.h"
+#include "RenderManager.h"
 #include "XML\XMLTreeNode.h"
 #include "Exception.h"
-
+#include "Matrix44.h"
+#include "Color.h"
 #include "Base.h"
 
 CNodeManager::CNodeManager()
@@ -116,6 +118,19 @@ void CNodeManager::SetConnection(CNode* a, CNode* b)
 {
 	a->AddConnection(b);
 	b->AddConnection(a);
+}
+
+void CNodeManager::RenderDebug()
+{
+	CColor col;
+	for (size_t i = 0; i < m_NodesSoldier.size(); ++i)
+	{
+		Mat44f mat;
+		mat.SetIdentity();
+		mat.Translate(m_NodesSoldier[i]->GetPos());
+		CORE->GetRenderManager()->SetTransform(mat);
+		CORE->GetRenderManager()->DrawSphere(0.1f, 8, col);
+	}
 }
 
 int CNodeManager::GetIndexNode(CNode* node)

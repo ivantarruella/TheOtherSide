@@ -232,6 +232,9 @@
     <ClCompile Include="Renderer\RenderDebugPhysXSceneRendererCommand.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\RenderDebugIASceneRendererCommand.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenderManager.h" />
@@ -468,6 +471,10 @@
     <ClInclude Include="Renderer\RenderDebugPhysXSceneRendererCommand.h">
       <Filter>Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Renderer\RenderDebugIASceneRendererCommand.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Camera">
@@ -497,5 +504,8 @@
     <Filter Include="Effects">
       <UniqueIdentifier>{a8445fe3-d634-4e92-9864-4f229b39a221}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Graphics.rc" />
   </ItemGroup>
 </Project>

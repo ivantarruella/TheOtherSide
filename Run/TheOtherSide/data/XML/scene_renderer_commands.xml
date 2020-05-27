@@ -69,6 +69,7 @@
 	<render_debug_info/>
 	<!--<render_debug_lights/>-->
 	<!--<render_debug_physX/>-->
+	<!--<render_debug_IA/>-->
 
 	<!-- POST PROCESS EFFECTS -->
 

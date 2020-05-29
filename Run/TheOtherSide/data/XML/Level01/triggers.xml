@@ -123,6 +123,11 @@
 		<onLeave lua="_GAMEPROCESS:energy_trigger('OnLeave','Trigger_Maquina_Energia_MR_Level01')" />
 		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Maquina_Energia_MR_Level01')" />
 	</trigger>
+	<trigger name="Trigger_Arma_MR_Level01" pos="23.6771 0 -2.35642" size="0.324943 0.967578 0.544844" mask="" >
+		<onEnter lua="_GAMEPROCESS:energy_trigger('OnEnter','Trigger_Arma_MR_Level01')" />
+		<onLeave lua="_GAMEPROCESS:energy_trigger('OnLeave','Trigger_Arma_MR_Level01')" />
+		<onTrigger lua="_GAMEPROCESS:energy_trigger('OnTrigger','Trigger_Arma_MR_Level01')" />
+	</trigger>	
 	<trigger name="Trigger_Sonido_ME_01" pos="-17.0831 2.02224 0.516169" size="0.110186 2.02224 1.48751" mask="" >
 		<onEnter lua="level1_activar_enemigo()" />
 		<onLeave lua="sound_monstruo()" />

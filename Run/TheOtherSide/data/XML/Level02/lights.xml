@@ -318,22 +318,22 @@
 	<light name="Light_Omni_Vida03_MR" type="omni" pos="35.1464 1.11597 11.4051" color="8.0 217.0 255.0" att_start_range="0.5" att_end_range="2.5" world="1">
 	</light> 
 	
-	<light name="Light_Omni_Arma01_MR" type="omni" pos="23.5732 1.51831 -24.0903" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
+	<light name="Light_Omni_Arma01_MR" type="omni" pos="23.5842 0.3 -24.0988" color="53.0 247.0 77.0" att_start_range="0.05" att_end_range="0.2" world="1">
 	</light> 
 
-	<light name="Light_Omni_Arma02_MR" type="omni" pos="23.5732 4.61992 -24.0903" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
+	<light name="Light_Omni_Arma02_MR" type="omni" pos="23.5842 3.4 -24.0988" color="53.0 247.0 77.0" att_start_range="0.05" att_end_range="0.2" world="1">
 	</light> 
 
-	<light name="Light_Omni_Arma03_MR" type="omni" pos="48.2934 1.51831 -4.99323" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
+	<light name="Light_Omni_Arma03_MR" type="omni" pos="48.7824 0.3 -4.98473" color="53.0 247.0 77.0" att_start_range="0.05" att_end_range="0.2" world="1">
 	</light> 
 
-	<light name="Light_Omni_Arma04_MR" type="omni" pos="30.9073 4.65915 26.2171" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
+	<light name="Light_Omni_Arma04_MR" type="omni" pos="30.8988 3.4 26.7061" color="53.0 247.0 77.0" att_start_range="0.05" att_end_range="0.2" world="1">
 	</light> 
 
-	<light name="Light_Omni_Arma05_MR" type="omni" pos="8.4582 4.65915 14.6519" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
+	<light name="Light_Omni_Arma05_MR" type="omni" pos="7.96921 3.4 14.6434" color="53.0 247.0 77.0" att_start_range="0.05" att_end_range="0.2" world="1">
 	</light> 
 	
-	<light name="Light_Omni_Arma04_ME" type="omni" pos="-30.8187 4.65915 26.1668" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="1">
+	<light name="Light_Omni_Arma04_ME" type="omni" pos="-30.8272 3.4 26.6557" color="53.0 247.0 77.0" att_start_range="0.05" att_end_range="0.2" world="1">
 	</light> 
 	
 	<light name="Omni_boto_pis2_MR" type="omni" pos="24.4477 4.22524 26.8995" color="217.0 40.0 40.0" att_start_range="0.1" att_end_range="0.3" world="1" intermittent="true" tmin="0.5" tmax="0.5">
@@ -675,16 +675,16 @@
 	<light name="Light_Omni_Vida03_ME" type="omni" pos="-31.6251 1.50677 11.3548" color="8.0 217.0 255.0" att_start_range="0.5" att_end_range="2.5" world="2">
 	</light> 
 
-	<light name="Light_Omni_Arma01_ME" type="omni" pos="-23.5479 1.51831 -24.1639" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="2">
+	<light name="Light_Omni_Arma01_ME" type="omni" pos="-23.5589 0.3 -24.1554" color="53.0 247.0 77.0" att_start_range="0.05" att_end_range="0.2" world="2">
 	</light> 
 
-	<light name="Light_Omni_Arma02_ME" type="omni" pos="-23.5479 4.61992 -24.1639" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="2">
+	<light name="Light_Omni_Arma02_ME" type="omni" pos="-23.5589 3.4 -24.1554" color="53.0 247.0 77.0" att_start_range="0.05" att_end_range="0.2" world="2">
 	</light> 
 
-	<light name="Light_Omni_Arma03_ME" type="omni" pos="-48.2789 1.51831 -5.02031" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="2">
+	<light name="Light_Omni_Arma03_ME" type="omni" pos="-48.7679 0.3 -5.02881" color="53.0 247.0 77.0" att_start_range="0.05" att_end_range="0.2" world="2">
 	</light> 
 
-	<light name="Light_Omni_Arma05_ME" type="omni" pos="-8.53024 4.65915 14.6099" color="253.0 247.0 77.0" att_start_range="0.3" att_end_range="1.0" world="2">
+	<light name="Light_Omni_Arma05_ME" type="omni" pos="-8.04125 3.4 14.6184" color="53.0 247.0 77.0" att_start_range="0.05" att_end_range="0.2" world="2">
 	</light> 
 
 	<light name="Omni_vermella_pasillo_ME" type="omni" pos="-43.9287 0.344166 -16.9149" color="217.0 40.0 40.0" att_start_range="0.2" att_end_range="0.7" world="2">

@@ -20,7 +20,7 @@ public:
 
 	bool Load(const std::string &FileName);
 	bool Reload();
-	void GenerateMirrors();
+	void RenderMirrors();
 
 	void SetObjectEnabled(const std::string& Name, bool state);
 	void SetAllObjectsEnabled(CLogicObject::TLogicType logic, bool state);

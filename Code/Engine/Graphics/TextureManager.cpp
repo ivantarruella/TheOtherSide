@@ -23,7 +23,7 @@ void CTextureManager::Reload ()
 CTexture * CTextureManager::GetTexture(const std::string &Filename)
 {
 #if MULTITHREADED_LOAD			
-	std::lock_guard<std::mutex> lk(CORE->GetStaticMeshManager()->GetMutex());
+	//std::lock_guard<std::mutex> lk(CORE->GetStaticMeshManager()->GetMutex());
 	// don't allow acces from multiple threads in this code:
 #endif				
 

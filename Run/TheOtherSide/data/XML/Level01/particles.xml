@@ -37,7 +37,7 @@
 		</PointEmitter>
 		<PointEmitter type="torus" name="healing" gravity="false" life_time_min="7.0" life_time_max="8.0" emit_rate_min="20.0"
 			emit_rate_max="60.0" tex="data\Textures\Electric sparkle.png" angle="2.0">
-			<color time="0.0" color1="0.01 0.8 0.01 1" color2="0.01 0.8 0.01 1"/>
+			<color time="0.0" color1="0.5 0.01 0.01 1" color2="1.0 0.01 0.01 1"/>
 			<direction time="0.0" dir1="-0.01 0.2 -0.01" dir2="0.01 0.6 0.01"/>
 			<size time="0.0" mins="0.2" maxs="0.4"/>
 			<aceleration time="0.0" acel1="0 1 0" acel2="0 1 0"/>

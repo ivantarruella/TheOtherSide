@@ -13,7 +13,7 @@ CCharacter::CCharacter(const CXMLTreeNode& XmlData, float size,float height):
 }
 
 CCharacter::CCharacter(const Vect3f &pos, const std::string &CoreName, const std::string &Name, float size,float height): 
-	m_PhysicController(NULL),CAnimatedInstanceModel(pos, CoreName, Name), m_Anim(WAIT_ANIM), m_Size(size),m_bHit(false), m_bDead(false),m_fHeight(height), m_fLife(1.0f)
+	m_PhysicController(NULL), m_initPosition(pos),CAnimatedInstanceModel(pos, CoreName, Name), m_Anim(WAIT_ANIM), m_Size(size),m_bHit(false), m_bDead(false),m_fHeight(height), m_fLife(1.0f)
 {
 	Init(CoreName);
 }

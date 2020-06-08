@@ -147,7 +147,7 @@ public:
 		Vect3f l_pos = m_Owner->GetPosition();
 		l_pos.y = pos.y + 1.1f;
 
-		l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos +l_dir*0.5f, l_dir , 0x1, l_info);
+		l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos +l_dir*0.35f, l_dir , 0x1, l_info);
 		if(l_info.m_fDistance < l_distance)
 		{
 			return false;
@@ -167,7 +167,7 @@ public:
 		l_dir.Normalize();
 		l_pos.y = m_Player->GetPosition().y + 0.6f;
 
-		l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos + 0.5f * l_dir, l_dir , 0x1, l_info);
+		l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos + 0.35f * l_dir, l_dir , 0x1, l_info);
 		if(l_user == m_Player->GetPhysicUserData())
 		{
 			return true;

@@ -18,5 +18,5 @@ void CRenderMirrorsSceneRendererCommand::Execute(CRenderManager &RM)
 	if (l_Camera==NULL) 
 		return;		// si la camara no esta disponible, no pintamos espejos aún
 
-	CORE->GetLogicObjectsManager()->GenerateMirrors();
+	CORE->GetLogicObjectsManager()->RenderMirrors();
 }

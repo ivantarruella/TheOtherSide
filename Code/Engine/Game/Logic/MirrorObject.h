@@ -32,7 +32,7 @@ public:
 	void SetRotated(bool rot) { m_bRotated = rot; }
 	void SetCurrRotAngle(float angle) { m_fCurrAngle = angle; }
 
-	void Generate();
+	void Render();
 
 // Lua
 	bool GetMirrorActive() { return m_bMirrorActive; }
@@ -44,7 +44,7 @@ public:
 private:
 	void Restart();
 	
-	void GenerateMirror(CRenderManager* RM);
+	void RenderMirror(CRenderManager* RM);
 
 	void DisplayUse(bool show, bool rot);
 

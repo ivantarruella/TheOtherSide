@@ -21,7 +21,7 @@ void CWanderState::Update(float ElapsedTime)
 	Vect3f l_previo; //Vector previo que une la posicion del owner con la posicion de wander
 	Vect3f l_post;
 
-	if(m_Time > 10.0f)
+	if(m_Time > 3.0f)
 	{		
 		m_StateMachine->ChangeState("IDLE");
 		return;

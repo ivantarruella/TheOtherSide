@@ -28,9 +28,9 @@ using namespace luabind;
 #define GAMEPAD_SPEED			0.00033f	// velocidad actualización gamepad
 #define GAMEPAD_SPEED_AIM		0.00022f	// velocidad actualización gamepad apuntando
 
-#define PLAYER_SPEED_WALK		0.0275f		// velocidad movimiento personaje andando
+#define PLAYER_SPEED_WALK		0.030f		// velocidad movimiento personaje andando
 #define PLAYER_SPEED_WALK_BCK	0.025f		// velocidad movimiento personaje andando atrás
-#define PLAYER_SPEED_WALK_AIM	0.0275f		// velocidad movimiento personaje andando y apuntando
+#define PLAYER_SPEED_WALK_AIM	0.035f		// velocidad movimiento personaje andando y apuntando
 #define PLAYER_SPEED_WALK_AIM_BCK	0.025f	// velocidad movimiento personaje andando hacia atrás y apuntando
 #define PLAYER_SPEED_RUN		0.055f		// velocidad movimiento personaje corriendo
 
@@ -205,7 +205,7 @@ void CPlayer::UpdateInputActions()
 
 	// Shoot, run & use buttons (keyboard & gamepad)
 	m_bShoot = actionToInput->DoAction(DOACTION_PLAYERSHOOT) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERSHOOT_PAD));
-	if (!m_bIsRunning && !m_bIsAiming)
+	if (/*!m_bIsRunning &&*/ !m_bIsAiming)
 	{
 		m_bIsRunning = (actionToInput->DoAction(DOACTION_PLAYERRUN) || (bGamePad&&actionToInput->DoAction(DOACTION_PLAYERRUN_PAD))) && !m_bIsAiming 
 			&& (m_PlayerMovement == WALK_FORWARD || m_PlayerMovement == WALK_FORWARD_LEFT || m_PlayerMovement == WALK_FORWARD_RIGHT); 

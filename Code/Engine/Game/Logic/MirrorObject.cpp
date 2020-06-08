@@ -442,7 +442,7 @@ void CMirrorObject::Trigger(const std::string& action, CPlayer* player, const st
 }
 
 
-void CMirrorObject::Generate()
+void CMirrorObject::Render()
 {
 	if (!m_bMirrorActive || !m_bMirrorON || !m_MirrorMesh || !CORE->GetRenderableObjectsLayersManager()->GetLayerEnabled(m_Layer))
 		return;
@@ -455,11 +455,11 @@ void CMirrorObject::Generate()
 		Vect3f l_center(c.x, c.y, c.z);
 
 		if(l_Frustum.SphereVisible(l_center, l_Radius))
-			GenerateMirror(CORE->GetRenderManager());
+			RenderMirror(CORE->GetRenderManager());
 	}
 }
 
-void CMirrorObject::GenerateMirror(CRenderManager* RM)
+void CMirrorObject::RenderMirror(CRenderManager* RM)
 {
 	Vect3f eye = CORE->GetCamera()->GetEye();
 	D3DXVECTOR3 v(eye.x, eye.y, eye.z);

@@ -7,7 +7,7 @@
 	</light> 
 	
 	<light name="LINTERNA" type="spot" pos="-1.19651 0.0 -13.5044" color="224.0 200.0 162.0" 
-	 att_start_range="1.0" att_end_range="6.0" dir="-0.0264862 0.0 -0.999649"
+	 att_start_range="0.1" att_end_range="9.0" dir="-0.0264862 0.0 -0.999649"
 	 world="2" render_shadows="true" generate_shadow_map="true" shadow_map_format_type="RG32F"
 	 shadow_map_width="512" shadow_map_height="512" soft_shadow="true"
 	 angle="40.0" fall_off="70.0">
@@ -16,7 +16,9 @@
 		<dynamic renderable_objects_manager="alpha_blend_objects_ME"/>
 	</light> 
 
-	<light name="LASER" type="spot" pos="7.36404 2.58032 -13.5044" color="65.0 255.0 19.0" att_start_range="5.5" att_end_range="6.0" dir="0.00513604 0.00172818 -0.999985" world="2" angle="15.0" fall_off="30.0"/>
+	<light name="LASER" type="spot" pos="7.36404 2.58032 -13.5044" color="185.0 255.0 129.0" att_start_range="8.0" att_end_range="9.0" dir="0.00513604 0.00172818 -0.999985"
+	 angle="20.0" fall_off="30.0">
+	</light>
 
 	<!-- REAL WORLD -->
 	<light name="llum_sol" type="spot" pos="16.2895 30.5467 -17.032" color="200.0 200.0 150.0" att_start_range="10.0" att_end_range="100.0" dir="0.111022 -0.900534 0.420371"

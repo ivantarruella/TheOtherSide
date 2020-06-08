@@ -28,8 +28,10 @@ void CChaseState::Update(float ElapsedTime)
 	//m_Time = m_Time + ElapsedTime;
 	float l_sqdistance = m_Owner->GetPosition().SqDistance(m_Player->GetPosition());
 	if (l_sqdistance < 1.5f)
+	{
 		m_StateMachine->ChangeState("ATTACK");
-
+		return;
+	}
 	Vect3f l_ras = m_Owner->GetPosition();
 	/*l_ras.y = 0.0f;
 	m_Owner->SetPosition(l_ras);*/

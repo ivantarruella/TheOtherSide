@@ -32,7 +32,6 @@ public:
 private: 	
 	bool m_bFrozen;
 	CStateMachine * m_StateMachine;
-	Vect3f m_initPosition;
 	float m_initYaw;
 	float m_TimeDead;
 	CPlayer* m_Player;

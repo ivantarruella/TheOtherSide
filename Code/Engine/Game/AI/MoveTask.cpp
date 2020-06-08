@@ -251,6 +251,10 @@ bool CMoveTask::Chase(float ElapsedTime)
 					m_Owner->SetPosition(l_dir, ElapsedTime);
 					std::vector<CNode*>::iterator it = m_Path.begin();
 					m_Path.erase(it);
+					if (m_Path.size() == 0)
+					{
+						m_Owner->ChangeCharacterAnimation(WAIT_ANIM, 0.3f);
+					}
 				}
 			}
 			else{				
@@ -271,6 +275,16 @@ bool CMoveTask::Chase(float ElapsedTime)
 					m_Owner->SetYaw(atan2(-l_dir.x, l_dir.z));
 					Vect3f l_front = m_Owner->GetFront();
 				}
+			}
+		}
+		else
+		{
+			CNode* l_start = CORE->GetNodeManager()->GetNodeSoldier(CORE->GetNodeManager()->NearestNodeSoldier(m_Owner->GetPosition()));
+			CNode* l_end = CORE->GetNodeManager()->GetNodeSoldier(CORE->GetNodeManager()->NearestNodeSoldier(m_Owner->GetPositionIni()));
+			m_Path = CORE->GetNodeManager()->AStarAlgorithmSoldier(l_start, l_end);
+			if (m_Path.size() == 1)
+			{
+				m_Owner->ChangeCharacterAnimation(WAIT_ANIM, 0.3f);
 			}
 		}
 	}
@@ -436,13 +450,13 @@ bool CMoveTask::isReachable(Vect3f pos)
 	Vect3f l_pos = m_Owner->GetPosition();
 	l_pos.y = 0.7f;
 
-	l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos +l_dir*0.5f + l_right * 0.5f, l_dir , 0x1, l_info);
+	l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos +l_dir*0.35f + l_right * 0.35f, l_dir , 0x1, l_info);
 	if(l_info.m_fDistance < l_distance)
 	{
 		return false;
 	}
 
-	l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos +l_dir*0.5f - l_right * 0.5f, l_dir, 0x1, l_info);
+	l_user = CORE->GetPhysicsManager()->RaycastClosestActor(l_pos +l_dir*0.35f - l_right * 0.35f, l_dir, 0x1, l_info);
 	if(l_info.m_fDistance < l_distance)
 	{
 		return false;

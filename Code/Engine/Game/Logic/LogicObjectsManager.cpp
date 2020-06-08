@@ -249,14 +249,14 @@ bool CLogicObjectsManager::GetTutorialActive()
 	return false;
 }
 
-void CLogicObjectsManager::GenerateMirrors()
+void CLogicObjectsManager::RenderMirrors()
 {
 	for (size_t i=0; i<m_ResourcesVector.size(); ++i)
 	{
 		CLogicObject* l_Obj = m_ResourcesVector[i];
 		if (l_Obj->GetType()==CLogicObject::MIRROR)
 		{
-			((CMirrorObject *)l_Obj)->Generate();
+			((CMirrorObject *)l_Obj)->Render();
 		}
 	}
 }

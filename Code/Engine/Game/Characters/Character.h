@@ -67,6 +67,7 @@ public:
 	void SetPosition(const Vect3f & Position);
 	//Controller + modelo animado
 	void SetPosition(const Vect3f & Direction, float ElapsedTime);
+	const Vect3f& GetPositionIni() { return m_initPosition; }
 	void ChangeCharacterAnimation(tAnimationStates NewAnim, float delay, float weight = 1.0f);
 
 	void SetIsHit(bool Hit) {	m_bHit = Hit;}
@@ -85,6 +86,7 @@ protected:
 	float m_fSkinWidth;
 
 	Vect3f m_fInstancePos;
+	Vect3f m_initPosition;
 
 private:
 	CPhysicController* m_PhysicController;

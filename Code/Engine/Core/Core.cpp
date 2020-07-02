@@ -294,13 +294,11 @@ void CCore::Update(bool show_fps)
 
 	if (l_Update)
 	{
-		auto enemies = m_pThreadPool->enqueue(&CEnemyManager::Update, m_pEnemyManager, elapsedTime);
 		m_pLogicObjectsManager->Update(elapsedTime);
 		m_pLightManager->Update(elapsedTime);
 		m_pParticleManager->Update(elapsedTime);
 		m_pBulletManager->Update(elapsedTime);
 		m_pRenderableObjectsLayersManager->Update(elapsedTime);
-		enemies.get();
 		m_pPhysicsManager->Update(elapsedTime);
 		
 		m_pTimer->Update();

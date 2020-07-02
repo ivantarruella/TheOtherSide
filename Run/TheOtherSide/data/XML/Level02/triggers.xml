@@ -392,7 +392,7 @@
 		<onTrigger lua="" />
 	</trigger>
 	<trigger name="Trigger_luces_entrada_hall_ME" pos="-46.9498 0.868603 -3.22128" size="1.49033 0.88746 0.147589" mask="" >
-		<onEnter lua="" />
+		<onEnter lua="level2_enemigo3_hall_piso1()" />
 		<onLeave lua="" />
 		<onTrigger lua="opt_luces04_level2()" />
 	</trigger>
@@ -434,6 +434,6 @@
 	<trigger name="Trigger_Sonido_Risa2_ME" pos="-15.0801 0.840575 -12.4602" size="1.82974 0.88746 0.149652" mask="" >
 		<onEnter lua="" />
 		<onLeave lua="" />
-		<onTrigger lua="level2_enemigo3_hall_piso1()" />
+		<onTrigger lua="" />
 	</trigger>
 </TriggerManager>

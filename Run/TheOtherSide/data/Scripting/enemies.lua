@@ -101,9 +101,10 @@ end
 function level2_enemigo3_hall_piso1()
 	if level2_floor1_enemy03_spawned == false then
 		--enemic 3, mirall hall, pis 1 
-		position_MR = Vect3f(16.32,0.00,-16.30)
-		position_ME = Vect3f(-16.32,0.00,-16.30)
+		position_MR = Vect3f(16.32,0.00,6.00)
+		position_ME = Vect3f(-16.32,0.00,6.00)
 		_ENEMYM:create_enemy('Soldier003', position_MR, 'Monster003', position_ME)
+		
 		level2_floor1_enemy03_spawned = true
 	end
 end

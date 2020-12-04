@@ -20,18 +20,11 @@ public:
 		TMapResource::const_iterator it =m_Resources.find(Name);
 		if (it != m_Resources.end())
 			return it->second;
-
 		return NULL;
 	}
 
 	virtual T * GetResource(int i) const
 	{
-		/*TMapResource::const_iterator it =m_Resources.find(Name);
-		if (it != m_Resources.end())
-			return it->second;
-
-		return NULL;*/
-
 		TMapResource::const_iterator it =m_Resources.begin();
 		unsigned int l_i = i;
 		if(l_i >= m_Resources.size() || l_i < 0)
@@ -53,10 +46,10 @@ public:
 	{
 		//TMapResource::const_iterator it =m_Resources.find(Name);
 		//if (it == m_Resources.end())
-		{
-			m_Resources[Name] =  Resource;
+		//{
+			m_Resources.insert(std::pair<std::string, T*>(Name, Resource));
 			return true;
-		}
+		//}
 		//return false;
 	}
 

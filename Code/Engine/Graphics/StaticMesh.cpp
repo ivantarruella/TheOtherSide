@@ -2,6 +2,7 @@
 #include "Texture.h"
 #include "IndexedVertexs.h"
 #include "TextureManager.h"
+#include "StaticMeshManager.h"
 #include "StaticMesh.h"
 #include "VertexType.h"
 #include "Core.h"
@@ -79,6 +80,9 @@ bool CStaticMesh::Load (const std::string &FileName)
 					if (l_TextureName != "")
 					{
 						// Cargamos material
+						//int pos = l_TextureName.rfind("\\");
+						//std::string name = l_TextureName.substr(pos + 1);
+
 						CTexture *l_Texture=CORE->GetTextureManager()->GetTexture(l_TextureName);
 						m_Textures[RV].push_back(l_Texture);
 					}

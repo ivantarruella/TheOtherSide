@@ -45,7 +45,6 @@ void CTexture::Unload()
 
 bool CTexture::LoadFile()
 {
-	//HRESULT l_HR = D3DXCreateTextureFromFile(CORE->GetRenderManager()->GetDevice(), m_FileName.c_str(), &m_Texture);
 	HRESULT l_HR = D3DXCreateTextureFromFileEx(CORE->GetRenderManager()->GetDevice(), m_FileName.c_str(), D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, D3DX_FROM_FILE, 0, D3DFMT_FROM_FILE, D3DPOOL_MANAGED, D3DX_FILTER_NONE, D3DX_FILTER_NONE, 0, NULL, NULL, &m_Texture);
 	return l_HR==S_OK;
 }

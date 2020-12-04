@@ -18,6 +18,8 @@ public:
     auto enqueue(F&& f, Args&&... args)
         ->std::future<typename std::result_of<F(Args...)>::type>;
     ~ThreadPool();
+
+    inline size_t GetThreadNum() { return threads_; }
 private:
     // need to keep track of threads so we can join them
     std::vector< std::thread > workers;
@@ -28,13 +30,14 @@ private:
     std::mutex queue_mutex;
     std::condition_variable condition;
     bool stop;
+    size_t threads_;
 };
 
 // the constructor just launches some amount of workers
 inline ThreadPool::ThreadPool(size_t threads)
-    : stop(false)
+    : stop(false), threads_(threads)
 {
-    for (size_t i = 0; i < threads; ++i)
+    for (size_t i = 0; i < threads_; ++i)
         workers.emplace_back(
             [this]
             {

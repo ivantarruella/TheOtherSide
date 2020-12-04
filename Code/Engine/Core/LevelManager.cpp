@@ -1,7 +1,10 @@
+#include <map>
+#include <numeric>
 #include <time.h>
 #include "LevelManager.h"
 #include "xml/XMLTreeNode.h"
 #include "StaticMeshManager.h"
+#include "TextureManager.h"
 #include "AnimatedModelsManager.h"
 #include "LightManager.h"
 #include "EffectManager.h"
@@ -37,15 +40,52 @@ CLevelManager::~CLevelManager()
 void CLevelManager::Initialize()
 {
 #if MULTITHREADED_LOAD
-	// Mesh preload thread
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'A', 'H'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'I', 'L'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'M', 'O'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'P', 'T'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'U', 'Z'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'a', 'i'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'j', 'q'));
-	m_preloading_meshes.push_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadFolder, CORE->GetStaticMeshManager(), "data\\Meshes", 'r', 'z'));
+	std::vector<std::string> meshes_name;
+	std::string search_path = "data\\Meshes\\*.m3d";
+	WIN32_FIND_DATA fd;
+	HANDLE hFind = ::FindFirstFile(search_path.c_str(), &fd);
+	if (hFind != INVALID_HANDLE_VALUE) {
+		do {
+			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+				meshes_name.emplace_back(fd.cFileName);
+			}
+		} while (::FindNextFile(hFind, &fd));
+		::FindClose(hFind);
+	}
+	
+	size_t num_threads = CORE->GetThreadPool()->GetThreadNum()*4;
+	int meshes_x_thread = (meshes_name.size() / num_threads)+1;
+	for (size_t i = 0; i < num_threads; i++)
+		m_loading_meshes.emplace_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadMeshes, CORE->GetStaticMeshManager(), "data\\Meshes", meshes_name, i * meshes_x_thread, meshes_x_thread));
+
+/*
+	std::vector<std::string> textures, meshes;
+	std::string search_path = "data\\Meshes\\*.*";
+	WIN32_FIND_DATA fd;
+	HANDLE hFind = ::FindFirstFile(search_path.c_str(), &fd);
+	if (hFind != INVALID_HANDLE_VALUE) {
+		do {
+			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+				std::string name = fd.cFileName;
+				bool is_texture = ((name.find("jpg") != std::string::npos) || (name.find("tga") != std::string::npos) || (name.find("dds") != std::string::npos));
+				bool is_mesh = (name.find("m3d") != std::string::npos);
+				if (is_mesh)
+					meshes.emplace_back(name);
+				else if (is_texture)
+					textures.emplace_back(name);
+			}
+		} while (::FindNextFile(hFind, &fd));
+		::FindClose(hFind);
+	}
+	size_t num_threads = CORE->GetThreadPool()->GetThreadNum() * 4;
+	int meshes_x_thread = (meshes.size() / num_threads) + 1;
+	int textures_x_thread = (textures.size() / num_threads) + 1;
+	//for (size_t i = 0; i < num_threads; i++)
+	//	m_loading_textures.emplace_back(CORE->GetThreadPool()->enqueue(&CTextureManager::LoadTextures, CORE->GetTextureManager(), "data\\Meshes", textures, i * textures_x_thread, textures_x_thread));
+	CORE->GetTextureManager()->LoadTextures("data\\Meshes", textures, 0, textures.size());
+	//for (size_t i = 0; i < num_threads; i++)
+	//	m_loading_meshes.emplace_back(CORE->GetThreadPool()->enqueue(&CStaticMeshManager::LoadMeshes, CORE->GetStaticMeshManager(), "data\\Meshes", meshes, i * meshes_x_thread, meshes_x_thread));
+*/
 #endif
 }
 
@@ -259,7 +299,7 @@ bool CLevelManager::InitLevel ()
 
 #if MULTITHREADED_LOAD
 	// Wait for loading thread to finish loading of all game meshes
-	for (auto& i : m_preloading_meshes)
+	for (auto& i : m_loading_meshes)
 		if (i.valid())
 			i.get();
 #endif

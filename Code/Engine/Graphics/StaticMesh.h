@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include <mutex>
 #include "Math/Vector3.h"
 #include "Light.h"
 
@@ -32,7 +33,6 @@ protected:
 
 	std::vector<Vect3f> m_VB;
 	std::vector<uint32> m_IB;
-
 
 public:
 	CStaticMesh()

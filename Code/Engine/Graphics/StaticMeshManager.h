@@ -17,7 +17,7 @@ public:
 	bool Load(const std::string &FileName);
 	bool Reload();
 
-	void LoadFolder(const std::string& FolderName, char from, char to);
+	void LoadMeshes(const std::string& FolderName, const std::vector<std::string>& MeshNameVect, size_t from, size_t size);
 
 	void SetMeshTexture(const std::string& mesh, const std::string texture, int stage);
 	bool GetMeshPreLoad() { return bMeshesPreLoaded; }

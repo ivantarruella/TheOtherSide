@@ -8,6 +8,7 @@
 #include "Base.h"
 
 
+
 CStaticMeshManager::CStaticMeshManager() : bMeshesPreLoaded(false)
 {
 }
@@ -71,42 +72,19 @@ bool CStaticMeshManager::Load (const std::string &FileName)
 	return true;
 }
 
-void CStaticMeshManager::LoadFolder (const std::string &FolderName, char from, char to)
+void CStaticMeshManager::LoadMeshes(const std::string& FolderName, const std::vector<std::string>& MeshNameVect, size_t from, size_t size)
 {
-	bMeshesPreLoaded = true;
-	std::string search_path = FolderName + "/*.*";
-    WIN32_FIND_DATA fd; 
-    HANDLE hFind = ::FindFirstFile(search_path.c_str(), &fd); 
-    if(hFind != INVALID_HANDLE_VALUE) { 
-		do { 
-            if(! (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ) {
-				std::string l_name = fd.cFileName;
-				if (l_name[0] >= from && l_name[0] <= to)
-				{
-					std::string l_ext = ".m3d";
-					std::string::size_type i = l_name.find(l_ext);
-
-					if (i != std::string::npos)
-					{
-						l_name.erase(i, l_ext.length());
-
-						CStaticMesh* l_StaticMesh;
-						l_StaticMesh = new CStaticMesh();
-
-						if (l_StaticMesh->Load(FolderName + "\\" + l_name + l_ext))
-						{
-							AddResource(l_name, l_StaticMesh);
-						}
-						else
-						{
-							CHECKED_DELETE(l_StaticMesh);
-						}
-					}
-				}
-            }
-        }while(::FindNextFile(hFind, &fd)); 
-        ::FindClose(hFind); 
-    } 
+	for (size_t m = from; (m < from+size) && (m < MeshNameVect.size()); m++)
+	{
+		CStaticMesh* l_StaticMesh = new CStaticMesh();
+		std::string name = MeshNameVect.at(m);
+		if (l_StaticMesh->Load(FolderName + "\\" + name))
+			AddResource(name, l_StaticMesh);
+		else
+		{
+			CHECKED_DELETE(l_StaticMesh);
+		}
+	}
 }
 
 bool CStaticMeshManager::Reload ()

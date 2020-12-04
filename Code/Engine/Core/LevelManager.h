@@ -37,7 +37,8 @@ private:
 	bool	    m_bLevelLoaded;
 	std::string m_shadowsType;
 	
-	std::vector<std::future<void>>	m_preloading_meshes;
+	std::vector<std::future<void>>	m_loading_meshes;
+	std::vector<std::future<void>>	m_loading_textures;
 };
 
 #endif

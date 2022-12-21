@@ -51,7 +51,7 @@ public:
 	Mat44f						GetTransform	();
 	Vect3f						GetFront		();
 	CPhysicUserData*			GetPhysicUserData() const;
-	CPhysicActor*				GetPhysicActor	() const {return m_PhysicElement->m_PhysicActor;}
+	CPhysicActor* GetPhysicActor() const { if (m_PhysicElement != NULL) return m_PhysicElement->m_PhysicActor; else return NULL; }
 	CPhysicElement*				GetPhysicElement	() const {return m_PhysicElement;}
 	//---Set Functions
 	void		SetPosition		( const Vect3f& pos )		{m_Position = pos;}

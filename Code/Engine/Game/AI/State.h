@@ -34,9 +34,9 @@ protected:
 
 public:
 	CState()
-		: m_HearDistance(8.0f)
-		, m_VisionDistance(18.0f)
-		, m_VisionAngle(120.0f)
+		: m_HearDistance(6.0f)
+		, m_VisionDistance(16.0f)
+		, m_VisionAngle(180.0f)
 		, m_WalkSpeed(0.030f)
 		, m_Player(NULL)
 	{

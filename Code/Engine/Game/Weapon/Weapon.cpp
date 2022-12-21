@@ -16,7 +16,7 @@
 
 #include "Base.h"
 
-#define	LANTERN_MAXPOWERTIME	60.0f	//tiempo de potencia de maxima luz (s)
+#define	LANTERN_MAXPOWERTIME	60.0f			//tiempo de potencia de maxima luz (s)
 
 #define POWERGUN				4.0f			//velocidad de tiro del arma (balas x seg)
 #define MAXBULLETS				90.0f			//numero maximo de balas
@@ -50,9 +50,9 @@ CWeapon::~CWeapon(void)
 void CWeapon::Init()
 {
 	m_fDamage = DAMAGE;
-	m_fLanternTimer = LANTERN_MAXPOWERTIME;
+	m_fLanternTimer = 0;// LANTERN_MAXPOWERTIME;
 	m_tMode = GUN;
-	m_iAvailableBullets = (int)MAXBULLETS;
+	m_iAvailableBullets = 0;// (int)MAXBULLETS;
 	//Para que empiece disparando
 	m_fShotTimer=SHOT_STEP_DURATION;
 }

@@ -343,7 +343,8 @@ void CMirrorObject::RotatePhysXMesh(float angle)
 	if (m_MirrorMesh!=NULL)
 	{
 		m_MirrorMesh->SetYaw(angle);
-		m_MirrorMesh->GetPhysicActor()->SetRotation(Vect3f(0.f, angle, 0.f));
+		if (m_MirrorMesh->GetPhysicActor() != NULL)
+			m_MirrorMesh->GetPhysicActor()->SetRotation(Vect3f(0.f, angle, 0.f));
 		CalculateMirrorPlane();		// realtime reflection while rotating mirror! ;D
 	}
 }

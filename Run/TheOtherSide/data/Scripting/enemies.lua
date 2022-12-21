@@ -82,9 +82,9 @@ function level2_enemigo1_hall_piso1()
 		local position_ME = Vect3f(-39.16,0.00,7.15)
 		_ENEMYM:create_enemy('Soldier001', position_MR, 'Monster001', position_ME)
 		
-		position_MR = Vect3f(34.0863, 0.00, -6.51555)
-		position_ME = Vect3f(-34.0863, 0.00, -6.51555)
-		_ENEMYM:create_enemy('Soldier001a', position_MR, 'Monster001a', position_ME)
+		--position_MR = Vect3f(34.0863, 0.00, -6.51555)
+		--position_ME = Vect3f(-34.0863, 0.00, -6.51555)
+		--_ENEMYM:create_enemy('Soldier001a', position_MR, 'Monster001a', position_ME)
 		
 		level2_floor1_enemy01_spawned = true
 	end

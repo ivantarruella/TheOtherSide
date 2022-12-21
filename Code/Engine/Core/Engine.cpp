@@ -157,8 +157,8 @@ void CEngine::Render()
 	m_pProcess->RenderScene(renderManager);
 
 	// FPS limit
-	while (GetTickCount()-nFrameStartTime < 1000/m_InitParams.max_fps) 
-		Sleep(0); 
+	//while (GetTickCount()-nFrameStartTime < 1000/m_InitParams.max_fps) 
+	//	Sleep(0); 
 }
 
 bool CEngine::LoadConfig (const std::string& pathFile)
@@ -188,7 +188,7 @@ bool CEngine::LoadConfig (const std::string& pathFile)
 			m_InitParams.y	= l_ScreenNode.GetIntProperty("y_ini",0);
 			m_InitParams.w	= l_ScreenNode.GetIntProperty("nWidth",1280);
 			m_InitParams.h	= l_ScreenNode.GetIntProperty("nHeight",720);
-			m_InitParams.max_fps = 90;//l_ScreenNode.GetIntProperty("max_fps",90);	// 60 fps cap
+			m_InitParams.max_fps = 144;//l_ScreenNode.GetIntProperty("max_fps",90);	// 60 fps cap
 			m_InitParams.shadows_type = l_ScreenNode.GetPszProperty("shadows_type", "PREDEFINED");
 		}
 
